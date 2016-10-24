@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<resources>
+  <style name="MyTheme" parent="@android:style/Theme.Material.Light.DarkActionBar">
+    <item name="android:windowNoTitle">true</item>
+    <item name="android:windowActionBar">false</item>
+    <item name="android:colorPrimary">#F44336</item>
+    <item name="android:colorPrimaryDark">#D32F2F</item>
+    <item name="android:colorAccent">#FF9800</item>
+    <item name="android:textColorPrimary">#212121</item>
+    <item name="android:textColorSecondary">#757575</item>
+  </style>
+</resources>
