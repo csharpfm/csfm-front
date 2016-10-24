@@ -2,4 +2,5 @@
 <resources>
     <string name="Hello">Hello World, Click Me!</string>
     <string name="ApplicationName">MatchFM</string>
+  <string name="preferences">Préférences</string>
 </resources>

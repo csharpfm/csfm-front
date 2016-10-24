@@ -1,6 +1,7 @@
 ﻿using Android.App;
 using Android.Widget;
 using Android.OS;
+using Android.Views;
 
 namespace csfm_android
 {
@@ -8,7 +9,7 @@ namespace csfm_android
     public class MainActivity : Activity
     {
 
-        Toolbar toolbar;
+        private Toolbar toolbar;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -20,6 +21,12 @@ namespace csfm_android
             this.toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
             SetActionBar(toolbar);
             ActionBar.Title = "MatchFM";
+        }
+
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            MenuInflater.Inflate(Resource.Menu.top_menus, menu);
+            return base.OnCreateOptionsMenu(menu);
         }
     }
 }
