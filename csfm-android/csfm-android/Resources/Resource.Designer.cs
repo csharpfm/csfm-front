@@ -3512,10 +3512,13 @@ namespace csfm_android
 			public const int ic_menu_search_holo_dark = 2130837591;
 			
 			// aapt resource value: 0x7f020058
-			public const int Icon = 2130837592;
+			public const int ic_search_white_24dp = 2130837592;
 			
 			// aapt resource value: 0x7f020059
-			public const int notification_template_icon_bg = 2130837593;
+			public const int Icon = 2130837593;
+			
+			// aapt resource value: 0x7f02005a
+			public const int notification_template_icon_bg = 2130837594;
 			
 			static Drawable()
 			{
@@ -3574,6 +3577,9 @@ namespace csfm_android
 			
 			// aapt resource value: 0x7f06003c
 			public const int action_mode_close_button = 2131099708;
+			
+			// aapt resource value: 0x7f060092
+			public const int action_search = 2131099794;
 			
 			// aapt resource value: 0x7f06003d
 			public const int activity_chooser_view_content = 2131099709;

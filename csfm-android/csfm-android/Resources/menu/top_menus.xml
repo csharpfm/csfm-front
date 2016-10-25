@@ -1,9 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:local="http://schemas.android.com/apk/res-auto">
+      xmlns:app="http://schemas.android.com/apk/res-auto">
 
   <item
        android:id="@+id/menu_preferences"
-       local:showAsAction="never"
+       app:showAsAction="never"
        android:title="@string/preferences" />
+
+  <item 
+    android:id="@+id/action_search" 
+    android:title="Search"
+    android:icon="@drawable/ic_search_white_24dp"
+    app:showAsAction="ifRoom|withText"
+    android:tint="#ffffff"
+    app:actionViewClass="android.support.v7.widget.SearchView"
+    >
+        
+  </item>
 </menu>

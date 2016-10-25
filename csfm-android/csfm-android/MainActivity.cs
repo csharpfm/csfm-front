@@ -5,17 +5,21 @@ using Android.Views;
 using System;
 using BottomNavigationBar;
 using Android.Support.V7.App;
-using Android.Support.V4.Content;
 using csfm_android.Fragments;
+using Android.Support.V7.Widget;
+using Android.Runtime;
+using static Android.Support.V7.Widget.SearchView;
 
 namespace csfm_android
 {
-    [Activity(Label = "csfm_android", MainLauncher = true, Icon = "@drawable/icon")]
+    [Activity(Label = "csfm_android", MainLauncher = true, Icon = "@drawable/icon", WindowSoftInputMode = SoftInput.AdjustPan)]
     public class MainActivity : AppCompatActivity, BottomNavigationBar.Listeners.IOnMenuTabClickListener
     {
-        private Toolbar toolbar;
+        private Android.Support.V7.Widget.Toolbar toolbar;
 
         private BottomBar bottomBar;
+
+        private Android.Support.V7.Widget.SearchView searchView;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -24,9 +28,11 @@ namespace csfm_android
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
 
-            this.toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
-            SetActionBar(toolbar);
-            ActionBar.Title = "MatchFM";
+            this.toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
+            //OnCreateOptionsMenu(this.toolbar.Menu);
+
+            SetSupportActionBar(toolbar);
+            this.toolbar.Title = "MatchFM";
 
             setBottomBar(bundle);
             
@@ -37,7 +43,32 @@ namespace csfm_android
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
             MenuInflater.Inflate(Resource.Menu.top_menus, menu);
+            this.toolbar.MenuItemClick += Toolbar_MenuItemClick;
+            var search = toolbar.Menu.FindItem(Resource.Id.action_search);
+            var searchView = search.ActionView.JavaCast<Android.Support.V7.Widget.SearchView>();
+            searchView.SetOnQueryTextListener(new QueryListener());
             return base.OnCreateOptionsMenu(menu);
+        }
+
+        public class QueryListener : Java.Lang.Object, IOnQueryTextListener
+        {
+
+            public bool OnQueryTextChange(string newText)
+            {
+                Console.WriteLine(newText);
+                return true;
+            }
+
+            public bool OnQueryTextSubmit(string query)
+            {
+                Console.WriteLine(string.Format($"Submit : {query}"));
+                return true;
+            }
+        }
+
+        private void Toolbar_MenuItemClick(object sender, Android.Support.V7.Widget.Toolbar.MenuItemClickEventArgs e)
+        {
+            Console.WriteLine("Menu Item Click -----------------");
         }
 
         public void OnMenuItemSelected(int menuItemId)
