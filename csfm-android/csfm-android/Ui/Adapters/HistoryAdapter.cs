@@ -12,6 +12,7 @@ using Android.Widget;
 using Android.Support.V7.Widget;
 using csfm_android.Api.Model;
 using csfm_android.Ui.Holders;
+using Square.Picasso;
 
 namespace csfm_android.Ui.Adapters
 {
@@ -20,8 +21,11 @@ namespace csfm_android.Ui.Adapters
 
         private List<History> historic;
 
-        public HistoryAdapter(List<History> historic)
+        private Context context;
+
+        public HistoryAdapter(Context context, List<History> historic)
         {
+            this.context = context;
             this.historic = historic;
         }
 
@@ -45,7 +49,10 @@ namespace csfm_android.Ui.Adapters
 
                     historyHolder.SongName.Text = history.Track.Name;
                     historyHolder.SongArtist.Text = history.Track.Artist.Name;
-                   // historyHolder.AlbumCover.SetImageResource(history.Track.Album.Image); 
+
+                    Picasso.With(context)
+                       .Load(history.Track.Album.Image)
+                       .Into(historyHolder.AlbumCover);
 
                     historyHolder.Date.Text = history.Date.ToString();
                 }

@@ -44,6 +44,7 @@ namespace csfm_android.Fragments
             artist.Name = "Lady Gaga";
             album.Artist = artist;
             album.Name = "Joanne";
+            album.Image = "https://coverartarchive.org/release-group/13afa2b3-60d3-4cfd-b590-d12b4774876b/front-250.jpg";
             Track track1 = new Track();
             track1.Album = album;
             track1.Name = "Perfect Illusion";
@@ -56,7 +57,7 @@ namespace csfm_android.Fragments
             historic.Add(new Api.Model.History(track1, new DateTime()));
             historic.Add(new Api.Model.History(track2, new DateTime()));
 
-            recyclerView.SetAdapter(new HistoryAdapter(historic));
+            recyclerView.SetAdapter(new HistoryAdapter(this.Activity, historic));
         }
     }
 }
