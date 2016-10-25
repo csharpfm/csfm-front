@@ -11,9 +11,8 @@ using csfm_android.Fragments;
 namespace csfm_android
 {
     [Activity(Label = "csfm_android", MainLauncher = true, Icon = "@drawable/icon")]
-    public class MainActivity : AppCompatActivity
+    public class MainActivity : AppCompatActivity, BottomNavigationBar.Listeners.IOnMenuTabClickListener
     {
-
         private Toolbar toolbar;
 
         private BottomBar bottomBar;
@@ -31,7 +30,7 @@ namespace csfm_android
 
             setBottomBar(bundle);
             
-            startHomeFragment();
+            StartHomeFragment();
 
         }
 
@@ -60,21 +59,58 @@ namespace csfm_android
             bottomBar.SetItems(tabs);
             for (int i = 0; i < 5; i++)
             {
+                tabs[i].Id = i;
                 bottomBar.MapColorForTab(i, "#F44336");
             }
+
+            bottomBar.SetOnMenuTabClickListener(this);
+           
         }
 
-        private void startHomeFragment()
+        private void StartHomeFragment()
         {
             // Create a new fragment and a transaction.
             FragmentTransaction fragmentTransaction = this.FragmentManager.BeginTransaction();
             HomeFragment homeFragment = new HomeFragment();
 
-            // The fragment will have the ID of Resource.Id.fragment_container.
             fragmentTransaction.Add(Resource.Id.mainContainer, homeFragment);
-
-            // Commit the transaction.
             fragmentTransaction.Commit();
+        }
+
+        private void LaunchFragment(Fragment fragment)
+        {
+            FragmentTransaction fragmentTransaction = this.FragmentManager.BeginTransaction();
+            fragmentTransaction.Replace(Resource.Id.mainContainer, fragment);
+            fragmentTransaction.Commit();
+        }
+
+        public void OnMenuTabSelected(int menuItemId)
+        {
+            switch(menuItemId)
+            {
+                case 0:
+                    LaunchFragment(new HomeFragment());
+                    break;
+                case 1:
+                    // search
+                    break;
+                case 2:
+                    //LaunchFragment(new MatchFragment());
+                    break;
+                case 3:
+                    // chat
+                    break;
+                case 4:
+                    // user account
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public void OnMenuTabReSelected(int menuItemId)
+        {
+            Console.WriteLine("RE " + menuItemId);
         }
     }
 }
