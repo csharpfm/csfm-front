@@ -6,6 +6,7 @@ using System;
 using BottomNavigationBar;
 using Android.Support.V7.App;
 using Android.Support.V4.Content;
+using csfm_android.Fragments;
 
 namespace csfm_android
 {
@@ -28,22 +29,10 @@ namespace csfm_android
             SetActionBar(toolbar);
             ActionBar.Title = "MatchFM";
 
-            bottomBar = BottomBar.Attach(this, bundle);
-
-            BottomBarTab[] tabs = new BottomBarTab[5];
-            tabs[0] = new BottomBarTab(Resource.Drawable.ic_home_white_24dp, "Home");
-            tabs[1] = new BottomBarTab(Resource.Drawable.ic_menu_search_holo_dark, "Search");
-            tabs[2] = new BottomBarTab(Resource.Drawable.ic_favorite_white_24dp, "Match");
-            tabs[3] = new BottomBarTab(Resource.Drawable.ic_chat_white_24dp, "Chat");
-            tabs[4] = new BottomBarTab(Resource.Drawable.ic_account_box_white_24dp, "Account");
-
-            bottomBar.SetItems(tabs);
-            for(int i = 0; i < 5; i++)
-            {
-                bottomBar.MapColorForTab(i, "#F44336");
-            }
-
+            setBottomBar(bundle);
             
+            startHomeFragment();
+
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
@@ -55,6 +44,37 @@ namespace csfm_android
         public void OnMenuItemSelected(int menuItemId)
         {
             throw new NotImplementedException();
+        }
+
+        private void setBottomBar(Bundle bundle)
+        {
+            bottomBar = BottomBar.Attach(this, bundle);
+
+            BottomBarTab[] tabs = new BottomBarTab[5];
+            tabs[0] = new BottomBarTab(Resource.Drawable.ic_home_white_24dp, "Home");
+            tabs[1] = new BottomBarTab(Resource.Drawable.ic_menu_search_holo_dark, "Search");
+            tabs[2] = new BottomBarTab(Resource.Drawable.ic_favorite_white_24dp, "Match");
+            tabs[3] = new BottomBarTab(Resource.Drawable.ic_chat_white_24dp, "Chat");
+            tabs[4] = new BottomBarTab(Resource.Drawable.ic_account_box_white_24dp, "Account");
+
+            bottomBar.SetItems(tabs);
+            for (int i = 0; i < 5; i++)
+            {
+                bottomBar.MapColorForTab(i, "#F44336");
+            }
+        }
+
+        private void startHomeFragment()
+        {
+            // Create a new fragment and a transaction.
+            FragmentTransaction fragmentTransaction = this.FragmentManager.BeginTransaction();
+            HomeFragment homeFragment = new HomeFragment();
+
+            // The fragment will have the ID of Resource.Id.fragment_container.
+            fragmentTransaction.Add(Resource.Id.mainContainer, homeFragment);
+
+            // Commit the transaction.
+            fragmentTransaction.Commit();
         }
     }
 }

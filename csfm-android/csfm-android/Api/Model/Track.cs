@@ -23,6 +23,8 @@ namespace csfm_android.Api.Model
 
         public Album Album { get; set; }
 
-    /*  public List<TrackTag> Tags { get; set; } */
+        public Artist Artist { get; set; }
+
+        /*  public List<TrackTag> Tags { get; set; } */
     }
 }
