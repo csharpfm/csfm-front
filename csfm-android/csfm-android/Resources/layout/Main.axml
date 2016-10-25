@@ -9,10 +9,4 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
   
-    <Button
-        android:id="@+id/MyButton"
-        android:layout_below="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/Hello" />
 </LinearLayout>
