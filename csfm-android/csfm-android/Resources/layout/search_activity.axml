@@ -23,8 +23,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:tabGravity="fill"
-        app:tabIndicatorHeight="6dp"
-        app:tabMode="fixed" />
+        app:tabIndicatorHeight="2dp"
+        app:tabMode="fixed"
+        app:tabIndicatorColor="#F44336"
+        />
 
   </android.support.design.widget.AppBarLayout>
 
@@ -34,6 +36,7 @@
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       tools:context=".SearchActiivity"
+      app:layout_behavior="@string/appbar_scrolling_view_behavior"
 
         />
 

@@ -3581,8 +3581,8 @@ namespace csfm_android
 			// aapt resource value: 0x7f06003c
 			public const int action_mode_close_button = 2131099708;
 			
-			// aapt resource value: 0x7f06009b
-			public const int action_search = 2131099803;
+			// aapt resource value: 0x7f06009c
+			public const int action_search = 2131099804;
 			
 			// aapt resource value: 0x7f06003d
 			public const int activity_chooser_view_content = 2131099709;
@@ -3628,9 +3628,6 @@ namespace csfm_android
 			
 			// aapt resource value: 0x7f060097
 			public const int birthdayPeriodFragment = 2131099799;
-			
-			// aapt resource value: 0x7f060099
-			public const int birthdayRecyclerView = 2131099801;
 			
 			// aapt resource value: 0x7f06002a
 			public const int bottom = 2131099690;
@@ -3803,8 +3800,8 @@ namespace csfm_android
 			// aapt resource value: 0x7f06008a
 			public const int media_actions = 2131099786;
 			
-			// aapt resource value: 0x7f06009a
-			public const int menu_preferences = 2131099802;
+			// aapt resource value: 0x7f06009b
+			public const int menu_preferences = 2131099803;
 			
 			// aapt resource value: 0x7f06001d
 			public const int middle = 2131099677;
@@ -3869,6 +3866,9 @@ namespace csfm_android
 			// aapt resource value: 0x7f060039
 			public const int scrollable = 2131099705;
 			
+			// aapt resource value: 0x7f060099
+			public const int searchRecyclerView = 2131099801;
+			
 			// aapt resource value: 0x7f06005e
 			public const int search_badge = 2131099742;
 			
@@ -3895,6 +3895,9 @@ namespace csfm_android
 			
 			// aapt resource value: 0x7f060063
 			public const int search_src_text = 2131099747;
+			
+			// aapt resource value: 0x7f06009a
+			public const int search_title = 2131099802;
 			
 			// aapt resource value: 0x7f060067
 			public const int search_voice_btn = 2131099751;
@@ -4223,19 +4226,22 @@ namespace csfm_android
 			public const int search_activity_tab = 2130903096;
 			
 			// aapt resource value: 0x7f030039
-			public const int select_dialog_item_material = 2130903097;
+			public const int search_item = 2130903097;
 			
 			// aapt resource value: 0x7f03003a
-			public const int select_dialog_multichoice_material = 2130903098;
+			public const int select_dialog_item_material = 2130903098;
 			
 			// aapt resource value: 0x7f03003b
-			public const int select_dialog_singlechoice_material = 2130903099;
+			public const int select_dialog_multichoice_material = 2130903099;
 			
 			// aapt resource value: 0x7f03003c
-			public const int support_simple_spinner_dropdown_item = 2130903100;
+			public const int select_dialog_singlechoice_material = 2130903100;
 			
 			// aapt resource value: 0x7f03003d
-			public const int toolbar = 2130903101;
+			public const int support_simple_spinner_dropdown_item = 2130903101;
+			
+			// aapt resource value: 0x7f03003e
+			public const int toolbar = 2130903102;
 			
 			static Layout()
 			{

@@ -23,6 +23,7 @@ namespace csfm_android
         //private Button btn_unfocus;
         private TabLayout tabLayout;
         private ViewPager viewPager;
+        private SearchPagerAdapter pagerAdapter;
         
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -54,7 +55,10 @@ namespace csfm_android
             tabLayout.AddTab(tabLayout.NewTab().SetText("Chansons"));
 
             tabLayout.TabGravity = TabLayout.GravityFill; //ModeScrollable
-
+            pagerAdapter = new SearchPagerAdapter(this);
+            viewPager.Adapter = pagerAdapter;
+            viewPager.AddOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+            tabLayout.SetOnTabSelectedListener(new OnTabSelectedListener(viewPager, pagerAdapter));
             
         }
 
@@ -91,6 +95,35 @@ namespace csfm_android
             {
                 this.ResourceId = id;
                 this.Button = activity.FindViewById<Button>(this.ResourceId);
+            }
+        }
+
+        private class OnTabSelectedListener : Java.Lang.Object, TabLayout.IOnTabSelectedListener
+        {
+            public ViewPager ViewPager { get; private set; }
+            public SearchPagerAdapter PagerAdapter { get; private set; }
+
+            public OnTabSelectedListener(ViewPager viewPager, SearchPagerAdapter pagerAdapter)
+            {
+                this.ViewPager = viewPager;
+                this.PagerAdapter = pagerAdapter;
+            }
+
+
+            public void OnTabReselected(TabLayout.Tab tab)
+            {
+                //
+            }
+
+            public void OnTabSelected(TabLayout.Tab tab)
+            {
+                ViewPager.CurrentItem = tab.Position;
+                PagerAdapter.GetItem(tab.Position);
+            }
+
+            public void OnTabUnselected(TabLayout.Tab tab)
+            {
+                //
             }
         }
     }
