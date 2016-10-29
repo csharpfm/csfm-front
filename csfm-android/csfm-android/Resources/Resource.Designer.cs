@@ -3494,31 +3494,34 @@ namespace csfm_android
 			public const int ic_chat_white_24dp = 2130837585;
 			
 			// aapt resource value: 0x7f020052
-			public const int ic_favorite_white_24dp = 2130837586;
+			public const int ic_close_white_24dp = 2130837586;
 			
 			// aapt resource value: 0x7f020053
-			public const int ic_home_white_24dp = 2130837587;
+			public const int ic_favorite_white_24dp = 2130837587;
 			
 			// aapt resource value: 0x7f020054
-			public const int ic_menu_copy_holo_dark = 2130837588;
+			public const int ic_home_white_24dp = 2130837588;
 			
 			// aapt resource value: 0x7f020055
-			public const int ic_menu_cut_holo_dark = 2130837589;
+			public const int ic_menu_copy_holo_dark = 2130837589;
 			
 			// aapt resource value: 0x7f020056
-			public const int ic_menu_paste_holo_dark = 2130837590;
+			public const int ic_menu_cut_holo_dark = 2130837590;
 			
 			// aapt resource value: 0x7f020057
-			public const int ic_menu_search_holo_dark = 2130837591;
+			public const int ic_menu_paste_holo_dark = 2130837591;
 			
 			// aapt resource value: 0x7f020058
-			public const int ic_search_white_24dp = 2130837592;
+			public const int ic_menu_search_holo_dark = 2130837592;
 			
 			// aapt resource value: 0x7f020059
-			public const int Icon = 2130837593;
+			public const int ic_search_white_24dp = 2130837593;
 			
 			// aapt resource value: 0x7f02005a
-			public const int notification_template_icon_bg = 2130837594;
+			public const int Icon = 2130837594;
+			
+			// aapt resource value: 0x7f02005b
+			public const int notification_template_icon_bg = 2130837595;
 			
 			static Drawable()
 			{
@@ -4800,6 +4803,9 @@ namespace csfm_android
 			
 			// aapt resource value: 0x7f070003
 			public const int CardView_Light = 2131165187;
+			
+			// aapt resource value: 0x7f070164
+			public const int MySearchViewStyle = 2131165540;
 			
 			// aapt resource value: 0x7f070163
 			public const int MyTheme = 2131165539;

@@ -9,6 +9,7 @@ using csfm_android.Fragments;
 using Android.Support.V7.Widget;
 using Android.Runtime;
 using static Android.Support.V7.Widget.SearchView;
+using Android.Graphics;
 
 namespace csfm_android
 {
@@ -46,7 +47,9 @@ namespace csfm_android
             this.toolbar.MenuItemClick += Toolbar_MenuItemClick;
             var search = toolbar.Menu.FindItem(Resource.Id.action_search);
             var searchView = search.ActionView.JavaCast<Android.Support.V7.Widget.SearchView>();
+            
             searchView.SetOnQueryTextListener(new QueryListener());
+
             return base.OnCreateOptionsMenu(menu);
         }
 
@@ -55,13 +58,13 @@ namespace csfm_android
 
             public bool OnQueryTextChange(string newText)
             {
-                Console.WriteLine(newText);
+                //Console.WriteLine(newText);
                 return true;
             }
 
             public bool OnQueryTextSubmit(string query)
             {
-                Console.WriteLine(string.Format($"Submit : {query}"));
+                //Console.WriteLine(string.Format($"Submit : {query}"));
                 return true;
             }
         }
