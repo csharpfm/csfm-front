@@ -11,54 +11,75 @@ using Android.Views;
 using Android.Widget;
 using Android.Support.V7.App;
 using Android.Graphics;
+using Android.Support.Design.Widget;
+using Android.Support.V4.View;
 
 namespace csfm_android
 {
-    [Activity(Label = Configuration.LABEL, Icon = "@drawable/icon", WindowSoftInputMode = SoftInput.AdjustPan)]
+    [Activity(Label = Configuration.LABEL, Icon = "@drawable/icon", WindowSoftInputMode = SoftInput.AdjustPan, Theme = "@style/MyTheme")]
     public class SearchActivity : ToolbarActivity, View.IOnClickListener
     {
-        private ResourceButton[] btn = new ResourceButton[3];
-        private Button btn_unfocus;
-
+        //private ResourceButton[] btn = new ResourceButton[3];
+        //private Button btn_unfocus;
+        private TabLayout tabLayout;
+        private ViewPager viewPager;
+        
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            base.OnCreate(savedInstanceState, Resource.Layout.activity_button_group);
+            base.OnCreate(savedInstanceState, Resource.Layout.search_activity);
 
-            btn[0] = new ResourceButton(Resource.Id.btn0, this);
-            btn[1] = new ResourceButton(Resource.Id.btn1, this);
-            btn[2] = new ResourceButton(Resource.Id.btn2, this);
+            this.tabLayout = FindViewById<TabLayout>(Resource.Id.tabs);
+            this.viewPager = FindViewById<ViewPager>(Resource.Id.viewPager);
 
-            for (int i = 0; i < btn.Length; i++)
-            {
-                btn[i].Button.SetBackgroundColor(Color.Rgb(207, 207, 207));
-                btn[i].Button.SetOnClickListener(this);
+            InitViewPagerAndTabs();
 
-            }
+            //btn[0] = new ResourceButton(Resource.Id.btn0, this);
+            //btn[1] = new ResourceButton(Resource.Id.btn1, this);
+            //btn[2] = new ResourceButton(Resource.Id.btn2, this);
+
+            //for (int i = 0; i < btn.Length; i++)
+            //{
+            //    btn[i].Button.SetBackgroundColor(Color.Rgb(207, 207, 207));
+            //    btn[i].Button.SetOnClickListener(this);
+
+            //}
+            
+        }
+
+        private void InitViewPagerAndTabs()
+        {
+            
+            tabLayout.AddTab(tabLayout.NewTab().SetText("Artistes"));
+            tabLayout.AddTab(tabLayout.NewTab().SetText("Album"));
+            tabLayout.AddTab(tabLayout.NewTab().SetText("Chansons"));
+
+            tabLayout.TabGravity = TabLayout.GravityFill; //ModeScrollable
+
             
         }
 
         public void OnClick(View v)
         {
-            int id = v.Id;
-            SetFocus(btn.FirstOrDefault(b => b.ResourceId == id)?.Button);
+            //int id = v.Id;
+            //SetFocus(btn.FirstOrDefault(b => b.ResourceId == id)?.Button);
            
         }
 
         private void SetFocus(Button selected)
         {
-            Console.WriteLine(selected);
-            if (selected == null) return;
+            //Console.WriteLine(selected);
+            //if (selected == null) return;
 
-            if (this.btn_unfocus != null)
-            {
-                this.btn_unfocus.SetTextColor(Color.Rgb(49, 50, 51));
-                this.btn_unfocus.SetBackgroundColor(Color.Rgb(207, 207, 207));
-            }
+            //if (this.btn_unfocus != null)
+            //{
+            //    this.btn_unfocus.SetTextColor(Color.Rgb(49, 50, 51));
+            //    this.btn_unfocus.SetBackgroundColor(Color.Rgb(207, 207, 207));
+            //}
 
-            selected.SetTextColor(Color.Rgb(255, 255, 255));
-            selected.SetBackgroundColor(Color.Rgb(3, 106, 150));
+            //selected.SetTextColor(Color.Rgb(255, 255, 255));
+            //selected.SetBackgroundColor(Color.Rgb(3, 106, 150));
 
-            this.btn_unfocus = selected;
+            //this.btn_unfocus = selected;
         }
 
         private class ResourceButton

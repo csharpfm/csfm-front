@@ -3581,8 +3581,8 @@ namespace csfm_android
 			// aapt resource value: 0x7f06003c
 			public const int action_mode_close_button = 2131099708;
 			
-			// aapt resource value: 0x7f060095
-			public const int action_search = 2131099797;
+			// aapt resource value: 0x7f06009b
+			public const int action_search = 2131099803;
 			
 			// aapt resource value: 0x7f06003d
 			public const int activity_chooser_view_content = 2131099709;
@@ -3592,6 +3592,9 @@ namespace csfm_android
 			
 			// aapt resource value: 0x7f06001e
 			public const int always = 2131099678;
+			
+			// aapt resource value: 0x7f060094
+			public const int app_bar_layout = 2131099796;
 			
 			// aapt resource value: 0x7f060072
 			public const int bb_bottom_bar_background_overlay = 2131099762;
@@ -3622,6 +3625,12 @@ namespace csfm_android
 			
 			// aapt resource value: 0x7f06001b
 			public const int beginning = 2131099675;
+			
+			// aapt resource value: 0x7f060097
+			public const int birthdayPeriodFragment = 2131099799;
+			
+			// aapt resource value: 0x7f060099
+			public const int birthdayRecyclerView = 2131099801;
 			
 			// aapt resource value: 0x7f06002a
 			public const int bottom = 2131099690;
@@ -3794,8 +3803,8 @@ namespace csfm_android
 			// aapt resource value: 0x7f06008a
 			public const int media_actions = 2131099786;
 			
-			// aapt resource value: 0x7f060094
-			public const int menu_preferences = 2131099796;
+			// aapt resource value: 0x7f06009a
+			public const int menu_preferences = 2131099802;
 			
 			// aapt resource value: 0x7f06001d
 			public const int middle = 2131099677;
@@ -3938,8 +3947,14 @@ namespace csfm_android
 			// aapt resource value: 0x7f060065
 			public const int submit_area = 2131099749;
 			
+			// aapt resource value: 0x7f060098
+			public const int swipe_refresh = 2131099800;
+			
 			// aapt resource value: 0x7f06000d
 			public const int tabMode = 2131099661;
+			
+			// aapt resource value: 0x7f060095
+			public const int tabs = 2131099797;
 			
 			// aapt resource value: 0x7f060091
 			public const int text = 2131099793;
@@ -3976,6 +3991,9 @@ namespace csfm_android
 			
 			// aapt resource value: 0x7f060014
 			public const int useLogo = 2131099668;
+			
+			// aapt resource value: 0x7f060096
+			public const int viewPager = 2131099798;
 			
 			// aapt resource value: 0x7f06000a
 			public const int view_offset_helper = 2131099658;
@@ -4199,19 +4217,25 @@ namespace csfm_android
 			public const int notification_template_part_time = 2130903094;
 			
 			// aapt resource value: 0x7f030037
-			public const int select_dialog_item_material = 2130903095;
+			public const int search_activity = 2130903095;
 			
 			// aapt resource value: 0x7f030038
-			public const int select_dialog_multichoice_material = 2130903096;
+			public const int search_activity_tab = 2130903096;
 			
 			// aapt resource value: 0x7f030039
-			public const int select_dialog_singlechoice_material = 2130903097;
+			public const int select_dialog_item_material = 2130903097;
 			
 			// aapt resource value: 0x7f03003a
-			public const int support_simple_spinner_dropdown_item = 2130903098;
+			public const int select_dialog_multichoice_material = 2130903098;
 			
 			// aapt resource value: 0x7f03003b
-			public const int toolbar = 2130903099;
+			public const int select_dialog_singlechoice_material = 2130903099;
+			
+			// aapt resource value: 0x7f03003c
+			public const int support_simple_spinner_dropdown_item = 2130903100;
+			
+			// aapt resource value: 0x7f03003d
+			public const int toolbar = 2130903101;
 			
 			static Layout()
 			{

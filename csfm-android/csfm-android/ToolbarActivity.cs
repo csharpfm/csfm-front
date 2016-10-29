@@ -21,11 +21,20 @@ namespace csfm_android
         protected void OnCreate(Bundle savedInstanceState, int layout)
         {
             base.OnCreate(savedInstanceState);
-            SetContentView(layout);
 
-            this.Toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
-            SetSupportActionBar(this.Toolbar);
-            this.Toolbar.Title = Configuration.LABEL;
+            try
+            {
+                SetContentView(layout);
+
+                this.Toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
+                SetSupportActionBar(this.Toolbar);
+                this.Toolbar.Title = Configuration.LABEL;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            
         }
 
         protected override void OnCreate(Bundle savedInstanceState)
