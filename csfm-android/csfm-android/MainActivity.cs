@@ -13,27 +13,16 @@ using Android.Graphics;
 
 namespace csfm_android
 {
-    [Activity(Label = "csfm_android", MainLauncher = true, Icon = "@drawable/icon", WindowSoftInputMode = SoftInput.AdjustPan)]
-    public class MainActivity : AppCompatActivity, BottomNavigationBar.Listeners.IOnMenuTabClickListener
+    [Activity(Label = Configuration.LABEL, MainLauncher = true, Icon = "@drawable/icon", WindowSoftInputMode = SoftInput.AdjustPan)]
+    public class MainActivity : ToolbarActivity, BottomNavigationBar.Listeners.IOnMenuTabClickListener
     {
-        private Android.Support.V7.Widget.Toolbar toolbar;
-
         private BottomBar bottomBar;
 
         private Android.Support.V7.Widget.SearchView searchView;
 
         protected override void OnCreate(Bundle bundle)
         {
-            base.OnCreate(bundle);
-
-            // Set our view from the "main" layout resource
-            SetContentView(Resource.Layout.Main);
-
-            this.toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
-            //OnCreateOptionsMenu(this.toolbar.Menu);
-
-            SetSupportActionBar(toolbar);
-            this.toolbar.Title = "MatchFM";
+            base.OnCreate(bundle, Resource.Layout.Main);
 
             setBottomBar(bundle);
             
@@ -44,17 +33,23 @@ namespace csfm_android
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
             MenuInflater.Inflate(Resource.Menu.top_menus, menu);
-            this.toolbar.MenuItemClick += Toolbar_MenuItemClick;
-            var search = toolbar.Menu.FindItem(Resource.Id.action_search);
+            this.Toolbar.MenuItemClick += Toolbar_MenuItemClick;
+            var search = this.Toolbar.Menu.FindItem(Resource.Id.action_search);
             var searchView = search.ActionView.JavaCast<Android.Support.V7.Widget.SearchView>();
             
-            searchView.SetOnQueryTextListener(new QueryListener());
+            searchView.SetOnQueryTextListener(new QueryListener(this));
 
             return base.OnCreateOptionsMenu(menu);
         }
 
         public class QueryListener : Java.Lang.Object, IOnQueryTextListener
         {
+            public QueryListener(Activity activity)
+            {
+                this.Activity = activity;
+            }
+
+            public Activity Activity { get; private set; }
 
             public bool OnQueryTextChange(string newText)
             {
@@ -64,6 +59,7 @@ namespace csfm_android
 
             public bool OnQueryTextSubmit(string query)
             {
+                this.Activity.StartActivity(typeof(SearchActivity));
                 //Console.WriteLine(string.Format($"Submit : {query}"));
                 return true;
             }
