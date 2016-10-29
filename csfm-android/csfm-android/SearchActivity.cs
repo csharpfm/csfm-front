@@ -24,13 +24,19 @@ namespace csfm_android
         private TabLayout tabLayout;
         private ViewPager viewPager;
         private SearchPagerAdapter pagerAdapter;
-        
+
+        public const string EXTRA_MESSAGE = "SearchActivity.Query";
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState, Resource.Layout.search_activity);
-
+            //this.SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+            //this.SupportActionBar.SetDisplayShowHomeEnabled(true);
             this.tabLayout = FindViewById<TabLayout>(Resource.Id.tabs);
             this.viewPager = FindViewById<ViewPager>(Resource.Id.viewPager);
+
+            this.Toolbar.SetNavigationIcon(Resource.Drawable.ic_arrow_back_white_24dp);
+            this.Toolbar.SetNavigationOnClickListener(new OnNavigationClickListener(this));
 
             InitViewPagerAndTabs();
 
@@ -45,6 +51,13 @@ namespace csfm_android
 
             //}
             
+        }
+
+        public override void OnSearchViewSet()
+        {
+            this.SearchView.Iconified = false;
+            this.SearchView.SetQuery(Intent.GetStringExtra(EXTRA_MESSAGE), false);
+            this.SearchView.ClearFocus();
         }
 
         private void InitViewPagerAndTabs()
@@ -86,6 +99,16 @@ namespace csfm_android
             //this.btn_unfocus = selected;
         }
 
+        public override bool OnQueryTextChange(string newText)
+        {
+            return true;
+        }
+
+        public override bool OnQueryTextSubmit(string query)
+        {
+            return true; //TODO
+        }
+
         private class ResourceButton
         {
             public Button Button { get; set; }
@@ -124,6 +147,21 @@ namespace csfm_android
             public void OnTabUnselected(TabLayout.Tab tab)
             {
                 //
+            }
+        }
+
+        public class OnNavigationClickListener : Java.Lang.Object, View.IOnClickListener
+        {
+            public OnNavigationClickListener(Activity activity)
+            {
+                this.Activity = activity;
+            }
+
+            public Activity Activity { get; private set; }
+
+            public void OnClick(View v)
+            {
+                Activity.Finish();
             }
         }
     }

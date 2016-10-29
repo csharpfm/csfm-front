@@ -1,15 +1,13 @@
 ﻿using Android.App;
-using Android.Widget;
 using Android.OS;
 using Android.Views;
 using System;
 using BottomNavigationBar;
-using Android.Support.V7.App;
 using csfm_android.Fragments;
-using Android.Support.V7.Widget;
 using Android.Runtime;
+using Android.Content;
 using static Android.Support.V7.Widget.SearchView;
-using Android.Graphics;
+using Android.Support.V4.View;
 
 namespace csfm_android
 {
@@ -18,7 +16,6 @@ namespace csfm_android
     {
         private BottomBar bottomBar;
 
-        private Android.Support.V7.Widget.SearchView searchView;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -30,44 +27,33 @@ namespace csfm_android
 
         }
 
-        public override bool OnCreateOptionsMenu(IMenu menu)
+        protected override void OnResume()
         {
-            MenuInflater.Inflate(Resource.Menu.top_menus, menu);
-            this.Toolbar.MenuItemClick += Toolbar_MenuItemClick;
-            var search = this.Toolbar.Menu.FindItem(Resource.Id.action_search);
-            var searchView = search.ActionView.JavaCast<Android.Support.V7.Widget.SearchView>();
-            
-            searchView.SetOnQueryTextListener(new QueryListener(this));
-
-            return base.OnCreateOptionsMenu(menu);
-        }
-
-        public class QueryListener : Java.Lang.Object, IOnQueryTextListener
-        {
-            public QueryListener(Activity activity)
+            base.OnResume();
+            if (SearchView != null)
             {
-                this.Activity = activity;
-            }
-
-            public Activity Activity { get; private set; }
-
-            public bool OnQueryTextChange(string newText)
-            {
-                //Console.WriteLine(newText);
-                return true;
-            }
-
-            public bool OnQueryTextSubmit(string query)
-            {
-                this.Activity.StartActivity(typeof(SearchActivity));
-                //Console.WriteLine(string.Format($"Submit : {query}"));
-                return true;
+                SearchView.SetQuery("", false);
+                SearchView.Iconified = true;
             }
         }
 
-        private void Toolbar_MenuItemClick(object sender, Android.Support.V7.Widget.Toolbar.MenuItemClickEventArgs e)
+        public override void OnSearchViewSet()
         {
-            Console.WriteLine("Menu Item Click -----------------");
+            if (SearchView != null)
+                SearchView.Iconified = true;
+        }
+
+        public override bool OnQueryTextChange(string newText)
+        {
+            return true;
+        }
+
+        public override bool OnQueryTextSubmit(string query)
+        {
+            Intent intent = new Intent(this, typeof(SearchActivity));
+            intent.PutExtra(SearchActivity.EXTRA_MESSAGE, query);
+            this.StartActivity(intent);
+            return true;
         }
 
         public void OnMenuItemSelected(int menuItemId)
