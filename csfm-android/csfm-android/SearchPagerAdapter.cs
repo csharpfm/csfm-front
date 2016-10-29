@@ -39,7 +39,7 @@ namespace csfm_android
                     Console.WriteLine("Artists");
                     break;
                 case 1:
-                    Console.WriteLine("Album");
+                    Console.WriteLine("Albums");
                     break;
                 case 2:
                     Console.WriteLine("Songs");

@@ -64,7 +64,7 @@ namespace csfm_android
         {
             
             tabLayout.AddTab(tabLayout.NewTab().SetText("Artistes"));
-            tabLayout.AddTab(tabLayout.NewTab().SetText("Album"));
+            tabLayout.AddTab(tabLayout.NewTab().SetText("Albums"));
             tabLayout.AddTab(tabLayout.NewTab().SetText("Chansons"));
 
             tabLayout.TabGravity = TabLayout.GravityFill; //ModeScrollable
