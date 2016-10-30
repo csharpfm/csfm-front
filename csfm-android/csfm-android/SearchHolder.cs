@@ -20,7 +20,7 @@ namespace csfm_android
 
         public SearchHolder(View itemView) : base(itemView)
         {
-            this.Title = itemView.FindViewById<TextView>(Resource.Id.search_title);
+            this.Title = itemView.FindViewById<TextView>(Resource.Id.search_artist_name);
         }
 
         public void Bind(string title)

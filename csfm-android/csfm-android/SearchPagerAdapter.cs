@@ -48,7 +48,7 @@ namespace csfm_android
                     break;
             }
 
-            return new SearchFragment();
+            return new SearchFragment<string>();
 
         }
     }

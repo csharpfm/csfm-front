@@ -13,13 +13,13 @@ using Android.Support.V7.Widget;
 
 namespace csfm_android
 {
-    public class SearchAdapter : RecyclerView.Adapter
+    public class SearchAdapter<T> : RecyclerView.Adapter
     {
-        private List<string> data;
+        private List<T> data;
 
         private Context context;
 
-        public SearchAdapter(Context context, List<string> data)
+        public SearchAdapter(Context context, List<T> data)
         {
             this.data = data;
             this.context = context;
@@ -36,7 +36,7 @@ namespace csfm_android
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
             SearchHolder searchHolder = holder as SearchHolder;
-            searchHolder?.Bind(data[position]);
+            searchHolder?.Bind(data[position] as string); //FIXME
         }
 
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)

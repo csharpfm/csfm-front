@@ -3584,8 +3584,8 @@ namespace csfm_android
 			// aapt resource value: 0x7f06003c
 			public const int action_mode_close_button = 2131099708;
 			
-			// aapt resource value: 0x7f06009c
-			public const int action_search = 2131099804;
+			// aapt resource value: 0x7f06009d
+			public const int action_search = 2131099805;
 			
 			// aapt resource value: 0x7f06003d
 			public const int activity_chooser_view_content = 2131099709;
@@ -3803,8 +3803,8 @@ namespace csfm_android
 			// aapt resource value: 0x7f06008a
 			public const int media_actions = 2131099786;
 			
-			// aapt resource value: 0x7f06009b
-			public const int menu_preferences = 2131099803;
+			// aapt resource value: 0x7f06009c
+			public const int menu_preferences = 2131099804;
 			
 			// aapt resource value: 0x7f06001d
 			public const int middle = 2131099677;
@@ -3872,6 +3872,9 @@ namespace csfm_android
 			// aapt resource value: 0x7f060099
 			public const int searchRecyclerView = 2131099801;
 			
+			// aapt resource value: 0x7f06009b
+			public const int search_artist_name = 2131099803;
+			
 			// aapt resource value: 0x7f06005e
 			public const int search_badge = 2131099742;
 			
@@ -3890,6 +3893,9 @@ namespace csfm_android
 			// aapt resource value: 0x7f060066
 			public const int search_go_btn = 2131099750;
 			
+			// aapt resource value: 0x7f06009a
+			public const int search_image = 2131099802;
+			
 			// aapt resource value: 0x7f060061
 			public const int search_mag_icon = 2131099745;
 			
@@ -3898,9 +3904,6 @@ namespace csfm_android
 			
 			// aapt resource value: 0x7f060063
 			public const int search_src_text = 2131099747;
-			
-			// aapt resource value: 0x7f06009a
-			public const int search_title = 2131099802;
 			
 			// aapt resource value: 0x7f060067
 			public const int search_voice_btn = 2131099751;

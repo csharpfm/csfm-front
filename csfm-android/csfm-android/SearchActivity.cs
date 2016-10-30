@@ -135,7 +135,7 @@ namespace csfm_android
 
             public void OnTabReselected(TabLayout.Tab tab)
             {
-                //
+                //  TODO : Go to top
             }
 
             public void OnTabSelected(TabLayout.Tab tab)

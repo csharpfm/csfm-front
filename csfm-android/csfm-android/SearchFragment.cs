@@ -15,7 +15,7 @@ using Android.Support.V7.Widget;
 
 namespace csfm_android
 {
-    public class SearchFragment : Fragment
+    public class SearchFragment<T> : Fragment
     {
         private View rootView;
         private RecyclerView recyclerView;
@@ -49,7 +49,7 @@ namespace csfm_android
 
         private void SetAdapter(List<string> data)
         {
-            recyclerView.SetAdapter(new SearchAdapter(this.Context, data));
+            recyclerView.SetAdapter(new SearchAdapter<string>(this.Context, data));
         }
     }
 }
