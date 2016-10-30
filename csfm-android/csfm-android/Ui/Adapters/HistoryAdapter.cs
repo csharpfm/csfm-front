@@ -13,6 +13,7 @@ using Android.Support.V7.Widget;
 using csfm_android.Api.Model;
 using csfm_android.Ui.Holders;
 using Square.Picasso;
+using csfm_android.Ui.Utils;
 
 namespace csfm_android.Ui.Adapters
 {
@@ -52,6 +53,7 @@ namespace csfm_android.Ui.Adapters
 
                     Picasso.With(context)
                        .Load(history.Track.Album.Image)
+                       .Transform(new CircleTransform())
                        .Into(historyHolder.AlbumCover);
 
                     historyHolder.Date.Text = history.Date.ToString();

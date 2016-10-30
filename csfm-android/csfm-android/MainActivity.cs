@@ -17,6 +17,8 @@ namespace csfm_android
 
         private BottomBar bottomBar;
 
+        private Fragment currentFragment = null;
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -26,12 +28,9 @@ namespace csfm_android
 
             this.toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
             SetActionBar(toolbar);
-            ActionBar.Title = "MatchFM";
+            ActionBar.Title = "Home";
 
             setBottomBar(bundle);
-            
-            StartHomeFragment();
-
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
@@ -49,23 +48,24 @@ namespace csfm_android
         {
             bottomBar = BottomBar.Attach(this, bundle);
 
-            BottomBarTab[] tabs = new BottomBarTab[5];
+            BottomBarTab[] tabs = new BottomBarTab[3];
             tabs[0] = new BottomBarTab(Resource.Drawable.ic_home_white_24dp, "Home");
-            tabs[1] = new BottomBarTab(Resource.Drawable.ic_menu_search_holo_dark, "Search");
-            tabs[2] = new BottomBarTab(Resource.Drawable.ic_favorite_white_24dp, "Match");
-            tabs[3] = new BottomBarTab(Resource.Drawable.ic_chat_white_24dp, "Chat");
-            tabs[4] = new BottomBarTab(Resource.Drawable.ic_account_box_white_24dp, "Account");
+            tabs[1] = new BottomBarTab(Resource.Drawable.ic_favorite_white_24dp, "Match");
+            tabs[2] = new BottomBarTab(Resource.Drawable.ic_chat_white_24dp, "Chat");
+
+            bottomBar.SetFixedInactiveIconColor("#44000000");
+            bottomBar.SetActiveTabColor("#F44336");
 
             bottomBar.SetItems(tabs);
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 3; i++)
             {
                 tabs[i].Id = i;
-                bottomBar.MapColorForTab(i, "#F44336");
+                bottomBar.MapColorForTab(i, "#EFEFEF");
             }
 
             bottomBar.SetOnMenuTabClickListener(this);
-           
         }
+
 
         private void StartHomeFragment()
         {
@@ -74,13 +74,21 @@ namespace csfm_android
             HomeFragment homeFragment = new HomeFragment();
 
             fragmentTransaction.Add(Resource.Id.mainContainer, homeFragment);
+            fragmentTransaction.AddToBackStack(null);
             fragmentTransaction.Commit();
         }
 
         private void LaunchFragment(Fragment fragment)
         {
             FragmentTransaction fragmentTransaction = this.FragmentManager.BeginTransaction();
-            fragmentTransaction.Replace(Resource.Id.mainContainer, fragment);
+            if (currentFragment != null)
+            {
+                fragmentTransaction.Remove(currentFragment);
+            }
+
+            currentFragment = fragment;
+
+            fragmentTransaction.Add(Resource.Id.mainContainer, fragment);
             fragmentTransaction.Commit();
         }
 
@@ -90,18 +98,15 @@ namespace csfm_android
             {
                 case 0:
                     LaunchFragment(new HomeFragment());
+                    ActionBar.Title = "Home";
                     break;
                 case 1:
-                    // search
+                    LaunchFragment(new MatchFragment());
+                    ActionBar.Title = "Match";
                     break;
                 case 2:
-                    //LaunchFragment(new MatchFragment());
-                    break;
-                case 3:
+                    ActionBar.Title = "Chat";
                     // chat
-                    break;
-                case 4:
-                    // user account
                     break;
                 default:
                     break;
@@ -110,7 +115,7 @@ namespace csfm_android
 
         public void OnMenuTabReSelected(int menuItemId)
         {
-            Console.WriteLine("RE " + menuItemId);
+          
         }
     }
 }
