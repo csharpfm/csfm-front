@@ -64,8 +64,8 @@ namespace csfm_android
             }
 
             bottomBar.SetOnMenuTabClickListener(this);
-           
         }
+
 
         private void StartHomeFragment()
         {
