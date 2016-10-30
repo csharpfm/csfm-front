@@ -12,13 +12,15 @@ using Android.Views;
 using Android.Widget;
 using Fragment = Android.Support.V4.App.Fragment;
 using Android.Support.V7.Widget;
+using Android.Support.V4.Widget;
 
 namespace csfm_android
 {
-    public class SearchFragment<T> : Fragment
+    public class SearchFragment<T> : Fragment, SwipeRefreshLayout.IOnRefreshListener
     {
         private View rootView;
         private RecyclerView recyclerView;
+        private SwipeRefreshLayout refresh;
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -34,7 +36,8 @@ namespace csfm_android
             rootView = inflater.Inflate(Resource.Layout.search_activity_tab, container, false);
 
             this.recyclerView = rootView.FindViewById<RecyclerView>(Resource.Id.searchRecyclerView);
-
+            this.refresh = rootView.FindViewById<SwipeRefreshLayout>(Resource.Id.swipe_refresh);
+            this.refresh.SetOnRefreshListener(this);
             //return base.OnCreateView(inflater, container, savedInstanceState);
             return rootView;
         }
@@ -43,13 +46,19 @@ namespace csfm_android
         {
             base.OnResume();
 
-            recyclerView.SetLayoutManager(new LinearLayoutManager(this.Activity));
+            recyclerView.SetLayoutManager(new GridLayoutManager(this.Activity, 2));
+            //recyclerView.SetLayoutManager(new LinearLayoutManager(this.Activity));
             SetAdapter(new List<string>() { "hello", "world", "test" });
         }
 
         private void SetAdapter(List<string> data)
         {
             recyclerView.SetAdapter(new SearchAdapter<string>(this.Context, data));
+        }
+
+        public void OnRefresh()
+        {
+            
         }
     }
 }
