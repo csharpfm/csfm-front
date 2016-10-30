@@ -39,7 +39,7 @@ namespace csfm_android
             }
         }
 
-        protected void OnCreate(Bundle savedInstanceState, int layout)
+        protected void OnCreate(Bundle savedInstanceState, int layout, string title)
         {
             base.OnCreate(savedInstanceState);
 
@@ -49,7 +49,7 @@ namespace csfm_android
 
                 this.Toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
                 SetSupportActionBar(this.Toolbar);
-                this.Toolbar.Title = Configuration.LABEL;
+                this.Toolbar.Title = title;
             }
             catch(Exception ex)
             {

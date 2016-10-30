@@ -29,7 +29,7 @@ namespace csfm_android
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            base.OnCreate(savedInstanceState, Resource.Layout.search_activity);
+            base.OnCreate(savedInstanceState, Resource.Layout.search_activity, "");
             //this.SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             //this.SupportActionBar.SetDisplayShowHomeEnabled(true);
             this.tabLayout = FindViewById<TabLayout>(Resource.Id.tabs);
