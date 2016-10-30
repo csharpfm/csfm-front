@@ -12,15 +12,7 @@ using Android.Widget;
 
 namespace csfm_android.Api.Model
 {
-    public class Artist : MusicItem
+    public abstract class MusicItem
     {
-        public string Name { get; set; }
-
-        public string MbId { get; set; }
-
-        public string Image { get; set; }
-
-        public List<Album> Albums { get; set; }
-
     }
 }

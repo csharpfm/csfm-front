@@ -105,6 +105,7 @@
     <Compile Include="Api\Model\Album.cs" />
     <Compile Include="Api\Model\Artist.cs" />
     <Compile Include="Api\Model\History.cs" />
+    <Compile Include="Api\Model\MusicItem.cs" />
     <Compile Include="Api\Model\Tag.cs" />
     <Compile Include="Api\Model\Track.cs" />
     <Compile Include="Api\Model\User.cs" />
@@ -116,6 +117,7 @@
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="SearchActivity.cs" />
     <Compile Include="SearchAdapter.cs" />
+    <Compile Include="SearchArtistHolder.cs" />
     <Compile Include="SearchFragment.cs" />
     <Compile Include="SearchHolder.cs" />
     <Compile Include="SearchPagerAdapter.cs" />
@@ -279,8 +281,8 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_arrow_back_white_24dp.png" />
-   </ItemGroup>
-   <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
     <AndroidResource Include="Resources\values\colors.xml" />
   </ItemGroup>
   <ItemGroup>

@@ -10,22 +10,16 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Support.V7.Widget;
+using csfm_android.Api.Model;
 
 namespace csfm_android
 {
-    public class SearchHolder : RecyclerView.ViewHolder
+    public abstract class SearchHolder<T> : RecyclerView.ViewHolder where T : MusicItem
     {
-        public const int LAYOUT = Resource.Layout.search_item;
-        public TextView Title { get; set; }
-
         public SearchHolder(View itemView) : base(itemView)
         {
-            this.Title = itemView.FindViewById<TextView>(Resource.Id.search_artist_name);
         }
 
-        public void Bind(string title)
-        {
-            this.Title.Text = title;
-        }
+        public abstract void Bind(T item);
     }
 }
