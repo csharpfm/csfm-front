@@ -51,7 +51,7 @@ namespace csfm_android
             BottomBarTab[] tabs = new BottomBarTab[3];
             tabs[0] = new BottomBarTab(Resource.Drawable.ic_home_white_24dp, "Home");
             tabs[1] = new BottomBarTab(Resource.Drawable.ic_favorite_white_24dp, "Match");
-            tabs[2] = new BottomBarTab(Resource.Drawable.ic_chat_white_24dp, "Chat");
+            tabs[2] = new BottomBarTab(Resource.Drawable.ic_person_white_24dp, "Account");
 
             bottomBar.SetFixedInactiveIconColor("#44000000");
             bottomBar.SetActiveTabColor("#F44336");
@@ -105,7 +105,7 @@ namespace csfm_android
                     ActionBar.Title = "Match";
                     break;
                 case 2:
-                    ActionBar.Title = "Chat";
+                    ActionBar.Title = "Account";
                     // chat
                     break;
                 default:

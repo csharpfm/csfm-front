@@ -22,6 +22,19 @@ namespace csfm_android.Fragments
 
         private RecyclerView recyclerView;
 
+
+        public override void OnCreate(Bundle savedInstanceState)
+        {
+            base.OnCreate(savedInstanceState);
+            SetHasOptionsMenu(true);
+        }
+
+        public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
+        {
+            base.OnCreateOptionsMenu(menu, inflater);
+            menu.Clear();
+        }
+
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             this.rootView = inflater.Inflate(Resource.Layout.home_fragment, container, false);
@@ -44,7 +57,7 @@ namespace csfm_android.Fragments
             artist.Name = "Lady Gaga";
             album.Artist = artist;
             album.Name = "Joanne";
-            album.Image = "https://coverartarchive.org/release-group/13afa2b3-60d3-4cfd-b590-d12b4774876b/front-250.jpg";
+            album.Image = "https://lh4.googleusercontent.com/-p1ejPKmyA2s/AAAAAAAAAAI/AAAAAAACRXU/6S-Em-MWl08/s0-c-k-no-ns/photo.jpg";
             Track track1 = new Track();
             track1.Album = album;
             track1.Name = "Perfect Illusion";
