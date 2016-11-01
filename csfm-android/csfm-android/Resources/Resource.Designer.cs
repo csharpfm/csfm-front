@@ -3533,10 +3533,13 @@ namespace csfm_android
 			public const int ic_music_note_black_24dp = 2130837593;
 			
 			// aapt resource value: 0x7f02005a
-			public const int Icon = 2130837594;
+			public const int ic_person_white_24dp = 2130837594;
 			
 			// aapt resource value: 0x7f02005b
-			public const int notification_template_icon_bg = 2130837595;
+			public const int Icon = 2130837595;
+			
+			// aapt resource value: 0x7f02005c
+			public const int notification_template_icon_bg = 2130837596;
 			
 			static Drawable()
 			{

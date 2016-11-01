@@ -22,6 +22,19 @@ namespace csfm_android.Fragments
 
         private RecyclerView recyclerView;
 
+
+        public override void OnCreate(Bundle savedInstanceState)
+        {
+            base.OnCreate(savedInstanceState);
+            SetHasOptionsMenu(true);
+        }
+
+        public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
+        {
+            base.OnCreateOptionsMenu(menu, inflater);
+            menu.Clear();
+        }
+
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             this.rootView = inflater.Inflate(Resource.Layout.home_fragment, container, false);
