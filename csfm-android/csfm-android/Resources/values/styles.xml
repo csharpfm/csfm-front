@@ -8,5 +8,21 @@
     <item name="android:colorAccent">#FF9800</item>
     <item name="android:textColorPrimary">#000000</item>
     <item name="android:textColorSecondary">#757575</item>
+    <item name="android:windowTranslucentStatus">true</item>
+  </style>
+
+
+  <style name="MyButton" parent="Theme.AppCompat.Light">
+    <item name="colorControlHighlight">@color/colorPrimary</item>
+    <item name="colorButtonNormal">@color/colorPrimaryDark</item>
+    <item name="android:textColor">#FFFFFF</item>
+  </style>
+
+  <style name="MyEditTextTheme">
+    <item name="colorControlNormal">#D0B1B1</item>
+    <item name="colorControlHighlight">#FFFFFF</item>
+    <item name="colorControlActivated">#FFFFFF</item>
+    <item name="android:textColorHint">#FFFFFF</item>
+    <item name="android:textColorPrimary">#FFFFFF</item>
   </style>
 </resources>

@@ -2,8 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:local="http://schemas.android.com/apk/res-auto">
 
+    <item
+       android:id="@+id/menu_signin"
+       local:showAsAction="ifRoom"
+       android:title="@string/signin"
+       android:icon="@drawable/ic_account_box_white_24dp"/>
+
   <item
-       android:id="@+id/menu_preferences"
-       local:showAsAction="never"
-       android:title="@string/preferences" />
+     android:id="@+id/menu_signup"
+     local:showAsAction="ifRoom"
+     android:title="@string/signup"
+     android:icon="@drawable/ic_account_box_white_24dp"/>
+ 
 </menu>

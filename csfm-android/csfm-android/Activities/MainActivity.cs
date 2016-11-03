@@ -10,7 +10,7 @@ using csfm_android.Fragments;
 
 namespace csfm_android
 {
-    [Activity(Label = "csfm_android", MainLauncher = true, Icon = "@drawable/icon")]
+    [Activity(Label = "MainActivity")]
     public class MainActivity : AppCompatActivity, BottomNavigationBar.Listeners.IOnMenuTabClickListener
     {
         private Toolbar toolbar;
@@ -28,7 +28,7 @@ namespace csfm_android
 
             this.toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
             SetActionBar(toolbar);
-            ActionBar.Title = "Home";
+            ActionBar.Title = GetString(Resource.String.home);
 
             setBottomBar(bundle);
         }
@@ -39,19 +39,14 @@ namespace csfm_android
             return base.OnCreateOptionsMenu(menu);
         }
 
-        public void OnMenuItemSelected(int menuItemId)
-        {
-            throw new NotImplementedException();
-        }
-
         private void setBottomBar(Bundle bundle)
         {
             bottomBar = BottomBar.Attach(this, bundle);
 
             BottomBarTab[] tabs = new BottomBarTab[3];
-            tabs[0] = new BottomBarTab(Resource.Drawable.ic_home_white_24dp, "Home");
-            tabs[1] = new BottomBarTab(Resource.Drawable.ic_favorite_white_24dp, "Match");
-            tabs[2] = new BottomBarTab(Resource.Drawable.ic_person_white_24dp, "Account");
+            tabs[0] = new BottomBarTab(Resource.Drawable.ic_home_white_24dp, Resource.String.home);
+            tabs[1] = new BottomBarTab(Resource.Drawable.ic_favorite_white_24dp, Resource.String.match);
+            tabs[2] = new BottomBarTab(Resource.Drawable.ic_person_white_24dp, Resource.String.account);
 
             bottomBar.SetFixedInactiveIconColor("#44000000");
             bottomBar.SetActiveTabColor("#F44336");
@@ -98,15 +93,15 @@ namespace csfm_android
             {
                 case 0:
                     LaunchFragment(new HomeFragment());
-                    ActionBar.Title = "Home";
+                    ActionBar.Title = GetString(Resource.String.home);
                     break;
                 case 1:
                     LaunchFragment(new MatchFragment());
-                    ActionBar.Title = "Match";
+                    ActionBar.Title = GetString(Resource.String.match);
                     break;
                 case 2:
-                    ActionBar.Title = "Account";
-                    // chat
+                    LaunchFragment(new AccountFragment());
+                    ActionBar.Title = GetString(Resource.String.account);
                     break;
                 default:
                     break;
@@ -115,7 +110,7 @@ namespace csfm_android
 
         public void OnMenuTabReSelected(int menuItemId)
         {
-          
+
         }
     }
 }

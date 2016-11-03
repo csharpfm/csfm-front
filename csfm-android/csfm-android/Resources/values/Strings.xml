@@ -3,4 +3,12 @@
     <string name="Hello">Hello World, Click Me!</string>
     <string name="ApplicationName">MatchFM</string>
     <string name="preferences">Préférences</string>
+
+    <string name="signin">Se connecter</string>
+    <string name="signup">S\'inscrire</string>
+    <string name="cancel">Annuler</string>
+
+    <string name="home">Accueil</string>
+    <string name="match">Match</string>
+    <string name="account">Compte</string>
 </resources>
