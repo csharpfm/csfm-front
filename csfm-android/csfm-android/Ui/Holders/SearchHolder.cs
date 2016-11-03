@@ -12,7 +12,7 @@ using Android.Widget;
 using Android.Support.V7.Widget;
 using csfm_android.Api.Model;
 
-namespace csfm_android
+namespace csfm_android.Holders
 {
     public abstract class SearchHolder<T> : RecyclerView.ViewHolder where T : MusicItem
     {

@@ -13,11 +13,11 @@ using csfm_android.Api.Model;
 using Square.Picasso;
 using csfm_android.Ui.Utils;
 
-namespace csfm_android
+namespace csfm_android.Holders
 {
     public class SearchArtistHolder : SearchHolder<Artist>
     {
-        public const int LAYOUT = Resource.Layout.search_item;
+        public const int LAYOUT = Resource.Layout.search_artist_item;
         public TextView Title { get; set; }
         public ImageView Image { get; private set; }
 

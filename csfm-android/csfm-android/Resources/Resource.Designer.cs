@@ -3590,8 +3590,8 @@ namespace csfm_android
 			// aapt resource value: 0x7f06003c
 			public const int action_mode_close_button = 2131099708;
 			
-			// aapt resource value: 0x7f0600a1
-			public const int action_search = 2131099809;
+			// aapt resource value: 0x7f0600a3
+			public const int action_search = 2131099811;
 			
 			// aapt resource value: 0x7f06003d
 			public const int activity_chooser_view_content = 2131099709;
@@ -3821,8 +3821,8 @@ namespace csfm_android
 			// aapt resource value: 0x7f06008e
 			public const int media_actions = 2131099790;
 			
-			// aapt resource value: 0x7f0600a0
-			public const int menu_preferences = 2131099808;
+			// aapt resource value: 0x7f0600a2
+			public const int menu_preferences = 2131099810;
 			
 			// aapt resource value: 0x7f06001d
 			public const int middle = 2131099677;
@@ -3890,8 +3890,14 @@ namespace csfm_android
 			// aapt resource value: 0x7f06009d
 			public const int searchRecyclerView = 2131099805;
 			
+			// aapt resource value: 0x7f0600a0
+			public const int search_album_artist = 2131099808;
+			
 			// aapt resource value: 0x7f06009f
-			public const int search_artist_name = 2131099807;
+			public const int search_album_name = 2131099807;
+			
+			// aapt resource value: 0x7f0600a1
+			public const int search_artist_name = 2131099809;
 			
 			// aapt resource value: 0x7f06005e
 			public const int search_badge = 2131099742;
@@ -4250,22 +4256,25 @@ namespace csfm_android
 			public const int search_activity_tab = 2130903096;
 			
 			// aapt resource value: 0x7f030039
-			public const int search_item = 2130903097;
+			public const int search_album_item = 2130903097;
 			
 			// aapt resource value: 0x7f03003a
-			public const int select_dialog_item_material = 2130903098;
+			public const int search_artist_item = 2130903098;
 			
 			// aapt resource value: 0x7f03003b
-			public const int select_dialog_multichoice_material = 2130903099;
+			public const int select_dialog_item_material = 2130903099;
 			
 			// aapt resource value: 0x7f03003c
-			public const int select_dialog_singlechoice_material = 2130903100;
+			public const int select_dialog_multichoice_material = 2130903100;
 			
 			// aapt resource value: 0x7f03003d
-			public const int support_simple_spinner_dropdown_item = 2130903101;
+			public const int select_dialog_singlechoice_material = 2130903101;
 			
 			// aapt resource value: 0x7f03003e
-			public const int toolbar = 2130903102;
+			public const int support_simple_spinner_dropdown_item = 2130903102;
+			
+			// aapt resource value: 0x7f03003f
+			public const int toolbar = 2130903103;
 			
 			static Layout()
 			{

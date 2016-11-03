@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<FrameLayout xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+
+  <android.support.v7.widget.CardView android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardElevation="2dp"
+        card_view:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:orientation="vertical">
+
+      <ImageView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:adjustViewBounds="true"
+          android:id="@+id/search_image"/>
+
+      <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:id="@+id/search_artist_name"
+           android:gravity="center"
+           android:padding="2dp"
+           android:textAppearance="?android:attr/textAppearanceMedium"
+           android:text="Artist" />
+    </LinearLayout>
+  </android.support.v7.widget.CardView>
+</FrameLayout>

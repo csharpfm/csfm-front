@@ -13,8 +13,9 @@ using Android.Support.V4.App;
 using Fragment = Android.Support.V4.App.Fragment;
 using FragmentManager = Android.Support.V4.App.FragmentManager;
 using csfm_android.Api.Model;
+using csfm_android.Fragments;
 
-namespace csfm_android
+namespace csfm_android.Adapters
 {
     public class SearchPagerAdapter : FragmentPagerAdapter
     {
@@ -38,19 +39,15 @@ namespace csfm_android
             {
                 case 0: //Artists
                     Console.WriteLine("Artists");
-                    return new SearchFragment<Artist>();
-                    break;
+                    return new SearchArtistFragment();
                 case 1:
                     Console.WriteLine("Albums");
-                    return new SearchFragment<Artist>();
-                    break;
+                    return new SearchAlbumFragment();// SearchFragment<Artist>();
                 case 2:
                     Console.WriteLine("Songs");
-                    return new SearchFragment<Artist>();
-                    break;
+                    return new SearchArtistFragment(); //SearchFragment<Artist>();
                 default:
-                    return new SearchFragment<Artist>();
-                    break;
+                    return new SearchArtistFragment(); //new SearchFragment<Artist>();
             }
 
 

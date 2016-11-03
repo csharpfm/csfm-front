@@ -13,6 +13,7 @@ using Android.Support.V7.App;
 using Android.Graphics;
 using Android.Support.Design.Widget;
 using Android.Support.V4.View;
+using csfm_android.Adapters;
 
 namespace csfm_android
 {
