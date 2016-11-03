@@ -38,16 +38,13 @@ namespace csfm_android.Adapters
             switch(position)
             {
                 case 0: //Artists
-                    Console.WriteLine("Artists");
                     return new SearchArtistFragment();
-                case 1:
-                    Console.WriteLine("Albums");
-                    return new SearchAlbumFragment();// SearchFragment<Artist>();
-                case 2:
-                    Console.WriteLine("Songs");
-                    return new SearchArtistFragment(); //SearchFragment<Artist>();
+                case 1: //Albums
+                    return new SearchAlbumFragment();
+                case 2: //Tracks
+                    return new SearchTrackFragment();
                 default:
-                    return new SearchArtistFragment(); //new SearchFragment<Artist>();
+                    return null;
             }
 
 

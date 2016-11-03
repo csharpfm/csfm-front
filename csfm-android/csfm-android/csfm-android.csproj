@@ -104,6 +104,7 @@
     <Compile Include="Api\ApiClient.cs" />
     <Compile Include="Api\Model\Album.cs" />
     <Compile Include="Api\Model\Artist.cs" />
+    <Compile Include="Utils\ExtensionMethods.cs" />
     <Compile Include="Api\Model\History.cs" />
     <Compile Include="Api\Model\MusicItem.cs" />
     <Compile Include="Api\Model\Tag.cs" />
@@ -114,6 +115,7 @@
     <Compile Include="Fragments\MatchFragment.cs" />
     <Compile Include="Fragments\SearchAlbumFragment.cs" />
     <Compile Include="Fragments\SearchArtistFragment.cs" />
+    <Compile Include="Fragments\SearchTrackFragment.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -121,6 +123,7 @@
     <Compile Include="Ui\Adapters\SearchAdapter.cs" />
     <Compile Include="Ui\Adapters\SearchAlbumAdapter.cs" />
     <Compile Include="Ui\Adapters\SearchArtistAdapter.cs" />
+    <Compile Include="Ui\Adapters\SearchTrackAdapter.cs" />
     <Compile Include="Ui\Holders\SearchAlbumHolder.cs" />
     <Compile Include="Ui\Holders\SearchArtistHolder.cs" />
     <Compile Include="Fragments\SearchFragment.cs" />
@@ -129,6 +132,7 @@
     <Compile Include="ToolbarActivity.cs" />
     <Compile Include="Ui\Adapters\HistoryAdapter.cs" />
     <Compile Include="Ui\Holders\HistoryHolder.cs" />
+    <Compile Include="Ui\Holders\SearchTrackHolder.cs" />
     <Compile Include="Ui\Utils\CircleTransform.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -152,6 +156,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\search_album_item.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\search_track_item.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

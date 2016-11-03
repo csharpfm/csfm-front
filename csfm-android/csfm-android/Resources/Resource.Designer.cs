@@ -3590,8 +3590,8 @@ namespace csfm_android
 			// aapt resource value: 0x7f06003c
 			public const int action_mode_close_button = 2131099708;
 			
-			// aapt resource value: 0x7f0600a3
-			public const int action_search = 2131099811;
+			// aapt resource value: 0x7f0600a7
+			public const int action_search = 2131099815;
 			
 			// aapt resource value: 0x7f06003d
 			public const int activity_chooser_view_content = 2131099709;
@@ -3821,8 +3821,8 @@ namespace csfm_android
 			// aapt resource value: 0x7f06008e
 			public const int media_actions = 2131099790;
 			
-			// aapt resource value: 0x7f0600a2
-			public const int menu_preferences = 2131099810;
+			// aapt resource value: 0x7f0600a6
+			public const int menu_preferences = 2131099814;
 			
 			// aapt resource value: 0x7f06001d
 			public const int middle = 2131099677;
@@ -3928,6 +3928,18 @@ namespace csfm_android
 			
 			// aapt resource value: 0x7f060063
 			public const int search_src_text = 2131099747;
+			
+			// aapt resource value: 0x7f0600a4
+			public const int search_track_artist = 2131099812;
+			
+			// aapt resource value: 0x7f0600a5
+			public const int search_track_duration = 2131099813;
+			
+			// aapt resource value: 0x7f0600a2
+			public const int search_track_image = 2131099810;
+			
+			// aapt resource value: 0x7f0600a3
+			public const int search_track_name = 2131099811;
 			
 			// aapt resource value: 0x7f060067
 			public const int search_voice_btn = 2131099751;
@@ -4262,19 +4274,22 @@ namespace csfm_android
 			public const int search_artist_item = 2130903098;
 			
 			// aapt resource value: 0x7f03003b
-			public const int select_dialog_item_material = 2130903099;
+			public const int search_track_item = 2130903099;
 			
 			// aapt resource value: 0x7f03003c
-			public const int select_dialog_multichoice_material = 2130903100;
+			public const int select_dialog_item_material = 2130903100;
 			
 			// aapt resource value: 0x7f03003d
-			public const int select_dialog_singlechoice_material = 2130903101;
+			public const int select_dialog_multichoice_material = 2130903101;
 			
 			// aapt resource value: 0x7f03003e
-			public const int support_simple_spinner_dropdown_item = 2130903102;
+			public const int select_dialog_singlechoice_material = 2130903102;
 			
 			// aapt resource value: 0x7f03003f
-			public const int toolbar = 2130903103;
+			public const int support_simple_spinner_dropdown_item = 2130903103;
+			
+			// aapt resource value: 0x7f030040
+			public const int toolbar = 2130903104;
 			
 			static Layout()
 			{
