@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="Hello">Hello World, Click Me!</string>
+  <string name="ApplicationName">MatchFM</string>
+  <string name="preferences">Préférences</string>
+
+  <string name="signin">Sign in</string>
+  <string name="signup">Sign up</string>
+  <string name="cancel">Cancel</string>
+
+  <string name="home">Home</string>
+  <string name="match">Match</string>
+  <string name="account">Account</string>
+
+  <string name="email">Email</string>
+  <string name="password">Password</string>
+  <string name="confirm_password">Confirm password</string>
+
+  <string name="no_account">No account yet?</string>
+  <string name="create_one">Create one</string>
+</resources>

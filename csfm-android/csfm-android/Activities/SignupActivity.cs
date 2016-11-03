@@ -13,14 +13,14 @@ using Android.Support.V7.App;
 
 namespace csfm_android.Activities
 {
-    [Activity(Label = "SignupActivity")]
+    [Activity(Label = "SignupActivity", Theme = "@style/MyTheme")]
     public class SignupActivity : AppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
-            // Create your application here
+            SetContentView(Resource.Layout.signup_activity);
         }
     }
 }

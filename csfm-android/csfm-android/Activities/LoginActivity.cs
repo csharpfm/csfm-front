@@ -17,15 +17,27 @@ namespace csfm_android.Activities
     [Activity(Label = "LoginActivity", MainLauncher = true, Icon = "@drawable/icon", Theme = "@style/MyTheme")]
     public class LoginActivity : AppCompatActivity
     {
+
+        private Button signInButton;
+
+        private TextView createAccount;
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
 
-            Window window = Window;
-            window.SetStatusBarColor(new Color(Resource.Color.colorPrimaryDark));
-
             // Set our view from the "login activity" layout resource
             SetContentView(Resource.Layout.login_activity);
+
+            this.signInButton = FindViewById<Button>(Resource.Id.sign_in_button);
+            this.createAccount = FindViewById<TextView>(Resource.Id.create_one_text);
+
+            this.createAccount.Click += delegate
+            {
+                StartActivity(typeof(SignupActivity));
+            };
         }
+
+        
     }
 }

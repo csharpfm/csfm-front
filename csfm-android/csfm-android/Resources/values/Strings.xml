@@ -11,4 +11,11 @@
     <string name="home">Accueil</string>
     <string name="match">Match</string>
     <string name="account">Compte</string>
+
+    <string name="email">Email</string>
+    <string name="password">Mot de passe</string>
+    <string name="confirm_password">Confirmer le mot de passe</string>
+
+    <string name="no_account">Pas de compte ?</string>
+    <string name="create_one">Créez-en un</string>
 </resources>

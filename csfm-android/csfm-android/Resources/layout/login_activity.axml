@@ -21,29 +21,29 @@
     android:orientation="horizontal"
     android:weightSum="8">
 
-      <RelativeLayout
-         android:layout_width="0dp"
-         android:layout_height="match_parent"
-         android:layout_weight="1">
-      </RelativeLayout>
-    
-      <EditText
-      android:layout_width="0dp"
-      android:layout_height="wrap_content"
-      android:layout_weight="6"
-      android:id="@+id/login_email_text"
-      android:hint="Email"
-      android:layout_marginTop="25dp"
-      android:layout_marginBottom="40dp"
-      android:inputType="textEmailAddress"
-      app:theme="@style/MyEditTextTheme"/>
+    <RelativeLayout
+       android:layout_width="0dp"
+       android:layout_height="match_parent"
+       android:layout_weight="1">
+    </RelativeLayout>
 
-      <RelativeLayout
-         android:layout_width="0dp"
-         android:layout_height="match_parent"
-         android:layout_weight="1">
-        </RelativeLayout>
-    
+    <EditText
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="6"
+    android:id="@+id/login_email_text"
+    android:hint="@string/email"
+    android:layout_marginTop="25dp"
+    android:layout_marginBottom="40dp"
+    android:inputType="textEmailAddress"
+    app:theme="@style/MyEditTextTheme"/>
+
+    <RelativeLayout
+       android:layout_width="0dp"
+       android:layout_height="match_parent"
+       android:layout_weight="1">
+    </RelativeLayout>
+
   </LinearLayout>
 
 
@@ -65,7 +65,7 @@
         android:layout_weight="6"
         android:inputType="textPassword"
         android:ems="10"
-        android:hint="Password"
+        android:hint="@string/password"
         android:id="@+id/login_pwd_txt"
         android:layout_marginBottom="30dp"
         android:fontFamily="sans-serif"
@@ -109,12 +109,31 @@
 
   </LinearLayout>
 
-  <TextView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="No account yet? Create one"
-    android:layout_gravity="center"
-    android:textColor="#D0B1B1"
-    android:gravity="center"/>
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      android:layout_gravity="center"
+      android:gravity="center">
+
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_account"
+        android:gravity="center"
+        android:layout_marginRight="5dp"
+        android:textColor="#D0B1B1"/>
+
+      <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:id="@+id/create_one_text"
+      android:text="@string/create_one"
+      android:gravity="center"
+      android:layout_marginLeft="5dp"
+      android:textColor="#D0B1B1"/>
+
+  </LinearLayout>
 
 </LinearLayout>

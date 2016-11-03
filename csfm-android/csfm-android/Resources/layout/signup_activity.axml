@@ -1,10 +1,144 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/signup_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/login_background"
+    android:fitsSystemWindows="true">
+
+  <ImageView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="100dp"
+    android:src="@drawable/logo"/>
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:weightSum="8">
+
+    <RelativeLayout
+       android:layout_width="0dp"
+       android:layout_height="match_parent"
+       android:layout_weight="1">
+    </RelativeLayout>
+
+    <EditText
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="6"
+    android:id="@+id/signup_email"
+    android:hint="@string/email"
+    android:layout_marginTop="25dp"
+    android:layout_marginBottom="30dp"
+    android:inputType="textEmailAddress"
+    app:theme="@style/MyEditTextTheme"/>
+
+    <RelativeLayout
+       android:layout_width="0dp"
+       android:layout_height="match_parent"
+       android:layout_weight="1">
+    </RelativeLayout>
+
+  </LinearLayout>
+
+   <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:weightSum="8">
+
+    <RelativeLayout
+       android:layout_width="0dp"
+       android:layout_height="match_parent"
+       android:layout_weight="1">
+    </RelativeLayout>
+
+    <EditText
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="6"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:hint="@string/password"
+        android:id="@+id/signup_pwd"
+        android:layout_marginBottom="30dp"
+        android:fontFamily="sans-serif"
+        app:theme="@style/MyEditTextTheme"/>
+
+    <RelativeLayout
+       android:layout_width="0dp"
+       android:layout_height="match_parent"
+       android:layout_weight="1">
+    </RelativeLayout>
+
+  </LinearLayout>
+
+  
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:weightSum="8">
+
+    <RelativeLayout
+       android:layout_width="0dp"
+       android:layout_height="match_parent"
+       android:layout_weight="1">
+    </RelativeLayout>
+
+    <EditText
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="6"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:hint="@string/confirm_password"
+        android:id="@+id/signup_confirm_pwd"
+        android:layout_marginBottom="30dp"
+        android:fontFamily="sans-serif"
+        app:theme="@style/MyEditTextTheme"/>
+
+    <RelativeLayout
+     android:layout_width="0dp"
+     android:layout_height="match_parent"
+     android:layout_weight="1">
+    </RelativeLayout>
+
+  </LinearLayout>
 
 
+  <LinearLayout
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:orientation="horizontal"
+  android:weightSum="8">
+
+    <RelativeLayout
+       android:layout_width="0dp"
+       android:layout_height="match_parent"
+       android:layout_weight="1">
+    </RelativeLayout>
+
+    <Button
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="6"
+    android:text="@string/signup"
+    android:id="@+id/sign_up_button"
+    android:layout_marginBottom="30dp"
+    app:theme ="@style/MyButton"/>
+
+    <RelativeLayout
+     android:layout_width="0dp"
+     android:layout_height="match_parent"
+     android:layout_weight="1">
+    </RelativeLayout>
+
+  </LinearLayout>
 </LinearLayout>
