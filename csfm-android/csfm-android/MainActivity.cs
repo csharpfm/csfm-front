@@ -54,7 +54,7 @@ namespace csfm_android
 
         public void OnMenuItemSelected(int menuItemId)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Hello world " + menuItemId);
         }
 
         private void setBottomBar(Bundle bundle)

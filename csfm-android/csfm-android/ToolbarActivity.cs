@@ -12,6 +12,7 @@ using Android.Widget;
 using Android.Support.V7.App;
 using SearchView = Android.Support.V7.Widget.SearchView;
 using static Android.Support.V7.Widget.SearchView;
+using static Android.Views.View;
 
 namespace csfm_android
 {
@@ -50,6 +51,7 @@ namespace csfm_android
                 this.Toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
                 SetSupportActionBar(this.Toolbar);
                 this.Toolbar.Title = title;
+                this.Title = title;
             }
             catch(Exception ex)
             {
@@ -65,7 +67,7 @@ namespace csfm_android
             SearchItem = this.Toolbar.Menu.FindItem(Resource.Id.action_search);
             SearchView = SearchItem.ActionView.JavaCast<SearchView>();
             SearchView.SetOnQueryTextListener(new QueryListener(this));
-
+            SearchView.SetOnSearchClickListener(new SearchClickListener(this));
             return base.OnCreateOptionsMenu(menu);
         }
 
@@ -102,6 +104,22 @@ namespace csfm_android
             public bool OnQueryTextSubmit(string query)
             {
                 return this.activity.OnQueryTextSubmit(query);
+            }
+        }
+
+        public class SearchClickListener : Java.Lang.Object, IOnClickListener
+        {
+            public ToolbarActivity Activity { get; private set; }
+
+            public SearchClickListener(ToolbarActivity activity)
+            {
+                this.Activity = activity;
+            }
+
+
+            public void OnClick(View v)
+            {
+                Activity.Toolbar.SetNavigationIcon(Resource.Drawable.ic_arrow_back_white_24dp);
             }
         }
 
