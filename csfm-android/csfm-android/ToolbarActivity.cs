@@ -13,6 +13,7 @@ using Android.Support.V7.App;
 using SearchView = Android.Support.V7.Widget.SearchView;
 using static Android.Support.V7.Widget.SearchView;
 using static Android.Views.View;
+using csfm_android.Utils.MaterialDesignSearchView;
 
 namespace csfm_android
 {
@@ -22,8 +23,8 @@ namespace csfm_android
         public Android.Support.V7.Widget.Toolbar Toolbar { get; private set; }
 
         public IMenuItem SearchItem { get; private set; }
-        private SearchView searchView;
-        public SearchView SearchView
+        //private SearchView searchView;
+        /*public SearchView SearchView
         {
             get
             {
@@ -38,7 +39,8 @@ namespace csfm_android
                     OnSearchViewSet();
                 }
             }
-        }
+        }*/
+        public MaterialSearchView MaterialSearchView { get; set; }
 
         protected void OnCreate(Bundle savedInstanceState, int layout, string title)
         {
@@ -65,9 +67,15 @@ namespace csfm_android
             MenuInflater.Inflate(Resource.Menu.top_menus, menu);
             this.Toolbar.MenuItemClick += Toolbar_MenuItemClick;
             SearchItem = this.Toolbar.Menu.FindItem(Resource.Id.action_search);
-            SearchView = SearchItem.ActionView.JavaCast<SearchView>();
+            /*SearchView = SearchItem.ActionView.JavaCast<SearchView>();
             SearchView.SetOnQueryTextListener(new QueryListener(this));
             SearchView.SetOnSearchClickListener(new SearchClickListener(this));
+            SearchView.SetOnCloseListener(new SearchCloseListener(this));*/
+
+            MaterialSearchView = FindViewById<MaterialSearchView>(Resource.Id.material_design_search_view);
+            MaterialSearchView.SetMenuItem(SearchItem);
+            MaterialSearchView.SetOnSearchViewListener(new SearchViewListener(this));
+
             return base.OnCreateOptionsMenu(menu);
         }
 
@@ -120,6 +128,43 @@ namespace csfm_android
             public void OnClick(View v)
             {
                 Activity.Toolbar.SetNavigationIcon(Resource.Drawable.ic_arrow_back_white_24dp);
+            }
+        }
+
+        public class SearchCloseListener : Java.Lang.Object, IOnCloseListener
+        {
+            public ToolbarActivity Activity { get; private set; }
+
+            public SearchCloseListener(ToolbarActivity activity)
+            {
+                this.Activity = activity;
+            }
+
+            public bool OnClose()
+            {
+                Activity.Toolbar.SetNavigationIcon(Android.Resource.Color.Transparent);
+                Activity.SupportActionBar.SetDisplayHomeAsUpEnabled(false);
+                return false;
+            }
+        }
+
+        public class SearchViewListener : ISearchViewListener
+        {
+            private ToolbarActivity a;
+
+            public SearchViewListener(ToolbarActivity a)
+            {
+                this.a = a;
+            }
+
+            public void OnSearchViewClosed()
+            {
+                this.a.Toolbar.Visibility = ViewStates.Visible;
+            }
+
+            public void OnSearchViewShown()
+            {
+                this.a.Toolbar.Visibility = ViewStates.Gone;
             }
         }
 

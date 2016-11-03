@@ -26,17 +26,17 @@ namespace csfm_android
         protected override void OnResume()
         {
             base.OnResume();
-            if (SearchView != null)
-            {
-                SearchView.SetQuery("", false);
-                SearchView.Iconified = true;
-            }
+            //if (SearchView != null)
+            //{
+            //    SearchView.SetQuery("", false);
+            //    SearchView.Iconified = true;
+            //}
         }
 
         public override void OnSearchViewSet()
         {
-            if (SearchView != null)
-                SearchView.Iconified = true;
+            //if (SearchView != null)
+            //    SearchView.Iconified = true;
         }
 
         public override bool OnQueryTextChange(string newText)

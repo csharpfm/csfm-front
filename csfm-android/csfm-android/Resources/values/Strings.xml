@@ -3,4 +3,5 @@
     <string name="Hello">Hello World, Click Me!</string>
     <string name="ApplicationName">MatchFM</string>
   <string name="preferences">Préférences</string>
+  <string name="search_hint">Search</string>
 </resources>

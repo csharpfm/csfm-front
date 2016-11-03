@@ -56,9 +56,9 @@ namespace csfm_android
 
         public override void OnSearchViewSet()
         {
-            this.SearchView.Iconified = false;
-            this.SearchView.SetQuery(Intent.GetStringExtra(EXTRA_MESSAGE), false);
-            this.SearchView.ClearFocus();
+            //this.SearchView.Iconified = false;
+            //this.SearchView.SetQuery(Intent.GetStringExtra(EXTRA_MESSAGE), false);
+            //this.SearchView.ClearFocus();
         }
 
         private void InitViewPagerAndTabs()
