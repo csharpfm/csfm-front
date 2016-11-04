@@ -59,6 +59,10 @@ namespace csfm_android
             //this.SearchView.Iconified = false;
             //this.SearchView.SetQuery(Intent.GetStringExtra(EXTRA_MESSAGE), false);
             //this.SearchView.ClearFocus();
+            this.MaterialSearchView.ShowSearch();
+            this.MaterialSearchView.SetQuery(Intent.GetStringExtra(EXTRA_MESSAGE), false);
+            this.MaterialSearchView.ClearFocus();
+            this.Toolbar.Visibility = ViewStates.Gone;
         }
 
         private void InitViewPagerAndTabs()

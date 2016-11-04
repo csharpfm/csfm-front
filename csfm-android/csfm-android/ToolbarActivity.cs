@@ -40,7 +40,22 @@ namespace csfm_android
                 }
             }
         }*/
-        public MaterialSearchView MaterialSearchView { get; set; }
+
+        private MaterialSearchView materialSearchView;
+        public MaterialSearchView MaterialSearchView {
+            get
+            {
+                return materialSearchView;
+            }
+            set
+            {
+                materialSearchView = value;
+                if (materialSearchView != null)
+                {
+                    OnSearchViewSet();
+                }
+            }
+        }
 
         protected void OnCreate(Bundle savedInstanceState, int layout, string title)
         {
@@ -54,8 +69,10 @@ namespace csfm_android
                 SetSupportActionBar(this.Toolbar);
                 this.Toolbar.Title = title;
                 this.Title = title;
+
+                this.MaterialSearchView = FindViewById<MaterialSearchView>(Resource.Id.material_design_search_view);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
@@ -67,14 +84,9 @@ namespace csfm_android
             MenuInflater.Inflate(Resource.Menu.top_menus, menu);
             this.Toolbar.MenuItemClick += Toolbar_MenuItemClick;
             SearchItem = this.Toolbar.Menu.FindItem(Resource.Id.action_search);
-            /*SearchView = SearchItem.ActionView.JavaCast<SearchView>();
-            SearchView.SetOnQueryTextListener(new QueryListener(this));
-            SearchView.SetOnSearchClickListener(new SearchClickListener(this));
-            SearchView.SetOnCloseListener(new SearchCloseListener(this));*/
-
-            MaterialSearchView = FindViewById<MaterialSearchView>(Resource.Id.material_design_search_view);
             MaterialSearchView.SetMenuItem(SearchItem);
             MaterialSearchView.SetOnSearchViewListener(new SearchViewListener(this));
+            MaterialSearchView.SetOnQueryTextListener(new QueryListener(this));
 
             return base.OnCreateOptionsMenu(menu);
         }
@@ -87,6 +99,17 @@ namespace csfm_android
         protected override void OnCreate(Bundle savedInstanceState)
         {
             throw new Exception("Use OnCreate(Bundle, int) to specifiy a resource Id");
+        }
+
+        public override void OnBackPressed()
+        {
+            if (this.MaterialSearchView.IsSearchOpen())
+            {
+                this.MaterialSearchView.CloseSearch();
+                return;
+            }
+            
+            base.OnBackPressed();
         }
 
 

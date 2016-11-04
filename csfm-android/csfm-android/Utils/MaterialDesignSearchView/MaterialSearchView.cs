@@ -425,7 +425,7 @@ namespace csfm_android.Utils.MaterialDesignSearchView
             mAnimationDuration = duration;
         }
 
-        public void ShowSearch(bool animate = true)
+        public void ShowSearch(bool animate = false)
         {
             if (IsSearchOpen())
             {
