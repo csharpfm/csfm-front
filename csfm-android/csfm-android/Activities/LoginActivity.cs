@@ -14,7 +14,7 @@ using Android.Graphics;
 
 namespace csfm_android.Activities
 {
-    [Activity(Label = "LoginActivity", MainLauncher = true, Icon = "@drawable/icon", Theme = "@style/MyTheme")]
+    [Activity(Label = "LoginActivity", MainLauncher = true, Icon = "@drawable/icon", Theme = "@style/LogTheme")]
     public class LoginActivity : AppCompatActivity
     {
 
@@ -35,6 +35,11 @@ namespace csfm_android.Activities
             this.createAccount.Click += delegate
             {
                 StartActivity(typeof(SignupActivity));
+            };
+
+            this.signInButton.Click += delegate
+            {
+                StartActivity(typeof(MainActivity));
             };
         }
 

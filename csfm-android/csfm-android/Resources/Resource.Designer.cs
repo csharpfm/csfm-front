@@ -2615,32 +2615,32 @@ namespace csfm_android
 		public partial class Color
 		{
 			
-			// aapt resource value: 0x7f080052
-			public const int abc_background_cache_hint_selector_material_dark = 2131230802;
-			
 			// aapt resource value: 0x7f080053
-			public const int abc_background_cache_hint_selector_material_light = 2131230803;
+			public const int abc_background_cache_hint_selector_material_dark = 2131230803;
 			
 			// aapt resource value: 0x7f080054
-			public const int abc_color_highlight_material = 2131230804;
+			public const int abc_background_cache_hint_selector_material_light = 2131230804;
+			
+			// aapt resource value: 0x7f080055
+			public const int abc_color_highlight_material = 2131230805;
 			
 			// aapt resource value: 0x7f080004
 			public const int abc_input_method_navigation_guard = 2131230724;
 			
-			// aapt resource value: 0x7f080055
-			public const int abc_primary_text_disable_only_material_dark = 2131230805;
-			
 			// aapt resource value: 0x7f080056
-			public const int abc_primary_text_disable_only_material_light = 2131230806;
+			public const int abc_primary_text_disable_only_material_dark = 2131230806;
 			
 			// aapt resource value: 0x7f080057
-			public const int abc_primary_text_material_dark = 2131230807;
+			public const int abc_primary_text_disable_only_material_light = 2131230807;
 			
 			// aapt resource value: 0x7f080058
-			public const int abc_primary_text_material_light = 2131230808;
+			public const int abc_primary_text_material_dark = 2131230808;
 			
 			// aapt resource value: 0x7f080059
-			public const int abc_search_url_text = 2131230809;
+			public const int abc_primary_text_material_light = 2131230809;
+			
+			// aapt resource value: 0x7f08005a
+			public const int abc_search_url_text = 2131230810;
 			
 			// aapt resource value: 0x7f080005
 			public const int abc_search_url_text_normal = 2131230725;
@@ -2651,17 +2651,20 @@ namespace csfm_android
 			// aapt resource value: 0x7f080007
 			public const int abc_search_url_text_selected = 2131230727;
 			
-			// aapt resource value: 0x7f08005a
-			public const int abc_secondary_text_material_dark = 2131230810;
-			
 			// aapt resource value: 0x7f08005b
-			public const int abc_secondary_text_material_light = 2131230811;
+			public const int abc_secondary_text_material_dark = 2131230811;
+			
+			// aapt resource value: 0x7f08005c
+			public const int abc_secondary_text_material_light = 2131230812;
 			
 			// aapt resource value: 0x7f080008
 			public const int accent_material_dark = 2131230728;
 			
 			// aapt resource value: 0x7f080009
 			public const int accent_material_light = 2131230729;
+			
+			// aapt resource value: 0x7f080051
+			public const int android_statusBarColor = 2131230801;
 			
 			// aapt resource value: 0x7f08000a
 			public const int background_floating_material_dark = 2131230730;
@@ -2789,8 +2792,8 @@ namespace csfm_android
 			// aapt resource value: 0x7f08001f
 			public const int hint_foreground_material_light = 2131230751;
 			
-			// aapt resource value: 0x7f080051
-			public const int login_background = 2131230801;
+			// aapt resource value: 0x7f080052
+			public const int login_background = 2131230802;
 			
 			// aapt resource value: 0x7f080020
 			public const int material_blue_grey_800 = 2131230752;
@@ -2876,11 +2879,11 @@ namespace csfm_android
 			// aapt resource value: 0x7f08003b
 			public const int switch_thumb_disabled_material_light = 2131230779;
 			
-			// aapt resource value: 0x7f08005c
-			public const int switch_thumb_material_dark = 2131230812;
-			
 			// aapt resource value: 0x7f08005d
-			public const int switch_thumb_material_light = 2131230813;
+			public const int switch_thumb_material_dark = 2131230813;
+			
+			// aapt resource value: 0x7f08005e
+			public const int switch_thumb_material_light = 2131230814;
 			
 			// aapt resource value: 0x7f08003c
 			public const int switch_thumb_normal_material_dark = 2131230780;
@@ -3842,12 +3845,6 @@ namespace csfm_android
 			// aapt resource value: 0x7f060093
 			public const int media_actions = 2131099795;
 			
-			// aapt resource value: 0x7f0600a5
-			public const int menu_signin = 2131099813;
-			
-			// aapt resource value: 0x7f0600a6
-			public const int menu_signup = 2131099814;
-			
 			// aapt resource value: 0x7f06001d
 			public const int middle = 2131099677;
 			
@@ -4306,25 +4303,6 @@ namespace csfm_android
 			}
 			
 			private Layout()
-			{
-			}
-		}
-		
-		public partial class Menu
-		{
-			
-			// aapt resource value: 0x7f0c0000
-			public const int account_menu = 2131492864;
-			
-			// aapt resource value: 0x7f0c0001
-			public const int top_menus = 2131492865;
-			
-			static Menu()
-			{
-				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
-			}
-			
-			private Menu()
 			{
 			}
 		}
@@ -4940,10 +4918,13 @@ namespace csfm_android
 			public const int CardView_Light = 2131165187;
 			
 			// aapt resource value: 0x7f070164
-			public const int MyButton = 2131165540;
+			public const int LogTheme = 2131165540;
 			
 			// aapt resource value: 0x7f070165
-			public const int MyEditTextTheme = 2131165541;
+			public const int MyButton = 2131165541;
+			
+			// aapt resource value: 0x7f070166
+			public const int MyEditTextTheme = 2131165542;
 			
 			// aapt resource value: 0x7f070163
 			public const int MyTheme = 2131165539;

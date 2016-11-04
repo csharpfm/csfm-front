@@ -8,6 +8,12 @@
     <item name="android:colorAccent">#FF9800</item>
     <item name="android:textColorPrimary">#000000</item>
     <item name="android:textColorSecondary">#757575</item>
+    <item name="android:fitsSystemWindows">true</item>
+    <item name="android:statusBarColor">@color/colorPrimaryDark</item>
+  </style>
+
+
+  <style name="LogTheme" parent="@style/MyTheme">
     <item name="android:windowTranslucentStatus">true</item>
   </style>
 

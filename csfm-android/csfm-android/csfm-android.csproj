@@ -163,7 +163,6 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\menu\top_menus.xml" />
     <AndroidResource Include="Resources\values\Strings.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -336,9 +335,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Callbacks\" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\menu\account_menu.xml" />
+    <Folder Include="Resources\menu\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\logo.png" />

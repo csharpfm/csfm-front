@@ -10,7 +10,7 @@ using csfm_android.Fragments;
 
 namespace csfm_android
 {
-    [Activity(Label = "MainActivity")]
+    [Activity(Label = "MainActivity", Theme = "@style/MyTheme")]
     public class MainActivity : AppCompatActivity, BottomNavigationBar.Listeners.IOnMenuTabClickListener
     {
         private Toolbar toolbar;
@@ -33,11 +33,6 @@ namespace csfm_android
             setBottomBar(bundle);
         }
 
-        public override bool OnCreateOptionsMenu(IMenu menu)
-        {
-            MenuInflater.Inflate(Resource.Menu.top_menus, menu);
-            return base.OnCreateOptionsMenu(menu);
-        }
 
         private void setBottomBar(Bundle bundle)
         {

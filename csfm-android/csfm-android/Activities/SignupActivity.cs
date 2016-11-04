@@ -13,7 +13,7 @@ using Android.Support.V7.App;
 
 namespace csfm_android.Activities
 {
-    [Activity(Label = "SignupActivity", Theme = "@style/MyTheme")]
+    [Activity(Label = "SignupActivity", Theme = "@style/LogTheme")]
     public class SignupActivity : AppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
