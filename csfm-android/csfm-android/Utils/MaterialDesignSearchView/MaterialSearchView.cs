@@ -236,7 +236,7 @@ namespace csfm_android.Utils.MaterialDesignSearchView
             }
             PackageManager pm = mContext.PackageManager;
             IList<ResolveInfo> activities = pm.QueryIntentActivities(new Intent(RecognizerIntent.ActionRecognizeSpeech), 0);
-            return activities.Count == 0;
+            return activities.Count == 1;
         }
 
         public void HideKeyboard(View view)

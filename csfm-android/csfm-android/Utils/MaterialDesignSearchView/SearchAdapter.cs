@@ -15,7 +15,7 @@ using Android.Text;
 
 namespace csfm_android.Utils.MaterialDesignSearchView
 {
-    public class SearchAdapter : BaseAdapter, IFilterable
+    public class SearchAdapter : BaseAdapter<string>, IFilterable
     {
         private List<string> data;
         private string[] suggestions;
@@ -35,7 +35,15 @@ namespace csfm_android.Utils.MaterialDesignSearchView
         {
             get
             {
-                throw new NotImplementedException();
+                return data.Count;
+            }
+        }
+
+        public override string this[int position]
+        {
+            get
+            {
+                return data[position];
             }
         }
 
@@ -55,10 +63,6 @@ namespace csfm_android.Utils.MaterialDesignSearchView
             this.ellipsize = ellipsize;
         }
 
-        
-
-
-
         public class SearchAdapterFilter : Filter
         {
             private SearchAdapter adapter;
@@ -68,47 +72,32 @@ namespace csfm_android.Utils.MaterialDesignSearchView
                 this.adapter = adapter;
             }
 
-            private List<string> Convert(Java.Lang.Object[] data)
-            {
-                List<string> result = new List<string>(data.Length);
-                for (int i = 0; i < data.Length; i++)
-                {
-                    result.Add(data[i].ToString());
-                }
-                return result;
-            }
-
-            private Java.Lang.Object[] Convert(List<string> data)
-            {
-                Java.Lang.String[] result = new Java.Lang.String[data.Count];
-                for (int i = 0; i < data.Count; i++)
-                {
-                    result[i] = new Java.Lang.String(data[i]);
-                }
-                return result;
-            }
-
             protected override FilterResults PerformFiltering(ICharSequence constraint)
             {
                 FilterResults filterResults = new FilterResults();
-                if (!TextUtils.IsEmpty(constraint))
+                if (!string.IsNullOrWhiteSpace(constraint.ToString()))
                 {
 
                     // Retrieve the autocomplete results.
-                    List<string> searchData = new List<string>();
+                    string searchWord = constraint.ToString().Trim().ToLower();
 
-                    foreach (string str in adapter.suggestions)
+                    LinkedList<string> searchData = new LinkedList<string>();
+                    foreach(var str in adapter.suggestions)
                     {
-                        if (str.ToLower().StartsWith(constraint.ToString().ToLower()))
+                        string suggestion = str?.Trim()?.ToLower();
+                        if (suggestion.Contains(searchWord) && suggestion != searchWord)
                         {
-                            searchData.Add(str);
+                            searchData.AddLast(suggestion);
                         }
                     }
-
+                    Java.Lang.Object[] result = searchData.Select(r => r.ToJavaObject()).ToArray();
                     // Assign the data to the FilterResults
-                    filterResults.Values = Convert(searchData);
-                    filterResults.Count = searchData.Count;
+                    filterResults.Values = result;
+                    filterResults.Count = result.Length;
                 }
+
+                constraint.Dispose();
+
                 return filterResults;
             }
 
@@ -116,9 +105,15 @@ namespace csfm_android.Utils.MaterialDesignSearchView
             {
                 if (results.Values != null)
                 {
-                    adapter.data = Convert((Java.Lang.Object[]) results.Values);
-                    adapter.NotifyDataSetChanged();
+                    using (var values = results.Values)
+                    {
+                        adapter.data = values.ToArray<Java.Lang.Object>().Select(r => r.ToNetObject<string>()).ToList();
+                        adapter.NotifyDataSetChanged();
+                    }
                 }
+
+                results.Dispose();
+                constraint.Dispose();
             }
         }
 

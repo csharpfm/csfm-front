@@ -10,17 +10,19 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Support.V7.App;
-using SearchView = Android.Support.V7.Widget.SearchView;
+using Toolbar = Android.Support.V7.Widget.Toolbar;
 using static Android.Support.V7.Widget.SearchView;
 using static Android.Views.View;
 using csfm_android.Utils.MaterialDesignSearchView;
+using Android.Speech;
+using csfm_android.Utils;
 
 namespace csfm_android
 {
     public abstract class ToolbarActivity : AppCompatActivity
     {
 
-        public Android.Support.V7.Widget.Toolbar Toolbar { get; private set; }
+        public Toolbar Toolbar { get; private set; }
 
         public IMenuItem SearchItem { get; private set; }
         //private SearchView searchView;
@@ -87,6 +89,8 @@ namespace csfm_android
             MaterialSearchView.SetMenuItem(SearchItem);
             MaterialSearchView.SetOnSearchViewListener(new SearchViewListener(this));
             MaterialSearchView.SetOnQueryTextListener(new QueryListener(this));
+            MaterialSearchView.SetVoiceSearch(true);
+            MaterialSearchView.SetSuggestions(new string[] { "Saez", "Damien Saez", "Lady Gaga" });
 
             return base.OnCreateOptionsMenu(menu);
         }
@@ -117,6 +121,28 @@ namespace csfm_android
         public abstract bool OnQueryTextSubmit(string query);
 
         public abstract void OnSearchViewSet();
+
+
+        protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
+        {
+            if (requestCode == MaterialSearchView.REQUEST_VOICE && resultCode == Result.Ok)
+            {
+                IList<string> matches = data.GetStringArrayListExtra(RecognizerIntent.ExtraResults);
+                if (matches != null && matches.Count > 0)
+                {
+                    string searchWord = matches[0];
+                    if (!searchWord.IsStringEmpty())
+                    {
+                        MaterialSearchView.SetQuery(searchWord, false);
+                    }
+                }
+
+                return;
+
+            }
+            base.OnActivityResult(requestCode, resultCode, data);
+        }
+
 
         public class QueryListener : Java.Lang.Object, IOnQueryTextListener
         {
