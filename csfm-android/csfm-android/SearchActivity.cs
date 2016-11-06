@@ -14,6 +14,7 @@ using Android.Graphics;
 using Android.Support.Design.Widget;
 using Android.Support.V4.View;
 using csfm_android.Adapters;
+using csfm_android.Utils;
 
 namespace csfm_android
 {
@@ -30,9 +31,7 @@ namespace csfm_android
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            base.OnCreate(savedInstanceState, Resource.Layout.search_activity, "");
-            //this.SupportActionBar.SetDisplayHomeAsUpEnabled(true);
-            //this.SupportActionBar.SetDisplayShowHomeEnabled(true);
+            base.OnCreate(savedInstanceState, Resource.Layout.search_activity, Intent.GetStringExtra(EXTRA_MESSAGE).ToFirstUpperCase());
             this.tabLayout = FindViewById<TabLayout>(Resource.Id.tabs);
             this.viewPager = FindViewById<ViewPager>(Resource.Id.viewPager);
 
@@ -40,29 +39,14 @@ namespace csfm_android
             this.Toolbar.SetNavigationOnClickListener(new OnNavigationClickListener(this));
 
             InitViewPagerAndTabs();
-
-            //btn[0] = new ResourceButton(Resource.Id.btn0, this);
-            //btn[1] = new ResourceButton(Resource.Id.btn1, this);
-            //btn[2] = new ResourceButton(Resource.Id.btn2, this);
-
-            //for (int i = 0; i < btn.Length; i++)
-            //{
-            //    btn[i].Button.SetBackgroundColor(Color.Rgb(207, 207, 207));
-            //    btn[i].Button.SetOnClickListener(this);
-
-            //}
-            
         }
 
         public override void OnSearchViewSet()
         {
-            //this.SearchView.Iconified = false;
-            //this.SearchView.SetQuery(Intent.GetStringExtra(EXTRA_MESSAGE), false);
-            //this.SearchView.ClearFocus();
-            this.MaterialSearchView.ShowSearch();
-            this.MaterialSearchView.SetQuery(Intent.GetStringExtra(EXTRA_MESSAGE), false);
-            this.MaterialSearchView.ClearFocus();
-            this.Toolbar.Visibility = ViewStates.Gone;
+            //this.MaterialSearchView.ShowSearch();
+            //this.MaterialSearchView.SetQuery(Intent.GetStringExtra(EXTRA_MESSAGE), false);
+            //this.MaterialSearchView.ClearFocus();
+            //this.Toolbar.Visibility = ViewStates.Gone;
         }
 
         private void InitViewPagerAndTabs()
@@ -82,26 +66,12 @@ namespace csfm_android
 
         public void OnClick(View v)
         {
-            //int id = v.Id;
-            //SetFocus(btn.FirstOrDefault(b => b.ResourceId == id)?.Button);
            
         }
 
         private void SetFocus(Button selected)
         {
-            //Console.WriteLine(selected);
-            //if (selected == null) return;
 
-            //if (this.btn_unfocus != null)
-            //{
-            //    this.btn_unfocus.SetTextColor(Color.Rgb(49, 50, 51));
-            //    this.btn_unfocus.SetBackgroundColor(Color.Rgb(207, 207, 207));
-            //}
-
-            //selected.SetTextColor(Color.Rgb(255, 255, 255));
-            //selected.SetBackgroundColor(Color.Rgb(3, 106, 150));
-
-            //this.btn_unfocus = selected;
         }
 
         public override bool OnQueryTextChange(string newText)
@@ -111,6 +81,8 @@ namespace csfm_android
 
         public override bool OnQueryTextSubmit(string query)
         {
+            this.ToolbarTitle = query.ToFirstUpperCase();
+            MaterialSearchView.CloseSearch();
             return true; //TODO
         }
 

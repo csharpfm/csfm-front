@@ -28,6 +28,22 @@ namespace csfm_android.Utils
             return text;
         }
 
+        public static string ToFirstUpperCase(this String text)
+        {
+            if (text != null)
+            {
+                if (text.Length > 1)
+                {
+                    return text.Substring(0, 1).ToUpper() + text.Substring(1, text.Length - 1);
+                }
+                else
+                {
+                    return text.ToUpper();
+                }
+            }
+            return text;
+        }
+
         public static TObject ToNetObject<TObject>(this Java.Lang.Object value)
         {
             if (value == null)

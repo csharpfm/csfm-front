@@ -19,6 +19,7 @@ namespace csfm_android.Adapters
 {
     public class SearchPagerAdapter : FragmentPagerAdapter
     {
+        public List<Fragment> fragments = new List<Fragment>(3) { null, null, null };
 
         public SearchPagerAdapter(ToolbarActivity activity) : base(activity.SupportFragmentManager)
         {
@@ -38,11 +39,11 @@ namespace csfm_android.Adapters
             switch(position)
             {
                 case 0: //Artists
-                    return new SearchArtistFragment();
+                    return fragments[position] == null ? (fragments[position] = new SearchArtistFragment()) : fragments[position];
                 case 1: //Albums
-                    return new SearchAlbumFragment();
+                    return fragments[position] == null ? (fragments[position] = new SearchAlbumFragment()) : fragments[position];
                 case 2: //Tracks
-                    return new SearchTrackFragment();
+                    return fragments[position] == null ? (fragments[position] = new SearchTrackFragment()) : fragments[position];
                 default:
                     return null;
             }

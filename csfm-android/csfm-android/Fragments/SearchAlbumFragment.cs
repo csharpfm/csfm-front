@@ -26,5 +26,10 @@ namespace csfm_android.Fragments
         {
             recyclerView.SetLayoutManager(new GridLayoutManager(this.Activity, 3));
         }
+
+        protected override void Update(Action callback)
+        {
+            callback();
+        }
     }
 }

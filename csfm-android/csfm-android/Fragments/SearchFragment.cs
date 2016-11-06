@@ -8,17 +8,19 @@ using Android.Support.V4.Widget;
 using csfm_android.Api.Model;
 using csfm_android.Adapters;
 using System.Linq;
+using System;
+using System.Linq.Expressions;
 
 namespace csfm_android.Fragments
 {
     public abstract class SearchFragment<T> : Fragment, SwipeRefreshLayout.IOnRefreshListener where T : MusicItem
     {
-        private View rootView;
-        private RecyclerView recyclerView;
-        private SwipeRefreshLayout refresh;
+        protected View rootView;
+        protected RecyclerView recyclerView;
+        protected SwipeRefreshLayout refresh;
 
         public static string FAKE_IMAGE = "https://f4.bcbits.com/img/a0648921701_16.jpg";
-        public static List<Artist> FAKE_ARTISTS;
+        public static List<Artist> FAKE_ARTISTS, FAKE_ARTISTS2;
         public static List<Album> FAKE_ALBUMS;
         public static List<Track> FAKE_TRACKS;
 
@@ -31,6 +33,8 @@ namespace csfm_android.Fragments
                 new Artist { Name = "World", Image = FAKE_IMAGE },
                 new Artist { Name = "Test", Image = FAKE_IMAGE }
             };
+
+
 
             FAKE_ALBUMS = new List<Album>
             {
@@ -80,15 +84,6 @@ namespace csfm_android.Fragments
         public override void OnResume()
         {
             base.OnResume();
-
-            //if (typeof(T) == typeof(Track))
-            //{
-            //    recyclerView.SetLayoutManager(new LinearLayoutManager(this.Activity));
-            //}
-            //else
-            //{
-            //    recyclerView.SetLayoutManager(new GridLayoutManager(this.Activity, 3));
-            //}
             SetRecyclerViewLayoutManager(recyclerView);
             SetRecyclerViewAdapter(recyclerView);
         }
@@ -97,9 +92,11 @@ namespace csfm_android.Fragments
 
         protected abstract void SetRecyclerViewAdapter(RecyclerView recyclerView);
 
+        protected abstract void Update(Action callback);
+
         public void OnRefresh()
         {
-            
+            this.Update(() => refresh.Refreshing = false);
         }
     }
 }

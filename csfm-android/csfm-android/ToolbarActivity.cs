@@ -24,6 +24,22 @@ namespace csfm_android
 
         public Toolbar Toolbar { get; private set; }
 
+        public string ToolbarTitle
+        {
+            get
+            {
+                return Toolbar.Title;
+            }
+
+            set
+            {
+                this.Title = value;
+                this.Toolbar.Title = value;
+            }
+        }
+
+        
+
         public IMenuItem SearchItem { get; private set; }
 
         private MaterialSearchView materialSearchView;
@@ -52,8 +68,7 @@ namespace csfm_android
 
                 this.Toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
                 SetSupportActionBar(this.Toolbar);
-                this.Toolbar.Title = title;
-                this.Title = title;
+                this.ToolbarTitle = title;
 
                 this.MaterialSearchView = FindViewById<MaterialSearchView>(Resource.Id.material_design_search_view);
             }

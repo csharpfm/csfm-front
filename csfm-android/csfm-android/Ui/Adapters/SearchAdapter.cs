@@ -20,6 +20,15 @@ namespace csfm_android.Adapters
         private List<T> data;
         private Context context;
 
+        public List<T> Data
+        {
+            set
+            {
+                data = value;
+                NotifyDataSetChanged();
+            }
+        }
+
         public SearchAdapter(Context context, List<T> data)
         {
             this.data = data;
@@ -30,7 +39,7 @@ namespace csfm_android.Adapters
         {
             get
             {
-                return data.Count;
+                return data != null ? data.Count : 0;
             }
         }
 

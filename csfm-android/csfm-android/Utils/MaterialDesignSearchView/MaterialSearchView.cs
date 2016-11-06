@@ -302,6 +302,8 @@ namespace csfm_android.Utils.MaterialDesignSearchView
             clickListener = new MaterialSearchViewOnClickListener(this);
             InitiateView();
             InitStyle(attrs, defStyleAttr);
+
+            attrs.Dispose();
         }
         #endregion ctors
 
@@ -363,7 +365,7 @@ namespace csfm_android.Utils.MaterialDesignSearchView
                 }
 
                 a.Recycle();
-                attrs.Dispose();
+                a.Dispose();
             }
         }
 
