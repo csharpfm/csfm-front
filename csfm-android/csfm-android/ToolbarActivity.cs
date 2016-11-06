@@ -25,23 +25,6 @@ namespace csfm_android
         public Toolbar Toolbar { get; private set; }
 
         public IMenuItem SearchItem { get; private set; }
-        //private SearchView searchView;
-        /*public SearchView SearchView
-        {
-            get
-            {
-                return searchView;
-            }
-
-            private set
-            {
-                searchView = value;
-                if (searchView != null)
-                {
-                    OnSearchViewSet();
-                }
-            }
-        }*/
 
         private MaterialSearchView materialSearchView;
         public MaterialSearchView MaterialSearchView {
@@ -86,16 +69,16 @@ namespace csfm_android
             MenuInflater.Inflate(Resource.Menu.top_menus, menu);
             this.Toolbar.MenuItemClick += Toolbar_MenuItemClick;
             SearchItem = this.Toolbar.Menu.FindItem(Resource.Id.action_search);
-            MaterialSearchView.SetMenuItem(SearchItem);
-            MaterialSearchView.SetOnSearchViewListener(new SearchViewListener(this));
-            MaterialSearchView.SetOnQueryTextListener(new QueryListener(this));
-            MaterialSearchView.SetVoiceSearch(true);
-            MaterialSearchView.SetSuggestions(new string[] { "Saez", "Damien Saez", "Lady Gaga" });
+            MaterialSearchView.MenuItem = SearchItem;
+            MaterialSearchView.SearchViewListener = new SearchViewListener(this);
+            MaterialSearchView.QueryTextListener = new QueryListener(this);
+            MaterialSearchView.IsSetVoiceSearch = true;
+            MaterialSearchView.Suggestions = (new string[] { "Saez", "Damien Saez", "Lady Gaga" });
 
             return base.OnCreateOptionsMenu(menu);
         }
 
-        private void Toolbar_MenuItemClick(object sender, Android.Support.V7.Widget.Toolbar.MenuItemClickEventArgs e)
+        private void Toolbar_MenuItemClick(object sender, Toolbar.MenuItemClickEventArgs e)
         {
             Console.WriteLine("Menu Item Click -----------------");
         }
@@ -107,7 +90,7 @@ namespace csfm_android
 
         public override void OnBackPressed()
         {
-            if (this.MaterialSearchView.IsSearchOpen())
+            if (this.MaterialSearchView.IsSearchOpen)
             {
                 this.MaterialSearchView.CloseSearch();
                 return;
@@ -197,7 +180,7 @@ namespace csfm_android
             }
         }
 
-        public class SearchViewListener : ISearchViewListener
+        public class SearchViewListener : MaterialSearchView.ISearchViewListener
         {
             private ToolbarActivity a;
 
