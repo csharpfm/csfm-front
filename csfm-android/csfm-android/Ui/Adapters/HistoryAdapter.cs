@@ -14,6 +14,8 @@ using csfm_android.Api.Model;
 using csfm_android.Ui.Holders;
 using Square.Picasso;
 using csfm_android.Ui.Utils;
+using csfm_android.Utils.MaterialDesignSearchView;
+using csfm_android.Utils;
 
 namespace csfm_android.Ui.Adapters
 {
@@ -23,11 +25,15 @@ namespace csfm_android.Ui.Adapters
         private List<History> historic;
 
         private Context context;
+        private object hhistory;
 
         public HistoryAdapter(Context context, List<History> historic)
         {
             this.context = context;
             this.historic = historic;
+            MaterialSearchView.AddSuggestions(historic.ToTrackNames());
+            MaterialSearchView.AddSuggestions(historic.ToAlbumNames());
+            MaterialSearchView.AddSuggestions(historic.ToArtistNames());
         }
 
         public override int ItemCount

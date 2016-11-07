@@ -287,6 +287,20 @@ namespace csfm_android.Utils.MaterialDesignSearchView
         }
         #endregion
 
+        #region static
+
+        public static void AddSuggestions(IEnumerable<string> suggestions)
+        {
+            SearchAdapter.AddSuggestions(suggestions);
+        }
+
+        public static void AddSuggestion(string suggestion)
+        {
+            SearchAdapter.AddSuggestion(suggestion);
+        }
+
+        #endregion static
+
         #region ctors
         public MaterialSearchView(Context context) : this(context, null)
         {
@@ -459,6 +473,7 @@ namespace csfm_android.Utils.MaterialDesignSearchView
             string query = searchInput.Text;
             if (!string.IsNullOrWhiteSpace(query))
             {
+                AddSuggestion(query);
                 if (QueryTextListener == null || !QueryTextListener.OnQueryTextSubmit(query))
                 {
                     CloseSearch();

@@ -9,6 +9,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using csfm_android.Api.Model;
 
 namespace csfm_android.Utils
 {
@@ -68,6 +69,21 @@ namespace csfm_android.Utils
             return holder;
         }
 
+        public static IEnumerable<string> ToTrackNames(this List<History> history)
+        {
+            return history.Select(h => h.Track.Name);
+        }
+
+        public static IEnumerable<string> ToAlbumNames(this List<History> history)
+        {
+            return history.Select(h => h.Track.Album.Name);
+        }
+
+        public static IEnumerable<string> ToArtistNames(this List<History> history)
+        {
+            return history.Select(h => h.Track.Artist.Name);
+        }
+
     }
 
 
@@ -80,4 +96,6 @@ namespace csfm_android.Utils
             Instance = instance;
         }
     }
+
+
 }

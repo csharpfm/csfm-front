@@ -18,7 +18,9 @@ namespace csfm_android.Utils.MaterialDesignSearchView
     public class SearchAdapter : BaseAdapter<string>, IFilterable
     {
         private List<string> data;
-        private List<string> suggestions;
+
+        private static int MAX_ITEMS = 50;
+        public static List<string> SUGGESTIONS { get; private set; }
         private Drawable suggestionIcon;
         private LayoutInflater inflater;
         private bool ellipsize;
@@ -47,18 +49,57 @@ namespace csfm_android.Utils.MaterialDesignSearchView
             }
         }
 
-        public SearchAdapter(Context context, List<string> suggestions)
+        private static void TryInitSuggestions()
         {
-            inflater = LayoutInflater.From(context);
-            data = new List<string>();
-            this.suggestions = suggestions;
+            if (SUGGESTIONS == null)
+            {
+                SUGGESTIONS = new List<string>();
+            }
         }
 
-        public SearchAdapter(Context context, List<string> suggestions, Drawable suggestionIcon, bool ellipsize)
+        private static void ReformatSuggestions()
+        {
+            SUGGESTIONS = SUGGESTIONS.GroupBy(s => s.ToLower()).OrderByDescending(x => x.Count()).Select(x => x.First().ToLower()).Take(MAX_ITEMS).ToList();
+
+        }
+
+        public static void AddSuggestions(IEnumerable<string> suggestions)
+        {
+
+            TryInitSuggestions();
+            lock (SUGGESTIONS)
+            {
+                if (suggestions != null && suggestions != SUGGESTIONS)
+                {
+                    SUGGESTIONS.AddRange(suggestions.Where(s => !string.IsNullOrWhiteSpace(s)));
+                }
+                ReformatSuggestions();
+            }
+        }
+
+        public static void AddSuggestion(string suggestion)
+        {
+            TryInitSuggestions();
+            if (!string.IsNullOrWhiteSpace(suggestion))
+            {
+                SUGGESTIONS.Add(suggestion);
+            }
+            ReformatSuggestions();
+        }
+
+        public SearchAdapter(Context context, IEnumerable<string> suggestions)
         {
             inflater = LayoutInflater.From(context);
             data = new List<string>();
-            this.suggestions = suggestions;
+
+            AddSuggestions(suggestions);
+        }
+
+        public SearchAdapter(Context context, IEnumerable<string> suggestions, Drawable suggestionIcon, bool ellipsize)
+        {
+            inflater = LayoutInflater.From(context);
+            data = new List<string>();
+            AddSuggestions(suggestions);
             this.suggestionIcon = suggestionIcon;
             this.ellipsize = ellipsize;
         }
@@ -72,24 +113,21 @@ namespace csfm_android.Utils.MaterialDesignSearchView
                 this.adapter = adapter;
             }
 
+            private IEnumerable<string> Search(string query)
+            {
+                // Retrieve the autocomplete results.
+                IEnumerable<string> words = query.Trim().ToLower().Split(' ');
+                IEnumerable<string> result = SUGGESTIONS.Where(s => words.Any(w => s.Contains(w))).Select(s => s.ToFirstUpperCase());
+
+                return result;
+            }
+
             protected override FilterResults PerformFiltering(ICharSequence constraint)
             {
                 FilterResults filterResults = new FilterResults();
                 if (!string.IsNullOrWhiteSpace(constraint.ToString()))
                 {
-
-                    // Retrieve the autocomplete results.
-                    string searchWord = constraint.ToString().Trim().ToLower();
-
-                    LinkedList<string> searchData = new LinkedList<string>();
-                    foreach(var str in adapter.suggestions)
-                    {
-                        string suggestion = str?.Trim()?.ToLower();
-                        if (suggestion.Contains(searchWord) && suggestion != searchWord)
-                        {
-                            searchData.AddLast(suggestion);
-                        }
-                    }
+                    IEnumerable<string> searchData = Search(constraint.ToString());
                     Java.Lang.Object[] result = searchData.Select(r => r.ToJavaObject()).ToArray();
                     // Assign the data to the FilterResults
                     filterResults.Values = result;
