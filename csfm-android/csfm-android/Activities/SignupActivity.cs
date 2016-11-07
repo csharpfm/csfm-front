@@ -23,8 +23,6 @@ namespace csfm_android.Activities
 
         private EditText password;
 
-        private EditText confirmedPassword;
-
         private Button signUpButton;
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -35,7 +33,6 @@ namespace csfm_android.Activities
             this.username = FindViewById<EditText>(Resource.Id.signup_username);
             this.email = FindViewById<EditText>(Resource.Id.signup_email);
             this.password = FindViewById<EditText>(Resource.Id.signup_pwd);
-            this.confirmedPassword = FindViewById<EditText>(Resource.Id.signup_confirm_pwd);
             this.signUpButton = FindViewById<Button>(Resource.Id.sign_up_button);
 
             this.signUpButton.Click += delegate
@@ -57,10 +54,6 @@ namespace csfm_android.Activities
             else if (String.IsNullOrEmpty(this.password.Text))
             {
                 Toast.MakeText(this, Resource.String.no_password, ToastLength.Short).Show();
-            }
-            else if (String.IsNullOrEmpty(this.confirmedPassword.Text))
-            {
-                Toast.MakeText(this, Resource.String.no_confirmed_password, ToastLength.Short).Show();
             }
             else
             {
