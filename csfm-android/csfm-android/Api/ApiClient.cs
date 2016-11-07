@@ -9,87 +9,67 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using System.Net;
+using Refit;
+using csfm_android.Api.Interfaces;
+using csfm_android.Utils;
 
 namespace csfm_android.Api
 {
-    public sealed class ApiClient
+    public class ApiClient
     {
         private static readonly string SERVER_URL = "";
-        private static readonly ApiClient instance = new ApiClient();
-        private static readonly Uri endpoint = new Uri(SERVER_URL);
-        private string bearer;
-        private bool authenticated;
+        private static readonly ICsfmApi instance = RestService.For<ICsfmApi>(SERVER_URL);
 
-        public static ApiClient Instance
-        {
-            get
-            {
-                return instance;
-            }
-        }
-
-        private ApiClient()
+        public ApiClient()
         {
         }
 
-
-        public bool SignUp(string username, string password)
-        {/*
-            Uri uri = new Uri(endpoint, "/api/Account/Register");
-
-
-            HttpContent content = new FormUrlEncodedContent(new[]
-            {
-                new KeyValuePair<string, string>("Username", username),
-                new KeyValuePair<string, string>("Password", password),
-                new KeyValuePair<string, string>("ConfirmPassword", password),
-            });
-
-            HttpResponseMessage result = (new HttpClient()).PostAsync(uri, content).Result;
-
-            if (result.IsSuccessStatusCode)
-            {
-                return true;
-            }
-
-            return false;*/
-            return false;
-        }
 
         public string RetrieveBearer()
         {
-            return this.bearer;
+            return CSFMPrefs.Prefs.GetString("bearer", "");
         }
 
         public void ProvideBearer(string bearer)
         {
-            this.bearer = bearer;
+            var editor = CSFMPrefs.Editor;
+            editor.PutString("bearer", bearer);
+            editor.Commit();
         }
 
         public bool LogIn(string username, string password)
         {
-            /*   Uri uri = new Uri(endpoint, "/oauth/token");
-               HttpContext content = new FormUrlEncodedContent(new[]
-               {
-                   new KeyValuePair<string, string>("username", username),
-                   new KeyValuePair<string, string>("password", password),
-                   new KeyValuePair<string, string>("grant_type", "password")
-               });
+            Dictionary<String, object> informations = new Dictionary<String, object>();
+            informations.Add("username", username);
+            informations.Add("password", password);
+            var status = instance.SignIn(informations);
 
-               HttpResponseMessage result = (new HttpClient()).PostAsync(uri, content).Result;
-               if (!result.IsSuccessStatusCode)
-               {
-                   return false;
-               }
 
-               Dictionary<string, string> data =
-                   JsonConvert.DeserializeObject<Dictionary<string, string>>(result.Content.ReadAsStringAsync().Result);
+            var editor = CSFMPrefs.Editor;
+            editor.PutString("bearer", "BEARER"); // TODO
+            editor.Commit();
 
-               ProvideBearer(data["access_token"]);
-               return true;*/
-            return false;
+            return true; // TODO
         }
 
+        public bool SignUp(string email, string username, string password)
+        {
+            Dictionary<String, object> informations = new Dictionary<String, object>();
+            informations.Add("username", username);
+            informations.Add("email", email);
+            informations.Add("password", password);
+
+            var status = instance.SignUp(informations);
+            // TODO
+            return true; // TODO
+        }
+
+        public async System.Threading.Tasks.Task<bool> GetUser(string username)
+        {
+            var user = await instance.GetUser(username, "Bearer " + this.RetrieveBearer());
+            // TODO
+            return true; // TODO
+        }
     }
 }
+ 

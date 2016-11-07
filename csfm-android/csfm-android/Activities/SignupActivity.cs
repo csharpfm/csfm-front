@@ -17,6 +17,8 @@ namespace csfm_android.Activities
     public class SignupActivity : AppCompatActivity
     {
 
+        private EditText username;
+
         private EditText email;
 
         private EditText password;
@@ -30,6 +32,7 @@ namespace csfm_android.Activities
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.signup_activity);
 
+            this.username = FindViewById<EditText>(Resource.Id.signup_username);
             this.email = FindViewById<EditText>(Resource.Id.signup_email);
             this.password = FindViewById<EditText>(Resource.Id.signup_pwd);
             this.confirmedPassword = FindViewById<EditText>(Resource.Id.signup_confirm_pwd);
@@ -43,7 +46,11 @@ namespace csfm_android.Activities
 
         private void signUp()
         {
-            if (String.IsNullOrEmpty(this.email.Text))
+            if (String.IsNullOrEmpty(this.username.Text))
+            {
+                Toast.MakeText(this, Resource.String.no_username, ToastLength.Short).Show();
+            }
+            else if (String.IsNullOrEmpty(this.email.Text))
             {
                 Toast.MakeText(this, Resource.String.no_mail, ToastLength.Short).Show();
             }

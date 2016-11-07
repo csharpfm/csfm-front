@@ -3686,8 +3686,8 @@ namespace csfm_android
 			// aapt resource value: 0x7f06001f
 			public const int collapseActionView = 2131099679;
 			
-			// aapt resource value: 0x7f0600a4
-			public const int confirm_password = 2131099812;
+			// aapt resource value: 0x7f0600a5
+			public const int confirm_password = 2131099813;
 			
 			// aapt resource value: 0x7f06004a
 			public const int contentPanel = 2131099722;
@@ -3815,14 +3815,14 @@ namespace csfm_android
 			// aapt resource value: 0x7f060041
 			public const int list_item = 2131099713;
 			
-			// aapt resource value: 0x7f060083
-			public const int login_email_text = 2131099779;
-			
 			// aapt resource value: 0x7f060082
 			public const int login_layout = 2131099778;
 			
 			// aapt resource value: 0x7f060084
 			public const int login_pwd_txt = 2131099780;
+			
+			// aapt resource value: 0x7f060083
+			public const int login_username_text = 2131099779;
 			
 			// aapt resource value: 0x7f060087
 			public const int mainContainer = 2131099783;
@@ -3962,20 +3962,23 @@ namespace csfm_android
 			// aapt resource value: 0x7f060085
 			public const int sign_in_button = 2131099781;
 			
+			// aapt resource value: 0x7f0600a4
+			public const int sign_up_button = 2131099812;
+			
 			// aapt resource value: 0x7f0600a3
-			public const int sign_up_button = 2131099811;
+			public const int signup_confirm_pwd = 2131099811;
 			
-			// aapt resource value: 0x7f0600a2
-			public const int signup_confirm_pwd = 2131099810;
-			
-			// aapt resource value: 0x7f0600a0
-			public const int signup_email = 2131099808;
+			// aapt resource value: 0x7f0600a1
+			public const int signup_email = 2131099809;
 			
 			// aapt resource value: 0x7f06009f
 			public const int signup_layout = 2131099807;
 			
-			// aapt resource value: 0x7f0600a1
-			public const int signup_pwd = 2131099809;
+			// aapt resource value: 0x7f0600a2
+			public const int signup_pwd = 2131099810;
+			
+			// aapt resource value: 0x7f0600a0
+			public const int signup_username = 2131099808;
 			
 			// aapt resource value: 0x7f060076
 			public const int snackbar_action = 2131099766;
@@ -4394,14 +4397,14 @@ namespace csfm_android
 			// aapt resource value: 0x7f090016
 			public const int character_counter_pattern = 2131296278;
 			
-			// aapt resource value: 0x7f090023
-			public const int confirm_password = 2131296291;
+			// aapt resource value: 0x7f090024
+			public const int confirm_password = 2131296292;
 			
-			// aapt resource value: 0x7f090025
-			public const int create_one = 2131296293;
+			// aapt resource value: 0x7f090026
+			public const int create_one = 2131296294;
 			
-			// aapt resource value: 0x7f090021
-			public const int email = 2131296289;
+			// aapt resource value: 0x7f090022
+			public const int email = 2131296290;
 			
 			// aapt resource value: 0x7f09001e
 			public const int home = 2131296286;
@@ -4409,20 +4412,23 @@ namespace csfm_android
 			// aapt resource value: 0x7f09001f
 			public const int match = 2131296287;
 			
-			// aapt resource value: 0x7f090024
-			public const int no_account = 2131296292;
-			
-			// aapt resource value: 0x7f090027
-			public const int no_confirmed_password = 2131296295;
-			
-			// aapt resource value: 0x7f090026
-			public const int no_mail = 2131296294;
+			// aapt resource value: 0x7f090025
+			public const int no_account = 2131296293;
 			
 			// aapt resource value: 0x7f090028
-			public const int no_password = 2131296296;
+			public const int no_confirmed_password = 2131296296;
 			
-			// aapt resource value: 0x7f090022
-			public const int password = 2131296290;
+			// aapt resource value: 0x7f090027
+			public const int no_mail = 2131296295;
+			
+			// aapt resource value: 0x7f090029
+			public const int no_password = 2131296297;
+			
+			// aapt resource value: 0x7f09002a
+			public const int no_username = 2131296298;
+			
+			// aapt resource value: 0x7f090023
+			public const int password = 2131296291;
 			
 			// aapt resource value: 0x7f09001a
 			public const int preferences = 2131296282;
@@ -4435,6 +4441,9 @@ namespace csfm_android
 			
 			// aapt resource value: 0x7f090013
 			public const int status_bar_notification_info_overflow = 2131296275;
+			
+			// aapt resource value: 0x7f090021
+			public const int username = 2131296289;
 			
 			static String()
 			{

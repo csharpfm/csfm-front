@@ -12,6 +12,7 @@
     <string name="match">Match</string>
     <string name="account">Compte</string>
 
+    <string name="username">Nom d\'utilisateur</string>
     <string name="email">Email</string>
     <string name="password">Mot de passe</string>
     <string name="confirm_password">Confirmer le mot de passe</string>
@@ -23,4 +24,5 @@
     <string name="no_mail">Veuillez renseigner un mail</string>
     <string name="no_confirmed_password">Veuillez confirmer votre mail</string>
     <string name="no_password">Veuillez renseigner un mot de passe</string>
+    <string name="no_username">Veuillez renseigner un nom d\'utilisateur</string>
 </resources>

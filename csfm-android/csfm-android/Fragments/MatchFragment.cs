@@ -32,6 +32,12 @@ namespace csfm_android.Fragments
             base.OnCreate(savedInstanceState);
         }
 
+        public override void OnStop()
+        {
+            base.OnStop();
+            Activity.ActionBar.Show();
+        }
+
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             this.rootView = inflater.Inflate(Resource.Layout.match_fragment, container, false);
@@ -48,6 +54,8 @@ namespace csfm_android.Fragments
         public override void OnStart()
         {
             base.OnStart();
+
+            Activity.ActionBar.Hide();
 
             this.InitButtons();
             Picasso.With(this.Activity)

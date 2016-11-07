@@ -31,11 +31,11 @@
     android:layout_width="0dp"
     android:layout_height="wrap_content"
     android:layout_weight="6"
-    android:id="@+id/login_email_text"
-    android:hint="@string/email"
+    android:id="@+id/login_username_text"
+    android:hint="@string/username"
     android:layout_marginTop="25dp"
     android:layout_marginBottom="40dp"
-    android:inputType="textEmailAddress"
+    android:inputType="text"
     app:theme="@style/MyEditTextTheme"/>
 
     <RelativeLayout

@@ -12,6 +12,7 @@
   <string name="match">Match</string>
   <string name="account">Account</string>
 
+  <string name="username">Username</string>
   <string name="email">Email</string>
   <string name="password">Password</string>
   <string name="confirm_password">Confirm password</string>
@@ -22,4 +23,5 @@
   <string name="no_mail">Please enter an email address</string>
   <string name="no_confirmed_password">Please confirm your email address</string>
   <string name="no_password">Pleaser enter your password</string>
+  <string name="no_username">Please enter your username</string>
 </resources>

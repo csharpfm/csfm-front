@@ -11,6 +11,8 @@ using Android.Views;
 using Android.Widget;
 using Android.Support.V7.App;
 using Android.Graphics;
+using csfm_android.Utils;
+using csfm_android.Api;
 
 namespace csfm_android.Activities
 {
@@ -22,7 +24,7 @@ namespace csfm_android.Activities
 
         private TextView createAccount;
 
-        private EditText email;
+        private EditText username;
 
         private EditText password;
 
@@ -30,12 +32,21 @@ namespace csfm_android.Activities
         {
             base.OnCreate(bundle);
 
+            var bearer = CSFMPrefs.Prefs.GetString("bearer", "");
+
+            if (!String.IsNullOrEmpty(bearer))
+            {
+                // still connected! 
+                // TODO : Check if bearer is still valid!
+                StartActivity(typeof(MainActivity));
+            }
+
             SetContentView(Resource.Layout.login_activity);
 
             this.signInButton = FindViewById<Button>(Resource.Id.sign_in_button);
             this.createAccount = FindViewById<TextView>(Resource.Id.create_one_text);
 
-            this.email = FindViewById<EditText>(Resource.Id.login_email_text);
+            this.username = FindViewById<EditText>(Resource.Id.login_username_text);
             this.password = FindViewById<EditText>(Resource.Id.login_pwd_txt);
 
             this.createAccount.Click += delegate
@@ -49,12 +60,11 @@ namespace csfm_android.Activities
             };
         }
 
-
         private void logIn()
         {
-            if (String.IsNullOrEmpty(this.email.Text))
+            if (String.IsNullOrEmpty(this.username.Text))
             {
-                Toast.MakeText(this, Resource.String.no_mail, ToastLength.Short).Show();
+                Toast.MakeText(this, Resource.String.no_username, ToastLength.Short).Show();
             }
             else if (String.IsNullOrEmpty(this.password.Text))
             {
@@ -62,8 +72,11 @@ namespace csfm_android.Activities
             } 
             else
             {
-                // TODO : API CALL
-                StartActivity(typeof(MainActivity));
+             //   var apiClient = new ApiClient();
+               // if (apiClient.LogIn(this.username.Text, this.password.Text))
+                //{
+                    StartActivity(typeof(MainActivity));
+                //}
             }
         }
 

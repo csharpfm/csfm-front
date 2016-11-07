@@ -133,6 +133,7 @@
     <Compile Include="Api\Model\Tag.cs" />
     <Compile Include="Api\Model\Track.cs" />
     <Compile Include="Api\Model\User.cs" />
+    <Compile Include="CSFMApplication.cs" />
     <Compile Include="Fragments\AccountFragment.cs" />
     <Compile Include="Fragments\HomeFragment.cs" />
     <Compile Include="Fragments\MatchFragment.cs" />
@@ -142,6 +143,7 @@
     <Compile Include="Ui\Adapters\HistoryAdapter.cs" />
     <Compile Include="Ui\Holders\HistoryHolder.cs" />
     <Compile Include="Ui\Utils\CircleTransform.cs" />
+    <Compile Include="Utils\CSFMPrefs.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="GettingStarted.Xamarin" />
