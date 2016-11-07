@@ -8,5 +8,35 @@
     <item name="android:colorAccent">#FF9800</item>
     <item name="android:textColorPrimary">#000000</item>
     <item name="android:textColorSecondary">#757575</item>
+    <item name="searchViewStyle">@style/MySearchViewStyle</item>
   </style>
+
+  <style name="MySearchViewStyle" parent="Widget.AppCompat.SearchView">
+    <!-- Background for the search query section (e.g. EditText) --><!--
+    <item name="queryBackground">#ffffff</item>
+    --><!-- Background for the actions section (e.g. voice, submit) --><!--
+    <item name="submitBackground">#ffffff</item>-->
+    <!-- Close button icon -->
+    <item name="closeIcon">@drawable/ic_close_white_24dp</item>
+    <!-- Search button icon -->
+    <item name="searchIcon">@drawable/ic_search_white_24dp</item>
+    <item name="searchHintIcon">@drawable/ic_search_white_24dp</item>
+    <!-- Go/commit button icon
+    <item name="goIcon">#ffffff</item>
+    Voice search button icon 
+    <item name="voiceIcon">#ffffff</item>
+    Commit icon shown in the query suggestion row 
+    <item name="commitIcon">#ffffff</item>
+    Layout for query suggestion rows 
+    <item name="suggestionRowLayout">#ffffff</item>-->
+  </style>
+
+  <style name="MSV_ImageButton">
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:layout_height">match_parent</item>
+    <item name="android:background">?android:attr/selectableItemBackground</item>
+    <item name="android:paddingLeft">@dimen/search_icon_padding</item>
+    <item name="android:paddingRight">@dimen/search_icon_padding</item>
+  </style>
+
 </resources>

@@ -1,47 +1,60 @@
 ﻿using Android.App;
-using Android.Widget;
 using Android.OS;
 using Android.Views;
 using System;
 using BottomNavigationBar;
-using Android.Support.V7.App;
-using Android.Support.V4.Content;
 using csfm_android.Fragments;
+using Android.Runtime;
+using Android.Content;
+using static Android.Support.V7.Widget.SearchView;
+using Android.Support.V4.View;
 
 namespace csfm_android
 {
-    [Activity(Label = "csfm_android", MainLauncher = true, Icon = "@drawable/icon")]
-    public class MainActivity : AppCompatActivity, BottomNavigationBar.Listeners.IOnMenuTabClickListener
+    [Activity(Label = Configuration.LABEL, MainLauncher = true, Icon = "@drawable/icon", WindowSoftInputMode = SoftInput.AdjustPan)]
+    public class MainActivity : ToolbarActivity, BottomNavigationBar.Listeners.IOnMenuTabClickListener
     {
-        private Toolbar toolbar;
-
         private BottomBar bottomBar;
-
         private Fragment currentFragment = null;
 
         protected override void OnCreate(Bundle bundle)
         {
-            base.OnCreate(bundle);
-
-            // Set our view from the "main" layout resource
-            SetContentView(Resource.Layout.Main);
-
-            this.toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
-            SetActionBar(toolbar);
-            ActionBar.Title = "Home";
-
+            base.OnCreate(bundle, Resource.Layout.Main, "Home");
             setBottomBar(bundle);
         }
 
-        public override bool OnCreateOptionsMenu(IMenu menu)
+        protected override void OnResume()
         {
-            MenuInflater.Inflate(Resource.Menu.top_menus, menu);
-            return base.OnCreateOptionsMenu(menu);
+            base.OnResume();
+            //if (SearchView != null)
+            //{
+            //    SearchView.SetQuery("", false);
+            //    SearchView.Iconified = true;
+            //}
+        }
+
+        public override void OnSearchViewSet()
+        {
+            //if (SearchView != null)
+            //    SearchView.Iconified = true;
+        }
+
+        public override bool OnQueryTextChange(string newText)
+        {
+            return true;
+        }
+
+        public override bool OnQueryTextSubmit(string query)
+        {
+            Intent intent = new Intent(this, typeof(SearchActivity));
+            intent.PutExtra(SearchActivity.EXTRA_MESSAGE, query);
+            this.StartActivity(intent);
+            return true;
         }
 
         public void OnMenuItemSelected(int menuItemId)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Hello world " + menuItemId);
         }
 
         private void setBottomBar(Bundle bundle)
@@ -98,15 +111,17 @@ namespace csfm_android
             {
                 case 0:
                     LaunchFragment(new HomeFragment());
-                    ActionBar.Title = "Home";
+                    //ActionBar.Title = "Home";
+                    this.Toolbar.Title = "Home";
                     break;
                 case 1:
                     LaunchFragment(new MatchFragment());
-                    ActionBar.Title = "Match";
+                    //ActionBar.Title = "Match";
+                    this.Toolbar.Title = "Match";
                     break;
                 case 2:
-                    ActionBar.Title = "Account";
-                    // chat
+                    //ActionBar.Title = "Account";
+                    this.Toolbar.Title = "Account";
                     break;
                 default:
                     break;

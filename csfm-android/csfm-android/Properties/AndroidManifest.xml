@@ -2,4 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="csfm_android.csfm_android" android:versionCode="1" android:versionName="1.0">
 	<uses-sdk android:minSdkVersion="16" />
 	<application android:label="csfm_android" android:theme="@style/MyTheme"></application>
+
+  <activity android:name=".MainActivity">
+    
+    <intent-filter>
+      <action android:name="android.intent.action.SEARCH" />
+    </intent-filter>
+    
+  </activity>
+  <activity android:name=".SearchActivity"></activity>
 </manifest>
