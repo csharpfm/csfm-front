@@ -31,14 +31,15 @@ namespace csfm_android
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            base.OnCreate(savedInstanceState, Resource.Layout.search_activity, Intent.GetStringExtra(EXTRA_MESSAGE).ToFirstUpperCase());
+            string query = Intent.GetStringExtra(EXTRA_MESSAGE)?.ToFirstUpperCase();
+            base.OnCreate(savedInstanceState, Resource.Layout.search_activity, query);
             this.tabLayout = FindViewById<TabLayout>(Resource.Id.tabs);
             this.viewPager = FindViewById<ViewPager>(Resource.Id.viewPager);
 
             this.Toolbar.SetNavigationIcon(Resource.Drawable.ic_arrow_back_white_24dp);
             this.Toolbar.SetNavigationOnClickListener(new OnNavigationClickListener(this));
 
-            InitViewPagerAndTabs();
+            InitViewPagerAndTabs(query);
         }
 
         public override void OnSearchViewSet()
@@ -49,7 +50,7 @@ namespace csfm_android
             //this.Toolbar.Visibility = ViewStates.Gone;
         }
 
-        private void InitViewPagerAndTabs()
+        private void InitViewPagerAndTabs(string query)
         {
             
             tabLayout.AddTab(tabLayout.NewTab().SetText("Artistes"));
@@ -57,7 +58,7 @@ namespace csfm_android
             tabLayout.AddTab(tabLayout.NewTab().SetText("Chansons"));
 
             tabLayout.TabGravity = TabLayout.GravityFill; //ModeScrollable
-            pagerAdapter = new SearchPagerAdapter(this);
+            pagerAdapter = new SearchPagerAdapter(this, query);
             viewPager.Adapter = pagerAdapter;
             viewPager.AddOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
             tabLayout.SetOnTabSelectedListener(new OnTabSelectedListener(viewPager, pagerAdapter));
@@ -83,6 +84,7 @@ namespace csfm_android
         {
             this.ToolbarTitle = query.ToFirstUpperCase();
             MaterialSearchView.CloseSearch();
+            pagerAdapter.Update(query);
             return true; //TODO
         }
 

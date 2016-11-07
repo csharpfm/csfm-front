@@ -48,21 +48,5 @@ namespace csfm_android.Adapters
             SearchHolder<T> searchHolder = holder as SearchHolder<T>;
             searchHolder?.Bind(data[position]);
         }
-
-        //public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
-        //{
-        //    if (typeof(T) == typeof(Artist))
-        //    {
-        //        return new SearchArtistHolder(LayoutInflater.From(parent.Context).Inflate(SearchArtistHolder.LAYOUT, parent, false));
-        //    }
-        //    else if (typeof(T) == typeof(Album)) {
-        //        //return new SearchHolder(LayoutInflater.From(parent.Context).Inflate(SearchHolder.LAYOUT, parent, false));
-        //    }
-        //    else if (typeof(T) == typeof(Track))
-        //    {
-        //        //return new SearchHolder(LayoutInflater.From(parent.Context).Inflate(SearchHolder.LAYOUT, parent, false));
-        //    }
-        //    return null;
-        //}
     }
 }

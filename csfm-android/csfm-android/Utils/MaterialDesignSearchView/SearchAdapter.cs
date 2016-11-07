@@ -18,7 +18,7 @@ namespace csfm_android.Utils.MaterialDesignSearchView
     public class SearchAdapter : BaseAdapter<string>, IFilterable
     {
         private List<string> data;
-        private string[] suggestions;
+        private List<string> suggestions;
         private Drawable suggestionIcon;
         private LayoutInflater inflater;
         private bool ellipsize;
@@ -47,14 +47,14 @@ namespace csfm_android.Utils.MaterialDesignSearchView
             }
         }
 
-        public SearchAdapter(Context context, string[] suggestions)
+        public SearchAdapter(Context context, List<string> suggestions)
         {
             inflater = LayoutInflater.From(context);
             data = new List<string>();
             this.suggestions = suggestions;
         }
 
-        public SearchAdapter(Context context, string[] suggestions, Drawable suggestionIcon, bool ellipsize)
+        public SearchAdapter(Context context, List<string> suggestions, Drawable suggestionIcon, bool ellipsize)
         {
             inflater = LayoutInflater.From(context);
             data = new List<string>();

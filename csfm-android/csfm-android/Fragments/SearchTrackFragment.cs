@@ -15,11 +15,38 @@ using csfm_android.Adapters;
 
 namespace csfm_android.Fragments
 {
-    public class SearchTrackFragment : SearchFragment<Track>
+    public class SearchTrackFragment : SearchFragment
     {
+        private SearchTrackAdapter adapter;
+        protected SearchTrackAdapter Adapter
+        {
+            get
+            {
+                if (adapter == null && recyclerView != null)
+                {
+                    SetRecyclerViewAdapter(recyclerView);
+                }
+                return adapter;
+            }
+
+            set
+            {
+                SetRecyclerViewAdapter(recyclerView, value);
+            }
+        }
+
+        public SearchTrackFragment(SearchPagerAdapter pagerAdapter) : base(pagerAdapter)
+        {
+        }
+
+        private void SetRecyclerViewAdapter(RecyclerView recyclerView, SearchTrackAdapter adapter)
+        {
+            recyclerView.SetAdapter(this.adapter = adapter);
+        }
+
         protected override void SetRecyclerViewAdapter(RecyclerView recyclerView)
         {
-            recyclerView.SetAdapter(new SearchTrackAdapter(this.Context, FAKE_TRACKS));
+            SetRecyclerViewAdapter(recyclerView, new SearchTrackAdapter(this.Context, new List<Track>()));
         }
 
         protected override void SetRecyclerViewLayoutManager(RecyclerView recyclerView)
@@ -29,6 +56,13 @@ namespace csfm_android.Fragments
 
         protected override void Update(Action callback)
         {
+            Adapter.Data = FAKE_TRACKS;
+            callback();
+        }
+
+        protected override void Update(string name, Action callback)
+        {
+            Adapter.Data = FAKE_TRACKS;
             callback();
         }
     }

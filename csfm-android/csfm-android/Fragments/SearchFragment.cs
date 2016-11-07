@@ -13,7 +13,7 @@ using System.Linq.Expressions;
 
 namespace csfm_android.Fragments
 {
-    public abstract class SearchFragment<T> : Fragment, SwipeRefreshLayout.IOnRefreshListener where T : MusicItem
+    public abstract class SearchFragment : Fragment, SwipeRefreshLayout.IOnRefreshListener
     {
         protected View rootView;
         protected RecyclerView recyclerView;
@@ -24,7 +24,61 @@ namespace csfm_android.Fragments
         public static List<Album> FAKE_ALBUMS;
         public static List<Track> FAKE_TRACKS;
 
-        public SearchFragment()
+        public SearchPagerAdapter PagerAdapter { get; private set; }
+
+        public SearchFragment(SearchPagerAdapter pagerAdapter)
+        {
+            this.PagerAdapter = pagerAdapter;
+            initFakeList();
+        }
+
+        public override void OnCreate(Bundle savedInstanceState)
+        {
+            base.OnCreate(savedInstanceState);
+
+            // Create your fragment here
+        }
+
+        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        {
+            // Use this to return your custom view for this Fragment
+            // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
+            rootView = inflater.Inflate(Resource.Layout.search_activity_tab, container, false);
+
+            this.recyclerView = rootView.FindViewById<RecyclerView>(Resource.Id.searchRecyclerView);
+            this.refresh = rootView.FindViewById<SwipeRefreshLayout>(Resource.Id.swipe_refresh);
+            this.refresh.SetColorSchemeResources(Resource.Color.colorPrimary);
+            this.refresh.SetOnRefreshListener(this);
+            return rootView;
+        }
+
+        public override void OnResume()
+        {
+            base.OnResume();
+            SetRecyclerViewLayoutManager(recyclerView);
+            SetRecyclerViewAdapter(recyclerView);
+            this.Update(this.PagerAdapter.Query);
+        }
+
+        protected abstract void SetRecyclerViewLayoutManager(RecyclerView recyclerView);
+
+        protected abstract void SetRecyclerViewAdapter(RecyclerView recyclerView);
+
+        public void Update(string name)
+        {
+            refresh.Refreshing = true;
+            this.Update(name, () => refresh.Refreshing = false);
+        }
+        protected abstract void Update(string name, Action callback);
+
+        protected abstract void Update(Action callback);
+
+        public void OnRefresh()
+        {
+            this.Update(() => refresh.Refreshing = false);
+        }
+
+        private void initFakeList()
         {
             if (FAKE_ARTISTS != null) return;
 
@@ -60,43 +114,6 @@ namespace csfm_android.Fragments
                 new Track { Name = "Track5", Album = FAKE_ALBUMS[1], Artist = FAKE_ALBUMS[0].Artist, Duration = 836 },
                 new Track { Name = "Track6", Album = FAKE_ALBUMS[1], Artist = FAKE_ALBUMS[0].Artist, Duration = 543 }
             };
-        }
-
-        public override void OnCreate(Bundle savedInstanceState)
-        {
-            base.OnCreate(savedInstanceState);
-
-            // Create your fragment here
-        }
-
-        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-        {
-            // Use this to return your custom view for this Fragment
-            // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
-            rootView = inflater.Inflate(Resource.Layout.search_activity_tab, container, false);
-
-            this.recyclerView = rootView.FindViewById<RecyclerView>(Resource.Id.searchRecyclerView);
-            this.refresh = rootView.FindViewById<SwipeRefreshLayout>(Resource.Id.swipe_refresh);
-            this.refresh.SetOnRefreshListener(this);
-            return rootView;
-        }
-
-        public override void OnResume()
-        {
-            base.OnResume();
-            SetRecyclerViewLayoutManager(recyclerView);
-            SetRecyclerViewAdapter(recyclerView);
-        }
-
-        protected abstract void SetRecyclerViewLayoutManager(RecyclerView recyclerView);
-
-        protected abstract void SetRecyclerViewAdapter(RecyclerView recyclerView);
-
-        protected abstract void Update(Action callback);
-
-        public void OnRefresh()
-        {
-            this.Update(() => refresh.Refreshing = false);
         }
     }
 }

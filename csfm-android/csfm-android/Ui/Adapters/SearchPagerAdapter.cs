@@ -19,18 +19,20 @@ namespace csfm_android.Adapters
 {
     public class SearchPagerAdapter : FragmentPagerAdapter
     {
-        public List<Fragment> fragments = new List<Fragment>(3) { null, null, null };
+        public string Query { get; set; }
 
-        public SearchPagerAdapter(ToolbarActivity activity) : base(activity.SupportFragmentManager)
+        public List<SearchFragment> fragments = new List<SearchFragment>(3) { null, null, null };
+
+        public SearchPagerAdapter(ToolbarActivity activity, string query) : base(activity.SupportFragmentManager)
         {
-
+            this.Query = query;
         }
 
         public override int Count
         {
             get
             {
-                return 3;
+                return fragments != null ? fragments.Count : 0;
             }
         }
 
@@ -39,16 +41,25 @@ namespace csfm_android.Adapters
             switch(position)
             {
                 case 0: //Artists
-                    return fragments[position] == null ? (fragments[position] = new SearchArtistFragment()) : fragments[position];
+                    return fragments[position] == null ? (fragments[position] = new SearchArtistFragment(this)) : fragments[position];
                 case 1: //Albums
-                    return fragments[position] == null ? (fragments[position] = new SearchAlbumFragment()) : fragments[position];
+                    return fragments[position] == null ? (fragments[position] = new SearchAlbumFragment(this)) : fragments[position];
                 case 2: //Tracks
-                    return fragments[position] == null ? (fragments[position] = new SearchTrackFragment()) : fragments[position];
+                    return fragments[position] == null ? (fragments[position] = new SearchTrackFragment(this)) : fragments[position];
                 default:
                     return null;
             }
 
 
+        }
+
+        public void Update(string query)
+        {
+            this.Query = query;
+            foreach(SearchFragment f in fragments)
+            {
+                f?.Update(query);
+            }
         }
     }
 }

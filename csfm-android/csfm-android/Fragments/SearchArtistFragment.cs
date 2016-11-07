@@ -15,14 +15,30 @@ using csfm_android.Adapters;
 
 namespace csfm_android.Fragments
 {
-    public class SearchArtistFragment : SearchFragment<Artist>
+    public class SearchArtistFragment : SearchFragment
     {
         private static List<Artist> FAKE_ARTISTS2;
         private static string FAKE_IMAGE2 = "http://cdn.ubeez.com/wp-content/uploads/sites/17/2016/10/Loiseau-libert%C3%A9.jpg";
 
         private SearchArtistAdapter adapter;
+        protected SearchArtistAdapter Adapter
+        {
+            get
+            {
+                if (adapter == null && recyclerView != null)
+                {
+                    SetRecyclerViewAdapter(recyclerView);
+                }
+                return adapter;
+            }
 
-        public SearchArtistFragment()
+            set
+            {
+                SetRecyclerViewAdapter(recyclerView, value);
+            }
+        }
+
+        public SearchArtistFragment(SearchPagerAdapter pagerAdapter) : base(pagerAdapter)
         {
             if (FAKE_ARTISTS2 == null)
                 FAKE_ARTISTS2 = new List<Artist> {
@@ -30,6 +46,7 @@ namespace csfm_android.Fragments
                     new Artist { Name = "Third", Image = FAKE_IMAGE2 },
                     new Artist { Name = "Test2", Image = FAKE_IMAGE2 }
                 };
+
         }
 
         protected override void SetRecyclerViewLayoutManager(RecyclerView recyclerView)
@@ -37,15 +54,28 @@ namespace csfm_android.Fragments
             recyclerView.SetLayoutManager(new GridLayoutManager(this.Activity, 3));
         }
 
+        private void SetRecyclerViewAdapter(RecyclerView recyclerView, SearchArtistAdapter adapter)
+        {
+            recyclerView.SetAdapter(this.adapter = adapter);
+        }
+
         protected override void SetRecyclerViewAdapter(RecyclerView recyclerView)
         {
-            recyclerView.SetAdapter(adapter = new SearchArtistAdapter(this.Context, FAKE_ARTISTS));
+            SetRecyclerViewAdapter(recyclerView, new SearchArtistAdapter(this.Context, new List<Artist>()));
         }
+
 
         protected override void Update(Action callback)
         {
-            //recyclerView.SetAdapter(adapter = new SearchArtistAdapter(this.Context, FAKE_ARTISTS2));
-            adapter.Data = FAKE_ARTISTS2;
+            //API Call
+            Adapter.Data = FAKE_ARTISTS;
+            callback();
+        }
+
+        protected override void Update(string name, Action callback)
+        {
+            //API Call
+            Adapter.Data = FAKE_ARTISTS;
             callback();
         }
     }

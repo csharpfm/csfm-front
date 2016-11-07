@@ -88,8 +88,7 @@ namespace csfm_android
             MaterialSearchView.SearchViewListener = new SearchViewListener(this);
             MaterialSearchView.QueryTextListener = new QueryListener(this);
             MaterialSearchView.IsSetVoiceSearch = true;
-            MaterialSearchView.Suggestions = (new string[] { "Saez", "Damien Saez", "Lady Gaga" });
-
+            MaterialSearchView.Suggestions = (new List<string>() { "Saez", "Damien Saez", "Lady Gaga" });
             return base.OnCreateOptionsMenu(menu);
         }
 

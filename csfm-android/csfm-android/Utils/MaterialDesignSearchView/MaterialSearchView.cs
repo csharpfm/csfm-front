@@ -162,11 +162,11 @@ namespace csfm_android.Utils.MaterialDesignSearchView
         /// <summary>
         /// Set Adapter for suggestions list with the given suggestion array
         /// </summary>
-        public string[] Suggestions
+        public List<string> Suggestions
         {
             set
             {
-                if (value != null && value.Length > 0)
+                if (value != null && value.Count > 0)
                 {
                     tintView.Show();
                     SearchAdapter adapter = new SearchAdapter(context, value, suggestionIcon, ellipsize);
