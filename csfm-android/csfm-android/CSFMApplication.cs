@@ -17,6 +17,8 @@ namespace csfm_android
     {
         static CSFMApplication _instance;
 
+        static bool isDebug = true;
+
         public CSFMApplication(IntPtr handle, JniHandleOwnership transfer): base(handle, transfer)
         {
             _instance = this;
@@ -30,6 +32,11 @@ namespace csfm_android
         public static CSFMApplication Instance
         {
             get { return _instance; }
+        }
+
+        public static bool IsDebug
+        {
+            get { return isDebug;  }
         }
     }
 }

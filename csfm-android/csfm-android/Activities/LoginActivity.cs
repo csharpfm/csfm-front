@@ -34,7 +34,7 @@ namespace csfm_android.Activities
 
             var bearer = CSFMPrefs.Prefs.GetString("bearer", "");
 
-            if (!String.IsNullOrEmpty(bearer))
+            if (CSFMApplication.IsDebug || !String.IsNullOrEmpty(bearer))
             {
                 // still connected! 
                 // TODO : Check if bearer is still valid!
