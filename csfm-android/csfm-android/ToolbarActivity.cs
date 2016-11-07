@@ -69,7 +69,7 @@ namespace csfm_android
                 this.Toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
                 SetSupportActionBar(this.Toolbar);
                 this.ToolbarTitle = title;
-                this.Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
+                this.Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds); //Add Status Bar Color (colorPrimaryDark)
                 this.MaterialSearchView = FindViewById<MaterialSearchView>(Resource.Id.material_design_search_view);
             }
             catch (Exception ex)
