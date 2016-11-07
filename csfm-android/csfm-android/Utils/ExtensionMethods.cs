@@ -43,6 +43,19 @@ namespace csfm_android.Utils
                 }
             }
             return text;
+
+        }
+
+        public static string ToFirstUpperCases(this String text)
+        {
+            string[] texts = text.Split(' ');
+            string result = "";
+            for (int i = 0; i < texts.Length; i++)
+            {
+                if (i > 0) result += " ";
+                result += texts[i].ToFirstUpperCase();
+            }
+            return result;
         }
 
         public static TObject ToNetObject<TObject>(this Java.Lang.Object value)

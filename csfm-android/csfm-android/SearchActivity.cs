@@ -31,7 +31,7 @@ namespace csfm_android
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            string query = Intent.GetStringExtra(EXTRA_MESSAGE)?.ToFirstUpperCase();
+            string query = Intent.GetStringExtra(EXTRA_MESSAGE)?.ToFirstUpperCases();
             base.OnCreate(savedInstanceState, Resource.Layout.search_activity, query);
             this.tabLayout = FindViewById<TabLayout>(Resource.Id.tabs);
             this.viewPager = FindViewById<ViewPager>(Resource.Id.viewPager);
@@ -82,7 +82,7 @@ namespace csfm_android
 
         public override bool OnQueryTextSubmit(string query)
         {
-            this.ToolbarTitle = query.ToFirstUpperCase();
+            this.ToolbarTitle = query.ToFirstUpperCases();
             MaterialSearchView.CloseSearch();
             pagerAdapter.Update(query);
             return true; //TODO

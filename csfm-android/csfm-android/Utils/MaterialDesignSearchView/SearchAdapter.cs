@@ -117,7 +117,7 @@ namespace csfm_android.Utils.MaterialDesignSearchView
             {
                 // Retrieve the autocomplete results.
                 IEnumerable<string> words = query.Trim().ToLower().Split(' ');
-                IEnumerable<string> result = SUGGESTIONS.Where(s => words.Any(w => s.Contains(w))).Select(s => s.ToFirstUpperCase());
+                IEnumerable<string> result = SUGGESTIONS.Where(s => words.Any(w => s.Contains(w))).Select(s => s.ToFirstUpperCases());
 
                 return result;
             }
