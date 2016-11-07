@@ -252,4 +252,4 @@ paket-files/
 *.sln.iml
 *.Xamarin
 
-Resources/Resource.Designer.cs
+csfm-android/csfm-android/Resources/Resource.Designer.cs
