@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:card_view="http://schemas.android.com/apk/res-auto"
-              android:orientation="horizontal"
+              android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:id="@+id/match_frag">
@@ -16,22 +16,46 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:gravity="center"
             android:padding="5dp">
 
             <ImageView
-                android:layout_width="200dp"
-                android:layout_height="200dp"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
                 android:id="@+id/match_image"
                 android:padding="10dp" />
 
-          <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Username"
-                android:textSize="18sp"
-                android:textColor="@color/colorPrimary"
-                android:gravity="center_horizontal"
-                android:id="@+id/match_username"/>
+          <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+              <ImageView
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/ic_music_note_black_24dp"/>
+            
+              <TextView
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:drawableLeft="@drawable/ic_music_note_black_24dp"
+                  android:textColor="@color/textColorPrimary"
+                  android:text="Artist - Song's name"
+                  android:id="@+id/match_song"/>
+
+          </LinearLayout>
+
+            <TextView
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:text="Username"
+                  android:textSize="18sp"
+                  android:textColor="@color/colorPrimary"
+                  android:gravity="center_horizontal"
+                  android:id="@+id/match_username"
+                  android:layout_marginBottom="10dp"/>
 
         </LinearLayout>
     </android.support.v7.widget.CardView>
@@ -40,19 +64,28 @@
     <LinearLayout
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:orientation="horizontal" >
+       android:orientation="horizontal"
+       android:gravity="center"
+       android:layout_marginTop="15dp"
+       android:layout_marginBottom="15dp">
       
           <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/match_cancel"
-         
+            android:background="@drawable/circle"
+            android:src="@drawable/ic_clear_white_48dp"
+            android:layout_marginRight="10dp"
             android:padding="10dp" />
       
           <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/match_ok"
+           
+            android:background="@drawable/circle"
+            android:src="@drawable/ic_favorite_white_48dp"
+            android:layout_marginLeft="10dp"
             android:padding="10dp" />
   
     </LinearLayout>
