@@ -18,4 +18,9 @@
 
     <string name="no_account">Pas de compte ?</string>
     <string name="create_one">Créez-en un</string>
+
+
+    <string name="no_mail">Veuillez renseigner un mail</string>
+    <string name="no_confirmed_password">Veuillez confirmer votre mail</string>
+    <string name="no_password">Veuillez renseigner un mot de passe</string>
 </resources>

@@ -3547,8 +3547,11 @@ namespace csfm_android
 			// aapt resource value: 0x7f02005c
 			public const int logo = 2130837596;
 			
+			// aapt resource value: 0x7f02005e
+			public const int notification_template_icon_bg = 2130837598;
+			
 			// aapt resource value: 0x7f02005d
-			public const int notification_template_icon_bg = 2130837597;
+			public const int ripple = 2130837597;
 			
 			static Drawable()
 			{
@@ -4408,6 +4411,15 @@ namespace csfm_android
 			
 			// aapt resource value: 0x7f090024
 			public const int no_account = 2131296292;
+			
+			// aapt resource value: 0x7f090027
+			public const int no_confirmed_password = 2131296295;
+			
+			// aapt resource value: 0x7f090026
+			public const int no_mail = 2131296294;
+			
+			// aapt resource value: 0x7f090028
+			public const int no_password = 2131296296;
 			
 			// aapt resource value: 0x7f090022
 			public const int password = 2131296290;

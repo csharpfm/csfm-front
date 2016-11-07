@@ -2,7 +2,7 @@
 <resources>
   <string name="Hello">Hello World, Click Me!</string>
   <string name="ApplicationName">MatchFM</string>
-  <string name="preferences">Préférences</string>
+  <string name="preferences">Preferences</string>
 
   <string name="signin">Sign in</string>
   <string name="signup">Sign up</string>
@@ -18,4 +18,8 @@
 
   <string name="no_account">No account yet?</string>
   <string name="create_one">Create one</string>
+
+  <string name="no_mail">Please enter an email address</string>
+  <string name="no_confirmed_password">Please confirm your email address</string>
+  <string name="no_password">Pleaser enter your password</string>
 </resources>

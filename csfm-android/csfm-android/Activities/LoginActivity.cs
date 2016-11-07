@@ -22,15 +22,21 @@ namespace csfm_android.Activities
 
         private TextView createAccount;
 
+        private EditText email;
+
+        private EditText password;
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
 
-            // Set our view from the "login activity" layout resource
             SetContentView(Resource.Layout.login_activity);
 
             this.signInButton = FindViewById<Button>(Resource.Id.sign_in_button);
             this.createAccount = FindViewById<TextView>(Resource.Id.create_one_text);
+
+            this.email = FindViewById<EditText>(Resource.Id.login_email_text);
+            this.password = FindViewById<EditText>(Resource.Id.login_pwd_txt);
 
             this.createAccount.Click += delegate
             {
@@ -39,8 +45,26 @@ namespace csfm_android.Activities
 
             this.signInButton.Click += delegate
             {
-                StartActivity(typeof(MainActivity));
+                this.logIn();
             };
+        }
+
+
+        private void logIn()
+        {
+            if (String.IsNullOrEmpty(this.email.Text))
+            {
+                Toast.MakeText(this, Resource.String.no_mail, ToastLength.Short).Show();
+            }
+            else if (String.IsNullOrEmpty(this.password.Text))
+            {
+                Toast.MakeText(this, Resource.String.no_password, ToastLength.Short).Show();
+            } 
+            else
+            {
+                // TODO : API CALL
+                StartActivity(typeof(MainActivity));
+            }
         }
 
         
