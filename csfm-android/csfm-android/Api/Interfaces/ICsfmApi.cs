@@ -20,7 +20,7 @@ namespace csfm_android.Api.Interfaces
         [Post("/oauth/token")]
         Task<string> SignIn([Body(BodySerializationMethod.UrlEncoded)] Dictionary<string, object> data);
 
-        [Post("/api/Account/register")]
+        [Post("/api/Account/Register")]
         Task<string> SignUp([Body(BodySerializationMethod.UrlEncoded)] Dictionary<string, object> data);
 
         /* User API */

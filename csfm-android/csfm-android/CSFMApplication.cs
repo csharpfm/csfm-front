@@ -17,7 +17,7 @@ namespace csfm_android
     {
         static CSFMApplication _instance;
 
-        static bool isDebug = true;
+        static bool isDebug = false;
 
         public CSFMApplication(IntPtr handle, JniHandleOwnership transfer): base(handle, transfer)
         {

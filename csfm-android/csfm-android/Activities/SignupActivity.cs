@@ -10,6 +10,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Support.V7.App;
+using csfm_android.Api;
 
 namespace csfm_android.Activities
 {
@@ -41,7 +42,7 @@ namespace csfm_android.Activities
             };
         }
 
-        private void signUp()
+        private async void signUp()
         {
             if (String.IsNullOrEmpty(this.username.Text))
             {
@@ -57,7 +58,13 @@ namespace csfm_android.Activities
             }
             else
             {
-                // TODO API CALL
+                var apiClient = new ApiClient();
+                var valid = await apiClient.SignUp(this.email.Text, this.username.Text, this.password.Text);
+
+                if (valid)
+                {
+                    Finish();
+                }
             }
         }
     }

@@ -32,12 +32,10 @@ namespace csfm_android.Activities
         {
             base.OnCreate(bundle);
 
-            var bearer = CSFMPrefs.Prefs.GetString("bearer", "");
+            var bearer = CSFMPrefs.Prefs.GetString("token", "");
 
             if (CSFMApplication.IsDebug || !String.IsNullOrEmpty(bearer))
             {
-                // still connected! 
-                // TODO : Check if bearer is still valid!
                 StartActivity(typeof(MainActivity));
             }
 
@@ -60,7 +58,7 @@ namespace csfm_android.Activities
             };
         }
 
-        private void logIn()
+        private async void logIn()
         {
             if (String.IsNullOrEmpty(this.username.Text))
             {
@@ -69,17 +67,19 @@ namespace csfm_android.Activities
             else if (String.IsNullOrEmpty(this.password.Text))
             {
                 Toast.MakeText(this, Resource.String.no_password, ToastLength.Short).Show();
-            } 
+            }
             else
             {
-             //   var apiClient = new ApiClient();
-               // if (apiClient.LogIn(this.username.Text, this.password.Text))
-                //{
+                var apiClient = new ApiClient();
+                var status = await apiClient.LogIn(this.username.Text, this.password.Text);
+                
+                if (status)
+                {
                     StartActivity(typeof(MainActivity));
-                //}
+                }
             }
         }
 
-        
+
     }
 }
