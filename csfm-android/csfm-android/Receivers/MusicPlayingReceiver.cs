@@ -28,17 +28,24 @@ namespace csfm_android.Receivers
         {
             if (intent.HasExtra(PLAYING_EXTRA)) //Music action
             {
-                if (intent.GetBooleanExtra(PLAYING_EXTRA, false) && intent.GetLongExtra("position", 1) == 0) //Music is at 00:00 and is playing
+                if (intent.GetBooleanExtra(PLAYING_EXTRA, false)) //Music is at 00:00 and is playing
                 {
+                    if (intent.GetPosition(1) == 0)
+                    {
+                        
+                    }
+                    Console.WriteLine("Playing");
                     ScrobblerService.SendScrobble(intent.GetArtist(), intent.GetAlbum(), intent.GetTrack(), context);
                 }
                 else //Music paused or continuing
                 {
+                    Console.WriteLine("Pause");
                     //ScrobblerService.StopScrobble(context, intent.GetArtist(), intent.GetAlbum(), intent.GetTrack());
                 }
             }
             else
             {
+                Console.WriteLine("Something else");
                 //ScrobblerService.StopScrobble(context);
             }
         }

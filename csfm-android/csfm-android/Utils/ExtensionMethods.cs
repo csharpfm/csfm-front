@@ -113,14 +113,14 @@ namespace csfm_android.Utils
             return intent.GetStringExtra(MediaStore.Audio.AudioColumns.Track);
         }
 
-        public static string GetDuration(this Intent intent)
+        public static long GetDuration(this Intent intent, long defaultValue)
         {
-            return intent.GetStringExtra(MediaStore.Audio.AudioColumns.Duration);
+            return intent.GetLongExtra(MediaStore.Audio.AudioColumns.Duration, defaultValue);
         }
 
-        public static string GetPosition(this Intent intent)
+        public static long GetPosition(this Intent intent, long defaultValue)
         {
-            return intent.GetStringExtra("position");
+            return intent.GetLongExtra("position", defaultValue);
         }
 
         public static void AddSong(this Bundle extras, string artist, string album, string track)
