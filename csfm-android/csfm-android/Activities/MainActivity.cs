@@ -8,12 +8,13 @@ using Android.Runtime;
 using Android.Content;
 using static Android.Support.V7.Widget.SearchView;
 using Android.Support.V4.View;
-using csfm_android.Receivers;
+using Android.Support.V7.Widget;
 using csfm_android.Services;
 
-namespace csfm_android
+namespace csfm_android.Activities
 {
-    [Activity(Label = Configuration.LABEL, MainLauncher = true, Icon = "@drawable/icon", WindowSoftInputMode = SoftInput.AdjustPan)]
+
+    [Activity(Label = Configuration.LABEL, Icon = "@drawable/icon", Theme = "@style/MyTheme", WindowSoftInputMode = SoftInput.AdjustPan)]
     public class MainActivity : ToolbarActivity, BottomNavigationBar.Listeners.IOnMenuTabClickListener
     {
         private BottomBar bottomBar;
@@ -21,10 +22,8 @@ namespace csfm_android
 
         protected override void OnCreate(Bundle bundle)
         {
-            base.OnCreate(bundle, Resource.Layout.Main, "Home");
-            setBottomBar(bundle);
-
-
+            base.OnCreate(bundle, Resource.Layout.Main, GetString(Resource.String.home));
+            SetBottomBar(bundle);
         }
 
         protected override void OnResume()
@@ -57,14 +56,14 @@ namespace csfm_android
             Console.WriteLine("Hello world " + menuItemId);
         }
 
-        private void setBottomBar(Bundle bundle)
+        private void SetBottomBar(Bundle bundle)
         {
             bottomBar = BottomBar.Attach(this, bundle);
 
             BottomBarTab[] tabs = new BottomBarTab[3];
-            tabs[0] = new BottomBarTab(Resource.Drawable.ic_home_white_24dp, "Home");
-            tabs[1] = new BottomBarTab(Resource.Drawable.ic_favorite_white_24dp, "Match");
-            tabs[2] = new BottomBarTab(Resource.Drawable.ic_person_white_24dp, "Account");
+            tabs[0] = new BottomBarTab(Resource.Drawable.ic_home_white_24dp, Resource.String.home);
+            tabs[1] = new BottomBarTab(Resource.Drawable.ic_favorite_white_24dp, Resource.String.match);
+            tabs[2] = new BottomBarTab(Resource.Drawable.ic_person_white_24dp, Resource.String.account);
 
             bottomBar.SetFixedInactiveIconColor("#44000000");
             bottomBar.SetActiveTabColor("#F44336");
@@ -111,17 +110,15 @@ namespace csfm_android
             {
                 case 0:
                     LaunchFragment(new HomeFragment());
-                    //ActionBar.Title = "Home";
-                    this.Toolbar.Title = "Home";
+                    this.Toolbar.Title = GetString(Resource.String.home);
                     break;
                 case 1:
                     LaunchFragment(new MatchFragment());
-                    //ActionBar.Title = "Match";
-                    this.Toolbar.Title = "Match";
+                    this.Toolbar.Title = GetString(Resource.String.match);
                     break;
                 case 2:
-                    //ActionBar.Title = "Account";
-                    this.Toolbar.Title = "Account";
+                    LaunchFragment(new AccountFragment());
+                    this.Toolbar.Title = GetString(Resource.String.account);
                     break;
                 default:
                     break;
@@ -130,7 +127,7 @@ namespace csfm_android
 
         public void OnMenuTabReSelected(int menuItemId)
         {
-          
+
         }
     }
 }

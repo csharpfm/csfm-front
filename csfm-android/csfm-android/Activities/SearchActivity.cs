@@ -13,10 +13,10 @@ using Android.Support.V7.App;
 using Android.Graphics;
 using Android.Support.Design.Widget;
 using Android.Support.V4.View;
-using csfm_android.Adapters;
+using csfm_android.Ui.Adapters;
 using csfm_android.Utils;
 
-namespace csfm_android
+namespace csfm_android.Activities
 {
     [Activity(Label = Configuration.LABEL, Icon = "@drawable/icon", WindowSoftInputMode = SoftInput.AdjustPan, Theme = "@style/MyTheme")]
     public class SearchActivity : ToolbarActivity, View.IOnClickListener

@@ -11,9 +11,9 @@ using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using csfm_android.Api.Model;
-using csfm_android.Holders;
+using csfm_android.Ui.Holders;
 
-namespace csfm_android.Adapters
+namespace csfm_android.Ui.Adapters
 {
     public class SearchArtistAdapter : SearchAdapter<Artist>
     {

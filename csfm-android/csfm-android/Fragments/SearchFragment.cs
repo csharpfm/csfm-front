@@ -6,7 +6,7 @@ using Fragment = Android.Support.V4.App.Fragment;
 using Android.Support.V7.Widget;
 using Android.Support.V4.Widget;
 using csfm_android.Api.Model;
-using csfm_android.Adapters;
+using csfm_android.Ui.Adapters;
 using System.Linq;
 using System;
 using System.Linq.Expressions;

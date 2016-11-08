@@ -2,6 +2,30 @@
 <resources>
     <string name="Hello">Hello World, Click Me!</string>
     <string name="ApplicationName">MatchFM</string>
-  <string name="preferences">Préférences</string>
-  <string name="search_hint">Search</string>
+    <string name="preferences">Préférences</string>
+
+    <string name="signin">Se connecter</string>
+    <string name="signup">S\'inscrire</string>
+    <string name="signout">Se déconnecter</string>
+    <string name="cancel">Annuler</string>
+
+    <string name="home">Accueil</string>
+    <string name="match">Match</string>
+    <string name="account">Compte</string>
+
+    <string name="username">Nom d\'utilisateur</string>
+    <string name="email">Email</string>
+    <string name="password">Mot de passe</string>
+    <string name="confirm_password">Confirmer le mot de passe</string>
+
+    <string name="no_account">Pas de compte ?</string>
+    <string name="create_one">Créez-en un</string>
+
+    <string name="no_mail">Veuillez renseigner un mail</string>
+    <string name="no_password">Veuillez renseigner un mot de passe</string>
+    <string name="no_username">Veuillez renseigner un nom d\'utilisateur</string>
+
+    <string name="search_hint">Recherche</string>
+    <string name="no_more_match">Plus de match</string>
+    <string name="load_more">Recharger</string>
 </resources>

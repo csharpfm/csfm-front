@@ -12,6 +12,7 @@ using Android.Widget;
 using Android.Support.V7.Widget;
 using csfm_android.Ui.Adapters;
 using csfm_android.Api.Model;
+using csfm_android.Utils;
 
 namespace csfm_android.Fragments
 {
@@ -21,7 +22,6 @@ namespace csfm_android.Fragments
         private View rootView;
 
         private RecyclerView recyclerView;
-
 
         public override void OnCreate(Bundle savedInstanceState)
         {

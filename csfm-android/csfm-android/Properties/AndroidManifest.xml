@@ -1,14 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="csfm_android.csfm_android" android:versionCode="1" android:versionName="1.0" android:installLocation="auto">
-	<uses-sdk android:minSdkVersion="16" />
-	<application android:label="csfm_android" android:theme="@style/MyTheme">
-		<!--<receiver android:name="cfsm_android.csfm_android.Receivers$MusicPlayingReceiver" android:enabled="true">
-			<intent-filter>
-				<action android:name="com.android.music.metachanged"></action>
-				<action android:name="com.android.music.playstatechanged"></action>
-				<action android:name="com.android.music.playbackcomplete"></action>
-				<action android:name="com.android.music.queuechanged"></action>
-			</intent-filter>
-		</receiver>-->
-	</application>
+  <uses-sdk android:minSdkVersion="16" />
+  <application android:label="MatchFM" android:icon="@mipmap/ic_launcher" android:theme="@style/MyTheme" android:name=".CSFMApplication"></application>
 </manifest>
