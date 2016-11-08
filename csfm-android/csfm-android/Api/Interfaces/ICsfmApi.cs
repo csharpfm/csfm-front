@@ -30,7 +30,6 @@ namespace csfm_android.Api.Interfaces
         [Get("/api/Users/{username}/History")]
         Task<string> GetUserHistory(string username);
 
-
         [Get("/api/Users/modify/password/{password}")]
         Task<string> ModifyPassword(string password, [Header("Authorization")] string accessToken);
 
