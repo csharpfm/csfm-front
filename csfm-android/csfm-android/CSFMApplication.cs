@@ -17,7 +17,9 @@ namespace csfm_android
     {
         static CSFMApplication _instance;
 
-        static bool isDebug = false;
+        static readonly bool isDebug = false;
+
+        static readonly string bearerToken = "token";
 
         public CSFMApplication(IntPtr handle, JniHandleOwnership transfer): base(handle, transfer)
         {
@@ -37,6 +39,11 @@ namespace csfm_android
         public static bool IsDebug
         {
             get { return isDebug;  }
+        }
+
+        public static string BearerToken
+        {
+            get { return bearerToken; }
         }
     }
 }

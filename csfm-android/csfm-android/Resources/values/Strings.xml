@@ -6,6 +6,7 @@
 
     <string name="signin">Se connecter</string>
     <string name="signup">S\'inscrire</string>
+    <string name="signout">Se déconnecter</string>
     <string name="cancel">Annuler</string>
 
     <string name="home">Accueil</string>
@@ -20,9 +21,7 @@
     <string name="no_account">Pas de compte ?</string>
     <string name="create_one">Créez-en un</string>
 
-
     <string name="no_mail">Veuillez renseigner un mail</string>
-    <string name="no_confirmed_password">Veuillez confirmer votre mail</string>
     <string name="no_password">Veuillez renseigner un mot de passe</string>
     <string name="no_username">Veuillez renseigner un nom d\'utilisateur</string>
 </resources>

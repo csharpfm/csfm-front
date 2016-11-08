@@ -6,6 +6,7 @@
 
   <string name="signin">Sign in</string>
   <string name="signup">Sign up</string>
+  <string name="signout">Sign out</string>
   <string name="cancel">Cancel</string>
 
   <string name="home">Home</string>
@@ -21,7 +22,6 @@
   <string name="create_one">Create one</string>
 
   <string name="no_mail">Please enter an email address</string>
-  <string name="no_confirmed_password">Please confirm your email address</string>
   <string name="no_password">Pleaser enter your password</string>
   <string name="no_username">Please enter your username</string>
 </resources>

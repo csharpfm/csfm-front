@@ -29,13 +29,13 @@ namespace csfm_android.Api
 
         public string RetrieveBearer()
         {
-            return CSFMPrefs.Prefs.GetString("bearer", "");
+            return CSFMPrefs.Prefs.GetString(CSFMApplication.BearerToken, "");
         }
 
         public void ProvideBearer(string bearer)
         {
             var editor = CSFMPrefs.Editor;
-            editor.PutString("token", bearer);
+            editor.PutString(CSFMApplication.BearerToken, bearer);
             editor.Commit();
         }
 
@@ -81,7 +81,7 @@ namespace csfm_android.Api
                 return false;
             }
 
-            return false; // TODO
+            return false;
         }
 
         public async System.Threading.Tasks.Task<bool> GetUser(string username)

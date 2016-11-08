@@ -10,12 +10,16 @@ using Android.Runtime;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+using csfm_android.Utils;
+using csfm_android.Activities;
 
 namespace csfm_android.Fragments
 {
-    public class AccountFragment : Fragment, IDialogInterfaceOnClickListener
+    public class AccountFragment : Fragment
     {
         private View rootView;
+
+        private Button signoutButton;
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -26,46 +30,27 @@ namespace csfm_android.Fragments
         {
             
             this.rootView = inflater.Inflate(Resource.Layout.account_fragment, container, false);
-            
+            this.signoutButton = this.rootView.FindViewById<Button>(Resource.Id.signout);
+
+            this.signoutButton.Click += delegate
+            {
+                this.SignOut();
+            };
+
             return this.rootView;
         }
 
-        public void OnClick(IDialogInterface dialog, int which)
+
+        private void SignOut()
         {
-            switch (which)
-            {
-                case -1:
-                    //
-                    break;
-                case -2:
-                    break;
-                default:
-                    break;
-            }
+            CSFMPrefs.Editor.Remove(CSFMApplication.BearerToken).Commit();
+
+            Activity.Finish();
+
+            Intent intent = new Intent(this.Activity, typeof(LoginActivity));
+            StartActivity(intent);
         }
-
-
-        /*  this.signInButton.Click += delegate
-            {
-                AlertDialog.Builder builder = new AlertDialog.Builder(Activity);
-                builder.SetView(inflater.Inflate(Resource.Layout.signin_dialog, null))
-                .SetPositiveButton(Resource.String.signin, this)
-                .SetNegativeButton(Resource.String.cancel, this);
-                // Create the AlertDialog
-                AlertDialog dialog = builder.Create();
-                dialog.Show();
-            };
-
-            this.signUpButton.Click += delegate
-            {
-                AlertDialog.Builder builder = new AlertDialog.Builder(Activity);
-                builder.SetView(inflater.Inflate(Resource.Layout.signup_dialog, null))
-                .SetPositiveButton(Resource.String.signup, this)
-                .SetNegativeButton(Resource.String.cancel, this);
-                // Create the AlertDialog
-                AlertDialog dialog = builder.Create();
-                dialog.Show();
-            };*/
+     
     }
 
 

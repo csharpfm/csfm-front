@@ -16,7 +16,7 @@ using csfm_android.Api;
 
 namespace csfm_android.Activities
 {
-    [Activity(Label = "LoginActivity", MainLauncher = true, Icon = "@drawable/icon", Theme = "@style/LogTheme")]
+    [Activity(Label = "MatchFM", MainLauncher = true, Icon = "@drawable/icon", Theme = "@style/LogTheme")]
     public class LoginActivity : AppCompatActivity
     {
 
@@ -32,7 +32,7 @@ namespace csfm_android.Activities
         {
             base.OnCreate(bundle);
 
-            var bearer = CSFMPrefs.Prefs.GetString("token", "");
+            var bearer = CSFMPrefs.Prefs.GetString(CSFMApplication.BearerToken, "");
 
             if (CSFMApplication.IsDebug || !String.IsNullOrEmpty(bearer))
             {
