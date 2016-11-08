@@ -13,7 +13,7 @@ using csfm_android.Api.Model;
 using Square.Picasso;
 using csfm_android.Ui.Utils;
 
-namespace csfm_android.Holders
+namespace csfm_android.Ui.Holders
 {
     public class SearchTrackHolder : SearchHolder<Track>
     {

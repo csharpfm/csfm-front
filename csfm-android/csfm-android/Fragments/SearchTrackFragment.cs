@@ -11,7 +11,7 @@ using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using csfm_android.Api.Model;
-using csfm_android.Adapters;
+using csfm_android.Ui.Adapters;
 
 namespace csfm_android.Fragments
 {

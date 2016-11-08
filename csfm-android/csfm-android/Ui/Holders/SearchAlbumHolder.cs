@@ -13,7 +13,7 @@ using csfm_android.Api.Model;
 using csfm_android.Ui.Utils;
 using Square.Picasso;
 
-namespace csfm_android.Holders
+namespace csfm_android.Ui.Holders
 {
     public class SearchAlbumHolder : SearchHolder<Album>
     {

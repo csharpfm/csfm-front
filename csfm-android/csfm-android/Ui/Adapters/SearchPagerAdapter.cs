@@ -14,8 +14,9 @@ using Fragment = Android.Support.V4.App.Fragment;
 using FragmentManager = Android.Support.V4.App.FragmentManager;
 using csfm_android.Api.Model;
 using csfm_android.Fragments;
+using csfm_android.Activities;
 
-namespace csfm_android.Adapters
+namespace csfm_android.Ui.Adapters
 {
     public class SearchPagerAdapter : FragmentPagerAdapter
     {

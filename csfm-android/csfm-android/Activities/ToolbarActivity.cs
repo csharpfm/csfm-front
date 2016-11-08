@@ -17,7 +17,7 @@ using csfm_android.Utils.MaterialDesignSearchView;
 using Android.Speech;
 using csfm_android.Utils;
 
-namespace csfm_android
+namespace csfm_android.Activities
 {
     public abstract class ToolbarActivity : AppCompatActivity
     {
@@ -38,12 +38,13 @@ namespace csfm_android
             }
         }
 
-        
+
 
         public IMenuItem SearchItem { get; private set; }
 
         private MaterialSearchView materialSearchView;
-        public MaterialSearchView MaterialSearchView {
+        public MaterialSearchView MaterialSearchView
+        {
             get
             {
                 return materialSearchView;
@@ -76,7 +77,7 @@ namespace csfm_android
             {
                 Console.WriteLine(ex.Message);
             }
-            
+
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
@@ -109,7 +110,7 @@ namespace csfm_android
                 this.MaterialSearchView.CloseSearch();
                 return;
             }
-            
+
             base.OnBackPressed();
         }
 

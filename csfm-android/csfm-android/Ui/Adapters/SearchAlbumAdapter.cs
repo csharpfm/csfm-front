@@ -11,9 +11,9 @@ using Android.Views;
 using Android.Widget;
 using csfm_android.Api.Model;
 using Android.Support.V7.Widget;
-using csfm_android.Holders;
+using csfm_android.Ui.Holders;
 
-namespace csfm_android.Adapters
+namespace csfm_android.Ui.Adapters
 {
     public class SearchAlbumAdapter : SearchAdapter<Album>
     {
