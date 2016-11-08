@@ -76,6 +76,7 @@ namespace csfm_android.Activities
                 if (status)
                 {
                     StartActivity(typeof(MainActivity));
+                    Finish();
                 }
             }
         }

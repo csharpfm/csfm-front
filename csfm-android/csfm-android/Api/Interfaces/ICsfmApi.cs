@@ -24,16 +24,13 @@ namespace csfm_android.Api.Interfaces
         Task<string> SignUp([Body(BodySerializationMethod.UrlEncoded)] Dictionary<string, object> data);
 
         /* User API */
-        [Get("/api/users/{username}")]
+        [Get("/api/Users/{username}")]
         Task<string> GetUser(string username, [Header("Authorization")] string accessToken);
 
-        [Get("/api/users/{username}/history")]
-        Task<string> GetUserHistory(string username, [Header("Authorization")] string accessToken);
+        [Get("/api/Users/{username}/History")]
 
-        [Delete("/api/users/{username}/history/{id}")]
-        Task<string> DeleteUserHistory(string username, int id, [Header("Authorization")] string accessToken);
 
-        [Get("/api/users/modify/password/{password}")]
+        [Get("/api/Users/modify/password/{password}")]
         Task<string> ModifyPassword(string password, [Header("Authorization")] string accessToken);
 
         /* Match */   

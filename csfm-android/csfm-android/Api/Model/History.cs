@@ -14,14 +14,16 @@ namespace csfm_android.Api.Model
 {
     public class History
     {
+        public int TrackId { get; set; }
+
         public Track Track { get; set; }
 
-        public DateTime Date { get; set; }
+        public DateTime ListenDate { get; set; }
 
         public History(Track track, DateTime date)
         {
             Track = track;
-            Date = date;
+            ListenDate = date;
         }
 
     }

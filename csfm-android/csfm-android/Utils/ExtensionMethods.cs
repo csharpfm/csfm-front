@@ -94,7 +94,7 @@ namespace csfm_android.Utils
 
         public static IEnumerable<string> ToArtistNames(this List<History> history)
         {
-            return history.Select(h => h.Track.Artist.Name);
+            return history.Select(h => h.Track.Album.Artist.Name);
         }
 
     }

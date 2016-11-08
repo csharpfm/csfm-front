@@ -84,6 +84,19 @@ namespace csfm_android.Api
             return false;
         }
 
+        public async System.Threading.Tasks.Task<string> GetHistory(string username)
+        {
+            try
+            {
+                var history = await instance.GetUserHistory(username);
+                return history;
+            }
+            catch (Exception e)
+            {
+                return "";
+            }
+        }
+
         public async System.Threading.Tasks.Task<bool> GetUser(string username)
         {
             var user = await instance.GetUser(username, "Bearer " + this.RetrieveBearer());

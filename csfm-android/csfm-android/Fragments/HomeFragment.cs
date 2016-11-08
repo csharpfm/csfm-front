@@ -13,15 +13,18 @@ using Android.Support.V7.Widget;
 using csfm_android.Ui.Adapters;
 using csfm_android.Api.Model;
 using csfm_android.Utils;
+using csfm_android.Api;
 
 namespace csfm_android.Fragments
 {
     public class HomeFragment : Fragment
     {
-
+       
         private View rootView;
 
         private RecyclerView recyclerView;
+
+        private TextView noHistory;
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -33,6 +36,7 @@ namespace csfm_android.Fragments
             this.rootView = inflater.Inflate(Resource.Layout.home_fragment, container, false);
 
             recyclerView = this.rootView.FindViewById<RecyclerView>(Resource.Id.recyclerView);
+            noHistory = this.rootView.FindViewById<TextView>(Resource.Id.no_history_text);
 
             LinearLayoutManager layoutManager = new LinearLayoutManager(this.Activity);
             recyclerView.SetLayoutManager(layoutManager);
@@ -43,8 +47,10 @@ namespace csfm_android.Fragments
         public override void OnStart()
         {
             base.OnStart();
-            List<History> historic = new List<History>();
 
+            GetHistory();
+
+         /*   List<History> historic = new List<History>();
             Album album = new Album();
             Artist artist = new Artist();
             artist.Name = "Lady Gaga";
@@ -54,16 +60,47 @@ namespace csfm_android.Fragments
             Track track1 = new Track();
             track1.Album = album;
             track1.Name = "Perfect Illusion";
-            track1.Artist = artist;
             Track track2 = new Track();
             track2.Album = album;
             track2.Name = "A-YO";
-            track2.Artist = artist;
+
 
             historic.Add(new Api.Model.History(track1, new DateTime()));
             historic.Add(new Api.Model.History(track2, new DateTime()));
+            historic.Add(new Api.Model.History(track2, new DateTime()));
+            historic.Add(new Api.Model.History(track2, new DateTime()));
+            historic.Add(new Api.Model.History(track2, new DateTime()));
+            historic.Add(new Api.Model.History(track2, new DateTime()));
+            historic.Add(new Api.Model.History(track2, new DateTime()));
+            historic.Add(new Api.Model.History(track2, new DateTime()));
+            historic.Add(new Api.Model.History(track2, new DateTime()));
+            historic.Add(new Api.Model.History(track2, new DateTime()));
+            historic.Add(new Api.Model.History(track2, new DateTime()));
 
-            recyclerView.SetAdapter(new HistoryAdapter(this.Activity, historic));
+            recyclerView.SetAdapter(new HistoryAdapter(this.Activity, historic));*/
+        }
+
+        private async void GetHistory()
+        {
+            var apiClient = new ApiClient();
+
+            var history = await apiClient.GetHistory("Siliem");
+
+            if(String.IsNullOrEmpty(history) || "[]".Equals(history))
+            {
+                // No history found
+            }
+            else
+            {
+                this.noHistory.Visibility = ViewStates.Gone;
+                //recyclerView.SetAdapter(new HistoryAdapter(this.Activity, historic));
+                // GOOD
+            }
+        }
+
+        public void onResponseReceived(string response)
+        {
+            throw new NotImplementedException();
         }
     }
 }

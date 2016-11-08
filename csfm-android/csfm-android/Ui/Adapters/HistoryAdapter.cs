@@ -55,14 +55,14 @@ namespace csfm_android.Ui.Adapters
                     HistoryHolder historyHolder = holder as HistoryHolder;
 
                     historyHolder.SongName.Text = history.Track.Name;
-                    historyHolder.SongArtist.Text = history.Track.Artist.Name;
+                    historyHolder.SongArtist.Text = history.Track.Album.Artist.Name;
 
                     Picasso.With(context)
                        .Load(history.Track.Album.Image)
                        .Transform(new CircleTransform())
                        .Into(historyHolder.AlbumCover);
 
-                    historyHolder.Date.Text = history.Date.ToString();
+                    historyHolder.Date.Text = history.ListenDate.ToString();
                 }
             }
         }
