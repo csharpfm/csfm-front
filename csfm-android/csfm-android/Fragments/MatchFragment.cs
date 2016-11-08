@@ -13,6 +13,8 @@ using Android.Graphics;
 using Android.Graphics.Drawables;
 using Square.Picasso;
 using csfm_android.Api.Model;
+using csfm_android.Activities;
+using csfm_android.Utils.MaterialDesignSearchView;
 
 namespace csfm_android.Fragments
 {
@@ -37,14 +39,14 @@ namespace csfm_android.Fragments
         public override void OnStop()
         {
             base.OnStop();
-            Activity.ActionBar.Show();
+            ((ToolbarActivity)Activity).Toolbar.Show();
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             this.rootView = inflater.Inflate(Resource.Layout.match_fragment, container, false);
 
-            Activity.ActionBar.Hide();
+            ((ToolbarActivity) Activity).Toolbar.Hide();
 
             this.likeButton = this.rootView.FindViewById<ImageView>(Resource.Id.match_ok);
             this.nextButton = this.rootView.FindViewById<ImageView>(Resource.Id.match_cancel);

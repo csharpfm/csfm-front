@@ -9,5 +9,10 @@
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
+
+  <csfm_android.Utils.MaterialDesignSearchView.MaterialSearchView
+          android:id="@+id/material_design_search_view"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content" />
   
 </LinearLayout>

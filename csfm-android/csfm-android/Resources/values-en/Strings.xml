@@ -24,4 +24,6 @@
   <string name="no_mail">Please enter an email address</string>
   <string name="no_password">Pleaser enter your password</string>
   <string name="no_username">Please enter your username</string>
+
+  <string name="search_hint">Search</string>
 </resources>

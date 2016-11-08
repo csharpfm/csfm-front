@@ -24,4 +24,6 @@
     <string name="no_mail">Veuillez renseigner un mail</string>
     <string name="no_password">Veuillez renseigner un mot de passe</string>
     <string name="no_username">Veuillez renseigner un nom d\'utilisateur</string>
+
+    <string name="search_hint">Recherche</string>
 </resources>

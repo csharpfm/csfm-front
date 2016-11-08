@@ -1,38 +1,58 @@
 ﻿using Android.App;
-using Android.Widget;
 using Android.OS;
 using Android.Views;
 using System;
 using BottomNavigationBar;
-using Android.Support.V7.App;
-using Android.Support.V4.Content;
 using csfm_android.Fragments;
+using Android.Runtime;
+using Android.Content;
+using static Android.Support.V7.Widget.SearchView;
+using Android.Support.V4.View;
+using Android.Support.V7.Widget;
 
-namespace csfm_android
+namespace csfm_android.Activities
 {
-    [Activity(Label = "MainActivity", Theme = "@style/MyTheme")]
-    public class MainActivity : AppCompatActivity, BottomNavigationBar.Listeners.IOnMenuTabClickListener
+
+    [Activity(Label = Configuration.LABEL, Icon = "@drawable/icon", Theme = "@style/MyTheme", WindowSoftInputMode = SoftInput.AdjustPan)]
+    public class MainActivity : ToolbarActivity, BottomNavigationBar.Listeners.IOnMenuTabClickListener
     {
-        private Toolbar toolbar;
-
         private BottomBar bottomBar;
-
         private Fragment currentFragment = null;
 
         protected override void OnCreate(Bundle bundle)
         {
-            base.OnCreate(bundle);
-
-            // Set our view from the "main" layout resource
-            SetContentView(Resource.Layout.Main);
-
-            this.toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
-            SetActionBar(toolbar);
-            ActionBar.Title = GetString(Resource.String.home);
-
+            base.OnCreate(bundle, Resource.Layout.Main, GetString(Resource.String.home));
             SetBottomBar(bundle);
         }
 
+        protected override void OnResume()
+        {
+            base.OnResume();
+            MaterialSearchView.CloseSearch();
+        }
+
+        public override void OnSearchViewSet()
+        {
+            //
+        }
+
+        public override bool OnQueryTextChange(string newText)
+        {
+            return true;
+        }
+
+        public override bool OnQueryTextSubmit(string query)
+        {
+            Intent intent = new Intent(this, typeof(SearchActivity));
+            intent.PutExtra(SearchActivity.EXTRA_MESSAGE, query);
+            this.StartActivity(intent);
+            return true;
+        }
+
+        public void OnMenuItemSelected(int menuItemId)
+        {
+            Console.WriteLine("Hello world " + menuItemId);
+        }
 
         private void SetBottomBar(Bundle bundle)
         {
@@ -88,15 +108,15 @@ namespace csfm_android
             {
                 case 0:
                     LaunchFragment(new HomeFragment());
-                    ActionBar.Title = GetString(Resource.String.home);
+                    this.Toolbar.Title = GetString(Resource.String.home);
                     break;
                 case 1:
                     LaunchFragment(new MatchFragment());
-                    ActionBar.Title = GetString(Resource.String.match);
+                    this.Toolbar.Title = GetString(Resource.String.match);
                     break;
                 case 2:
                     LaunchFragment(new AccountFragment());
-                    ActionBar.Title = GetString(Resource.String.account);
+                    this.Toolbar.Title = GetString(Resource.String.account);
                     break;
                 default:
                     break;
