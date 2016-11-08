@@ -30,11 +30,11 @@ namespace csfm_android
             SetActionBar(toolbar);
             ActionBar.Title = GetString(Resource.String.home);
 
-            setBottomBar(bundle);
+            SetBottomBar(bundle);
         }
 
 
-        private void setBottomBar(Bundle bundle)
+        private void SetBottomBar(Bundle bundle)
         {
             bottomBar = BottomBar.Attach(this, bundle);
 

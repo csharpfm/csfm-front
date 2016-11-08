@@ -38,11 +38,11 @@ namespace csfm_android.Activities
 
             this.signUpButton.Click += delegate
             {
-                this.signUp();
+                this.SignUp();
             };
         }
 
-        private async void signUp()
+        private async void SignUp()
         {
             if (String.IsNullOrEmpty(this.username.Text))
             {

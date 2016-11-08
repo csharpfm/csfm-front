@@ -54,11 +54,11 @@ namespace csfm_android.Activities
 
             this.signInButton.Click += delegate
             {
-                this.logIn();
+                this.LogIn();
             };
         }
 
-        private async void logIn()
+        private async void LogIn()
         {
             if (String.IsNullOrEmpty(this.username.Text))
             {
