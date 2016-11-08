@@ -107,12 +107,12 @@ namespace csfm_android.Fragments
 
             FAKE_TRACKS = new List<Track>
             {
-                new Track { Name = "Track1", Album = FAKE_ALBUMS[0], Artist = FAKE_ALBUMS[0].Artist, Duration = 123 },
-                new Track { Name = "Track2", Album = FAKE_ALBUMS[0], Artist = FAKE_ALBUMS[0].Artist, Duration = 250 },
-                new Track { Name = "Track3", Album = FAKE_ALBUMS[0], Artist = FAKE_ALBUMS[0].Artist, Duration = 360 },
-                new Track { Name = "Track4", Album = FAKE_ALBUMS[0], Artist = FAKE_ALBUMS[0].Artist, Duration = 98 },
-                new Track { Name = "Track5", Album = FAKE_ALBUMS[1], Artist = FAKE_ALBUMS[0].Artist, Duration = 836 },
-                new Track { Name = "Track6", Album = FAKE_ALBUMS[1], Artist = FAKE_ALBUMS[0].Artist, Duration = 543 }
+                new Track { Name = "Track1", Album = FAKE_ALBUMS[0], Duration = 123 },
+                new Track { Name = "Track2", Album = FAKE_ALBUMS[0], Duration = 250 },
+                new Track { Name = "Track3", Album = FAKE_ALBUMS[0], Duration = 360 },
+                new Track { Name = "Track4", Album = FAKE_ALBUMS[0], Duration = 98 },
+                new Track { Name = "Track5", Album = FAKE_ALBUMS[1], Duration = 836 },
+                new Track { Name = "Track6", Album = FAKE_ALBUMS[1], Duration = 543 }
             };
         }
     }

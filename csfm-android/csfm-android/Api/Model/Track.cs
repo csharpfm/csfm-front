@@ -20,17 +20,22 @@ namespace csfm_android.Api.Model
 
         public string MbId { get; set; }
 
+        public int Id { get; set; }
+
+        public string Image { get; set; }
+
+
+
         public long Duration { get; set; } //Seconds
 
         public Album Album { get; set; }
 
-        public Artist Artist { get; set; }
 
         public string Artist_Album_Format
         {
             get
             {
-                string text = Artist.Name.DefaultStringIfEmpty("Unknown Artist");
+                string text = Album.Artist.Name.DefaultStringIfEmpty("Unknown Artist");
                 if (!Album.Name.IsStringEmpty())
                 {
                     text += " - " + Album.Name;

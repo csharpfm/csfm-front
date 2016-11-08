@@ -28,4 +28,7 @@
   <string name="search_hint">Search</string>
   <string name="no_more_match">No more match</string>
   <string name="load_more">Load more</string>
+
+  <string name="no_history">No history found</string>
+  <string name="history">History</string>
 </resources>

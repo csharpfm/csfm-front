@@ -6,13 +6,11 @@
               android:layout_height="match_parent"
               android:id="@+id/account_frag">
 
-
-
   <Button
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:text="@string/signout"
       android:id="@+id/signout"
-       app:theme ="@style/MyButton"/>
+      app:theme ="@style/MyButton"/>
 
 </LinearLayout>
