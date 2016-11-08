@@ -19,13 +19,12 @@ namespace csfm_android.Notifications
     public class AppNotificationManager
     {
         private const int NOTIFICATION_ID = 1;
-        private const string TITLE = "Last scrobbled song";
+        private const string TITLE = "Now Scrobbling";
         private const string TICKER = Configuration.LABEL + " Service";
 
 
         public static void SendNotification(string artist, string album, string track, Service service, Context context)
         {
-            string trackFormat = null;
             if (artist.IsStringEmpty())
             {
                 artist = "Unknwon Artist";
@@ -61,7 +60,7 @@ namespace csfm_android.Notifications
                 .SetTicker(TICKER)
                 .SetContentIntent(pendingIntent)
                 .SetSmallIcon(drawable)
-                .SetOngoing(true)
+                .SetOngoing(false)
                 .SetColor(color)
                 .AddAction(closeAction);
 
@@ -82,9 +81,9 @@ namespace csfm_android.Notifications
         private static void SendNotification(Notification notification, Service service, Context context)
         {
             Notify(notification, context);
-            service.StartForeground(NOTIFICATION_ID, notification);
-            Intent updateIntent = new Intent("Notification");
-            service.SendBroadcast(updateIntent);
+            //service.StartForeground(NOTIFICATION_ID, notification);
+            //Intent updateIntent = new Intent("Notification");
+            //service.SendBroadcast(updateIntent);
         }
 
         private static void Notify(Notification notification, Context context)

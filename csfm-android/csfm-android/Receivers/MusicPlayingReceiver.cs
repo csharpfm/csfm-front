@@ -15,6 +15,8 @@ using csfm_android.Utils;
 
 namespace csfm_android.Receivers
 {
+    [BroadcastReceiver(Enabled = true, Exported = true)]
+    [IntentFilter(new[] { "com.android.music.metachanged", "com.android.music.playstatechanged", "com.android.music.playbackcomplete", "com.android.music.queuechanged" })]
     public class MusicPlayingReceiver : BroadcastReceiver
     {
         public const string PLAYING_EXTRA = "playing";

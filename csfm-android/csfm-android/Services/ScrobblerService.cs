@@ -37,15 +37,15 @@ namespace csfm_android.Services
                 
                 switch(intent.Action)
                 {
-                    case ACTION_INIT:
-                        Init(intent);
-                        return StartCommandResult.Sticky;
+                    //case ACTION_INIT:
+                    //    Init(intent);
+                    //    return StartCommandResult.Sticky;
                     case ACTION_SCROBBLE:
                         Scrobble(intent);
                         break;
-                    case ACTION_STOP_SCROBBLE:
-                        StopScrobbling(intent);
-                        break;
+                    //case ACTION_STOP_SCROBBLE:
+                    //    StopScrobbling(intent);
+                    //    break;
                     case ACTION_CLOSE:
                         Close(intent);
                         break;
