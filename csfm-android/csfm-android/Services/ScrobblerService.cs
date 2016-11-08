@@ -43,9 +43,9 @@ namespace csfm_android.Services
                     case ACTION_SCROBBLE:
                         Scrobble(intent);
                         break;
-                    //case ACTION_STOP_SCROBBLE:
-                    //    StopScrobbling(intent);
-                    //    break;
+                    case ACTION_STOP_SCROBBLE:
+                        StopScrobbling(intent);
+                        break;
                     case ACTION_CLOSE:
                         Close(intent);
                         break;
@@ -77,6 +77,8 @@ namespace csfm_android.Services
             string track = intent.GetStringExtra(MediaStore.Audio.AudioColumns.Track);
 
             AppNotificationManager.SendNotification(artist, album, track, this, this.ApplicationContext);
+
+            ScrobblePrefs.Save(artist, album, track);
         }
 
         private void Close(Intent intent)
@@ -87,6 +89,7 @@ namespace csfm_android.Services
         public void StopScrobbling(Intent intent)
         {
             AppNotificationManager.SendNotification(intent.GetArtist(), intent.GetAlbum(), intent.GetTrack(), this, this.ApplicationContext);
+            ScrobblePrefs.Clear();
         }
 
         public static void InitService(Context context)

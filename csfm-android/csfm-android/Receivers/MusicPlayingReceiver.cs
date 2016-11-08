@@ -40,7 +40,7 @@ namespace csfm_android.Receivers
                 else //Music paused or continuing
                 {
                     Console.WriteLine("Pause");
-                    //ScrobblerService.StopScrobble(context, intent.GetArtist(), intent.GetAlbum(), intent.GetTrack());
+                    ScrobblerService.StopScrobble(context, intent.GetArtist(), intent.GetAlbum(), intent.GetTrack());
                 }
             }
             else
