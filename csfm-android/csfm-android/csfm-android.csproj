@@ -104,6 +104,9 @@
     <Compile Include="Api\ApiClient.cs" />
     <Compile Include="Api\Model\Album.cs" />
     <Compile Include="Api\Model\Artist.cs" />
+    <Compile Include="Notifications\AppNotificationManager.cs" />
+    <Compile Include="Receivers\MusicPlayingReceiver.cs" />
+    <Compile Include="Services\ScrobblerService.cs" />
     <Compile Include="Utils\ExtensionMethods.cs" />
     <Compile Include="Api\Model\History.cs" />
     <Compile Include="Api\Model\MusicItem.cs" />
@@ -458,7 +461,7 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ripple_white_background.xml" />
-   </ItemGroup>
+  </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\circle.xml" />
   </ItemGroup>

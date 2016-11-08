@@ -10,6 +10,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using csfm_android.Api.Model;
+using Android.Provider;
 
 namespace csfm_android.Utils
 {
@@ -95,6 +96,43 @@ namespace csfm_android.Utils
         public static IEnumerable<string> ToArtistNames(this List<History> history)
         {
             return history.Select(h => h.Track.Artist.Name);
+        }
+
+        public static string GetArtist(this Intent intent)
+        {
+            return intent.GetStringExtra(MediaStore.Audio.AudioColumns.Artist);
+        }
+
+        public static string GetAlbum(this Intent intent)
+        {
+            return intent.GetStringExtra(MediaStore.Audio.AudioColumns.Album);
+        }
+
+        public static string GetTrack(this Intent intent)
+        {
+            return intent.GetStringExtra(MediaStore.Audio.AudioColumns.Track);
+        }
+
+        public static string GetDuration(this Intent intent)
+        {
+            return intent.GetStringExtra(MediaStore.Audio.AudioColumns.Duration);
+        }
+
+        public static string GetPosition(this Intent intent)
+        {
+            return intent.GetStringExtra("position");
+        }
+
+        public static void AddSong(this Bundle extras, string artist, string album, string track)
+        {
+            if (!artist.IsStringEmpty())
+                extras.PutString(MediaStore.Audio.AudioColumns.Artist, artist);
+
+            if (!album.IsStringEmpty())
+                extras.PutString(MediaStore.Audio.AudioColumns.Album, album);
+
+            if (!track.IsStringEmpty())
+                extras.PutString(MediaStore.Audio.AudioColumns.Track, track);
         }
 
     }

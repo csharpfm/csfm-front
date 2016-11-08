@@ -8,6 +8,8 @@ using Android.Runtime;
 using Android.Content;
 using static Android.Support.V7.Widget.SearchView;
 using Android.Support.V4.View;
+using csfm_android.Receivers;
+using csfm_android.Services;
 
 namespace csfm_android
 {
@@ -21,12 +23,15 @@ namespace csfm_android
         {
             base.OnCreate(bundle, Resource.Layout.Main, "Home");
             setBottomBar(bundle);
+
+
         }
 
         protected override void OnResume()
         {
             base.OnResume();
             MaterialSearchView.CloseSearch();
+            ScrobblerService.InitService(this.ApplicationContext);
         }
 
         public override void OnSearchViewSet()
