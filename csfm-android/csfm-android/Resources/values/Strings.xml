@@ -26,4 +26,6 @@
     <string name="no_username">Veuillez renseigner un nom d\'utilisateur</string>
 
     <string name="search_hint">Recherche</string>
+    <string name="no_more_match">Plus de match</string>
+    <string name="load_more">Recharger</string>
 </resources>

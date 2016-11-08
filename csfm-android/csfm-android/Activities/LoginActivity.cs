@@ -16,7 +16,7 @@ using csfm_android.Api;
 
 namespace csfm_android.Activities
 {
-    [Activity(Label = "MatchFM", MainLauncher = true, Icon = "@drawable/icon", Theme = "@style/LogTheme")]
+    [Activity(Label = "MatchFM", MainLauncher = true, Theme = "@style/LogTheme")]
     public class LoginActivity : AppCompatActivity
     {
 

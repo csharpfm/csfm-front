@@ -29,6 +29,8 @@ namespace csfm_android.Fragments
         private TextView favoriteSong;
         private TextView username;
 
+        private Button loadMore;
+
         private LinkedList<User> recommendedUsers;
 
         public override void OnCreate(Bundle savedInstanceState)
@@ -55,6 +57,8 @@ namespace csfm_android.Fragments
             this.favoriteSong = this.rootView.FindViewById<TextView>(Resource.Id.match_song);
             this.username = this.rootView.FindViewById<TextView>(Resource.Id.match_username);
 
+            this.loadMore = this.rootView.FindViewById<Button>(Resource.Id.load_more);
+
             return this.rootView;
         }
 
@@ -78,7 +82,7 @@ namespace csfm_android.Fragments
 
             this.likeButton.Click += delegate
             {
-                //TODO LIKE
+                //TODO LIKE API 
                 this.Next();
             };
 
@@ -136,6 +140,11 @@ namespace csfm_android.Fragments
             }
             else
             {
+                this.avatar.SetImageResource(0);
+                this.username.Text = "";
+                this.favoriteSong.Text = "";
+
+                this.loadMore.Visibility = ViewStates.Visible;
                 // TODO LOAD MORE
             }
         }
