@@ -43,7 +43,7 @@ namespace csfm_android.Notifications
 
         public static void SendNotification(string trackFormat, Service service, Context context)
         {
-            Notification notification = MakeNotification(trackFormat, Resource.Drawable.Icon, context.Resources.GetColor(Resource.Color.colorPrimary), context);
+            Notification notification = MakeNotification(trackFormat, Resource.Drawable.ic_notifications_mfm, context.Resources.GetColor(Resource.Color.colorPrimary), context);
             SendNotification(notification, service, context);
         }
      
