@@ -30,6 +30,7 @@ namespace csfm_android.Ui.Adapters
             get { return scrobble; }
             set
             {
+                if (scrobble == value) return;
                 scrobble = value;
                 NotifyDataSetChanged();
             }

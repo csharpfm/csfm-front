@@ -69,13 +69,16 @@ namespace csfm_android.Services
 
         private void Scrobble(Intent intent)
         {
-            string artist = intent.GetStringExtra(MediaStore.Audio.AudioColumns.Artist);
-            string album = intent.GetStringExtra(MediaStore.Audio.AudioColumns.Album);
-            string track = intent.GetStringExtra(MediaStore.Audio.AudioColumns.Track);
+            string artist = intent.GetArtist();
+            string album = intent.GetAlbum();
+            string track = intent.GetTrack();
+            long durationToEnd = intent.GetDuration(0) - intent.GetPosition(0);
+            durationToEnd = durationToEnd < 0 ? 0 : durationToEnd;
+            DateTime endTime = DateTime.Now.AddMilliseconds(durationToEnd); ;
             string albumArt = MusicLibrary.GetAlbumArt(artist, album, CSFMApplication.Context)?.FirstOrDefault();
             AppNotificationManager.SendNotification(artist, album, track, this, this.ApplicationContext);
 
-            ScrobblePrefs.Save(artist, album, track);
+            ScrobblePrefs.Save(artist, album, track, endTime.Ticks);
         }
 
         private void Close(Intent intent)
@@ -96,13 +99,11 @@ namespace csfm_android.Services
             context.StartService(serviceIntent);
         }
 
-        public static void SendScrobble(string artist, string album, string track, Context context)
+        public static void SendScrobble(Intent intent, Context context)
         {
             Intent serviceIntent = new Intent(context, typeof(ScrobblerService));
             serviceIntent.SetAction(ACTION_SCROBBLE);
-            Bundle extras = new Bundle();
-            extras.AddSong(artist, album, track);
-            serviceIntent.PutExtras(extras);
+            serviceIntent.PutExtras(intent.Extras);
             context.StartService(serviceIntent);
         }
 
@@ -110,8 +111,6 @@ namespace csfm_android.Services
         {
             Intent serviceIntent = new Intent(context, typeof(ScrobblerService));
             serviceIntent.SetAction(ACTION_STOP_SCROBBLE);
-            Bundle extras = new Bundle();
-            extras.AddSong(artist, album, track);
             context.StartService(serviceIntent);
         }
 

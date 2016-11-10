@@ -76,11 +76,14 @@ namespace csfm_android.Fragments
             historic.Add(new History(track2, DateTime.Now));
 
             HistoryAdapter adapter = new HistoryAdapter(this.Activity, historic);
-
             recyclerView.SetAdapter(adapter);
+            InitScrobble(adapter);
 
+        }
 
-            if (ScrobblePrefs.IsPlaying && ScrobblePrefs.HasValue)
+        private void InitScrobble(HistoryAdapter adapter)
+        {
+            if (ScrobblePrefs.IsPlaying && ScrobblePrefs.HasValue && !ScrobblePrefs.IsSongEnded)
             {
                 Artist artistScrobble = new Artist
                 {
@@ -104,8 +107,10 @@ namespace csfm_android.Fragments
                 adapter.Scrobble = new History(trackScrobble, true);
 
             }
-
-            
+            else
+            {
+                adapter.Scrobble = null;
+            }
         }
     }
 }

@@ -123,7 +123,7 @@ namespace csfm_android.Utils
             return intent.GetLongExtra(Configuration.Music.EXTRA_POSITION, defaultValue);
         }
 
-        public static void AddSong(this Bundle extras, string artist, string album, string track)
+        public static void AddSong(this Bundle extras, string artist, string album, string track, long endTicks)
         {
             if (!artist.IsStringEmpty())
                 extras.PutString(Configuration.Music.EXTRA_ARTIST, artist);
@@ -133,6 +133,9 @@ namespace csfm_android.Utils
 
             if (!track.IsStringEmpty())
                 extras.PutString(Configuration.Music.EXTRA_TRACK, track);
+
+            if (endTicks > 0)
+                extras.PutLong(Configuration.Music.EXTRA_TICKS_TO_END, endTicks);
         }
 
         public static History ToHistoryItem(this Intent intent, bool isScrobbling)

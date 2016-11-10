@@ -30,7 +30,7 @@ namespace csfm_android.Receivers
                     if (intent.GetPosition(1) == 0)
                     {
                         Console.WriteLine("Scrobbled");
-                        ScrobblerService.SendScrobble(intent.GetArtist(), intent.GetAlbum(), intent.GetTrack(), context);
+                        ScrobblerService.SendScrobble(intent, context);
                     }
                 }
                 else //Music paused or continuing

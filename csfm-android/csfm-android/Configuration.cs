@@ -31,6 +31,7 @@ namespace csfm_android
             public static readonly string EXTRA_TRACK = MediaStore.Audio.AudioColumns.Track;
             public const string EXTRA_POSITION = "position";
             public static readonly string EXTRA_DURATION = MediaStore.Audio.AudioColumns.Duration;
+            public const string EXTRA_TICKS_TO_END = "ticks";
         }
 
         

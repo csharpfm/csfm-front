@@ -19,6 +19,7 @@ namespace csfm_android.Utils
         public const string ARTIST_KEY = "artist";
         public const string ALBUM_KEY = "album";
         public const string TRACK_KEY = "track";
+        public const string END_TICKS_KEY = "ticks";
 
         public static string Artist
         {
@@ -41,6 +42,15 @@ namespace csfm_android.Utils
             get
             {
                 return CSFMPrefs.Prefs.GetString(TRACK_KEY, null);
+            }
+        }
+
+        public static bool IsSongEnded
+        {
+            get
+            {
+                DateTime test = new DateTime(CSFMPrefs.Prefs.GetLong(END_TICKS_KEY, 0));
+                return new DateTime(CSFMPrefs.Prefs.GetLong(END_TICKS_KEY, 0)) < DateTime.Now;
             }
         }
 
@@ -67,18 +77,19 @@ namespace csfm_android.Utils
 
 
 
-        public static void Save(string artist, string album, string track)
+        public static void Save(string artist, string album, string track, long endTicks)
         {
             var editor = CSFMPrefs.Editor;
             editor.PutString(ARTIST_KEY, artist);
             editor.PutString(ALBUM_KEY, album);
             editor.PutString(TRACK_KEY, track);
+            editor.PutLong(END_TICKS_KEY, endTicks);
             editor.Commit();
         }
 
         public static void Clear()
         {
-            Save(null, null, null);
+            Save(null, null, null, 0);
         }
 
 
