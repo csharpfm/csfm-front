@@ -46,5 +46,16 @@ namespace csfm_android.Receivers
                 //Not about music
             }
         }
+
+
+        public static void Register(Context context, HistoryAdapter adapter)
+        {
+            Register(context, new LocalMusicPlayingReceiver(adapter));
+        }
+
+        public static void Register(Context context, LocalMusicPlayingReceiver receiver)
+        {
+            context.RegisterReceiver(receiver, new IntentFilter().AddActions(Configuration.Music.MUSIC_ACTIONS));
+        }
     }
 }

@@ -78,10 +78,7 @@ namespace csfm_android.Ui.Adapters
         {
             this.context = context;
             this.data = history;
-            LocalMusicPlayingReceiver receiver = new LocalMusicPlayingReceiver(this);
-            IntentFilter iF = new IntentFilter();
-            iF.AddActions("com.android.music.metachanged", "com.android.music.playstatechanged", "com.android.music.playbackcomplete", "com.android.music.queuechanged");
-            context.RegisterReceiver(receiver, iF);
+            LocalMusicPlayingReceiver.Register(context, this);
             MaterialSearchView.AddSuggestions(Data.ToTrackNames());
             MaterialSearchView.AddSuggestions(Data.ToAlbumNames());
             MaterialSearchView.AddSuggestions(Data.ToArtistNames());
