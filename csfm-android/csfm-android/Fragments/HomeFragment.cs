@@ -101,7 +101,7 @@ namespace csfm_android.Fragments
                     Name = ScrobblePrefs.Track
                 };
 
-                adapter.AddScrobble(new History(trackScrobble, true));
+                adapter.Scrobble = new History(trackScrobble, true);
 
             }
 

@@ -115,24 +115,24 @@ namespace csfm_android.Utils
 
         public static long GetDuration(this Intent intent, long defaultValue)
         {
-            return intent.GetLongExtra(MediaStore.Audio.AudioColumns.Duration, defaultValue);
+            return intent.GetLongExtra(Configuration.Music.EXTRA_DURATION, defaultValue);
         }
 
         public static long GetPosition(this Intent intent, long defaultValue)
         {
-            return intent.GetLongExtra("position", defaultValue);
+            return intent.GetLongExtra(Configuration.Music.EXTRA_POSITION, defaultValue);
         }
 
         public static void AddSong(this Bundle extras, string artist, string album, string track)
         {
             if (!artist.IsStringEmpty())
-                extras.PutString(MediaStore.Audio.AudioColumns.Artist, artist);
+                extras.PutString(Configuration.Music.EXTRA_ARTIST, artist);
 
             if (!album.IsStringEmpty())
-                extras.PutString(MediaStore.Audio.AudioColumns.Album, album);
+                extras.PutString(Configuration.Music.EXTRA_ALBUM, album);
 
             if (!track.IsStringEmpty())
-                extras.PutString(MediaStore.Audio.AudioColumns.Track, track);
+                extras.PutString(Configuration.Music.EXTRA_TRACK, track);
         }
 
         public static History ToHistoryItem(this Intent intent, bool isScrobbling)

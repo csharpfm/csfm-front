@@ -17,10 +17,7 @@ namespace csfm_android.Receivers
 {
     public class LocalMusicPlayingReceiver : BroadcastReceiver
     {
-        public const string PLAYING_EXTRA = "playing";
-        public const string ARTIST_EXTRA = "artist";
-        public const string ALBUM_EXTRA = "album";
-        public const string TRACK_EXTRA = "track";
+
 
         private HistoryAdapter adapter;
 
@@ -31,22 +28,22 @@ namespace csfm_android.Receivers
 
         public override void OnReceive(Context context, Intent intent)
         {
-            if (intent.HasExtra(PLAYING_EXTRA)) //Music action
+            if (intent.HasExtra(Configuration.Music.EXTRA_PLAYING)) //Music action
             {
-                if (intent.GetBooleanExtra(PLAYING_EXTRA, false))
+                if (intent.GetBooleanExtra(Configuration.Music.EXTRA_PLAYING, false))
                 {
                     //Playing
-                    adapter.AddScrobble(intent.ToHistoryItem(true));
+                    adapter.Scrobble = intent.ToHistoryItem(true);
                 }
                 else //Music paused or continuing
                 {
                     //Pause
-                    adapter.AddScrobble(null);
+                    adapter.Scrobble = null;
                 }
             }
             else
             {
-                adapter.AddScrobble(null);
+                //Not about music
             }
         }
     }

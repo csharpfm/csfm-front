@@ -34,6 +34,7 @@ namespace csfm_android.Ui.Holders
                 Picasso.With(Application.Context)
                        .Load(value)
                        .Transform(new CircleTransform())
+                       .Placeholder(Resource.Drawable.ic_music_circle_grey600_24dp)
                        .Into(AlbumCover);
             }
         }
@@ -42,10 +43,22 @@ namespace csfm_android.Ui.Holders
         {
             set
             {
-                Picasso.With(Application.Context)
-                    .Load(new File(value))
-                    .Transform(new CircleTransform())
-                    .Into(AlbumCover);
+                try
+                {
+                    Picasso.With(Application.Context)
+                        .Load(new File(value))
+                        .Transform(new CircleTransform())
+                        .Into(AlbumCover);
+                }
+                catch
+                {
+                    //Placeholder
+                    Picasso.With(Application.Context)
+                        .Load(Resource.Drawable.ic_music_circle_grey600_24dp)
+                        .Transform(new CircleTransform())
+                        .Into(AlbumCover);
+                }
+
             }
         }
 

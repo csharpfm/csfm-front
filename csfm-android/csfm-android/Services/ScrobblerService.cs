@@ -57,18 +57,15 @@ namespace csfm_android.Services
             return StartCommandResult.NotSticky;
         }
 
-        private void Init(Intent intent)
-        {
-            MusicPlayingReceiver receiver = new MusicPlayingReceiver();
-            IntentFilter iF = new IntentFilter();
-            iF.AddAction("com.android.music.metachanged");
-            iF.AddAction("com.android.music.playstatechanged");
-            iF.AddAction("com.android.music.playbackcomplete");
-            iF.AddAction("com.android.music.queuechanged");
-            RegisterReceiver(receiver, iF);
+        //private void Init(Intent intent)
+        //{
+        //    MusicPlayingReceiver receiver = new MusicPlayingReceiver();
+        //    IntentFilter iF = new IntentFilter().AddActions(Configuration.Music.MUSIC_ACTIONS);
+            
+        //    RegisterReceiver(receiver, iF);
 
-            AppNotificationManager.SendNotification(null, this, this.ApplicationContext);
-        }
+        //    AppNotificationManager.SendNotification(null, this, this.ApplicationContext);
+        //}
 
         private void Scrobble(Intent intent)
         {

@@ -3602,34 +3602,37 @@ namespace csfm_android
 			public const int ic_menu_search_holo_dark = 2130837602;
 			
 			// aapt resource value: 0x7f020063
-			public const int ic_music_note_black_24dp = 2130837603;
+			public const int ic_music_circle_grey600_24dp = 2130837603;
 			
 			// aapt resource value: 0x7f020064
-			public const int ic_notifications_mfm = 2130837604;
+			public const int ic_music_note_black_24dp = 2130837604;
 			
 			// aapt resource value: 0x7f020065
-			public const int ic_person_white_24dp = 2130837605;
+			public const int ic_notifications_mfm = 2130837605;
 			
 			// aapt resource value: 0x7f020066
-			public const int ic_search_white_24dp = 2130837606;
+			public const int ic_person_white_24dp = 2130837606;
 			
 			// aapt resource value: 0x7f020067
-			public const int ic_suggestion = 2130837607;
+			public const int ic_search_white_24dp = 2130837607;
 			
 			// aapt resource value: 0x7f020068
-			public const int Icon = 2130837608;
+			public const int ic_suggestion = 2130837608;
 			
 			// aapt resource value: 0x7f020069
-			public const int logo = 2130837609;
-			
-			// aapt resource value: 0x7f02006c
-			public const int notification_template_icon_bg = 2130837612;
+			public const int Icon = 2130837609;
 			
 			// aapt resource value: 0x7f02006a
-			public const int ripple = 2130837610;
+			public const int logo = 2130837610;
+			
+			// aapt resource value: 0x7f02006d
+			public const int notification_template_icon_bg = 2130837613;
 			
 			// aapt resource value: 0x7f02006b
-			public const int ripple_white_background = 2130837611;
+			public const int ripple = 2130837611;
+			
+			// aapt resource value: 0x7f02006c
+			public const int ripple_white_background = 2130837612;
 			
 			static Drawable()
 			{
