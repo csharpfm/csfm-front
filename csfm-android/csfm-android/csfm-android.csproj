@@ -131,8 +131,10 @@
     <Compile Include="Api\Model\Album.cs" />
     <Compile Include="Api\Model\Artist.cs" />
     <Compile Include="Notifications\AppNotificationManager.cs" />
+    <Compile Include="Receivers\LocalMusicPlayingReceiver.cs" />
     <Compile Include="Receivers\MusicPlayingReceiver.cs" />
     <Compile Include="Services\ScrobblerService.cs" />
+    <Compile Include="Ui\Adapters\AbstractAdapter.cs" />
     <Compile Include="Utils\ExtensionMethods.cs" />
     <Compile Include="Api\Model\History.cs" />
     <Compile Include="Api\Model\MusicItem.cs" />
@@ -609,6 +611,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_notifications_mfm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\anim\rotate.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets')" />

@@ -17,7 +17,7 @@ namespace csfm_android.Utils
 {
     public class MusicLibrary
     {
-        public IEnumerable<string> GetAlbumArt(string artist, string album, Context context) //Get Album Art from MediaStore if available
+        public static IEnumerable<string> GetAlbumArt(string artist, string album, Context context) //Get Album Art from MediaStore if available
         {
             string condition = string.Format("{0} = ? AND {1} = ?",
                  AlbumColumns.Artist,

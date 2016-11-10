@@ -15,38 +15,16 @@ using csfm_android.Ui.Holders;
 
 namespace csfm_android.Ui.Adapters
 {
-    public abstract class SearchAdapter<T> : RecyclerView.Adapter where T : MusicItem
+    public abstract class SearchAdapter<T> : AbstractAdapter<T> where T : MusicItem
     {
-        private List<T> data;
-        private Context context;
-
-        public List<T> Data
+        public SearchAdapter(Context context, List<T> data) : base(context, data)
         {
-            set
-            {
-                data = value;
-                NotifyDataSetChanged();
-            }
-        }
-
-        public SearchAdapter(Context context, List<T> data)
-        {
-            this.data = data;
-            this.context = context;
-        }
-
-        public override int ItemCount
-        {
-            get
-            {
-                return data != null ? data.Count : 0;
-            }
         }
 
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
             SearchHolder<T> searchHolder = holder as SearchHolder<T>;
-            searchHolder?.Bind(data[position]);
+            searchHolder?.Bind(Data[position]);
         }
     }
 }

@@ -18,10 +18,17 @@ namespace csfm_android.Api.Model
 
         public DateTime Date { get; set; }
 
-        public History(Track track, DateTime date)
+        public bool IsScrobbling { get; set; }
+
+        public History(Track track, DateTime date, bool isScrobbling = false)
         {
             Track = track;
             Date = date;
+            IsScrobbling = isScrobbling;
+        }
+
+        public History(Track track, bool isScrobbling) : this(track, DateTime.Now, isScrobbling)
+        {
         }
 
     }

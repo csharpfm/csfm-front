@@ -26,27 +26,15 @@ namespace csfm_android.Receivers
 
         public override void OnReceive(Context context, Intent intent)
         {
-            foreach(var key in intent.Extras.KeySet())
-            {
-                try
-                {
-                    Console.WriteLine($"{key}: {intent.GetStringExtra(key)}");
-                }
-                catch
-                {
-
-                }
-            }
             if (intent.HasExtra(PLAYING_EXTRA)) //Music action
             {
                 if (intent.GetBooleanExtra(PLAYING_EXTRA, false)) //Music is at 00:00 and is playing
                 {
                     if (intent.GetPosition(1) == 0)
                     {
-                        
+                        ScrobblerService.SendScrobble(intent.GetArtist(), intent.GetAlbum(), intent.GetTrack(), context);
                     }
                     Console.WriteLine("Playing");
-                    ScrobblerService.SendScrobble(intent.GetArtist(), intent.GetAlbum(), intent.GetTrack(), context);
                 }
                 else //Music paused or continuing
                 {

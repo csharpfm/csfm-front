@@ -16,53 +16,42 @@ using Square.Picasso;
 using csfm_android.Ui.Utils;
 using csfm_android.Utils.MaterialDesignSearchView;
 using csfm_android.Utils;
+using csfm_android.Receivers;
 
 namespace csfm_android.Ui.Adapters
 {
-    public class HistoryAdapter : RecyclerView.Adapter
+    public class HistoryAdapter : AbstractAdapter<History>
     {
-
-        private List<History> historic;
-
-        private Context context;
-        private object hhistory;
-
-        public HistoryAdapter(Context context, List<History> historic)
+        private History scrobble;
+        public History Scrobble
         {
-            this.context = context;
-            this.historic = historic;
-            MaterialSearchView.AddSuggestions(historic.ToTrackNames());
-            MaterialSearchView.AddSuggestions(historic.ToAlbumNames());
-            MaterialSearchView.AddSuggestions(historic.ToArtistNames());
+            get { return scrobble; }
+            set {
+                SetData(Data, value);
+            }
         }
 
-        public override int ItemCount
+        public HistoryAdapter(Context context, List<History> history) : base(context, history)
         {
-            get
-            {
-                return historic.Count;
-            }
+            LocalMusicPlayingReceiver receiver = new LocalMusicPlayingReceiver(this);
+            IntentFilter iF = new IntentFilter();
+            //[IntentFilter(new[] { "com.android.music.metachanged", "com.android.music.playstatechanged", "com.android.music.playbackcomplete", "com.android.music.queuechanged" })]
+            iF.AddActions("com.android.music.metachanged", "com.android.music.playstatechanged", "com.android.music.playbackcomplete", "com.android.music.queuechanged");
+            context.RegisterReceiver(receiver, iF);
+            MaterialSearchView.AddSuggestions(Data.ToTrackNames());
+            MaterialSearchView.AddSuggestions(Data.ToAlbumNames());
+            MaterialSearchView.AddSuggestions(Data.ToArtistNames());
         }
 
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
             if (position < ItemCount)
             {
-                History history = historic[position];
+                History history = Data[position];
 
                 if (history != null)
                 {
-                    HistoryHolder historyHolder = holder as HistoryHolder;
-
-                    historyHolder.SongName.Text = history.Track.Name;
-                    historyHolder.SongArtist.Text = history.Track.Artist.Name;
-
-                    Picasso.With(context)
-                       .Load(history.Track.Album.Image)
-                       .Transform(new CircleTransform())
-                       .Into(historyHolder.AlbumCover);
-
-                    historyHolder.Date.Text = history.Date.ToString();
+                    (holder as HistoryHolder)?.Bind(history);
                 }
             }
         }
@@ -77,5 +66,38 @@ namespace csfm_android.Ui.Adapters
             HistoryHolder holder = new HistoryHolder(itemView);
             return holder;
         }
+
+        public void AddScrobble(History scrobble)
+        {
+            SetData(Data, scrobble);
+        }
+
+        public void SetData(IEnumerable<History> history, History scrobble)
+        {
+            Action action;
+            if (Data != history)
+            {
+                action = () => NotifyDataSetChanged();
+            }
+            else
+            {
+                if (Data == history && scrobble != null && Data.Any(h => !h.IsScrobbling))
+                {
+                    action = () => NotifyDataSetChanged();
+                }
+                else
+                {
+                    action = () => NotifyDataSetChanged();
+                }
+            }
+
+            List<History> data = history.Where(h => !h.IsScrobbling).ToList();
+            if (scrobble != null)
+            {
+                data.Insert(0, scrobble);
+            }
+            this.Data = data; //base.SetData(data, action);
+        }
+
     }
 }

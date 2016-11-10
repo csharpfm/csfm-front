@@ -75,8 +75,7 @@ namespace csfm_android.Services
             string artist = intent.GetStringExtra(MediaStore.Audio.AudioColumns.Artist);
             string album = intent.GetStringExtra(MediaStore.Audio.AudioColumns.Album);
             string track = intent.GetStringExtra(MediaStore.Audio.AudioColumns.Track);
-            MusicLibrary lib = new MusicLibrary();
-            lib.GetAlbumArt(artist, album, CSFMApplication.Context);
+            string albumArt = MusicLibrary.GetAlbumArt(artist, album, CSFMApplication.Context)?.FirstOrDefault();
             AppNotificationManager.SendNotification(artist, album, track, this, this.ApplicationContext);
 
             ScrobblePrefs.Save(artist, album, track);
@@ -117,6 +116,12 @@ namespace csfm_android.Services
             Bundle extras = new Bundle();
             extras.AddSong(artist, album, track);
             context.StartService(serviceIntent);
+        }
+
+        public override void OnDestroy()
+        {
+            ScrobblePrefs.Clear();
+            base.OnDestroy();
         }
     }
 }

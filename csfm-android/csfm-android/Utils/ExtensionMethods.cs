@@ -135,6 +135,49 @@ namespace csfm_android.Utils
                 extras.PutString(MediaStore.Audio.AudioColumns.Track, track);
         }
 
+        public static History ToHistoryItem(this Intent intent, bool isScrobbling)
+        {
+            string artistString = intent.GetArtist();
+            string albumString = intent.GetAlbum();
+            string trackString = intent.GetTrack();
+            Artist artist = new Artist
+            {
+                Name = artistString
+            };
+
+            Album album = new Album
+            {
+                Name = albumString,
+                Artist = artist,
+                Image = MusicLibrary.GetAlbumArt(artistString, albumString, Application.Context).FirstOrDefault(),
+            };
+
+            Track track = new Track
+            {
+                Name = trackString,
+                Album = album,
+                Artist = artist
+            };
+
+            artist.Albums = new List<Album> { album };
+            album.Tracks = new List<Track> { track };
+
+
+            return new History(track, true);
+
+
+        }
+
+        public static IntentFilter AddActions(this IntentFilter intentFilter, params string[] actions)
+        {
+            foreach(string a in actions)
+            {
+                intentFilter.AddAction(a);
+            }
+
+            return intentFilter;
+        }
+
     }
 
 
