@@ -75,7 +75,8 @@ namespace csfm_android.Services
             string artist = intent.GetStringExtra(MediaStore.Audio.AudioColumns.Artist);
             string album = intent.GetStringExtra(MediaStore.Audio.AudioColumns.Album);
             string track = intent.GetStringExtra(MediaStore.Audio.AudioColumns.Track);
-
+            MusicLibrary lib = new MusicLibrary();
+            lib.GetAlbumArt(artist, album, CSFMApplication.Context);
             AppNotificationManager.SendNotification(artist, album, track, this, this.ApplicationContext);
 
             ScrobblePrefs.Save(artist, album, track);

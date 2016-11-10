@@ -26,6 +26,17 @@ namespace csfm_android.Receivers
 
         public override void OnReceive(Context context, Intent intent)
         {
+            foreach(var key in intent.Extras.KeySet())
+            {
+                try
+                {
+                    Console.WriteLine($"{key}: {intent.GetStringExtra(key)}");
+                }
+                catch
+                {
+
+                }
+            }
             if (intent.HasExtra(PLAYING_EXTRA)) //Music action
             {
                 if (intent.GetBooleanExtra(PLAYING_EXTRA, false)) //Music is at 00:00 and is playing
