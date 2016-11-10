@@ -4603,8 +4603,8 @@ namespace csfm_android
 			// aapt resource value: 0x7f0a0012
 			public const int abc_toolbar_collapse_description = 2131361810;
 			
-			// aapt resource value: 0x7f0a0021
-			public const int account = 2131361825;
+			// aapt resource value: 0x7f0a0022
+			public const int account = 2131361826;
 			
 			// aapt resource value: 0x7f0a0017
 			public const int app_name = 2131361815;
@@ -4621,53 +4621,56 @@ namespace csfm_android
 			// aapt resource value: 0x7f0a0016
 			public const int character_counter_pattern = 2131361814;
 			
-			// aapt resource value: 0x7f0a0025
-			public const int confirm_password = 2131361829;
-			
-			// aapt resource value: 0x7f0a0027
-			public const int create_one = 2131361831;
-			
-			// aapt resource value: 0x7f0a0023
-			public const int email = 2131361827;
-			
-			// aapt resource value: 0x7f0a002f
-			public const int history = 2131361839;
-			
-			// aapt resource value: 0x7f0a001f
-			public const int home = 2131361823;
-			
-			// aapt resource value: 0x7f0a002d
-			public const int load_more = 2131361837;
-			
-			// aapt resource value: 0x7f0a0020
-			public const int match = 2131361824;
-			
 			// aapt resource value: 0x7f0a0026
-			public const int no_account = 2131361830;
-			
-			// aapt resource value: 0x7f0a002e
-			public const int no_history = 2131361838;
+			public const int confirm_password = 2131361830;
 			
 			// aapt resource value: 0x7f0a0028
-			public const int no_mail = 2131361832;
-			
-			// aapt resource value: 0x7f0a002c
-			public const int no_more_match = 2131361836;
-			
-			// aapt resource value: 0x7f0a0029
-			public const int no_password = 2131361833;
-			
-			// aapt resource value: 0x7f0a002a
-			public const int no_username = 2131361834;
+			public const int create_one = 2131361832;
 			
 			// aapt resource value: 0x7f0a0024
-			public const int password = 2131361828;
+			public const int email = 2131361828;
+			
+			// aapt resource value: 0x7f0a0030
+			public const int history = 2131361840;
+			
+			// aapt resource value: 0x7f0a0020
+			public const int home = 2131361824;
+			
+			// aapt resource value: 0x7f0a002e
+			public const int load_more = 2131361838;
+			
+			// aapt resource value: 0x7f0a001f
+			public const int login_progress = 2131361823;
+			
+			// aapt resource value: 0x7f0a0021
+			public const int match = 2131361825;
+			
+			// aapt resource value: 0x7f0a0027
+			public const int no_account = 2131361831;
+			
+			// aapt resource value: 0x7f0a002f
+			public const int no_history = 2131361839;
+			
+			// aapt resource value: 0x7f0a0029
+			public const int no_mail = 2131361833;
+			
+			// aapt resource value: 0x7f0a002d
+			public const int no_more_match = 2131361837;
+			
+			// aapt resource value: 0x7f0a002a
+			public const int no_password = 2131361834;
+			
+			// aapt resource value: 0x7f0a002b
+			public const int no_username = 2131361835;
+			
+			// aapt resource value: 0x7f0a0025
+			public const int password = 2131361829;
 			
 			// aapt resource value: 0x7f0a001a
 			public const int preferences = 2131361818;
 			
-			// aapt resource value: 0x7f0a002b
-			public const int search_hint = 2131361835;
+			// aapt resource value: 0x7f0a002c
+			public const int search_hint = 2131361836;
 			
 			// aapt resource value: 0x7f0a001b
 			public const int signin = 2131361819;
@@ -4681,8 +4684,8 @@ namespace csfm_android
 			// aapt resource value: 0x7f0a0013
 			public const int status_bar_notification_info_overflow = 2131361811;
 			
-			// aapt resource value: 0x7f0a0022
-			public const int username = 2131361826;
+			// aapt resource value: 0x7f0a0023
+			public const int username = 2131361827;
 			
 			static String()
 			{

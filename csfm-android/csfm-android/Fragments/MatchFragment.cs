@@ -134,7 +134,7 @@ namespace csfm_android.Fragments
                   .Into(this.avatar);
             
                 this.username.Text = user.Username;
-                // this.favoriteSong.Text // TODO
+                this.favoriteSong.Text = "Mylène Farmer - Libertine"; // TODO
 
                 this.recommendedUsers.RemoveFirst();
             }

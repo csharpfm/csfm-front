@@ -9,6 +9,8 @@
     <string name="signout">Se déconnecter</string>
     <string name="cancel">Annuler</string>
 
+    <string name="login_progress">Connexion en cours</string>
+
     <string name="home">Accueil</string>
     <string name="match">Match</string>
     <string name="account">Compte</string>

@@ -47,37 +47,7 @@ namespace csfm_android.Fragments
         public override void OnStart()
         {
             base.OnStart();
-
             GetHistory();
-
-         /*   List<History> historic = new List<History>();
-            Album album = new Album();
-            Artist artist = new Artist();
-            artist.Name = "Lady Gaga";
-            album.Artist = artist;
-            album.Name = "Joanne";
-            album.Image = "https://lh4.googleusercontent.com/-p1ejPKmyA2s/AAAAAAAAAAI/AAAAAAACRXU/6S-Em-MWl08/s0-c-k-no-ns/photo.jpg";
-            Track track1 = new Track();
-            track1.Album = album;
-            track1.Name = "Perfect Illusion";
-            Track track2 = new Track();
-            track2.Album = album;
-            track2.Name = "A-YO";
-
-
-            historic.Add(new Api.Model.History(track1, new DateTime()));
-            historic.Add(new Api.Model.History(track2, new DateTime()));
-            historic.Add(new Api.Model.History(track2, new DateTime()));
-            historic.Add(new Api.Model.History(track2, new DateTime()));
-            historic.Add(new Api.Model.History(track2, new DateTime()));
-            historic.Add(new Api.Model.History(track2, new DateTime()));
-            historic.Add(new Api.Model.History(track2, new DateTime()));
-            historic.Add(new Api.Model.History(track2, new DateTime()));
-            historic.Add(new Api.Model.History(track2, new DateTime()));
-            historic.Add(new Api.Model.History(track2, new DateTime()));
-            historic.Add(new Api.Model.History(track2, new DateTime()));
-
-            recyclerView.SetAdapter(new HistoryAdapter(this.Activity, historic));*/
         }
 
         private async void GetHistory()

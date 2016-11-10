@@ -9,6 +9,8 @@
   <string name="signout">Sign out</string>
   <string name="cancel">Cancel</string>
 
+  <string name="login_progress">Connecting</string>
+
   <string name="home">Home</string>
   <string name="match">Match</string>
   <string name="account">Account</string>
