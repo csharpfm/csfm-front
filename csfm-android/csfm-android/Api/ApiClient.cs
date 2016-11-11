@@ -14,6 +14,7 @@ using csfm_android.Api.Interfaces;
 using csfm_android.Utils;
 using Newtonsoft.Json.Linq;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace csfm_android.Api
 {
@@ -90,6 +91,26 @@ namespace csfm_android.Api
             var user = await instance.GetUser(username, "Bearer " + this.RetrieveBearer());
             // TODO
             return true; // TODO
+        }
+
+        public async Task UploadProfilePicture(string username, byte[] photo)
+        {
+            try
+            {
+                string result = await instance.UploadPhoto(username, photo, "Bearer " + this.RetrieveBearer());
+                Console.WriteLine(result);
+            }
+            catch(Refit.ApiException e)
+            {
+                Console.WriteLine("---------- Exception ------------");
+                Console.WriteLine(e);
+                Console.WriteLine(e.InnerException);
+                var content = e.GetContentAs<System.Collections.Generic.Dictionary<string, string>>();
+                foreach (var item in content)
+                {
+                    Console.WriteLine(item.Key + ":" + item.Value);
+                }
+            }
         }
 
 

@@ -11,6 +11,7 @@ using Android.Views;
 using Android.Widget;
 using Refit;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace csfm_android.Api.Interfaces
 {
@@ -36,9 +37,12 @@ namespace csfm_android.Api.Interfaces
         [Get("/api/users/modify/password/{password}")]
         Task<string> ModifyPassword(string password, [Header("Authorization")] string accessToken);
 
+        
         [Put("/api/Users/{username}/Photo")]
-        Task<string> UploadPhoto(string username, [Body(BodySerializationMethod.UrlEncoded)] byte[] photo, [Header("Authorization")] string accessToken);
+        [Multipart]
+        Task<string> UploadPhoto(string username, [AttachmentName("profile")] byte[] aFile, [Header("Authorization")] string accessToken);
 
         /* Match */   
     }
 }
+

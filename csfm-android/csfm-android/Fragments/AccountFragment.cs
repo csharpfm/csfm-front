@@ -15,6 +15,13 @@ using csfm_android.Activities;
 using static Android.Views.View;
 using Android.Provider;
 using Android.Database;
+using Square.Picasso;
+using csfm_android.Ui.Utils;
+using System.IO;
+using csfm_android.Api.Interfaces;
+using Java.IO;
+using csfm_android.Api;
+using System.Threading.Tasks;
 
 namespace csfm_android.Fragments
 {
@@ -24,6 +31,17 @@ namespace csfm_android.Fragments
 
         private Button signoutButton;
         private ImageView profilePicture;
+
+        private Android.Net.Uri ProfilePictureUri
+        {
+            set
+            {
+                Picasso.With(Application.Context)
+                    .Load(value)
+                    .Transform(new CircleTransform())
+                    .Into(profilePicture);
+            }
+        }
 
         public object Cursor { get; private set; }
 
@@ -74,10 +92,38 @@ namespace csfm_android.Fragments
                 Android.Net.Uri selectedImageUri = intent.Data;
                 if (requestCode == 1)
                 {
-                    string selectedPath = GetPath(selectedImageUri);
-                    Console.WriteLine(selectedPath);
+                    try
+                    {
+                        ProfilePictureUri = selectedImageUri;
+                        var apiClient = new ApiClient();
+                        apiClient.UploadProfilePicture("Siliem", GetBytes(selectedImageUri));
+                    }
+                    catch(Exception e)
+                    {
+                        System.Console.WriteLine(e);
+                    }
+
                 }
             }
+        }
+
+        private byte[] GetBytes(Android.Net.Uri uri)
+        {
+            return GetBytes(Activity.ContentResolver.OpenInputStream(uri));
+        }
+
+        private byte[] GetBytes(Stream stream)
+        {
+            ByteArrayOutputStream byteBuffer = new ByteArrayOutputStream();
+            int bufferSize = 30000;
+            byte[] buffer = new byte[bufferSize];
+
+            int len = 0;
+            while ((len = stream.Read(buffer, 0, buffer.Length)) > 0)
+            {
+                byteBuffer.Write(buffer, 0, len);
+            }
+            return byteBuffer.ToByteArray();
         }
 
         public string GetPath(Android.Net.Uri uri)

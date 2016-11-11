@@ -127,6 +127,7 @@
     <Compile Include="Activities\SignupActivity.cs" />
     <Compile Include="Activities\ToolbarActivity.cs" />
     <Compile Include="Api\ApiClient.cs" />
+    <Compile Include="Api\Interfaces\HttpPostedFilebase.cs" />
     <Compile Include="Api\Interfaces\ICsfmApi.cs" />
     <Compile Include="Api\Model\Album.cs" />
     <Compile Include="Api\Model\Artist.cs" />
