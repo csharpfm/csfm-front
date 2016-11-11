@@ -89,16 +89,15 @@ namespace csfm_android.Api
             return false;
         }
 
-        public async System.Threading.Tasks.Task<string> GetHistory(string username)
+        public async System.Threading.Tasks.Task<History> GetHistory(string username)
         {
             try
             {
-                var history = await instance.GetUserHistory(username);
-                return history;
+                return await instance.GetUserHistory(username);
             }
             catch (Exception e)
             {
-                return "";
+                return null;
             }
         }
 
@@ -106,16 +105,15 @@ namespace csfm_android.Api
         {
             try
             {
-                var user = await instance.GetUser(username, "Bearer " + this.RetrieveBearer());
-                return user;
-
-            } catch (Exception e)
+                return await instance.GetUser(username, "Bearer " + this.RetrieveBearer());
+            }
+            catch (Exception e)
             {
                 return null;
             }
         }
 
-        public async System.Threading.Tasks.Task<bool> PutUserLocation(string username, long latitude, long longitude)
+        public async System.Threading.Tasks.Task<bool> PutUserLocation(string username, double latitude, double longitude)
         {
             try
             {
@@ -133,7 +131,10 @@ namespace csfm_android.Api
             }
         }
 
-        //public async System.Threading.Tasks.Task<bool> PutUserAvatar(string username, )
+        public async void ImportLastFm(string lastfmUsername)
+        {
+
+        }
     }
 }
  

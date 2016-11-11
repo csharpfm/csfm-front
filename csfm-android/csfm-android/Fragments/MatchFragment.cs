@@ -48,7 +48,7 @@ namespace csfm_android.Fragments
         {
             this.rootView = inflater.Inflate(Resource.Layout.match_fragment, container, false);
 
-            ((ToolbarActivity) Activity).Toolbar.Hide();
+            ((ToolbarActivity)Activity).Toolbar.Hide();
 
             this.likeButton = this.rootView.FindViewById<ImageView>(Resource.Id.match_ok);
             this.nextButton = this.rootView.FindViewById<ImageView>(Resource.Id.match_cancel);
@@ -96,7 +96,7 @@ namespace csfm_android.Fragments
 
 
 
-    private void InitButtons()
+        private void InitButtons()
         {
             Bitmap likeBitmap = ((BitmapDrawable)this.likeButton.Drawable).Bitmap;
             this.likeButton.SetImageDrawable(new BitmapDrawable(Resources, AddGradient(likeBitmap, new Color(89, 202, 167), new Color(118, 217, 204))));
@@ -130,9 +130,9 @@ namespace csfm_android.Fragments
                 User user = this.recommendedUsers.First();
 
                 Picasso.With(this.Activity)
-                  .Load(user.Photo)
-                  .Into(this.avatar);
-            
+                    .Load(user.Photo)
+                    .Into(this.avatar);
+
                 this.username.Text = user.Username;
                 this.favoriteSong.Text = "Mylène Farmer - Libertine"; // TODO
 
@@ -147,9 +147,9 @@ namespace csfm_android.Fragments
                 this.loadMore.Visibility = ViewStates.Visible;
                 // TODO LOAD MORE
             }
+
         }
+
     }
-
-
    
 }

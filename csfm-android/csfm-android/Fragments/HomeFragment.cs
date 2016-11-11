@@ -14,6 +14,7 @@ using csfm_android.Ui.Adapters;
 using csfm_android.Api.Model;
 using csfm_android.Utils;
 using csfm_android.Api;
+using Android.Locations;
 
 namespace csfm_android.Fragments
 {
@@ -44,10 +45,9 @@ namespace csfm_android.Fragments
             return this.rootView;
         }
 
-        public override void OnStart()
+        public override void OnResume()
         {
-            base.OnStart();
-
+            base.OnResume();
             GetHistory();
         }
 
@@ -57,7 +57,7 @@ namespace csfm_android.Fragments
 
             var history = await apiClient.GetHistory(CSFMPrefs.Prefs.GetString(CSFMApplication.Username, ""));
 
-            if(String.IsNullOrEmpty(history) || "[]".Equals(history))
+            if(history == null)
             {
                 // No history found
             }
