@@ -31,6 +31,9 @@ namespace csfm_android.Api.Interfaces
         [Get("/api/Users/{username}/History")]
         Task<List<History>> GetUserHistory(string username);
 
+        [Post("/api/Users/{username}/History")]
+        Task PostUserHistory(string username, string history, [Header("Authorization")] string accessToken);
+
         [Put("/api/Users/{username}/Location")]
         Task PutUserLocation(string username, string location, [Header("Authorization")] string accessToken);
 

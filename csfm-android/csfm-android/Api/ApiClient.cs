@@ -14,6 +14,7 @@ using csfm_android.Api.Interfaces;
 using csfm_android.Utils;
 using Newtonsoft.Json.Linq;
 using csfm_android.Api.Model;
+using System.Threading.Tasks;
 
 namespace csfm_android.Api
 {
@@ -101,6 +102,23 @@ namespace csfm_android.Api
             }
         }
 
+        public async void PostHistory(string username, History history)
+        {
+            try
+            {
+                JObject jo = new JObject(
+                    new JProperty("Artist", history.Track.Album.Artist),
+                    new JProperty("Album", history.Track.Album),
+                    new JProperty("Title", history.Track.Name));
+
+                await instance.PostUserHistory(username, jo.ToString(), "Bearer " + this.RetrieveBearer());
+            }
+            catch (Exception e)
+            {
+                return;
+            }
+        }
+
         public async System.Threading.Tasks.Task<User> GetUser(string username)
         {
             try
@@ -137,4 +155,5 @@ namespace csfm_android.Api
         }
     }
 }
+ 
  
