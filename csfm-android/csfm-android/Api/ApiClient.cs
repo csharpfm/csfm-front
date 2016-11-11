@@ -89,7 +89,7 @@ namespace csfm_android.Api
             return false;
         }
 
-        public async System.Threading.Tasks.Task<History> GetHistory(string username)
+        public async System.Threading.Tasks.Task<List<History>> GetHistory(string username)
         {
             try
             {

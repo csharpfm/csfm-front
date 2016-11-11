@@ -30,8 +30,6 @@ namespace csfm_android.Fragments
 
         private RecyclerView recyclerView;
 
-        private TextView noHistory;
-
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -42,8 +40,7 @@ namespace csfm_android.Fragments
             this.rootView = inflater.Inflate(Resource.Layout.home_fragment, container, false);
 
             recyclerView = this.rootView.FindViewById<RecyclerView>(Resource.Id.recyclerView);
-            noHistory = this.rootView.FindViewById<TextView>(Resource.Id.no_history_text);
-
+          
             LinearLayoutManager layoutManager = new LinearLayoutManager(this.Activity);
             recyclerView.SetLayoutManager(layoutManager);
 
@@ -94,13 +91,8 @@ namespace csfm_android.Fragments
 
             var history = await apiClient.GetHistory(CSFMPrefs.Prefs.GetString(CSFMApplication.Username, ""));
 
-            if(history == null)
-            {
-                // No history found
-            }
-            else
-            {
-                this.noHistory.Visibility = ViewStates.Gone;
+            if(history != null)
+            { 
                 //recyclerView.SetAdapter(new HistoryAdapter(this.Activity, historic));
                 // GOOD
             }

@@ -29,7 +29,7 @@ namespace csfm_android.Api.Interfaces
         Task<User> GetUser(string username, [Header("Authorization")] string accessToken);
 
         [Get("/api/Users/{username}/History")]
-        Task<History> GetUserHistory(string username);
+        Task<List<History>> GetUserHistory(string username);
 
         [Put("/api/Users/{username}/Location")]
         Task PutUserLocation(string username, string location, [Header("Authorization")] string accessToken);
