@@ -133,7 +133,7 @@ namespace csfm_android.Api
 
         public async void ImportLastFm(string lastfmUsername)
         {
-
+            await instance.LinkLastFMAccount(lastfmUsername, "Bearer " + this.RetrieveBearer());
         }
     }
 }

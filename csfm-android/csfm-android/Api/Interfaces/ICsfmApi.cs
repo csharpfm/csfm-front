@@ -34,6 +34,11 @@ namespace csfm_android.Api.Interfaces
         [Put("/api/Users/{username}/Location")]
         Task PutUserLocation(string username, string location, [Header("Authorization")] string accessToken);
 
-        /* Match */   
+        /* Match */
+
+
+        /* LastFM */
+        [Post("/api/Users/{username}/LastFMImport")]
+        Task LinkLastFMAccount(string username, [Header("Authorization")] string accessToken);
     }
 }

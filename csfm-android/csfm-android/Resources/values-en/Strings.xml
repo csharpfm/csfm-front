@@ -35,4 +35,6 @@
 
   <string name="no_history">No history found</string>
   <string name="history">History</string>
+
+  <string name="lastfm_username">LastFM username</string>
 </resources>

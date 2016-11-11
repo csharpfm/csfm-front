@@ -29,6 +29,12 @@ namespace csfm_android.Fragments
 
         private TextView username;
 
+        private EditText lastFmUsernameEditText;
+
+        private Button lastFmButton;
+
+        private TextView lastFmUsername;
+
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -42,11 +48,9 @@ namespace csfm_android.Fragments
             this.userAvatar = this.rootView.FindViewById<ImageView>(Resource.Id.acc_user_avatar);
             this.username = this.rootView.FindViewById<TextView>(Resource.Id.acc_username);
 
-
-            this.signoutButton.Click += delegate
-            {
-                this.SignOut();
-            };
+            this.lastFmUsernameEditText = this.rootView.FindViewById<EditText>(Resource.Id.acc_lastfm_username_edittext);
+            this.lastFmButton = this.rootView.FindViewById<Button>(Resource.Id.acc_lastfm_button);
+            this.lastFmUsername = this.rootView.FindViewById<TextView>(Resource.Id.acc_lastfm_username);
 
             return this.rootView;
         }
@@ -58,6 +62,16 @@ namespace csfm_android.Fragments
             var username = CSFMPrefs.Prefs.GetString(CSFMApplication.Username, "");
             this.username.Text = GetString(Resource.String.connected_as).Replace("{name}", username);
             GetUser(username);
+
+            this.signoutButton.Click += delegate
+            {
+                this.SignOut();
+            };
+
+            this.lastFmButton.Click += delegate
+            {
+                this.LinkLastFm();
+            };
         }
 
         private async void GetUser(string username)
@@ -84,7 +98,21 @@ namespace csfm_android.Fragments
             Intent intent = new Intent(this.Activity, typeof(LoginActivity));
             StartActivity(intent);
         }
-     
+
+        private void LinkLastFm()
+        {
+            string lastfmUsername = this.lastFmUsernameEditText.Text;
+
+            if (!String.IsNullOrEmpty(lastfmUsername))
+            {
+                new ApiClient().ImportLastFm(lastfmUsername);
+            }
+            else
+            {
+                Toast.MakeText(Activity, Resource.String.no_username, ToastLength.Short).Show();
+            }  
+        }
+
     }
 
 
