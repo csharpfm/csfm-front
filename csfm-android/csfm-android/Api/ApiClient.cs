@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : csfm-android
+// Author           : Pierre Defache
+// Created          : 11-07-2016
+//
+// Last Modified By : Pierre Defache
+// Last Modified On : 11-11-2016
+// ***********************************************************************
+// <copyright file="ApiClient.cs" company="">
+//     Copyright ©  2016
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,33 +31,64 @@ using System.Threading.Tasks;
 
 namespace csfm_android.Api
 {
+    /// <summary>
+    /// Class ApiClient.
+    /// </summary>
     public class ApiClient
     {
+        /// <summary>
+        /// The server URL
+        /// </summary>
         private static readonly string SERVER_URL = "http://matchfm.azurewebsites.net";
 
+        /// <summary>
+        /// The instance
+        /// </summary>
         private static readonly ICsfmApi instance = RestService.For<ICsfmApi>(SERVER_URL);
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApiClient"/> class.
+        /// </summary>
         public ApiClient()
         {
         }
 
 
+        /// <summary>
+        /// Retrieves the bearer.
+        /// </summary>
+        /// <returns>System.String.</returns>
         public string RetrieveBearer()
         {
             return CSFMPrefs.Prefs.GetString(CSFMApplication.BearerToken, "");
         }
-        
+
+        /// <summary>
+        /// Retrieves the username.
+        /// </summary>
+        /// <returns>System.String.</returns>
         public string RetrieveUsername()
         {
             return CSFMPrefs.Prefs.GetString(CSFMApplication.Username, "");
         }
 
+        /// <summary>
+        /// Provides the specified key.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <param name="value">The value.</param>
         public void Provide(string key, string value)
         {
             CSFMPrefs.Editor.PutString(key, value).Commit();
         }
 
-        public async System.Threading.Tasks.Task<bool> LogIn(string username, string password)
+        /// <summary>
+        /// Logs the in.
+        /// </summary>
+        /// <param name="username">The username.</param>
+        /// <param name="password">The password.</param>
+        /// <returns>Task&lt;System.Boolean&gt;.</returns>
+        public async Task<bool> LogIn(string username, string password)
         {
             Dictionary<String, object> informations = new Dictionary<String, object>();
             informations.Add("grant_type", "password");
@@ -66,7 +110,14 @@ namespace csfm_android.Api
             }
         }
 
-        public async System.Threading.Tasks.Task<bool> SignUp(string email, string username, string password)
+        /// <summary>
+        /// Signs up.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <param name="username">The username.</param>
+        /// <param name="password">The password.</param>
+        /// <returns>Task&lt;System.Boolean&gt;.</returns>
+        public async Task<bool> SignUp(string email, string username, string password)
         {
             Dictionary<String, object> informations = new Dictionary<String, object>();
             informations.Add("Username", username);
@@ -90,7 +141,12 @@ namespace csfm_android.Api
             return false;
         }
 
-        public async System.Threading.Tasks.Task<List<History>> GetHistory(string username)
+        /// <summary>
+        /// Gets the history.
+        /// </summary>
+        /// <param name="username">The username.</param>
+        /// <returns>Task&lt;List&lt;History&gt;&gt;.</returns>
+        public async Task<List<History>> GetHistory(string username)
         {
             try
             {
@@ -102,6 +158,11 @@ namespace csfm_android.Api
             }
         }
 
+        /// <summary>
+        /// Posts the history.
+        /// </summary>
+        /// <param name="username">The username.</param>
+        /// <param name="history">The history.</param>
         public async void PostHistory(string username, History history)
         {
             try
@@ -119,7 +180,12 @@ namespace csfm_android.Api
             }
         }
 
-        public async System.Threading.Tasks.Task<User> GetUser(string username)
+        /// <summary>
+        /// Gets the user.
+        /// </summary>
+        /// <param name="username">The username.</param>
+        /// <returns>Task&lt;User&gt;.</returns>
+        public async Task<User> GetUser(string username)
         {
             try
             {
@@ -131,7 +197,14 @@ namespace csfm_android.Api
             }
         }
 
-        public async System.Threading.Tasks.Task<bool> PutUserLocation(string username, double latitude, double longitude)
+        /// <summary>
+        /// Puts the user location.
+        /// </summary>
+        /// <param name="username">The username.</param>
+        /// <param name="latitude">The latitude.</param>
+        /// <param name="longitude">The longitude.</param>
+        /// <returns>Task&lt;System.Boolean&gt;.</returns>
+        public async Task<bool> PutUserLocation(string username, double latitude, double longitude)
         {
             try
             {
@@ -149,6 +222,10 @@ namespace csfm_android.Api
             }
         }
 
+        /// <summary>
+        /// Imports the last fm.
+        /// </summary>
+        /// <param name="lastfmUsername">The lastfm username.</param>
         public async void ImportLastFm(string lastfmUsername)
         {
             await instance.LinkLastFMAccount(lastfmUsername, "Bearer " + this.RetrieveBearer());
