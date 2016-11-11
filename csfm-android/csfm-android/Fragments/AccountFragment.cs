@@ -33,8 +33,6 @@ namespace csfm_android.Fragments
 
         private Button lastFmButton;
 
-        private TextView lastFmUsername;
-
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -50,8 +48,7 @@ namespace csfm_android.Fragments
 
             this.lastFmUsernameEditText = this.rootView.FindViewById<EditText>(Resource.Id.acc_lastfm_username_edittext);
             this.lastFmButton = this.rootView.FindViewById<Button>(Resource.Id.acc_lastfm_button);
-            this.lastFmUsername = this.rootView.FindViewById<TextView>(Resource.Id.acc_lastfm_username);
-
+        
             return this.rootView;
         }
 

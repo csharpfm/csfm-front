@@ -46,13 +46,6 @@
        android:id="@+id/acc_lastfm_username_edittext"
        app:theme="@style/MyEditTextTheme"/>
 
-    <TextView
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:paddingLeft="15dp"
-       android:visibility="gone"
-       android:id="@+id/acc_lastfm_username"/>
-
     <Button
       android:layout_width="0dp"
       android:layout_height="wrap_content"
