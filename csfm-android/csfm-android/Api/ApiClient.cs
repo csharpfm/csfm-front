@@ -13,12 +13,13 @@ using Refit;
 using csfm_android.Api.Interfaces;
 using csfm_android.Utils;
 using Newtonsoft.Json.Linq;
+using System.Threading.Tasks;
 
 namespace csfm_android.Api
 {
     public class ApiClient
     {
-        private static readonly string SERVER_URL = "http://matchfm.azurewebsites.net";
+        private const string SERVER_URL = "http://matchfm.azurewebsites.net";
 
         private static readonly ICsfmApi instance = RestService.For<ICsfmApi>(SERVER_URL);
 
@@ -90,6 +91,8 @@ namespace csfm_android.Api
             // TODO
             return true; // TODO
         }
+
+
     }
 }
  

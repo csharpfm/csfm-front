@@ -12,6 +12,9 @@ using Android.Views;
 using Android.Widget;
 using csfm_android.Utils;
 using csfm_android.Activities;
+using static Android.Views.View;
+using Android.Provider;
+using Android.Database;
 
 namespace csfm_android.Fragments
 {
@@ -20,6 +23,9 @@ namespace csfm_android.Fragments
         private View rootView;
 
         private Button signoutButton;
+        private ImageView profilePicture;
+
+        public object Cursor { get; private set; }
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -37,6 +43,8 @@ namespace csfm_android.Fragments
                 this.SignOut();
             };
 
+            this.profilePicture = this.rootView.FindViewById<ImageView>(Resource.Id.profilePicture);
+            this.profilePicture.SetOnClickListener(new UploadPictureClickListener(this));
             return this.rootView;
         }
 
@@ -50,7 +58,55 @@ namespace csfm_android.Fragments
             Intent intent = new Intent(this.Activity, typeof(LoginActivity));
             StartActivity(intent);
         }
-     
+
+        private void OpenGallery(int requestCode)
+        {
+            Intent intent = new Intent();
+            intent.SetType("image/*");
+            intent.SetAction(Intent.ActionGetContent);
+            StartActivityForResult(Intent.CreateChooser(intent, "Select file to upload"), requestCode);
+        }
+
+        public override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent intent)
+        {
+            if (resultCode == Result.Ok)
+            {
+                Android.Net.Uri selectedImageUri = intent.Data;
+                if (requestCode == 1)
+                {
+                    string selectedPath = GetPath(selectedImageUri);
+                    Console.WriteLine(selectedPath);
+                }
+            }
+        }
+
+        public string GetPath(Android.Net.Uri uri)
+        {
+            string[] projection = { MediaStore.Images.Media.InterfaceConsts.Data };
+            //ICursor cursor = Activity.ManagedQuery(uri, projection, null, null, null);
+            ICursor cursor = Activity.ApplicationContext.ContentResolver.Query(uri, projection, null, null, null);
+            int columnIndex = cursor.GetColumnIndexOrThrow(MediaStore.Images.Media.InterfaceConsts.Data);
+            cursor.MoveToFirst();
+
+            return cursor.GetString(columnIndex);
+        }
+        
+
+        private class UploadPictureClickListener : Java.Lang.Object, IOnClickListener
+        {
+            private AccountFragment f;
+
+            public UploadPictureClickListener(AccountFragment f)
+            {
+                this.f = f;
+            }
+
+            public void OnClick(View v)
+            {
+                this.f.OpenGallery(1);
+            }
+        }
+
     }
 
 

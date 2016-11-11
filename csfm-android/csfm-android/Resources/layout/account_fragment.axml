@@ -15,4 +15,12 @@
       android:id="@+id/signout"
        app:theme ="@style/MyButton"/>
 
+  <ImageView
+    android:layout_width="50dp"
+    android:layout_height="50dp"
+    android:background="@color/colorPrimary"
+    android:clickable="true"
+    android:id="@+id/profilePicture"
+    />
+
 </LinearLayout>

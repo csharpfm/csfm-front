@@ -19,6 +19,7 @@ namespace csfm_android.Activities
         private BottomBar bottomBar;
         private Fragment currentFragment = null;
 
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle, Resource.Layout.Main, GetString(Resource.String.home));

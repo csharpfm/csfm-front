@@ -100,7 +100,7 @@ namespace csfm_android.Activities
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            throw new Exception("Use OnCreate(Bundle, int) to specifiy a resource Id");
+            throw new Exception("Use OnCreate(Bundle, int, string) to specifiy a resource Id");
         }
 
         public override void OnBackPressed()

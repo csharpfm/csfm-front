@@ -36,6 +36,9 @@ namespace csfm_android.Api.Interfaces
         [Get("/api/users/modify/password/{password}")]
         Task<string> ModifyPassword(string password, [Header("Authorization")] string accessToken);
 
+        [Put("/api/Users/{username}/Photo")]
+        Task<string> UploadPhoto(string username, [Body(BodySerializationMethod.UrlEncoded)] byte[] photo, [Header("Authorization")] string accessToken);
+
         /* Match */   
     }
 }
