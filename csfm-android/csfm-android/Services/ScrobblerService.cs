@@ -37,9 +37,6 @@ namespace csfm_android.Services
                 
                 switch(intent.Action)
                 {
-                    //case ACTION_INIT:
-                    //    Init(intent);
-                    //    return StartCommandResult.Sticky;
                     case ACTION_SCROBBLE:
                         Scrobble(intent);
                         break;
@@ -56,16 +53,6 @@ namespace csfm_android.Services
             }
             return StartCommandResult.NotSticky;
         }
-
-        //private void Init(Intent intent)
-        //{
-        //    MusicPlayingReceiver receiver = new MusicPlayingReceiver();
-        //    IntentFilter iF = new IntentFilter().AddActions(Configuration.Music.MUSIC_ACTIONS);
-            
-        //    RegisterReceiver(receiver, iF);
-
-        //    AppNotificationManager.SendNotification(null, this, this.ApplicationContext);
-        //}
 
         private void Scrobble(Intent intent)
         {
@@ -88,7 +75,6 @@ namespace csfm_android.Services
 
         public void StopScrobbling(Intent intent)
         {
-            AppNotificationManager.SendNotification(intent.GetArtist(), intent.GetAlbum(), intent.GetTrack(), this, this.ApplicationContext);
             ScrobblePrefs.Clear();
         }
 

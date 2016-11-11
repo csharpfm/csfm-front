@@ -27,18 +27,16 @@ namespace csfm_android.Notifications
         public static void SendNotification(string artist, string album, string track, Service service, Context context)
         {
             if (artist.IsStringEmpty())
-            {
                 artist = "Unknwon Artist";
-            }
             if (album.IsStringEmpty())
-            {
-                album = "Unknown Album";
-            }
+                album = null;
             if (track.IsStringEmpty())
-            {
-                track = "Unknown Album";
-            }
-            SendNotification(string.Format("{0} - {1} ({2})", artist, track, album), service, context);
+                track = "Unknown Track";
+
+            if (album != null)
+                SendNotification(string.Format("{0} - {1} ({2})", artist, track, album), service, context);
+            else
+                SendNotification(string.Format("{0} - {1}", artist, track), service, context);
         }
 
         public static void SendNotification(string trackFormat, Service service, Context context)
@@ -54,16 +52,13 @@ namespace csfm_android.Notifications
 
             PendingIntent pendingIntent = PendingIntent.GetActivity(context, 0, notificationIntent, 0);
 
-            NotificationCompat.Action closeAction = MakeAction("Close", "Close", Resource.Drawable.ic_close_white_24dp, context);
-
             var builder = new NotificationCompat.Builder(context)
                 .SetContentTitle(TITLE)
                 .SetTicker(TICKER)
                 .SetContentIntent(pendingIntent)
                 .SetSmallIcon(drawable)
                 .SetOngoing(false)
-                .SetColor(color)
-                .AddAction(closeAction);
+                .SetColor(color);
 
             if (!text.IsStringEmpty())
                 builder.SetContentText(text);
@@ -82,9 +77,6 @@ namespace csfm_android.Notifications
         private static void SendNotification(Notification notification, Service service, Context context)
         {
             Notify(notification, context);
-            //service.StartForeground(NOTIFICATION_ID, notification);
-            //Intent updateIntent = new Intent("Notification");
-            //service.SendBroadcast(updateIntent);
         }
 
         private static void Notify(Notification notification, Context context)
