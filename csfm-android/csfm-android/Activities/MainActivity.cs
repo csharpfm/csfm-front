@@ -15,6 +15,8 @@ using System.Linq;
 using csfm_android.Api;
 using csfm_android.Utils;
 
+using csfm_android.Services;
+
 namespace csfm_android.Activities
 {
 
@@ -39,6 +41,7 @@ namespace csfm_android.Activities
         {
             base.OnResume();
             MaterialSearchView.CloseSearch();
+            ScrobblerService.InitService(this.ApplicationContext);
             locationManager.RequestLocationUpdates(locationProvider, 2000, 1000, this);
         }
 
@@ -75,16 +78,18 @@ namespace csfm_android.Activities
         {
             bottomBar = BottomBar.Attach(this, bundle);
 
-            BottomBarTab[] tabs = new BottomBarTab[3];
-            tabs[0] = new BottomBarTab(Resource.Drawable.ic_home_white_24dp, Resource.String.home);
-            tabs[1] = new BottomBarTab(Resource.Drawable.ic_favorite_white_24dp, Resource.String.match);
-            tabs[2] = new BottomBarTab(Resource.Drawable.ic_person_white_24dp, Resource.String.account);
+            BottomBarTab[] tabs = new BottomBarTab[3]
+            {
+                 new BottomBarTab(Resource.Drawable.ic_home_white_24dp, Resource.String.home),
+                 new BottomBarTab(Resource.Drawable.ic_favorite_white_24dp, Resource.String.match),
+                 new BottomBarTab(Resource.Drawable.ic_person_white_24dp, Resource.String.account)
+            };
 
             bottomBar.SetFixedInactiveIconColor("#44000000");
             bottomBar.SetActiveTabColor("#F44336");
 
             bottomBar.SetItems(tabs);
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < tabs.Length; i++)
             {
                 tabs[i].Id = i;
                 bottomBar.MapColorForTab(i, "#EFEFEF");

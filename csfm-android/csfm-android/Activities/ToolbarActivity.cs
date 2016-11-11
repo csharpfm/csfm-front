@@ -68,9 +68,10 @@ namespace csfm_android.Activities
             {
                 SetContentView(layout);
 
-                this.Toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
+                this.Toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
                 SetSupportActionBar(this.Toolbar);
                 this.ToolbarTitle = title;
+                this.Toolbar.NavigationIcon = GetDrawable(Resource.Drawable.ic_notifications_mfm);
                 this.Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds); //Add Status Bar Color (colorPrimaryDark)
                 this.MaterialSearchView = FindViewById<MaterialSearchView>(Resource.Id.material_design_search_view);
             }

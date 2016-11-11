@@ -131,6 +131,11 @@
     <Compile Include="Api\Model\Album.cs" />
     <Compile Include="Api\Model\Artist.cs" />
     <Compile Include="Api\Model\Enums\GenderEnum.cs" />
+    <Compile Include="Notifications\AppNotificationManager.cs" />
+    <Compile Include="Receivers\LocalMusicPlayingReceiver.cs" />
+    <Compile Include="Receivers\MusicPlayingReceiver.cs" />
+    <Compile Include="Services\ScrobblerService.cs" />
+    <Compile Include="Ui\Adapters\AbstractAdapter.cs" />
     <Compile Include="Utils\ExtensionMethods.cs" />
     <Compile Include="Api\Model\History.cs" />
     <Compile Include="Api\Model\MusicItem.cs" />
@@ -166,6 +171,8 @@
     <Compile Include="Utils\MaterialDesignSearchView\AnimationUtil.cs" />
     <Compile Include="Utils\MaterialDesignSearchView\MaterialSearchView.cs" />
     <Compile Include="Utils\MaterialDesignSearchView\SearchAdapter.cs" />
+    <Compile Include="Utils\MusicLibrary.cs" />
+    <Compile Include="Utils\ScrobblePrefs.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="GettingStarted.Xamarin" />
@@ -587,6 +594,42 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_favorite_white_24dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\ic_notifications_mfm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\ic_notifications_mfm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_notifications_mfm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_notifications_mfm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_notifications_mfm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\anim\rotate.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\ic_music_circle_grey600_24dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\ic_music_circle_grey600_24dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_music_circle_grey600_24dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_music_circle_grey600_24dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_music_circle_grey600_24dp.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets')" />
