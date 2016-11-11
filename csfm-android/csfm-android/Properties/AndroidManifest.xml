@@ -2,16 +2,4 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="csfm_android.csfm_android" android:versionCode="1" android:versionName="1.0" android:installLocation="auto">
   <uses-sdk android:minSdkVersion="16" />
   <application android:label="MatchFM" android:icon="@mipmap/ic_launcher" android:theme="@style/MyTheme" android:name=".CSFMApplication"></application>
-
-
-  <activity android:name=".Activities.MainActivity">
-
-    <intent-filter>
-      <action android:name="android.intent.action.SEARCH" />
-    </intent-filter>
-
-  </activity>
-  <activity android:name=".Activities.SearchActivity"></activity>
-  <activity android:name=".Activities.LoginActivity"></activity>
-  <activity android:name=".Activities.SignupActivity"></activity>
 </manifest>

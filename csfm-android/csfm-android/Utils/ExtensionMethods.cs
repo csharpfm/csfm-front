@@ -10,6 +10,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using csfm_android.Api.Model;
+using Android.Provider;
 
 namespace csfm_android.Utils
 {
@@ -95,6 +96,89 @@ namespace csfm_android.Utils
         public static IEnumerable<string> ToArtistNames(this List<History> history)
         {
             return history.Select(h => h.Track.Artist.Name);
+        }
+
+        public static string GetArtist(this Intent intent)
+        {
+            return intent.GetStringExtra(MediaStore.Audio.AudioColumns.Artist);
+        }
+
+        public static string GetAlbum(this Intent intent)
+        {
+            return intent.GetStringExtra(MediaStore.Audio.AudioColumns.Album);
+        }
+
+        public static string GetTrack(this Intent intent)
+        {
+            return intent.GetStringExtra(MediaStore.Audio.AudioColumns.Track);
+        }
+
+        public static long GetDuration(this Intent intent, long defaultValue)
+        {
+            return intent.GetLongExtra(Configuration.Music.EXTRA_DURATION, defaultValue);
+        }
+
+        public static long GetPosition(this Intent intent, long defaultValue)
+        {
+            return intent.GetLongExtra(Configuration.Music.EXTRA_POSITION, defaultValue);
+        }
+
+        public static void AddSong(this Bundle extras, string artist, string album, string track, long endTicks)
+        {
+            if (!artist.IsStringEmpty())
+                extras.PutString(Configuration.Music.EXTRA_ARTIST, artist);
+
+            if (!album.IsStringEmpty())
+                extras.PutString(Configuration.Music.EXTRA_ALBUM, album);
+
+            if (!track.IsStringEmpty())
+                extras.PutString(Configuration.Music.EXTRA_TRACK, track);
+
+            if (endTicks > 0)
+                extras.PutLong(Configuration.Music.EXTRA_TICKS_TO_END, endTicks);
+        }
+
+        public static History ToHistoryItem(this Intent intent, bool isScrobbling)
+        {
+            string artistString = intent.GetArtist();
+            string albumString = intent.GetAlbum();
+            string trackString = intent.GetTrack();
+            Artist artist = new Artist
+            {
+                Name = artistString
+            };
+
+            Album album = new Album
+            {
+                Name = albumString,
+                Artist = artist,
+                Image = MusicLibrary.GetAlbumArt(artistString, albumString, Application.Context).FirstOrDefault(),
+            };
+
+            Track track = new Track
+            {
+                Name = trackString,
+                Album = album,
+                Artist = artist
+            };
+
+            artist.Albums = new List<Album> { album };
+            album.Tracks = new List<Track> { track };
+
+
+            return new History(track, true);
+
+
+        }
+
+        public static IntentFilter AddActions(this IntentFilter intentFilter, params string[] actions)
+        {
+            foreach(string a in actions)
+            {
+                intentFilter.AddAction(a);
+            }
+
+            return intentFilter;
         }
 
     }

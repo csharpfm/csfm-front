@@ -13,6 +13,9 @@ using Android.Support.V7.Widget;
 using csfm_android.Ui.Adapters;
 using csfm_android.Api.Model;
 using csfm_android.Utils;
+using Android.Media;
+using static Android.Media.MediaPlayer;
+using Android.Provider;
 
 namespace csfm_android.Fragments
 {
@@ -45,25 +48,69 @@ namespace csfm_android.Fragments
             base.OnStart();
             List<History> historic = new List<History>();
 
-            Album album = new Album();
-            Artist artist = new Artist();
-            artist.Name = "Lady Gaga";
-            album.Artist = artist;
-            album.Name = "Joanne";
-            album.Image = "https://lh4.googleusercontent.com/-p1ejPKmyA2s/AAAAAAAAAAI/AAAAAAACRXU/6S-Em-MWl08/s0-c-k-no-ns/photo.jpg";
-            Track track1 = new Track();
-            track1.Album = album;
-            track1.Name = "Perfect Illusion";
-            track1.Artist = artist;
-            Track track2 = new Track();
-            track2.Album = album;
-            track2.Name = "A-YO";
-            track2.Artist = artist;
+            Artist artist = new Artist()
+            {
+                Name = "Lady Gaga"
+            };
+            Album album = new Album()
+            {
+                Artist = artist,
+                Name = "Joanne",
+                Image = "https://lh4.googleusercontent.com/-p1ejPKmyA2s/AAAAAAAAAAI/AAAAAAACRXU/6S-Em-MWl08/s0-c-k-no-ns/photo.jpg"
+            };
+            Track track1 = new Track
+            {
+                Album = album,
+                Name = "Perfect Illusion",
+                Artist = artist,
+            };
+            Track track2 = new Track
+            {
+                Album = album,
+                Name = "A-YO",
+                Artist = artist
+            };
 
-            historic.Add(new Api.Model.History(track1, new DateTime()));
-            historic.Add(new Api.Model.History(track2, new DateTime()));
 
-            recyclerView.SetAdapter(new HistoryAdapter(this.Activity, historic));
+            historic.Add(new History(track1, DateTime.Now.AddHours(-2)));
+            historic.Add(new History(track2, DateTime.Now));
+
+            HistoryAdapter adapter = new HistoryAdapter(this.Activity, historic);
+            recyclerView.SetAdapter(adapter);
+            InitScrobble(adapter);
+
+        }
+
+        private void InitScrobble(HistoryAdapter adapter)
+        {
+            if (ScrobblePrefs.IsPlaying && ScrobblePrefs.HasValue && !ScrobblePrefs.IsSongEnded)
+            {
+                Artist artistScrobble = new Artist
+                {
+                    Name = ScrobblePrefs.Artist
+                };
+
+                Album albumScrobble = new Album
+                {
+                    Name = ScrobblePrefs.Album,
+                    Image = MusicLibrary.GetAlbumArt(ScrobblePrefs.Artist, ScrobblePrefs.Album, rootView.Context).FirstOrDefault()
+
+                };
+
+                Track trackScrobble = new Track
+                {
+                    Album = albumScrobble,
+                    Artist = artistScrobble,
+                    Name = ScrobblePrefs.Track
+                };
+
+                adapter.Scrobble = new History(trackScrobble, true);
+
+            }
+            else
+            {
+                adapter.Scrobble = null;
+            }
         }
     }
 }
