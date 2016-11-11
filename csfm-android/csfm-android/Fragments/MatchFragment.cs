@@ -72,10 +72,10 @@ namespace csfm_android.Fragments
 
             User user1 = new User();
             user1.Username = "Hugoatease";
-            user1.Image = "https://scontent-cdg2-1.xx.fbcdn.net/v/t1.0-9/14492433_730273613793013_3473639481244418470_n.jpg?oh=8a6bcee3852f9dfa67e95155fe336209&oe=5889175E";
+            user1.Photo = "https://scontent-cdg2-1.xx.fbcdn.net/v/t1.0-9/14492433_730273613793013_3473639481244418470_n.jpg?oh=8a6bcee3852f9dfa67e95155fe336209&oe=5889175E";
             User user2 = new User();
             user2.Username = "Clément de Chereng";
-            user2.Image = "https://scontent-cdg2-1.xx.fbcdn.net/v/t34.0-0/s261x260/14971176_10210410328633000_797219556_n.jpg?oh=92361adb492252d0c756e24ae9349a6e&oe=58229A8A";
+            user2.Photo = "https://scontent-cdg2-1.xx.fbcdn.net/v/t34.0-0/s261x260/14971176_10210410328633000_797219556_n.jpg?oh=92361adb492252d0c756e24ae9349a6e&oe=58229A8A";
 
             this.recommendedUsers.AddLast(user1);
             this.recommendedUsers.AddLast(user2);
@@ -130,7 +130,7 @@ namespace csfm_android.Fragments
                 User user = this.recommendedUsers.First();
 
                 Picasso.With(this.Activity)
-                  .Load(user.Image)
+                  .Load(user.Photo)
                   .Into(this.avatar);
             
                 this.username.Text = user.Username;

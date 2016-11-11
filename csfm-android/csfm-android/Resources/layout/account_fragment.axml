@@ -1,16 +1,55 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:id="@+id/account_frag">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/account_frag"
+        android:layout_gravity="center_horizontal">
 
-  <Button
-      android:layout_width="wrap_content"
+
+  <ImageView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:id="@+id/acc_user_avatar"
+      android:gravity="center"
+      android:layout_marginBottom="10dp"/>
+  
+  <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="@string/connected_as"
+      android:id="@+id/acc_username"
+      android:gravity="center"
+      android:layout_marginBottom="5dp"/>
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:weightSum="8">
+
+    <RelativeLayout
+       android:layout_width="0dp"
+       android:layout_height="match_parent"
+       android:layout_weight="1">
+    </RelativeLayout>
+
+    <Button
+      android:layout_width="0dp"
       android:layout_height="wrap_content"
       android:text="@string/signout"
       android:id="@+id/signout"
-      app:theme ="@style/MyButton"/>
+      app:theme ="@style/MyButton"
+      android:layout_weight="6"
+      android:gravity="center"/>
+
+    <RelativeLayout
+     android:layout_width="0dp"
+     android:layout_height="match_parent"
+     android:layout_weight="1">
+    </RelativeLayout>
+
+  </LinearLayout>
 
 </LinearLayout>

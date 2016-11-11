@@ -9,6 +9,8 @@
     <string name="signout">Se déconnecter</string>
     <string name="cancel">Annuler</string>
 
+    <string name="connected_as">Connecté en tant que {name}</string>
+
     <string name="login_progress">Connexion en cours</string>
 
     <string name="home">Accueil</string>

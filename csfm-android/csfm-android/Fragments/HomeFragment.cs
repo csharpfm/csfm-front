@@ -47,6 +47,7 @@ namespace csfm_android.Fragments
         public override void OnStart()
         {
             base.OnStart();
+
             GetHistory();
         }
 
@@ -54,7 +55,7 @@ namespace csfm_android.Fragments
         {
             var apiClient = new ApiClient();
 
-            var history = await apiClient.GetHistory("Siliem");
+            var history = await apiClient.GetHistory(CSFMPrefs.Prefs.GetString(CSFMApplication.Username, ""));
 
             if(String.IsNullOrEmpty(history) || "[]".Equals(history))
             {

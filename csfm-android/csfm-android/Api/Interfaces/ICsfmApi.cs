@@ -11,6 +11,7 @@ using Android.Views;
 using Android.Widget;
 using Refit;
 using System.Threading.Tasks;
+using csfm_android.Api.Model;
 
 namespace csfm_android.Api.Interfaces
 {
@@ -25,13 +26,16 @@ namespace csfm_android.Api.Interfaces
 
         /* User API */
         [Get("/api/Users/{username}")]
-        Task<string> GetUser(string username, [Header("Authorization")] string accessToken);
+        Task<User> GetUser(string username, [Header("Authorization")] string accessToken);
 
         [Get("/api/Users/{username}/History")]
         Task<string> GetUserHistory(string username);
 
-        [Get("/api/Users/modify/password/{password}")]
-        Task<string> ModifyPassword(string password, [Header("Authorization")] string accessToken);
+        [Put("/api/Users/{username}/Location")]
+        Task<string> PutUserLocation(string username, string location, [Header("Authorization")] string accessToken);
+
+        [Put("/api/Users/{username}/photo")]
+        Task<string> PutUserAvatar(string username, [Header("Authorization")] string accessToken);
 
         /* Match */   
     }
