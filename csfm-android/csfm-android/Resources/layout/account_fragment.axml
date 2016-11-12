@@ -1,66 +1,89 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/account_frag"
-        android:layout_gravity="center_horizontal">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:app="http://schemas.android.com/apk/res-auto"
+          android:orientation="vertical"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:id="@+id/account_frag"
+          android:layout_gravity="center_horizontal">
 
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:weightSum="7">
 
-  <ImageView
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:id="@+id/acc_user_avatar"
-      android:gravity="center"
-      android:layout_marginBottom="10dp"/>
-  
-  <TextView
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:text="@string/connected_as"
-      android:id="@+id/acc_username"
-      android:gravity="center"
-      android:layout_marginBottom="5dp"/>
-
-  <TextView
-  android:layout_width="wrap_content"
-  android:layout_height="wrap_content"
-  android:text="LastFM"
-  android:padding="15dp"
-  android:textAllCaps="true"/>
-
-  <LinearLayout
-  android:layout_width="match_parent"
-  android:layout_height="wrap_content"
-  android:orientation="horizontal"
-  android:weightSum="7">
-    
-        <RelativeLayout
-     android:layout_width="0dp"
-     android:layout_height="match_parent"
-     android:layout_weight="2">
-    </RelativeLayout>
-
-    <EditText
+      <RelativeLayout
        android:layout_width="0dp"
        android:layout_height="wrap_content"
-       android:layout_weight="3"
-       android:inputType="text"
-       android:paddingLeft="15dp"
-       android:hint="@string/username"
-       android:id="@+id/acc_lastfm_username_edittext"
-       app:theme="@style/MyEditTextTheme"/>
-    
-        <RelativeLayout
-     android:layout_width="0dp"
-     android:layout_height="match_parent"
-     android:layout_weight="2">
-    </RelativeLayout>
+       android:layout_weight="2">
+          </RelativeLayout>
+
+      <ImageView
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:id="@+id/acc_user_avatar"
+           android:layout_weight="3"
+          android:gravity="center"/>
+
+      <RelativeLayout
+   android:layout_width="0dp"
+   android:layout_height="wrap_content"
+   android:layout_weight="2">
+      </RelativeLayout>
+
+    </LinearLayout>
 
 
-  </LinearLayout>
-  
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/connected_as"
+        android:id="@+id/acc_username"
+        android:gravity="center"
+        android:layout_marginBottom="5dp"/>
+
+    <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="LastFM"
+    android:padding="15dp"
+    android:textAllCaps="true"/>
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:weightSum="7">
+
+      <RelativeLayout
+   android:layout_width="0dp"
+   android:layout_height="match_parent"
+   android:layout_weight="2">
+      </RelativeLayout>
+
+      <EditText
+         android:layout_width="0dp"
+         android:layout_height="wrap_content"
+         android:layout_weight="3"
+         android:inputType="text"
+         android:paddingLeft="15dp"
+         android:hint="@string/username"
+         android:id="@+id/acc_lastfm_username_edittext"
+         app:theme="@style/MyEditTextTheme"/>
+
+      <RelativeLayout
+   android:layout_width="0dp"
+   android:layout_height="match_parent"
+   android:layout_weight="2">
+      </RelativeLayout>
+
+
+    </LinearLayout>
+
     <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -68,57 +91,58 @@
     android:weightSum="7"
     android:layout_marginTop="15dp">
 
-    <RelativeLayout
+      <RelativeLayout
+         android:layout_width="0dp"
+         android:layout_height="match_parent"
+         android:layout_weight="2">
+      </RelativeLayout>
+
+      <Button
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/link"
+        android:id="@+id/acc_lastfm_button"
+        app:theme ="@style/MyButton"
+        android:layout_weight="3"
+        android:paddingRight="10dp"/>
+
+      <RelativeLayout
        android:layout_width="0dp"
        android:layout_height="match_parent"
        android:layout_weight="2">
-    </RelativeLayout>
+      </RelativeLayout>
 
-    <Button
-      android:layout_width="0dp"
+    </LinearLayout>
+
+    <LinearLayout
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:text="@string/link"
-      android:id="@+id/acc_lastfm_button"
-      app:theme ="@style/MyButton"
-      android:layout_weight="3"
-      android:paddingRight="10dp"/>
+      android:orientation="horizontal"
+      android:weightSum="8"
+      android:layout_marginTop="15dp">
 
-    <RelativeLayout
-     android:layout_width="0dp"
-     android:layout_height="match_parent"
-     android:layout_weight="2">
-    </RelativeLayout>
+      <RelativeLayout
+         android:layout_width="0dp"
+         android:layout_height="match_parent"
+         android:layout_weight="1">
+      </RelativeLayout>
 
-  </LinearLayout>
+      <Button
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/signout"
+        android:id="@+id/signout"
+        app:theme ="@style/MyButton"
+        android:layout_weight="6"
+        android:gravity="center"/>
 
-  <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:weightSum="8"
-    android:layout_marginTop="15dp">
-
-    <RelativeLayout
+      <RelativeLayout
        android:layout_width="0dp"
        android:layout_height="match_parent"
        android:layout_weight="1">
-    </RelativeLayout>
+      </RelativeLayout>
 
-    <Button
-      android:layout_width="0dp"
-      android:layout_height="wrap_content"
-      android:text="@string/signout"
-      android:id="@+id/signout"
-      app:theme ="@style/MyButton"
-      android:layout_weight="6"
-      android:gravity="center"/>
-
-    <RelativeLayout
-     android:layout_width="0dp"
-     android:layout_height="match_parent"
-     android:layout_weight="1">
-    </RelativeLayout>
+    </LinearLayout>
 
   </LinearLayout>
-
-</LinearLayout>
+</ScrollView>
