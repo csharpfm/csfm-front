@@ -15,7 +15,7 @@ using csfm_android.Ui.Holders;
 
 namespace csfm_android.Ui.Adapters
 {
-    public class SearchTrackAdapter : SearchAdapter<History>
+    public class SearchTrackAdapter : SearchAdapter
     {
         public SearchTrackAdapter(Context context, List<History> data) : base(context, data)
         {
@@ -23,7 +23,7 @@ namespace csfm_android.Ui.Adapters
 
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
         {
-            return new SearchTrackHolder(LayoutInflater.From(parent.Context).Inflate(SearchTrackHolder.LAYOUT, parent, false));
+            return new HistoryHolder(LayoutInflater.From(parent.Context).Inflate(HistoryHolder.LAYOUT, parent, false));
         }
     }
 }

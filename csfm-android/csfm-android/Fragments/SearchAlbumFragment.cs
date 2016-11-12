@@ -25,7 +25,7 @@ namespace csfm_android.Fragments
             {
                 if (adapter == null && recyclerView != null)
                 {
-                    SetRecyclerViewAdapter(recyclerView);
+                    SetRecyclerViewAdapter(recyclerView, noResult);
                 }
                 return adapter;
             }
@@ -45,14 +45,14 @@ namespace csfm_android.Fragments
             recyclerView.SetAdapter(this.adapter = adapter);
         }
 
-        protected override void SetRecyclerViewAdapter(RecyclerView recyclerView)
+        protected override void SetRecyclerViewAdapter(RecyclerView recyclerView, View noResult)
         {
             SetRecyclerViewAdapter(recyclerView, new SearchAlbumAdapter(this.Context, new List<History>()));
         }
 
         protected override void SetRecyclerViewLayoutManager(RecyclerView recyclerView)
         {
-            recyclerView.SetLayoutManager(new GridLayoutManager(this.Activity, 3));
+            recyclerView.SetLayoutManager(new LinearLayoutManager(this.Activity));
         }
 
         protected override void Update(Action callback)
@@ -68,6 +68,7 @@ namespace csfm_android.Fragments
             string[] words = name.ToLower().Trim().Split(' ');
             
             List<History> history = MaterialSearchView.History;
+
             var albums = history.Where(h => words.All(w => h.Track.Album.Name.Trim().ToLower().Contains(w))).ToList();//FAKE_ALBUMS;
             Adapter.Data = albums;
             callback();

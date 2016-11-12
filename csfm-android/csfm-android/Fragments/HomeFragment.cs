@@ -102,21 +102,14 @@ namespace csfm_android.Fragments
         {
             if (ScrobblePrefs.IsPlaying && ScrobblePrefs.HasValue && !ScrobblePrefs.IsSongEnded)
             {
-                Artist artistScrobble = new Artist
-                {
-                    Name = ScrobblePrefs.Artist
-                };
-
-                Album albumScrobble = new Album
-                {
-                    Name = ScrobblePrefs.Album,
-                    Image = MusicLibrary.GetAlbumArt(ScrobblePrefs.Artist, ScrobblePrefs.Album, rootView.Context).FirstOrDefault()
-
-                };
-
                 Track trackScrobble = new Track
                 {
-                    Album = albumScrobble,
+                    Album = new Api.Model.Album
+                    {
+                        Name = ScrobblePrefs.Album,
+                        Image = MusicLibrary.GetAlbumArt(ScrobblePrefs.Artist, ScrobblePrefs.Album, rootView.Context).FirstOrDefault(),
+                        Artist = new Artist { Name = ScrobblePrefs.Artist }
+                    },
                     Name = ScrobblePrefs.Track
                 };
 

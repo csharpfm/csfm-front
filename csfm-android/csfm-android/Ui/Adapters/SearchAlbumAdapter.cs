@@ -15,7 +15,7 @@ using csfm_android.Ui.Holders;
 
 namespace csfm_android.Ui.Adapters
 {
-    public class SearchAlbumAdapter : SearchAdapter<History>
+    public class SearchAlbumAdapter : SearchAdapter
     {
         public SearchAlbumAdapter(Context context, List<History> data) : base(context, data)
         {
@@ -23,7 +23,7 @@ namespace csfm_android.Ui.Adapters
 
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
         {
-            return new SearchAlbumHolder(LayoutInflater.From(parent.Context).Inflate(SearchAlbumHolder.LAYOUT, parent, false));
+            return new HistoryHolder(LayoutInflater.From(parent.Context).Inflate(HistoryHolder.LAYOUT, parent, false));
         }
     }
 }

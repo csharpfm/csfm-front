@@ -20,6 +20,7 @@ namespace csfm_android.Ui.Holders
 {
     public class HistoryHolder : RecyclerView.ViewHolder
     {
+        public const int LAYOUT = Resource.Layout.history_item;
 
         public TextView SongName { get; private set; }
 
@@ -31,11 +32,17 @@ namespace csfm_android.Ui.Holders
         {
             set
             {
-                Picasso.With(Application.Context)
-                       .Load(value)
-                       .Transform(new CircleTransform())
-                       .Placeholder(Resource.Drawable.ic_music_circle_grey600_24dp)
-                       .Into(AlbumCover);
+                if (value != null)
+                    Picasso.With(Application.Context)
+                           .Load(value)
+                           .Transform(new CircleTransform())
+                           .Placeholder(Resource.Drawable.ic_music_circle_grey600_24dp)
+                           .Into(AlbumCover);
+                else
+                    Picasso.With(Application.Context)
+                        .Load(Resource.Drawable.ic_music_circle_grey600_24dp)
+                        .Transform(new CircleTransform())
+                        .Into(AlbumCover);
             }
         }
 
@@ -89,21 +96,30 @@ namespace csfm_android.Ui.Holders
 
         public void Bind(History history)
         {
-            SongName.Text = history.Track.Name;
-            SongArtist.Text = history.Track.Album.Artist.Name;
+            SongName.Text = history?.Track?.Name;
+            SongArtist.Text = history?.Track?.Album?.Artist?.Name;
 
             if (!history.IsScrobbling)
             {
-                Date.Text = history.ListenDate.ToString();
-                AlbumCoverUrl = history.Track.Album.Image;
+                Date.Text = history?.ListenDate.ToString();
+                AlbumCoverUrl = history?.Track?.Album?.Image != null ? history.Track.Album.Image : history?.Track?.Album?.Artist?.Image;
             }
             else
             {
                 Date.Text = "";
-                AlbumCoverFile = history.Track.Album.Image;
+                AlbumCoverFile = history?.Track?.Album?.Image;
             }
             Animation = history.IsScrobbling;
 
+        }
+
+        public void BindNoResult()
+        {
+            SongName.Text = "";
+            SongArtist.Text = Application.Context.Resources.GetString(Resource.String.no_data_available);
+            Date.Text = "";
+            AlbumCoverUrl = null;
+            Animation = false;
         }
     }
 }

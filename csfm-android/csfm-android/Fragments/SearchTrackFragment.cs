@@ -25,7 +25,7 @@ namespace csfm_android.Fragments
             {
                 if (adapter == null && recyclerView != null)
                 {
-                    SetRecyclerViewAdapter(recyclerView);
+                    SetRecyclerViewAdapter(recyclerView, noResult);
                 }
                 return adapter;
             }
@@ -45,7 +45,7 @@ namespace csfm_android.Fragments
             recyclerView.SetAdapter(this.adapter = adapter);
         }
 
-        protected override void SetRecyclerViewAdapter(RecyclerView recyclerView)
+        protected override void SetRecyclerViewAdapter(RecyclerView recyclerView, View noResult)
         {
             SetRecyclerViewAdapter(recyclerView, new SearchTrackAdapter(this.Context, new List<History>()));
         }
