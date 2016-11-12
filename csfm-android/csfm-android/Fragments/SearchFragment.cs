@@ -10,6 +10,7 @@ using csfm_android.Ui.Adapters;
 using System.Linq;
 using System;
 using System.Linq.Expressions;
+using Android.Widget;
 
 namespace csfm_android.Fragments
 {
@@ -18,6 +19,7 @@ namespace csfm_android.Fragments
         protected View rootView;
         protected RecyclerView recyclerView;
         protected SwipeRefreshLayout refresh;
+        protected TextView noResult;
 
         public static string FAKE_IMAGE = "https://f4.bcbits.com/img/a0648921701_16.jpg";
         public static List<Artist> FAKE_ARTISTS, FAKE_ARTISTS2;
@@ -44,7 +46,7 @@ namespace csfm_android.Fragments
             // Use this to return your custom view for this Fragment
             // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
             rootView = inflater.Inflate(Resource.Layout.search_activity_tab, container, false);
-
+            this.noResult = rootView.FindViewById<TextView>(Resource.Id.searchNoResult);
             this.recyclerView = rootView.FindViewById<RecyclerView>(Resource.Id.searchRecyclerView);
             this.refresh = rootView.FindViewById<SwipeRefreshLayout>(Resource.Id.swipe_refresh);
             this.refresh.SetColorSchemeResources(Resource.Color.colorPrimary);
@@ -56,13 +58,13 @@ namespace csfm_android.Fragments
         {
             base.OnResume();
             SetRecyclerViewLayoutManager(recyclerView);
-            SetRecyclerViewAdapter(recyclerView);
+            SetRecyclerViewAdapter(recyclerView, noResult);
             this.Update(this.PagerAdapter.Query);
         }
 
         protected abstract void SetRecyclerViewLayoutManager(RecyclerView recyclerView);
 
-        protected abstract void SetRecyclerViewAdapter(RecyclerView recyclerView);
+        protected abstract void SetRecyclerViewAdapter(RecyclerView recyclerView, View noResult);
 
         public void Update(string name)
         {

@@ -78,6 +78,7 @@ namespace csfm_android.Ui.Adapters
             this.context = context;
             this.data = history;
             LocalMusicPlayingReceiver.Register(context, this);
+            MaterialSearchView.History = history;
             MaterialSearchView.AddSuggestions(Data.ToTrackNames());
             MaterialSearchView.AddSuggestions(Data.ToAlbumNames());
             MaterialSearchView.AddSuggestions(Data.ToArtistNames());

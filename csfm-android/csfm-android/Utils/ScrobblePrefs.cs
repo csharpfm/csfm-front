@@ -16,32 +16,48 @@ namespace csfm_android.Utils
     public class ScrobblePrefs
     {
 
-        public const string ARTIST_KEY = "artist";
-        public const string ALBUM_KEY = "album";
-        public const string TRACK_KEY = "track";
-        public const string END_TICKS_KEY = "ticks";
+        public const string ARTIST_KEY = "scrobble.artist";
+        public const string ALBUM_KEY = "scrobble.album";
+        public const string TRACK_KEY = "scrobble.track";
+        public const string END_TICKS_KEY = "scrobble.ticks";
 
+        private static string artist;
         public static string Artist
         {
             get
             {
-                return CSFMPrefs.Prefs.GetString(ARTIST_KEY, null);
+                if (artist == null) artist = CSFMPrefs.Prefs.GetString(ARTIST_KEY, null);
+                return artist;
             }
         }
 
+        private static string album;
         public static string Album
         {
             get
             {
-                return CSFMPrefs.Prefs.GetString(ALBUM_KEY, null);
+                if (album == null) album = CSFMPrefs.Prefs.GetString(ALBUM_KEY, null);
+                return album;
             }
         }
 
+        private static string track;
         public static string Track
         {
             get
             {
-                return CSFMPrefs.Prefs.GetString(TRACK_KEY, null);
+                if (track == null) track = CSFMPrefs.Prefs.GetString(TRACK_KEY, null);
+                return track;
+            }
+        }
+
+        private static long? ticks;
+        private static long Ticks
+        {
+            get
+            {
+                if (!ticks.HasValue || ticks.Value == 0) ticks = CSFMPrefs.Prefs.GetLong(END_TICKS_KEY, 0);
+                return ticks.Value;
             }
         }
 
@@ -49,8 +65,7 @@ namespace csfm_android.Utils
         {
             get
             {
-                DateTime test = new DateTime(CSFMPrefs.Prefs.GetLong(END_TICKS_KEY, 0));
-                return new DateTime(CSFMPrefs.Prefs.GetLong(END_TICKS_KEY, 0)) < DateTime.Now;
+                return new DateTime(Ticks) < DateTime.Now;
             }
         }
 
@@ -80,9 +95,13 @@ namespace csfm_android.Utils
         public static void Save(string artist, string album, string track, long endTicks)
         {
             var editor = CSFMPrefs.Editor;
+            artist = null;
             editor.PutString(ARTIST_KEY, artist);
+            album = null;
             editor.PutString(ALBUM_KEY, album);
+            track = null;
             editor.PutString(TRACK_KEY, track);
+            ticks = null;
             editor.PutLong(END_TICKS_KEY, endTicks);
             editor.Commit();
         }

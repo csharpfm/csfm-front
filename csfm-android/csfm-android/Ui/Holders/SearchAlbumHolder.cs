@@ -15,7 +15,7 @@ using Square.Picasso;
 
 namespace csfm_android.Ui.Holders
 {
-    public class SearchAlbumHolder : SearchHolder<Album>
+    public class SearchAlbumHolder : SearchHolder<History>
     {
         public const int LAYOUT = Resource.Layout.search_album_item;
         public TextView Title { get; private set; }
@@ -41,11 +41,11 @@ namespace csfm_android.Ui.Holders
             this.Image = itemView.FindViewById<ImageView>(Resource.Id.search_image);
         }
 
-        public override void Bind(Album item)
+        public override void Bind(History item)
         {
-            this.Title.Text = item.Name;
-            this.Artist.Text = item.Artist.Name;
-            this.ImageUrl = item.Image;
+            this.Title.Text = item.Track.Album.Name; //item.Name;
+            this.Artist.Text = item.Track.Album.Artist.Name;
+            this.ImageUrl = item.Track.Album.Image != null ? item.Track.Album.Image : item.Track.Album.Artist.Image != null ? item.Track.Album.Artist.Image : item.Track.Album.Artist.Albums.FirstOrDefault(a => a.Image != null)?.Image;
         }
     }
 }

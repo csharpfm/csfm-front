@@ -37,4 +37,5 @@
     <string name="history">Historique</string>
 
     <string name="link">Lier</string>
+    <string name="no_data_available">Aucun résultat</string>
 </resources>

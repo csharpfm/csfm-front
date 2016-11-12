@@ -14,7 +14,7 @@ using csfm_android.Api.Model;
 
 namespace csfm_android.Ui.Holders
 {
-    public abstract class SearchHolder<T> : RecyclerView.ViewHolder where T : MusicItem
+    public abstract class SearchHolder<T> : RecyclerView.ViewHolder
     {
         public SearchHolder(View itemView) : base(itemView)
         {

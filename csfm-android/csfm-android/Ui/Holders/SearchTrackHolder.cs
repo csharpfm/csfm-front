@@ -15,7 +15,7 @@ using csfm_android.Ui.Utils;
 
 namespace csfm_android.Ui.Holders
 {
-    public class SearchTrackHolder : SearchHolder<Track>
+    public class SearchTrackHolder : SearchHolder<History>
     {
         public const int LAYOUT = Resource.Layout.search_track_item;
 
@@ -44,12 +44,13 @@ namespace csfm_android.Ui.Holders
         }
 
 
-        public override void Bind(Track item)
+        public override void Bind(History item)
         {
-            this.Title.Text = item.Name;
-            this.Artist.Text = item.Artist_Album_Format;
-            this.ImageUrl = item.Album.Image;
-            this.Duration.Text = item.Duration_Format;
+            this.Title.Text = item.Track.Name;
+            this.Artist.Text = item.Track.Artist_Album_Format;
+            this.Duration.Text = item.Track.Duration_Format;
+            this.ImageUrl = item.Track.Album.Image != null ? item.Track.Album.Image : item.Track.Album.Image != null ? item.Track.Album.Image : item.Track.Album.Artist.Albums.FirstOrDefault(a => a.Image != null)?.Image;
+
         }
     }
 }

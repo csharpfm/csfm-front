@@ -24,6 +24,7 @@ using System.Reflection;
 using static Android.Support.V7.Widget.ActionMenuView;
 using Android.Graphics;
 using Android.Support.V7.Widget;
+using csfm_android.Api.Model;
 
 namespace csfm_android.Utils.MaterialDesignSearchView
 {
@@ -83,6 +84,8 @@ namespace csfm_android.Utils.MaterialDesignSearchView
             get { return this.menuItem; }
         }
 
+
+        public static List<History> History { get; set; }
 
         /// <summary>
         /// return true if search is open
