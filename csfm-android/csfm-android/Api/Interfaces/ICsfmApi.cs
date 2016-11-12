@@ -39,8 +39,7 @@ namespace csfm_android.Api.Interfaces
 
         
         [Put("/api/Users/{username}/Photo")]
-        [Multipart]
-        Task<string> UploadPhoto(string username, [AttachmentName("profile")] byte[] aFile, [Header("Authorization")] string accessToken);
+        Task<string> UploadPhoto(string username, HttpPostedFilebase aFile, [Header("Authorization")] string accessToken);
 
         /* Match */   
     }

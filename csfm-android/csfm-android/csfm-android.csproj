@@ -166,6 +166,7 @@
     <Compile Include="Utils\MaterialDesignSearchView\AnimationUtil.cs" />
     <Compile Include="Utils\MaterialDesignSearchView\MaterialSearchView.cs" />
     <Compile Include="Utils\MaterialDesignSearchView\SearchAdapter.cs" />
+    <Compile Include="Utils\MemoryStreamJsonConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="GettingStarted.Xamarin" />

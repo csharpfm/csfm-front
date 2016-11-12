@@ -22,6 +22,7 @@ using csfm_android.Api.Interfaces;
 using Java.IO;
 using csfm_android.Api;
 using System.Threading.Tasks;
+using Android.Graphics;
 
 namespace csfm_android.Fragments
 {
@@ -96,7 +97,13 @@ namespace csfm_android.Fragments
                     {
                         ProfilePictureUri = selectedImageUri;
                         var apiClient = new ApiClient();
-                        apiClient.UploadProfilePicture("Siliem", GetBytes(selectedImageUri));
+                        HttpPostedFilebase aFile = new HttpPostedFilebase("Siliem", selectedImageUri);
+                        string path = GetPath(selectedImageUri);
+                        apiClient.UploadProfilePicture("Siliem", path, GetBytes(selectedImageUri));
+
+                        //byte[] imageBytes = GetBytes(selectedImageUri);
+                        //Bitmap bmp = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
+                        //profilePicture.SetImageBitmap(bmp);
                     }
                     catch(Exception e)
                     {
@@ -107,14 +114,25 @@ namespace csfm_android.Fragments
             }
         }
 
+        public string GetPath(Android.Net.Uri uri)
+        {
+            string[] projection = { MediaStore.Images.Media.InterfaceConsts.Data };
+            //ICursor cursor = Activity.ManagedQuery(uri, projection, null, null, null);
+            ICursor cursor = CSFMApplication.Context.ContentResolver.Query(uri, projection, null, null, null);
+            int columnIndex = cursor.GetColumnIndexOrThrow(MediaStore.Images.Media.InterfaceConsts.Data);
+            cursor.MoveToFirst();
+
+            return cursor.GetString(columnIndex);
+        }
+
         private byte[] GetBytes(Android.Net.Uri uri)
         {
-            return GetBytes(Activity.ContentResolver.OpenInputStream(uri));
+            return GetBytes(CSFMApplication.Context.ContentResolver.OpenInputStream(uri));
         }
 
         private byte[] GetBytes(Stream stream)
         {
-            ByteArrayOutputStream byteBuffer = new ByteArrayOutputStream();
+            Java.IO.ByteArrayOutputStream byteBuffer = new Java.IO.ByteArrayOutputStream();
             int bufferSize = 30000;
             byte[] buffer = new byte[bufferSize];
 
@@ -126,17 +144,6 @@ namespace csfm_android.Fragments
             return byteBuffer.ToByteArray();
         }
 
-        public string GetPath(Android.Net.Uri uri)
-        {
-            string[] projection = { MediaStore.Images.Media.InterfaceConsts.Data };
-            //ICursor cursor = Activity.ManagedQuery(uri, projection, null, null, null);
-            ICursor cursor = Activity.ApplicationContext.ContentResolver.Query(uri, projection, null, null, null);
-            int columnIndex = cursor.GetColumnIndexOrThrow(MediaStore.Images.Media.InterfaceConsts.Data);
-            cursor.MoveToFirst();
-
-            return cursor.GetString(columnIndex);
-        }
-        
 
         private class UploadPictureClickListener : Java.Lang.Object, IOnClickListener
         {
