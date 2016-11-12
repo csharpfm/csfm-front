@@ -12,6 +12,7 @@ using Android.Views;
 using Android.Widget;
 using csfm_android.Api.Model;
 using csfm_android.Ui.Adapters;
+using csfm_android.Utils.MaterialDesignSearchView;
 
 namespace csfm_android.Fragments
 {
@@ -61,21 +62,25 @@ namespace csfm_android.Fragments
 
         protected override void SetRecyclerViewAdapter(RecyclerView recyclerView)
         {
-            SetRecyclerViewAdapter(recyclerView, new SearchArtistAdapter(this.Context, new List<Artist>()));
+            SetRecyclerViewAdapter(recyclerView, new SearchArtistAdapter(this.Context, new List<History>()));
         }
 
 
         protected override void Update(Action callback)
         {
             //API Call
-            Adapter.Data = FAKE_ARTISTS;
+            Adapter.Data = MaterialSearchView.History;//FAKE_ARTISTS;
             callback();
         }
 
         protected override void Update(string name, Action callback)
         {
             //API Call
-            Adapter.Data = FAKE_ARTISTS;
+            List<History> history = MaterialSearchView.History;
+            string[] words = name.ToLower().Trim().Split(' ');
+            var artists = history.Where(h => words.All(w => h.Track.Album.Artist.Name.ToLower().Trim().Contains(w)));
+            Adapter.Data = artists.ToList();
+            //Adapter.Data = FAKE_ARTISTS;
             callback();
         }
     }

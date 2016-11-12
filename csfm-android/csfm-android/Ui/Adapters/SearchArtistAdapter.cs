@@ -15,9 +15,9 @@ using csfm_android.Ui.Holders;
 
 namespace csfm_android.Ui.Adapters
 {
-    public class SearchArtistAdapter : SearchAdapter<Artist>
+    public class SearchArtistAdapter : SearchAdapter<History>
     {
-        public SearchArtistAdapter(Context context, List<Artist> data) : base(context, data)
+        public SearchArtistAdapter(Context context, List<History> data) : base(context, data)
         {
         }
 

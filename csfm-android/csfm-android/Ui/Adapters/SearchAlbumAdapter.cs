@@ -15,9 +15,9 @@ using csfm_android.Ui.Holders;
 
 namespace csfm_android.Ui.Adapters
 {
-    public class SearchAlbumAdapter : SearchAdapter<Album>
+    public class SearchAlbumAdapter : SearchAdapter<History>
     {
-        public SearchAlbumAdapter(Context context, List<Album> data) : base(context, data)
+        public SearchAlbumAdapter(Context context, List<History> data) : base(context, data)
         {
         }
 

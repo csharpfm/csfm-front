@@ -15,7 +15,7 @@ using csfm_android.Ui.Holders;
 
 namespace csfm_android.Ui.Adapters
 {
-    public abstract class SearchAdapter<T> : AbstractAdapter<T> where T : MusicItem
+    public abstract class SearchAdapter<T> : AbstractAdapter<T>
     {
         public SearchAdapter(Context context, List<T> data) : base(context, data)
         {

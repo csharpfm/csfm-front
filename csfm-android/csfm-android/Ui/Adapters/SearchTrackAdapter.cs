@@ -15,9 +15,9 @@ using csfm_android.Ui.Holders;
 
 namespace csfm_android.Ui.Adapters
 {
-    public class SearchTrackAdapter : SearchAdapter<Track>
+    public class SearchTrackAdapter : SearchAdapter<History>
     {
-        public SearchTrackAdapter(Context context, List<Track> data) : base(context, data)
+        public SearchTrackAdapter(Context context, List<History> data) : base(context, data)
         {
         }
 
