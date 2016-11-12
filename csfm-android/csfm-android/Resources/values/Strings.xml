@@ -16,6 +16,8 @@
     <string name="home">Accueil</string>
     <string name="match">Match</string>
     <string name="account">Compte</string>
+    <string name="settings">Paramètres</string>
+    <string name="discover">Découvrir</string>
 
     <string name="username">Nom d\'utilisateur</string>
     <string name="email">Email</string>
