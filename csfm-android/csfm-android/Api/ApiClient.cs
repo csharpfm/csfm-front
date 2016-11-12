@@ -22,7 +22,7 @@ namespace csfm_android.Api
 {
     public class ApiClient
     {
-        private const string SERVER_URL = "http://matchfm.westeurope.cloudapp.azure.com/";
+        private const string SERVER_URL = "http://matchfm.westeurope.cloudapp.azure.com";
         //private const string SERVER_URL = "http://matchfm.azurewebsites.net";
 
         private static readonly ICsfmApi instance = RestService.For<ICsfmApi>(SERVER_URL);
@@ -106,54 +106,54 @@ namespace csfm_android.Api
 
         public async Task UploadProfilePicture(string username, HttpPostedFilebase aFile, string path, byte[] bytes)
         {
-            var url = SERVER_URL + "api/Users/" + username + "/Photo";
+            //var url = SERVER_URL + "/api/Users/" + username + "/Photo";
+
+            //try
+            //{
+            //    Uri uri = new Uri(url);
+
+            //    WebClient client = new WebClient();
+            //    client.Headers = new WebHeaderCollection();
+            //    client.Headers[HttpRequestHeader.Authorization] = this.Bearer;
+            //    //client.Headers[HttpRequestHeader.ContentType] = "multipart/form-data";
+
+            //    try
+            //    {
+            //        byte[] result = client.UploadFile(uri, "POST", path);
+            //    }
+            //    catch (Exception e)
+            //    {
+            //        Console.WriteLine(e);
+            //    }
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine(e);
+            //}
+
 
             try
             {
-                Uri uri = new Uri(url);
-
-                WebClient client = new WebClient();
-                client.Headers = new WebHeaderCollection();
-                client.Headers[HttpRequestHeader.Authorization] = this.Bearer;
-                //client.Headers[HttpRequestHeader.ContentType] = "multipart/form-data";
-
-                try
+                Console.WriteLine("API START ---------------------");
+                    string result = await instance.UploadPhoto(username, bytes, this.Bearer);
+                    Console.WriteLine(result);
+                    
+            }
+            catch (Refit.ApiException e)
+            {
+                Console.WriteLine("---------- Exception ------------");
+                Console.WriteLine(e);
+                var content = e.GetContentAs<System.Collections.Generic.Dictionary<string, string>>();
+                foreach (var item in content)
                 {
-                    byte[] result = client.UploadFile(uri, "POST", path);
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
+                    Console.WriteLine(item.Key + ":" + item.Value);
                 }
             }
             catch (Exception e)
             {
+                Console.WriteLine("Unknown Exception");
                 Console.WriteLine(e);
             }
-
-
-            //try
-            //{
-            //    Console.WriteLine("API START ---------------------");
-            //    using (FileStream stream = File.Open(path, FileMode.Open))
-            //        string result = await instance.UploadPhoto(username, File.Open(path, FileMode.Open), this.Bearer);
-            //    Console.WriteLine(result);
-            //}
-            //catch (Refit.ApiException e)
-            //{
-            //    Console.WriteLine("---------- Exception ------------");
-            //    Console.WriteLine(e);
-            //    //var content = e.GetContentAs<System.Collections.Generic.Dictionary<string, string>>();
-            //    //foreach (var item in content)
-            //    //{
-            //    //    Console.WriteLine(item.Key + ":" + item.Value);
-            //    //}
-            //}
-            //catch (Exception e)
-            //{
-            //    Console.WriteLine("Unknown Exception");
-            //    Console.WriteLine(e);
-            //}
         }
 
 

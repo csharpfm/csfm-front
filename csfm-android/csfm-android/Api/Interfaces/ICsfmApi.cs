@@ -39,7 +39,9 @@ namespace csfm_android.Api.Interfaces
 
         
         [Post("/api/Users/{username}/Photo")]
-        Task<string> UploadPhoto(string username, [Body(BodySerializationMethod.UrlEncoded)] FileStream aFile, [Header("Authorization")] string accessToken);
+        [Multipart]
+        [Headers("Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW")]
+        Task<string> UploadPhoto(string username, [AttachmentName("Cat_158")] byte[] aFile, [Header("Authorization")] string accessToken);
 
         /* Match */   
     }
