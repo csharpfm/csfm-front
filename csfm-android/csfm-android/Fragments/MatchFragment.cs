@@ -84,7 +84,7 @@ namespace csfm_android.Fragments
               this.recommendedUsers.AddLast(user1);
               this.recommendedUsers.AddLast(user2);*/
 
-            GetMatch();
+           // GetRecommendations() // TODO
 
             this.likeButton.Click += delegate
             {
@@ -106,9 +106,10 @@ namespace csfm_android.Fragments
 
             this.loadMore.Click += delegate
             {
-                GetMatch();
+                // GetRecommendations() // TODO
                 if (this.recommendedUsers != null)
                 {
+                    this.loadMore.Visibility = ViewStates.Gone;
                     this.Next();
                 }
             };
@@ -122,8 +123,6 @@ namespace csfm_android.Fragments
                 LoadMore();
             }
         }
-
-
 
         private void InitButtons()
         {
