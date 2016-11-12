@@ -163,6 +163,7 @@
     <Compile Include="Ui\Holders\SearchTrackHolder.cs" />
     <Compile Include="Ui\Utils\CircleTransform.cs" />
     <Compile Include="Utils\CSFMPrefs.cs" />
+    <Compile Include="Utils\HttpMultipartRequest.cs" />
     <Compile Include="Utils\MaterialDesignSearchView\AnimationUtil.cs" />
     <Compile Include="Utils\MaterialDesignSearchView\MaterialSearchView.cs" />
     <Compile Include="Utils\MaterialDesignSearchView\SearchAdapter.cs" />

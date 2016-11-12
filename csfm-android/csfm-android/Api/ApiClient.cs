@@ -17,6 +17,9 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Net;
 using System.Globalization;
+using Newtonsoft.Json;
+using Android.Graphics;
+using Android.Provider;
 
 namespace csfm_android.Api
 {
@@ -106,54 +109,127 @@ namespace csfm_android.Api
 
         public async Task UploadProfilePicture(string username, HttpPostedFilebase aFile, string path, byte[] bytes)
         {
-            //var url = SERVER_URL + "/api/Users/" + username + "/Photo";
 
+            string lineEnd = "\r\n";
+            string twoHyphens = "--";
+            string boundary = "*****";
             //try
             //{
-            //    Uri uri = new Uri(url);
 
-            //    WebClient client = new WebClient();
-            //    client.Headers = new WebHeaderCollection();
-            //    client.Headers[HttpRequestHeader.Authorization] = this.Bearer;
-            //    //client.Headers[HttpRequestHeader.ContentType] = "multipart/form-data";
+            //    String lineEnd = "\r\n";
+            //    String twoHyphens = "--";
+            //    String boundary = "*****";
+            //    int maxBufferSize = 1 * 1024 * 1024;
+            //    Java.IO.FileInputStream fileInputStream = new Java.IO.FileInputStream(new Java.IO.File(path));
+            //    Java.Net.URL url = new Java.Net.URL(SERVER_URL + "/api/Users/" + username + "/Photo");
+            //    Java.Net.HttpURLConnection conn = (Java.Net.HttpURLConnection)url.OpenConnection();
+            //    conn.DoInput = true;
+            //    conn.DoOutput = true;
+            //    conn.UseCaches = false;
+            //    conn.RequestMethod = "POST";
+            //    conn.SetRequestProperty("Connection", "Keep-Alive");
+            //    conn.SetRequestProperty("Authorization", this.Bearer);
+            //    conn.SetRequestProperty("Content-Type", "application/octet-stream");
+            //    conn.SetRequestProperty("uploaded_file", username);
 
-            //    try
+            //    var dos = new Java.IO.DataOutputStream(conn.OutputStream);
+            //    dos.WriteBytes(twoHyphens + boundary + lineEnd);
+            //    dos.WriteBytes("Content-Disposition: form-data; name=\"uploaded_file\"; filename=\"" + username + "\"" + lineEnd);
+            //    dos.WriteBytes(lineEnd);
+
+            //    var bytesAvailable = fileInputStream.Available();
+
+            //    var bufferSize = Math.Min(bytesAvailable, maxBufferSize);
+            //    var buffer = new byte[bufferSize];
+            //    var bytesRead = fileInputStream.Read(buffer, 0, bufferSize);
+
+            //    while (bytesRead > 0)
             //    {
-            //        byte[] result = client.UploadFile(uri, "POST", path);
+            //        dos.Write(buffer, 0, bufferSize);
+            //        bytesAvailable = fileInputStream.Available();
+            //        bufferSize = Math.Min(bytesAvailable, maxBufferSize);
+            //        bytesRead = fileInputStream.Read(buffer, 0, bufferSize);
             //    }
-            //    catch (Exception e)
-            //    {
-            //        Console.WriteLine(e);
-            //    }
+
+            //    //Send multipart form data necessary after file data
+            //    dos.WriteBytes(lineEnd);
+            //    dos.WriteBytes(twoHyphens + boundary + twoHyphens + lineEnd);
+
+            //    //Response from the server (code and message)
+            //    var serverResponseCode = conn.ResponseCode;
+            //    var serverResponseMessage = conn.ResponseMessage;
+
+            //    Console.WriteLine("Done");
+
+            //    fileInputStream.Close();
+            //    dos.Flush();
+            //    dos.Close();
+
             //}
-            //catch (Exception e)
+            //catch (Exception ex)
             //{
-            //    Console.WriteLine(e);
+            //    Console.WriteLine(ex);
             //}
 
+
+
+
+
+
+            var url = SERVER_URL + "/api/Users/" + username + "/Photo";
 
             try
             {
-                Console.WriteLine("API START ---------------------");
-                    string result = await instance.UploadPhoto(username, bytes, this.Bearer);
-                    Console.WriteLine(result);
-                    
-            }
-            catch (Refit.ApiException e)
-            {
-                Console.WriteLine("---------- Exception ------------");
-                Console.WriteLine(e);
-                var content = e.GetContentAs<System.Collections.Generic.Dictionary<string, string>>();
-                foreach (var item in content)
+                Uri uri = new Uri(url);
+
+                WebClient client = new WebClient();
+                client.Headers = new WebHeaderCollection();
+                client.Headers[HttpRequestHeader.Authorization] = this.Bearer;
+                //client.Headers[HttpRequestHeader.ContentType] = "multipart/form-data";
+
+                try
                 {
-                    Console.WriteLine(item.Key + ":" + item.Value);
+                    //byte[] result = client.UploadFile(uri, "POST", path);
+                    //HttpMultipartRequest req = new HttpMultipartRequest(url, null, "upload_field", "original_filename.png", "image/png", bytes);
+                    client.UploadData(uri, "POST", bytes);
+                }
+                catch (WebException ex)
+                {
+                    Console.WriteLine(ex);
+                    var resp = new StreamReader(ex.Response.GetResponseStream()).ReadToEnd();
+
+                    object obj = JsonConvert.DeserializeObject(resp);
+                    Console.WriteLine("test");
                 }
             }
             catch (Exception e)
             {
-                Console.WriteLine("Unknown Exception");
                 Console.WriteLine(e);
             }
+
+
+            //try
+            //{
+            //    Console.WriteLine("API START ---------------------");
+            //    string result = await instance.UploadPhoto(username, bytes, this.Bearer);
+            //    Console.WriteLine(result);
+
+            //}
+            //catch (Refit.ApiException e)
+            //{
+            //    Console.WriteLine("---------- Exception ------------");
+            //    Console.WriteLine(e);
+            //    var content = e.GetContentAs<System.Collections.Generic.Dictionary<string, string>>();
+            //    foreach (var item in content)
+            //    {
+            //        Console.WriteLine(item.Key + ":" + item.Value);
+            //    }
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine("Unknown Exception");
+            //    Console.WriteLine(e);
+            //}
         }
 
 
