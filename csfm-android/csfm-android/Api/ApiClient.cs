@@ -28,6 +28,7 @@ using csfm_android.Utils;
 using Newtonsoft.Json.Linq;
 using csfm_android.Api.Model;
 using System.Threading.Tasks;
+using Java.Util;
 
 namespace csfm_android.Api
 {
@@ -39,7 +40,7 @@ namespace csfm_android.Api
         /// <summary>
         /// The server URL
         /// </summary>
-        private static readonly string SERVER_URL = "http://matchfm.azurewebsites.net";
+        private static readonly string SERVER_URL = "http://matchfm.westeurope.cloudapp.azure.com";
 
         /// <summary>
         /// The instance
@@ -208,11 +209,13 @@ namespace csfm_android.Api
         {
             try
             {
-                JObject jo = new JObject(
-                    new JProperty("latitude", latitude),
-                    new JProperty("longitude", longitude));
+                var data = new Dictionary<String, double>
+                {
+                    { "latitude", latitude },
+                    { "longitude", longitude },
+                };
 
-                await instance.PutUserLocation(username, jo.ToString(), "Bearer " + this.RetrieveBearer());
+                await instance.PutUserLocation(username, data, "Bearer " + this.RetrieveBearer());
 
                 return true;
             }
@@ -229,6 +232,39 @@ namespace csfm_android.Api
         public async void ImportLastFm(string lastfmUsername)
         {
             await instance.LinkLastFMAccount(lastfmUsername, "Bearer " + this.RetrieveBearer());
+        }
+
+
+        public async Task<List<User>> GetUserMatch(string username)
+        {
+            try
+            {
+                return await instance.GetUserMatch(username, "Bearer " + this.RetrieveBearer());
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
+        public async Task<bool> PutUserMatch(string username, string profileId, bool isMatch)
+        {
+            try
+            {
+                var data = new Dictionary<String, object>
+                {
+                    { "ProfilId", profileId },
+                    { "Match", isMatch },
+                };
+
+                await instance.PutUserMatch(username, data, "Bearer " + this.RetrieveBearer());
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
     }
 }

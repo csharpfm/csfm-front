@@ -35,10 +35,14 @@ namespace csfm_android.Api.Interfaces
         Task PostUserHistory(string username, string history, [Header("Authorization")] string accessToken);
 
         [Put("/api/Users/{username}/Location")]
-        Task PutUserLocation(string username, string location, [Header("Authorization")] string accessToken);
+        Task PutUserLocation(string username, [Body(BodySerializationMethod.Json)]  Dictionary<string, double> location, [Header("Authorization")] string accessToken);
 
         /* Match */
+        [Get("/api/Users/{username}/Match")]
+        Task<List<User>> GetUserMatch(string username, [Header("Authorization")] string accessToken);
 
+        [Put("/api/Users/{username}/Match")]
+        Task PutUserMatch(string username, [Body(BodySerializationMethod.Json)]  Dictionary<string, object> data, [Header("Authorization")] string accessToken);
 
         /* LastFM */
         [Post("/api/Users/{username}/LastFMImport")]

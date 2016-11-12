@@ -36,6 +36,5 @@
     <string name="no_history">Pas d\'historique</string>
     <string name="history">Historique</string>
 
-
-    <string name="lastfm_username">Pseudo LastFM</string>
+    <string name="link">Lier</string>
 </resources>

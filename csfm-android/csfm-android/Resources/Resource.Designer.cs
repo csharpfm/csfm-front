@@ -4658,7 +4658,7 @@ namespace csfm_android
 			public const int home = 2131361825;
 			
 			// aapt resource value: 0x7f0a0032
-			public const int lastfm_username = 2131361842;
+			public const int link = 2131361842;
 			
 			// aapt resource value: 0x7f0a002f
 			public const int load_more = 2131361839;
