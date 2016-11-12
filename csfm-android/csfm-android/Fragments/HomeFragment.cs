@@ -13,6 +13,10 @@ using Android.Support.V7.Widget;
 using csfm_android.Ui.Adapters;
 using csfm_android.Api.Model;
 using csfm_android.Utils;
+
+using csfm_android.Api;
+using Android.Locations;
+
 using Android.Media;
 using static Android.Media.MediaPlayer;
 using Android.Provider;
@@ -21,7 +25,7 @@ namespace csfm_android.Fragments
 {
     public class HomeFragment : Fragment
     {
-
+       
         private View rootView;
 
         private RecyclerView recyclerView;
@@ -36,16 +40,17 @@ namespace csfm_android.Fragments
             this.rootView = inflater.Inflate(Resource.Layout.home_fragment, container, false);
 
             recyclerView = this.rootView.FindViewById<RecyclerView>(Resource.Id.recyclerView);
-
+          
             LinearLayoutManager layoutManager = new LinearLayoutManager(this.Activity);
             recyclerView.SetLayoutManager(layoutManager);
 
             return this.rootView;
         }
 
-        public override void OnStart()
+        public override void OnResume()
         {
-            base.OnStart();
+            base.OnResume();
+
             List<History> historic = new List<History>();
 
             Artist artist = new Artist()
@@ -62,13 +67,11 @@ namespace csfm_android.Fragments
             {
                 Album = album,
                 Name = "Perfect Illusion",
-                Artist = artist,
             };
             Track track2 = new Track
             {
                 Album = album,
                 Name = "A-YO",
-                Artist = artist
             };
 
 
@@ -79,6 +82,20 @@ namespace csfm_android.Fragments
             recyclerView.SetAdapter(adapter);
             InitScrobble(adapter);
 
+           // GetHistory();
+        }
+
+        private async void GetHistory()
+        {
+            var apiClient = new ApiClient();
+
+            var history = await apiClient.GetHistory(CSFMPrefs.Prefs.GetString(CSFMApplication.Username, ""));
+
+            if(history != null)
+            { 
+                //recyclerView.SetAdapter(new HistoryAdapter(this.Activity, historic));
+                // GOOD
+            }
         }
 
         private void InitScrobble(HistoryAdapter adapter)
@@ -100,7 +117,6 @@ namespace csfm_android.Fragments
                 Track trackScrobble = new Track
                 {
                     Album = albumScrobble,
-                    Artist = artistScrobble,
                     Name = ScrobblePrefs.Track
                 };
 
@@ -111,6 +127,7 @@ namespace csfm_android.Fragments
             {
                 adapter.Scrobble = null;
             }
+
         }
     }
 }

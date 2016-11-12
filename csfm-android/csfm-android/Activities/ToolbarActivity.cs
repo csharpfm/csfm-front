@@ -16,6 +16,7 @@ using static Android.Views.View;
 using csfm_android.Utils.MaterialDesignSearchView;
 using Android.Speech;
 using csfm_android.Utils;
+using Android.Locations;
 
 namespace csfm_android.Activities
 {
@@ -215,7 +216,5 @@ namespace csfm_android.Activities
                 this.a.Toolbar.Visibility = ViewStates.Gone;
             }
         }
-
-
     }
 }

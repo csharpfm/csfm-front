@@ -15,6 +15,8 @@ using Square.Picasso;
 using csfm_android.Api.Model;
 using csfm_android.Activities;
 using csfm_android.Utils.MaterialDesignSearchView;
+using csfm_android.Api;
+using csfm_android.Utils;
 
 namespace csfm_android.Fragments
 {
@@ -31,7 +33,9 @@ namespace csfm_android.Fragments
 
         private Button loadMore;
 
-        private LinkedList<User> recommendedUsers;
+        private List<User> recommendedUsers;
+
+        private User currentUser;
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -48,7 +52,7 @@ namespace csfm_android.Fragments
         {
             this.rootView = inflater.Inflate(Resource.Layout.match_fragment, container, false);
 
-            ((ToolbarActivity) Activity).Toolbar.Hide();
+            ((ToolbarActivity)Activity).Toolbar.Hide();
 
             this.likeButton = this.rootView.FindViewById<ImageView>(Resource.Id.match_ok);
             this.nextButton = this.rootView.FindViewById<ImageView>(Resource.Id.match_cancel);
@@ -68,35 +72,60 @@ namespace csfm_android.Fragments
 
             this.InitButtons();
 
-            this.recommendedUsers = new LinkedList<User>();
+            this.recommendedUsers = new List<User>();
 
-            User user1 = new User();
-            user1.Username = "Hugoatease";
-            user1.Image = "https://scontent-cdg2-1.xx.fbcdn.net/v/t1.0-9/14492433_730273613793013_3473639481244418470_n.jpg?oh=8a6bcee3852f9dfa67e95155fe336209&oe=5889175E";
-            User user2 = new User();
-            user2.Username = "Clément de Chereng";
-            user2.Image = "https://scontent-cdg2-1.xx.fbcdn.net/v/t34.0-0/s261x260/14971176_10210410328633000_797219556_n.jpg?oh=92361adb492252d0c756e24ae9349a6e&oe=58229A8A";
+            /*  User user1 = new User();
+              user1.Username = "Hugoatease";
+              user1.Photo = "https://scontent-cdg2-1.xx.fbcdn.net/v/t1.0-9/14492433_730273613793013_3473639481244418470_n.jpg?oh=8a6bcee3852f9dfa67e95155fe336209&oe=5889175E";
+              User user2 = new User();
+              user2.Username = "Clément de Chereng";
+              user2.Photo = "https://scontent-cdg2-1.xx.fbcdn.net/v/t34.0-0/s261x260/14971176_10210410328633000_797219556_n.jpg?oh=92361adb492252d0c756e24ae9349a6e&oe=58229A8A";
 
-            this.recommendedUsers.AddLast(user1);
-            this.recommendedUsers.AddLast(user2);
+              this.recommendedUsers.AddLast(user1);
+              this.recommendedUsers.AddLast(user2);*/
+
+            GetMatch();
 
             this.likeButton.Click += delegate
             {
-                //TODO LIKE API 
-                this.Next();
+                if (this.currentUser != null)
+                {
+                    PutMatch(true);
+                    this.Next();
+                } 
             };
 
             this.nextButton.Click += delegate
             {
-                this.Next();
+                if (this.currentUser != null)
+                {
+                    PutMatch(false);
+                    this.Next();
+                }
             };
 
-            this.Next();
+            this.loadMore.Click += delegate
+            {
+                GetMatch();
+                if (this.recommendedUsers != null)
+                {
+                    this.Next();
+                }
+            };
+
+            if (this.recommendedUsers.Any())
+            {
+                this.Next();
+            }
+            else
+            {
+                LoadMore();
+            }
         }
 
 
 
-    private void InitButtons()
+        private void InitButtons()
         {
             Bitmap likeBitmap = ((BitmapDrawable)this.likeButton.Drawable).Bitmap;
             this.likeButton.SetImageDrawable(new BitmapDrawable(Resources, AddGradient(likeBitmap, new Color(89, 202, 167), new Color(118, 217, 204))));
@@ -123,33 +152,53 @@ namespace csfm_android.Fragments
             return updatedBitmap;
         }
 
+        private async void GetMatch()
+        {
+            var users = await new ApiClient().GetUserMatch(CSFMPrefs.Prefs.GetString(CSFMApplication.Username, ""));
+
+            this.recommendedUsers = users;
+            Console.WriteLine(users);
+        }
+
+        private async void PutMatch(bool isMatch)
+        {
+            await new ApiClient().PutUserMatch(CSFMPrefs.Prefs.GetString(CSFMApplication.Username, ""), currentUser.Id, isMatch);
+        }
+
         private void Next()
         {
             if (this.recommendedUsers.Any())
             {
                 User user = this.recommendedUsers.First();
 
-                Picasso.With(this.Activity)
-                  .Load(user.Image)
-                  .Into(this.avatar);
-            
-                this.username.Text = user.Username;
-                // this.favoriteSong.Text // TODO
+                this.currentUser = user;
 
-                this.recommendedUsers.RemoveFirst();
+                Picasso.With(this.Activity)
+                    .Load(user.Photo)
+                    .Into(this.avatar);
+
+                this.username.Text = user.Username;
+                this.favoriteSong.Text = "Mylène Farmer - Libertine"; // TODO
+
+                this.recommendedUsers.Remove(user);
             }
             else
             {
-                this.avatar.SetImageResource(0);
-                this.username.Text = "";
-                this.favoriteSong.Text = "";
-
-                this.loadMore.Visibility = ViewStates.Visible;
-                // TODO LOAD MORE
+                LoadMore();
             }
+
+        }
+
+        private void LoadMore()
+        {
+            this.avatar.SetImageResource(0);
+            this.username.Text = "";
+            this.favoriteSong.Text = "";
+
+            this.currentUser = null;
+
+            this.loadMore.Visibility = ViewStates.Visible;
         }
     }
-
-
    
 }

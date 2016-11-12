@@ -90,11 +90,11 @@ namespace csfm_android.Ui.Holders
         public void Bind(History history)
         {
             SongName.Text = history.Track.Name;
-            SongArtist.Text = history.Track.Artist.Name;
+            SongArtist.Text = history.Track.Album.Artist.Name;
 
             if (!history.IsScrobbling)
             {
-                Date.Text = history.Date.ToString();
+                Date.Text = history.ListenDate.ToString();
                 AlbumCoverUrl = history.Track.Album.Image;
             }
             else

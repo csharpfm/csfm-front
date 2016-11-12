@@ -37,6 +37,7 @@ namespace csfm_android.Activities
             if (CSFMApplication.IsDebug || !String.IsNullOrEmpty(bearer))
             {
                 StartActivity(typeof(MainActivity));
+                Finish();
             }
 
             SetContentView(Resource.Layout.login_activity);
@@ -70,12 +71,19 @@ namespace csfm_android.Activities
             }
             else
             {
+                var progress = ProgressDialog.Show(this, "", GetString(Resource.String.login_progress));
+
                 var apiClient = new ApiClient();
                 var status = await apiClient.LogIn(this.username.Text, this.password.Text);
                 
                 if (status)
                 {
                     StartActivity(typeof(MainActivity));
+                    Finish();
+                }
+                else
+                {
+                    progress.Cancel();
                 }
             }
         }

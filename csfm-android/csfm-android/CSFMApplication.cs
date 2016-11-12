@@ -21,6 +21,8 @@ namespace csfm_android
 
         static readonly string bearerToken = "token";
 
+        static readonly string username = "csfm_username";
+
         public CSFMApplication(IntPtr handle, JniHandleOwnership transfer): base(handle, transfer)
         {
             _instance = this;
@@ -44,6 +46,11 @@ namespace csfm_android
         public static string BearerToken
         {
             get { return bearerToken; }
+        }
+
+        public static string Username
+        {
+            get { return username; }
         }
     }
 }

@@ -11,6 +11,7 @@ using Android.Views;
 using Android.Widget;
 using Refit;
 using System.Threading.Tasks;
+using csfm_android.Api.Model;
 
 namespace csfm_android.Api.Interfaces
 {
@@ -24,18 +25,27 @@ namespace csfm_android.Api.Interfaces
         Task<string> SignUp([Body(BodySerializationMethod.UrlEncoded)] Dictionary<string, object> data);
 
         /* User API */
-        [Get("/api/users/{username}")]
-        Task<string> GetUser(string username, [Header("Authorization")] string accessToken);
+        [Get("/api/Users/{username}")]
+        Task<User> GetUser(string username, [Header("Authorization")] string accessToken);
 
-        [Get("/api/users/{username}/history")]
-        Task<string> GetUserHistory(string username, [Header("Authorization")] string accessToken);
+        [Get("/api/Users/{username}/History")]
+        Task<List<History>> GetUserHistory(string username);
 
-        [Delete("/api/users/{username}/history/{id}")]
-        Task<string> DeleteUserHistory(string username, int id, [Header("Authorization")] string accessToken);
+        [Post("/api/Users/{username}/History")]
+        Task PostUserHistory(string username, [Body(BodySerializationMethod.Json)]  Dictionary<string, object> history, [Header("Authorization")] string accessToken);
 
-        [Get("/api/users/modify/password/{password}")]
-        Task<string> ModifyPassword(string password, [Header("Authorization")] string accessToken);
+        [Put("/api/Users/{username}/Location")]
+        Task PutUserLocation(string username, [Body(BodySerializationMethod.Json)]  Dictionary<string, double> location, [Header("Authorization")] string accessToken);
 
-        /* Match */   
+        /* Match */
+        [Get("/api/Users/{username}/Match")]
+        Task<List<User>> GetUserMatch(string username, [Header("Authorization")] string accessToken);
+
+        [Put("/api/Users/{username}/Match")]
+        Task PutUserMatch(string username, [Body(BodySerializationMethod.Json)]  Dictionary<string, object> data, [Header("Authorization")] string accessToken);
+
+        /* LastFM */
+        [Post("/api/Users/{username}/LastFMImport")]
+        Task LinkLastFMAccount(string username, [Header("Authorization")] string accessToken);
     }
 }

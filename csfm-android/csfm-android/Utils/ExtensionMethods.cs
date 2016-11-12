@@ -95,7 +95,7 @@ namespace csfm_android.Utils
 
         public static IEnumerable<string> ToArtistNames(this List<History> history)
         {
-            return history.Select(h => h.Track.Artist.Name);
+            return history.Select(h => h.Track.Album.Artist.Name);
         }
 
         public static string GetArtist(this Intent intent)
@@ -159,7 +159,6 @@ namespace csfm_android.Utils
             {
                 Name = trackString,
                 Album = album,
-                Artist = artist
             };
 
             artist.Albums = new List<Album> { album };

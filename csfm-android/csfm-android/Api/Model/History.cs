@@ -9,21 +9,27 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Newtonsoft.Json;
 
 namespace csfm_android.Api.Model
 {
     public class History
     {
+        [JsonProperty(PropertyName = "TrackId")]
+        public int TrackId { get; set; }
+
+        [JsonProperty(PropertyName = "Track")]
         public Track Track { get; set; }
 
-        public DateTime Date { get; set; }
+        [JsonProperty(PropertyName = "ListenDate")]
+        public DateTime ListenDate { get; set; }
 
         public bool IsScrobbling { get; set; }
 
         public History(Track track, DateTime date, bool isScrobbling = false)
         {
             Track = track;
-            Date = date;
+            ListenDate = date;
             IsScrobbling = isScrobbling;
         }
 

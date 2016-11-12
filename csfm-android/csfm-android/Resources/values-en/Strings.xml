@@ -9,6 +9,10 @@
   <string name="signout">Sign out</string>
   <string name="cancel">Cancel</string>
 
+  <string name="connected_as">Connected as {name}</string>
+
+  <string name="login_progress">Connecting</string>
+
   <string name="home">Home</string>
   <string name="match">Match</string>
   <string name="account">Account</string>
@@ -28,4 +32,9 @@
   <string name="search_hint">Search</string>
   <string name="no_more_match">No more match</string>
   <string name="load_more">Load more</string>
+
+  <string name="no_history">No history found</string>
+  <string name="history">History</string>
+
+  <string name="link">Link</string>
 </resources>

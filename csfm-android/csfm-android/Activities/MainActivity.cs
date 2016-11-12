@@ -9,21 +9,32 @@ using Android.Content;
 using static Android.Support.V7.Widget.SearchView;
 using Android.Support.V4.View;
 using Android.Support.V7.Widget;
+using Android.Locations;
+using System.Collections.Generic;
+using System.Linq;
+using csfm_android.Api;
+using csfm_android.Utils;
+
 using csfm_android.Services;
 
 namespace csfm_android.Activities
 {
 
     [Activity(Label = Configuration.LABEL, Icon = "@drawable/icon", Theme = "@style/MyTheme", WindowSoftInputMode = SoftInput.AdjustPan)]
-    public class MainActivity : ToolbarActivity, BottomNavigationBar.Listeners.IOnMenuTabClickListener
+    public class MainActivity : ToolbarActivity, BottomNavigationBar.Listeners.IOnMenuTabClickListener, ILocationListener
     {
         private BottomBar bottomBar;
         private Fragment currentFragment = null;
+
+        private LocationManager locationManager;
+        private string locationProvider;
+
 
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle, Resource.Layout.Main, GetString(Resource.String.home));
             SetBottomBar(bundle);
+            InitializeLocationManager();
         }
 
         protected override void OnResume()
@@ -31,6 +42,13 @@ namespace csfm_android.Activities
             base.OnResume();
             MaterialSearchView.CloseSearch();
             ScrobblerService.InitService(this.ApplicationContext);
+            locationManager.RequestLocationUpdates(locationProvider, 2000, 1000, this);
+        }
+
+        protected override void OnPause()
+        {
+            base.OnPause();
+            locationManager.RemoveUpdates(this);
         }
 
         public override void OnSearchViewSet()
@@ -130,6 +148,37 @@ namespace csfm_android.Activities
         public void OnMenuTabReSelected(int menuItemId)
         {
 
+        }
+
+        void InitializeLocationManager()
+        {
+            locationManager = GetSystemService(LocationService) as LocationManager;
+            locationProvider = "network";
+        }
+
+        private async void SetUserLocation(double longitude, double latitude)
+        {
+            await new ApiClient().PutUserLocation(CSFMPrefs.Prefs.GetString(CSFMApplication.Username, ""), longitude, latitude);
+        }
+
+        public void OnLocationChanged(Location location)
+        {
+            SetUserLocation(location.Longitude, location.Latitude);
+        }
+
+        public void OnProviderDisabled(string provider)
+        {
+            
+        }
+
+        public void OnProviderEnabled(string provider)
+        {
+           
+        }
+
+        public void OnStatusChanged(string provider, [GeneratedEnum] Availability status, Bundle extras)
+        {
+            
         }
     }
 }

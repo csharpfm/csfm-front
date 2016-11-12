@@ -10,27 +10,33 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using csfm_android.Utils;
+using Newtonsoft.Json;
 
 namespace csfm_android.Api.Model
 {
     public class Track : MusicItem
     {
 
-        public string Name { get; set; }
+        [JsonProperty(PropertyName = "Duration")]
+        public long Duration { get; set; }
 
-        public string MbId { get; set; }
-
-        public long Duration { get; set; } //Seconds
-
+        [JsonProperty(PropertyName = "Album")]
         public Album Album { get; set; }
 
-        public Artist Artist { get; set; }
+        [JsonProperty(PropertyName = "Name")]
+        public string Name { get; set; }
+
+        [JsonProperty(PropertyName = "MbId")]
+        public string MbId { get; set; }
+
+        [JsonProperty(PropertyName = "Id")]
+        public int Id { get; set; }
 
         public string Artist_Album_Format
         {
             get
             {
-                string text = Artist.Name.DefaultStringIfEmpty("Unknown Artist");
+                string text = Album.Artist.Name.DefaultStringIfEmpty("Unknown Artist");
                 if (!Album.Name.IsStringEmpty())
                 {
                     text += " - " + Album.Name;

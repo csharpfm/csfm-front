@@ -130,6 +130,7 @@
     <Compile Include="Api\Interfaces\ICsfmApi.cs" />
     <Compile Include="Api\Model\Album.cs" />
     <Compile Include="Api\Model\Artist.cs" />
+    <Compile Include="Api\Model\Enums\GenderEnum.cs" />
     <Compile Include="Notifications\AppNotificationManager.cs" />
     <Compile Include="Receivers\LocalMusicPlayingReceiver.cs" />
     <Compile Include="Receivers\MusicPlayingReceiver.cs" />
