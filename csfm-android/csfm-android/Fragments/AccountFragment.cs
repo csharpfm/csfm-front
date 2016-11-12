@@ -99,7 +99,7 @@ namespace csfm_android.Fragments
                         var apiClient = new ApiClient();
                         HttpPostedFilebase aFile = new HttpPostedFilebase("Siliem", selectedImageUri);
                         string path = GetPath(selectedImageUri);
-                        apiClient.UploadProfilePicture("Siliem", path, GetBytes(selectedImageUri));
+                        apiClient.UploadProfilePicture("Siliem", aFile, path, GetBytes(selectedImageUri));
 
                         //byte[] imageBytes = GetBytes(selectedImageUri);
                         //Bitmap bmp = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);

@@ -16,6 +16,7 @@ using Newtonsoft.Json.Linq;
 using System.Threading.Tasks;
 using System.IO;
 using System.Net;
+using System.Globalization;
 
 namespace csfm_android.Api
 {
@@ -103,37 +104,39 @@ namespace csfm_android.Api
             return true; // TODO
         }
 
-        public async Task UploadProfilePicture(string username, string path, byte[] bytes)
+        public async Task UploadProfilePicture(string username, HttpPostedFilebase aFile, string path, byte[] bytes)
         {
+            var url = SERVER_URL + "api/Users/" + username + "/Photo";
+
             try
             {
-                var url = SERVER_URL + "/api/Users/" + username + "/Photo";
                 Uri uri = new Uri(url);
 
                 WebClient client = new WebClient();
                 client.Headers = new WebHeaderCollection();
                 client.Headers[HttpRequestHeader.Authorization] = this.Bearer;
-                client.Headers[HttpRequestHeader.ContentType] = "image/png";
+                //client.Headers[HttpRequestHeader.ContentType] = "multipart/form-data";
 
                 try
                 {
-                    byte[] result = client.UploadData(uri, "POST", bytes);
+                    byte[] result = client.UploadFile(uri, "POST", path);
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine(e);
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e);
             }
-            
+
 
             //try
             //{
             //    Console.WriteLine("API START ---------------------");
-            //    string result = await instance.UploadPhoto(username, photo, this.Bearer);
+            //    using (FileStream stream = File.Open(path, FileMode.Open))
+            //        string result = await instance.UploadPhoto(username, File.Open(path, FileMode.Open), this.Bearer);
             //    Console.WriteLine(result);
             //}
             //catch (Refit.ApiException e)
@@ -155,5 +158,7 @@ namespace csfm_android.Api
 
 
     }
+
+
 }
  

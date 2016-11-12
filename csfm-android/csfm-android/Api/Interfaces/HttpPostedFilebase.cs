@@ -15,21 +15,16 @@ namespace csfm_android.Api.Interfaces
         public string ContentType { get; set; }
         public string FileName { get; set; }
 
-        //[JsonConverter(typeof(MemoryStreamJsonConverter))]
+        [JsonConverter(typeof(MemoryStreamJsonConverter))]
         public Stream InputStream { get; set; }
 
         public HttpPostedFilebase(string username, Android.Net.Uri uri)
         {
-            //byte[] bytes = GetBytes(uri);
-            //WebRequest request = WebRequest.Create("http://matchfm.azurewebsites.net/");
-            //request.Method = "PUT";
-            //Stream dataStream = request.GetRequestStream();
-            //dataStream.Write(bytes, 0, bytes.Length);
-            //dataStream.SetLength(bytes.Length);
-            //InputStream = dataStream;
-            //FileName = username;
-            //ContentLength = bytes.Length;
-            //ContentType = CSFMApplication.Context.ContentResolver.GetType(uri);
+            byte[] bytes = GetBytes(uri);
+            InputStream = new MemoryStream(bytes);
+            FileName = username;
+            ContentLength = bytes.Length;
+            ContentType = CSFMApplication.Context.ContentResolver.GetType(uri);
         }
 
         public Dictionary<string, object> ToDictionary()
@@ -81,4 +76,5 @@ namespace csfm_android.Api.Interfaces
             return cursor.GetString(columnIndex);
         }
     }
+
 }

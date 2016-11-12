@@ -33,4 +33,54 @@ namespace csfm_android.Utils
             serializer.Serialize(writer, bytes);
         }
     }
+
+    //public sealed class MemoryHttpPostedFilebase : HttpPostedFileBase
+    //{
+    //    readonly string contentType;
+    //    readonly string fileName;
+    //    readonly MemoryStream inputStream;
+
+    //    public MemoryHttpPostedFileBase(string contentType, string fileName, [JsonConverter(typeof(MemoryStreamJsonConverter))] MemoryStream inputStream)
+    //    {
+    //        if (inputStream == null)
+    //            throw new ArgumentNullException("inputStream");
+    //        this.contentType = contentType;
+    //        this.fileName = fileName;
+    //        this.inputStream = inputStream;
+    //    }
+
+    //    public override int ContentLength
+    //    {
+    //        get
+    //        {
+    //            return (int)inputStream.Length;
+    //        }
+    //    }
+
+    //    public override string ContentType
+    //    {
+    //        get
+    //        {
+    //            return contentType;
+    //        }
+    //    }
+
+    //    public override string FileName
+    //    {
+    //        get
+    //        {
+    //            return fileName;
+    //        }
+    //    }
+
+    //    [JsonConverter(typeof(MemoryStreamJsonConverter))]
+    //    public override Stream InputStream
+    //    {
+    //        get
+    //        {
+    //            return inputStream;
+    //        }
+    //    }
+    //}
+
 }

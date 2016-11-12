@@ -38,8 +38,8 @@ namespace csfm_android.Api.Interfaces
         Task<string> ModifyPassword(string password, [Header("Authorization")] string accessToken);
 
         
-        [Put("/api/Users/{username}/Photo")]
-        Task<string> UploadPhoto(string username, HttpPostedFilebase aFile, [Header("Authorization")] string accessToken);
+        [Post("/api/Users/{username}/Photo")]
+        Task<string> UploadPhoto(string username, [Body(BodySerializationMethod.UrlEncoded)] FileStream aFile, [Header("Authorization")] string accessToken);
 
         /* Match */   
     }
