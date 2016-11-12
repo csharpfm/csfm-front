@@ -168,12 +168,14 @@ namespace csfm_android.Api
         {
             try
             {
-                JObject jo = new JObject(
-                    new JProperty("Artist", history.Track.Album.Artist),
-                    new JProperty("Album", history.Track.Album),
-                    new JProperty("Title", history.Track.Name));
+                var data = new Dictionary<String, object>
+                {
+                    { "Artist", history.Track.Album.Artist.Name },
+                    { "Album", history.Track.Album.Name },
+                    { "Title", history.Track.Name }
+                };
 
-                await instance.PostUserHistory(username, jo.ToString(), "Bearer " + this.RetrieveBearer());
+                await instance.PostUserHistory(username, data, "Bearer " + this.RetrieveBearer());
             }
             catch (Exception e)
             {
