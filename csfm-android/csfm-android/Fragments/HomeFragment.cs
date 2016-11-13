@@ -20,15 +20,18 @@ using Android.Locations;
 using Android.Media;
 using static Android.Media.MediaPlayer;
 using Android.Provider;
+using Android.Support.V4.Widget;
 
 namespace csfm_android.Fragments
 {
-    public class HomeFragment : Fragment
+    public class HomeFragment : Fragment, SwipeRefreshLayout.IOnRefreshListener
     {
        
         private View rootView;
 
         private RecyclerView recyclerView;
+
+        private SwipeRefreshLayout refresh;
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -39,8 +42,11 @@ namespace csfm_android.Fragments
         {
             this.rootView = inflater.Inflate(Resource.Layout.home_fragment, container, false);
 
-            recyclerView = this.rootView.FindViewById<RecyclerView>(Resource.Id.recyclerView);
-          
+            this.recyclerView = this.rootView.FindViewById<RecyclerView>(Resource.Id.recyclerView);
+            this.refresh = rootView.FindViewById<SwipeRefreshLayout>(Resource.Id.home_swipe_refresh);
+            this.refresh.SetColorSchemeResources(Resource.Color.colorPrimary);
+            this.refresh.SetOnRefreshListener(this);
+
             LinearLayoutManager layoutManager = new LinearLayoutManager(this.Activity);
             recyclerView.SetLayoutManager(layoutManager);
 
@@ -51,40 +57,13 @@ namespace csfm_android.Fragments
         {
             base.OnResume();
 
-            List<History> historic = new List<History>();
-
-            Artist artist = new Artist()
-            {
-                Name = "Lady Gaga"
-            };
-            Album album = new Album()
-            {
-                Artist = artist,
-                Name = "Joanne",
-                Image = "https://lh4.googleusercontent.com/-p1ejPKmyA2s/AAAAAAAAAAI/AAAAAAACRXU/6S-Em-MWl08/s0-c-k-no-ns/photo.jpg"
-            };
-            Track track1 = new Track
-            {
-                Album = album,
-                Name = "Perfect Illusion",
-            };
-            Track track2 = new Track
-            {
-                Album = album,
-                Name = "A-YO",
-            };
-
-
-            historic.Add(new History(track1, DateTime.Now.AddHours(-2)));
-            historic.Add(new History(track2, DateTime.Now));
-
-            HistoryAdapter adapter = new HistoryAdapter(this.Activity, historic);
+            HistoryAdapter adapter = new HistoryAdapter(this.Activity, new List<History>());
             recyclerView.SetAdapter(adapter);
 
-            GetHistory();
+            GetHistory(null);
         }
 
-        private async void GetHistory()
+        private async void GetHistory(Action callback)
         {
             var apiClient = new ApiClient();
 
@@ -95,7 +74,8 @@ namespace csfm_android.Fragments
                 HistoryAdapter adapter = new HistoryAdapter(this.Activity, history);
                 InitScrobble(adapter, history);
                 recyclerView.SetAdapter(adapter);
-                // GOOD
+
+                callback?.Invoke();
             }
         }
 
@@ -133,6 +113,11 @@ namespace csfm_android.Fragments
                 adapter.Scrobble = null;
             }
 
+        }
+
+        public void OnRefresh()
+        {
+            this.GetHistory(() => this.refresh.Refreshing = false);
         }
     }
 }
