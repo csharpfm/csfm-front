@@ -3725,8 +3725,8 @@ namespace csfm_android
 			// aapt resource value: 0x7f07003c
 			public const int action_mode_close_button = 2131165244;
 			
-			// aapt resource value: 0x7f0700d3
-			public const int action_search = 2131165395;
+			// aapt resource value: 0x7f0700d0
+			public const int action_search = 2131165392;
 			
 			// aapt resource value: 0x7f07009d
 			public const int action_search_btn = 2131165341;
@@ -3823,9 +3823,6 @@ namespace csfm_android
 			
 			// aapt resource value: 0x7f07001f
 			public const int collapseActionView = 2131165215;
-			
-			// aapt resource value: 0x7f0700d2
-			public const int confirm_password = 2131165394;
 			
 			// aapt resource value: 0x7f07004a
 			public const int contentPanel = 2131165258;
@@ -4052,9 +4049,6 @@ namespace csfm_android
 			// aapt resource value: 0x7f070046
 			public const int parentPanel = 2131165254;
 			
-			// aapt resource value: 0x7f0700cc
-			public const int password = 2131165388;
-			
 			// aapt resource value: 0x7f070029
 			public const int pin = 2131165225;
 			
@@ -4178,20 +4172,20 @@ namespace csfm_android
 			// aapt resource value: 0x7f070093
 			public const int sign_in_button = 2131165331;
 			
-			// aapt resource value: 0x7f0700d1
-			public const int sign_up_button = 2131165393;
-			
 			// aapt resource value: 0x7f0700cf
-			public const int signup_email = 2131165391;
+			public const int sign_up_button = 2131165391;
 			
 			// aapt resource value: 0x7f0700cd
-			public const int signup_layout = 2131165389;
+			public const int signup_email = 2131165389;
 			
-			// aapt resource value: 0x7f0700d0
-			public const int signup_pwd = 2131165392;
+			// aapt resource value: 0x7f0700cb
+			public const int signup_layout = 2131165387;
 			
 			// aapt resource value: 0x7f0700ce
-			public const int signup_username = 2131165390;
+			public const int signup_pwd = 2131165390;
+			
+			// aapt resource value: 0x7f0700cc
+			public const int signup_username = 2131165388;
 			
 			// aapt resource value: 0x7f07007a
 			public const int snackbar_action = 2131165306;
@@ -4279,9 +4273,6 @@ namespace csfm_android
 			
 			// aapt resource value: 0x7f070014
 			public const int useLogo = 2131165204;
-			
-			// aapt resource value: 0x7f0700cb
-			public const int username = 2131165387;
 			
 			// aapt resource value: 0x7f0700b7
 			public const int viewPager = 2131165367;
@@ -4553,19 +4544,13 @@ namespace csfm_android
 			public const int settings_fragment = 2130968645;
 			
 			// aapt resource value: 0x7f040046
-			public const int signin_dialog = 2130968646;
+			public const int signup_activity = 2130968646;
 			
 			// aapt resource value: 0x7f040047
-			public const int signup_activity = 2130968647;
+			public const int support_simple_spinner_dropdown_item = 2130968647;
 			
 			// aapt resource value: 0x7f040048
-			public const int signup_dialog = 2130968648;
-			
-			// aapt resource value: 0x7f040049
-			public const int support_simple_spinner_dropdown_item = 2130968649;
-			
-			// aapt resource value: 0x7f04004a
-			public const int toolbar = 2130968650;
+			public const int toolbar = 2130968648;
 			
 			static Layout()
 			{

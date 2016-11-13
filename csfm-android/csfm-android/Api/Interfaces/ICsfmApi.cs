@@ -44,6 +44,10 @@ namespace csfm_android.Api.Interfaces
         [Put("/api/Users/{username}/Match")]
         Task PutUserMatch(string username, [Body(BodySerializationMethod.Json)]  Dictionary<string, object> data, [Header("Authorization")] string accessToken);
 
+        /* Recommendations */
+        [Get("/api/Users/{username}/Recommendations")]
+        Task<List<User>> GetUserRecommendations(string username, [Header("Authorization")] string accessToken);
+
         /* LastFM */
         [Post("/api/Users/{username}/LastFMImport")]
         Task LinkLastFMAccount(string username, [Header("Authorization")] string accessToken);

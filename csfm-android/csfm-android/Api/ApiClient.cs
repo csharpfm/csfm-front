@@ -291,6 +291,19 @@ namespace csfm_android.Api
             }
         }
 
+
+        public async Task<List<User>> GetUserRecommendations(string username)
+        {
+            try
+            {
+                return await instance.GetUserRecommendations(username, "Bearer " + this.RetrieveBearer());
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
         //Key : {artist}+{album} (replace " " with "+")
         private static Dictionary<string, string> images = new Dictionary<string, string>();
 
