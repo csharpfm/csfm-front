@@ -17,17 +17,7 @@ namespace csfm_android.Utils.MaterialDesignSearchView
 {
     public class SearchAdapter : BaseAdapter<string>, IFilterable
     {
-        private List<string> data
-        {
-            get
-            {
-                return SUGGESTIONS;
-            }
-            set
-            {
-                AddSuggestions(data);
-            }
-        }
+        private List<string> data;
 
         private static int MAX_ITEMS = 50;
         public static List<string> SUGGESTIONS { get; private set; }
@@ -156,6 +146,10 @@ namespace csfm_android.Utils.MaterialDesignSearchView
                     using (var values = results.Values)
                     {
                         adapter.data = values.ToArray<Java.Lang.Object>().Select(r => r.ToNetObject<string>()).ToList();
+                        if (adapter.data.Count != results.Count)
+                        {
+                            adapter.data = Search(constraint.ToString()).ToList();
+                        }
                         adapter.NotifyDataSetChanged();
                     }
                 }
