@@ -43,6 +43,8 @@ namespace csfm_android.Ui.Adapters
             set
             {
                 data = value;
+                MaterialSearchView.History = value;
+                MaterialSearchView.SetSuggestions(value);
                 NotifyDataSetChanged();
             }
         }
@@ -79,9 +81,7 @@ namespace csfm_android.Ui.Adapters
             this.data = history;
             LocalMusicPlayingReceiver.Register(context, this);
             MaterialSearchView.History = history;
-            MaterialSearchView.AddSuggestions(Data.ToTrackNames());
-            MaterialSearchView.AddSuggestions(Data.ToAlbumNames());
-            MaterialSearchView.AddSuggestions(Data.ToArtistNames());
+            MaterialSearchView.SetSuggestions(history);
         }
 
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)

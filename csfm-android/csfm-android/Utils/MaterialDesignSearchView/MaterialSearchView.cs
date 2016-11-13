@@ -292,6 +292,14 @@ namespace csfm_android.Utils.MaterialDesignSearchView
 
         #region static
 
+        public static void SetSuggestions(List<History> value)
+        {
+            SearchAdapter.ClearSuggestions();
+            AddSuggestions(value.ToTrackNames());
+            AddSuggestions(value.ToAlbumNames());
+            AddSuggestions(value.ToArtistNames());
+        }
+
         public static void AddSuggestions(IEnumerable<string> suggestions)
         {
             SearchAdapter.AddSuggestions(suggestions);

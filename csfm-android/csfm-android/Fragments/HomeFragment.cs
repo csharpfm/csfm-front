@@ -21,6 +21,8 @@ using Android.Media;
 using static Android.Media.MediaPlayer;
 using Android.Provider;
 using Android.Support.V4.Widget;
+using csfm_android.Activities;
+using csfm_android.Utils.MaterialDesignSearchView;
 
 namespace csfm_android.Fragments
 {
@@ -61,10 +63,10 @@ namespace csfm_android.Fragments
             recyclerView.SetAdapter(adapter);
 
             refresh.Post(() => refresh.Refreshing = true);
-            GetHistory(() => refresh.Refreshing = false);
+            OnRefresh();
         }
 
-        private async void GetHistory(Action callback)
+        private async void GetHistory(Action<List<History>> callback)
         {
             var apiClient = new ApiClient();
 
@@ -77,7 +79,7 @@ namespace csfm_android.Fragments
                     HistoryAdapter adapter = new HistoryAdapter(this.Activity, history);
                     InitScrobble(adapter, history);
                     recyclerView.SetAdapter(adapter);
-                    callback?.Invoke();
+                    callback?.Invoke(history);
                 }
                 catch
                 {
@@ -125,7 +127,18 @@ namespace csfm_android.Fragments
 
         public void OnRefresh()
         {
-            this.GetHistory(() => this.refresh.Refreshing = false);
+            GetHistory(h => {
+                refresh.Refreshing = false;
+                try
+                {
+                    MaterialSearchView.SetSuggestions(h);
+                    (Activity as ToolbarActivity).MaterialSearchView.Suggestions = csfm_android.Utils.MaterialDesignSearchView.SearchAdapter.SUGGESTIONS;
+                }
+                catch
+                {
+
+                }
+            });
         }
     }
 }

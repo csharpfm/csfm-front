@@ -17,7 +17,17 @@ namespace csfm_android.Utils.MaterialDesignSearchView
 {
     public class SearchAdapter : BaseAdapter<string>, IFilterable
     {
-        private List<string> data;
+        private List<string> data
+        {
+            get
+            {
+                return SUGGESTIONS;
+            }
+            set
+            {
+                AddSuggestions(data);
+            }
+        }
 
         private static int MAX_ITEMS = 50;
         public static List<string> SUGGESTIONS { get; private set; }
@@ -206,6 +216,11 @@ namespace csfm_android.Utils.MaterialDesignSearchView
                     imageView.SetImageDrawable(suggestionIcon);
                 }
             }
+        }
+
+        public static void ClearSuggestions()
+        {
+            SUGGESTIONS?.Clear();
         }
     }
 }
