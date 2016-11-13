@@ -57,24 +57,27 @@ namespace csfm_android.Services
 
         private void Scrobble(Intent intent)
         {
-            string artist = intent.GetArtist();
-            string album = intent.GetAlbum();
-            string track = intent.GetTrack();
-            long durationToEnd = intent.GetDuration(0) - intent.GetPosition(0);
-            durationToEnd = durationToEnd < 0 ? 0 : durationToEnd;
-            DateTime endTime = DateTime.Now.AddMilliseconds(durationToEnd); ;
-            string albumArt = MusicLibrary.GetAlbumArt(artist, album, CSFMApplication.Context)?.FirstOrDefault();
+            if (CSFMPrefs.Prefs.GetBoolean(CSFMApplication.IsScrobbling, true))
+            {
+                string artist = intent.GetArtist();
+                string album = intent.GetAlbum();
+                string track = intent.GetTrack();
+                long durationToEnd = intent.GetDuration(0) - intent.GetPosition(0);
+                durationToEnd = durationToEnd < 0 ? 0 : durationToEnd;
+                DateTime endTime = DateTime.Now.AddMilliseconds(durationToEnd); ;
+                string albumArt = MusicLibrary.GetAlbumArt(artist, album, CSFMApplication.Context)?.FirstOrDefault();
 
 
-            Action callback = () => AppNotificationManager.SendNotification(artist, album, track, this, this.ApplicationContext);
+                Action callback = () => AppNotificationManager.SendNotification(artist, album, track, this, this.ApplicationContext);
 
-            ApiClient client = new ApiClient();
-            string username = client.RetrieveUsername();
-            if (username != null)
-                client.PostHistory(username, artist, album, track, callback);
+                ApiClient client = new ApiClient();
+                string username = client.RetrieveUsername();
+                if (username != null)
+                    client.PostHistory(username, artist, album, track, callback);
 
 
-            ScrobblePrefs.Save(artist, album, track, endTime.Ticks);
+                ScrobblePrefs.Save(artist, album, track, endTime.Ticks);
+            }
         }
 
         private void Close(Intent intent)
