@@ -31,6 +31,19 @@ namespace csfm_android.Ui.Adapters
             set
             {
                 if (scrobble == value) return;
+                if (scrobble != null && value == null)
+                {
+                    var firstItem = data.FirstOrDefault();
+                    if (firstItem != null && (firstItem.Track?.Name == scrobble.Track?.Name && firstItem.Track?.Album?.Name == scrobble.Track?.Album?.Name && firstItem.Track?.Album?.Artist?.Name == scrobble.Track?.Album?.Artist?.Name))
+                    {
+                        //Item already displayed
+                    }
+                    else
+                    {
+                        scrobble.IsScrobbling = false;
+                        data.Insert(0, scrobble);
+                    }
+                }
                 scrobble = value;
                 NotifyDataSetChanged();
             }

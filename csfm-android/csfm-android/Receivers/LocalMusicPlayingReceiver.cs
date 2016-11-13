@@ -32,8 +32,15 @@ namespace csfm_android.Receivers
             {
                 if (intent.GetBooleanExtra(Configuration.Music.EXTRA_PLAYING, false))
                 {
-                    //Playing
-                    adapter.Scrobble = intent.ToHistoryItem(true);
+                    if (CSFMPrefs.Prefs.GetBoolean(CSFMApplication.IsScrobbling, true))
+                    {
+                        //Playing
+                        adapter.Scrobble = intent.ToHistoryItem(true);
+                    }
+                    else
+                    {
+                        adapter.Scrobble = null;
+                    }
                 }
                 else //Music paused or continuing
                 {

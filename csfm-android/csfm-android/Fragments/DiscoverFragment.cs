@@ -70,8 +70,6 @@ namespace csfm_android.Fragments
         {
             base.OnStart();
 
-            this.InitButtons();
-
             this.recommendedUsers = new List<User>();
 
             this.likeButton.Click += delegate
@@ -114,6 +112,8 @@ namespace csfm_android.Fragments
             {
                 LoadMore();
             }
+
+            this.InitButtons();
         }
 
         private void InitButtons()
