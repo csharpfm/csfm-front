@@ -13,6 +13,7 @@ using csfm_android.Receivers;
 using csfm_android.Notifications;
 using Android.Provider;
 using csfm_android.Utils;
+using csfm_android.Api;
 
 namespace csfm_android.Services
 {
@@ -63,7 +64,15 @@ namespace csfm_android.Services
             durationToEnd = durationToEnd < 0 ? 0 : durationToEnd;
             DateTime endTime = DateTime.Now.AddMilliseconds(durationToEnd); ;
             string albumArt = MusicLibrary.GetAlbumArt(artist, album, CSFMApplication.Context)?.FirstOrDefault();
-            AppNotificationManager.SendNotification(artist, album, track, this, this.ApplicationContext);
+
+
+            Action callback = () => AppNotificationManager.SendNotification(artist, album, track, this, this.ApplicationContext);
+
+            ApiClient client = new ApiClient();
+            string username = client.RetrieveUsername();
+            if (username != null)
+                client.PostHistory(username, artist, album, track, callback);
+
 
             ScrobblePrefs.Save(artist, album, track, endTime.Ticks);
         }
