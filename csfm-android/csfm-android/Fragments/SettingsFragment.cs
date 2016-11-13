@@ -87,6 +87,10 @@ namespace csfm_android.Fragments
                 };
 
                 dialog.Show();
+                DisplayMetrics metrics = Resources.DisplayMetrics;
+                int width = metrics.WidthPixels;
+                int height = metrics.HeightPixels;
+                dialog.Window.SetLayout((6 * width) / 7, -2 /*wrap_content*/);
             };
 
             this.scrobblerSwitch.CheckedChange += delegate (object sender, CompoundButton.CheckedChangeEventArgs e) {
