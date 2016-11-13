@@ -155,7 +155,7 @@
     <Compile Include="Api\Model\Track.cs" />
     <Compile Include="Api\Model\User.cs" />
     <Compile Include="CSFMApplication.cs" />
-    <Compile Include="Fragments\AccountFragment.cs" />
+    <Compile Include="Fragments\SettingsFragment.cs" />
     <Compile Include="Fragments\HomeFragment.cs" />
     <Compile Include="Fragments\DiscoverFragment.cs" />
     <Compile Include="Activities\MainActivity.cs" />
@@ -194,7 +194,7 @@
     <AndroidResource Include="Resources\layout\home_fragment.axml" />
     <AndroidResource Include="Resources\layout\history_item.axml" />
     <AndroidResource Include="Resources\layout\discover_fragment.axml" />
-    <AndroidResource Include="Resources\layout\account_fragment.axml" />
+    <AndroidResource Include="Resources\layout\settings_fragment.axml" />
     <AndroidResource Include="Resources\layout\signin_dialog.axml" />
     <AndroidResource Include="Resources\layout\signup_dialog.axml" />
     <AndroidResource Include="Resources\layout\login_activity.axml" />

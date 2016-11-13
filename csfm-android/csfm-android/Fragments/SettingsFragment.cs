@@ -19,7 +19,7 @@ using Square.Picasso;
 
 namespace csfm_android.Fragments
 {
-    public class AccountFragment : Fragment
+    public class SettingsFragment : Fragment
     {
         private View rootView;
 
@@ -39,7 +39,7 @@ namespace csfm_android.Fragments
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             
-            this.rootView = inflater.Inflate(Resource.Layout.account_fragment, container, false);
+            this.rootView = inflater.Inflate(Resource.Layout.settings_fragment, container, false);
             this.signOut = this.rootView.FindViewById<TextView>(Resource.Id.acc_logout);
             this.userAvatar = this.rootView.FindViewById<ImageView>(Resource.Id.acc_user_avatar);
             this.username = this.rootView.FindViewById<TextView>(Resource.Id.acc_username);

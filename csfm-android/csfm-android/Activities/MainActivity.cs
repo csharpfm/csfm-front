@@ -139,7 +139,7 @@ namespace csfm_android.Activities
                     this.Toolbar.Title = GetString(Resource.String.match);
                     break;
                 case 3:
-                    LaunchFragment(new AccountFragment());
+                    LaunchFragment(new SettingsFragment());
                     this.Toolbar.Title = GetString(Resource.String.settings);
                     break;
                 default:
