@@ -148,6 +148,7 @@
     <Compile Include="Ui\Adapters\AbstractAdapter.cs" />
     <Compile Include="Ui\Adapters\MyMatchAdapter.cs" />
     <Compile Include="Ui\Holders\MyMatchHolder.cs" />
+    <Compile Include="Utils\CSFMDialog.cs" />
     <Compile Include="Utils\ExtensionMethods.cs" />
     <Compile Include="Api\Model\History.cs" />
     <Compile Include="Api\Model\MusicItem.cs" />
@@ -155,7 +156,7 @@
     <Compile Include="Api\Model\Track.cs" />
     <Compile Include="Api\Model\User.cs" />
     <Compile Include="CSFMApplication.cs" />
-    <Compile Include="Fragments\AccountFragment.cs" />
+    <Compile Include="Fragments\SettingsFragment.cs" />
     <Compile Include="Fragments\HomeFragment.cs" />
     <Compile Include="Fragments\DiscoverFragment.cs" />
     <Compile Include="Activities\MainActivity.cs" />
@@ -196,7 +197,7 @@
     <AndroidResource Include="Resources\layout\home_fragment.axml" />
     <AndroidResource Include="Resources\layout\history_item.axml" />
     <AndroidResource Include="Resources\layout\discover_fragment.axml" />
-    <AndroidResource Include="Resources\layout\account_fragment.axml" />
+    <AndroidResource Include="Resources\layout\settings_fragment.axml" />
     <AndroidResource Include="Resources\layout\signin_dialog.axml" />
     <AndroidResource Include="Resources\layout\signup_dialog.axml" />
     <AndroidResource Include="Resources\layout\login_activity.axml" />
@@ -227,6 +228,7 @@
     </AndroidResource>
     <AndroidResource Include="Resources\layout\my_match_fragment.axml" />
     <AndroidResource Include="Resources\layout\my_match_item.axml" />
+    <AndroidResource Include="Resources\layout\lastfm_dialog.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml">
@@ -676,6 +678,36 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_settings_white_24dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\ic_lastfm_white_24dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\ic_lastfm_white_24dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_lastfm_white_24dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_lastfm_white_24dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_lastfm_white_24dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\ic_keyboard_arrow_right_white_24dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\ic_keyboard_arrow_right_white_24dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_keyboard_arrow_right_white_24dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_keyboard_arrow_right_white_24dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_keyboard_arrow_right_white_24dp.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets')" />

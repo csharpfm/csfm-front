@@ -39,5 +39,7 @@
     <string name="history">Historique</string>
 
     <string name="link">Lier</string>
+    <string name="link_an_account">Lier un compte</string>
+    <string name="linked_accounts">Comptes liés</string>
     <string name="no_data_available">Aucun résultat</string>
 </resources>

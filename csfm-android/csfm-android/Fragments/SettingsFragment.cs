@@ -19,19 +19,17 @@ using Square.Picasso;
 
 namespace csfm_android.Fragments
 {
-    public class AccountFragment : Fragment
+    public class SettingsFragment : Fragment
     {
         private View rootView;
 
-        private Button signoutButton;
+        private TextView signOut;
 
         private ImageView userAvatar;
 
         private TextView username;
 
-        private EditText lastFmUsernameEditText;
-
-        private Button lastFmButton;
+        private ImageView linkLastFmAccount;
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -41,13 +39,12 @@ namespace csfm_android.Fragments
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             
-            this.rootView = inflater.Inflate(Resource.Layout.account_fragment, container, false);
-            this.signoutButton = this.rootView.FindViewById<Button>(Resource.Id.signout);
+            this.rootView = inflater.Inflate(Resource.Layout.settings_fragment, container, false);
+            this.signOut = this.rootView.FindViewById<TextView>(Resource.Id.acc_logout);
             this.userAvatar = this.rootView.FindViewById<ImageView>(Resource.Id.acc_user_avatar);
             this.username = this.rootView.FindViewById<TextView>(Resource.Id.acc_username);
 
-            this.lastFmUsernameEditText = this.rootView.FindViewById<EditText>(Resource.Id.acc_lastfm_username_edittext);
-            this.lastFmButton = this.rootView.FindViewById<Button>(Resource.Id.acc_lastfm_button);
+            this.linkLastFmAccount = this.rootView.FindViewById<ImageView>(Resource.Id.acc_link_action);
         
             return this.rootView;
         }
@@ -57,17 +54,36 @@ namespace csfm_android.Fragments
             base.OnStart();
 
             var username = CSFMPrefs.Prefs.GetString(CSFMApplication.Username, "");
-            this.username.Text = GetString(Resource.String.connected_as).Replace("{name}", username);
+            this.username.Text = username;
             GetUser(username);
 
-            this.signoutButton.Click += delegate
+            this.signOut.Click += delegate
             {
                 this.SignOut();
             };
 
-            this.lastFmButton.Click += delegate
+            this.linkLastFmAccount.Click += delegate
             {
-                this.LinkLastFm();
+                Dialog dialog = new Dialog(this.Activity);
+
+                dialog.SetTitle(GetString(Resource.String.link_an_account));
+                dialog.SetContentView(Resource.Layout.lastfm_dialog);
+
+                Button button = dialog.FindViewById<Button>(Resource.Id.dialog_link_button);
+                button.Click += delegate
+                {
+                    EditText edit = dialog.FindViewById<EditText>(Resource.Id.dialog_edittext);
+                    string usernameText = edit.Text;
+
+                    if (String.IsNullOrEmpty(usernameText))
+                    {
+                        this.LinkLastFm(usernameText);
+                    }
+
+                    dialog.Dismiss();
+                };
+
+                dialog.Show();
             };
         }
 
@@ -96,10 +112,8 @@ namespace csfm_android.Fragments
             StartActivity(intent);
         }
 
-        private void LinkLastFm()
+        private void LinkLastFm(string lastfmUsername)
         {
-            string lastfmUsername = this.lastFmUsernameEditText.Text;
-
             if (!String.IsNullOrEmpty(lastfmUsername))
             {
                 new ApiClient().ImportLastFm(lastfmUsername);
@@ -107,7 +121,7 @@ namespace csfm_android.Fragments
             else
             {
                 Toast.MakeText(Activity, Resource.String.no_username, ToastLength.Short).Show();
-            }  
+            }
         }
 
     }
