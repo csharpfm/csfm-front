@@ -75,7 +75,7 @@ namespace csfm_android.Fragments
                     EditText edit = dialog.FindViewById<EditText>(Resource.Id.dialog_edittext);
                     string usernameText = edit.Text;
 
-                    if (String.IsNullOrEmpty(usernameText))
+                    if (!String.IsNullOrEmpty(usernameText))
                     {
                         this.LinkLastFm(usernameText);
                     }
@@ -91,10 +91,17 @@ namespace csfm_android.Fragments
         {
             var user = await new ApiClient().GetUser(username);
 
-            if (user != null)
+            if (user != null && !String.IsNullOrEmpty(user.Photo))
             {
                 Picasso.With(Activity)
                     .Load(user.Photo)
+                    .Transform(new CircleTransform())
+                    .Into(this.userAvatar);
+            }
+            else
+            {
+                Picasso.With(Activity)
+                    .Load(Resource.Drawable.csfm_user)
                     .Transform(new CircleTransform())
                     .Into(this.userAvatar);
             }
