@@ -31,6 +31,7 @@ using System.Threading.Tasks;
 using Java.Util;
 using Newtonsoft.Json;
 using csfm_android.Ui.Holders;
+using csfm_android.Utils.iTunes;
 
 namespace csfm_android.Api
 {
@@ -51,7 +52,7 @@ namespace csfm_android.Api
         /// </summary>
         private static readonly ICsfmApi instance = RestService.For<ICsfmApi>(SERVER_URL);
 
-        private static readonly IiTunesClient iTunes = RestService.For<IiTunesClient>(ITUNES_URL);
+        private static readonly IiTunesClientApi iTunes = RestService.For<IiTunesClientApi>(ITUNES_URL);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiClient"/> class.
@@ -313,35 +314,7 @@ namespace csfm_android.Api
         }
     }
 
-    public interface IiTunesClient
-    {
-        [Get("/search?term={keywords}")]
-        Task<ITunesResponse> Search(string keywords);
-    }
-
-    public class ITunesResponse
-    {
-        [JsonProperty(PropertyName = "resultCount")]
-        public string Count
-        {
-            get; set;
-        }
-
-        [JsonProperty(PropertyName = "results")]
-        public List<ITunesResponseItem> Items { get; set; }
-    }
-
-    public class ITunesResponseItem
-    {
-        [JsonProperty(PropertyName = "artistName")]
-        public string ArtistName { get; set; }
-
-        [JsonProperty(PropertyName = "collectionName")]
-        public string AlbumName { get; set; }
-
-        [JsonProperty(PropertyName = "artworkUrl100")]
-        public string AlbumArtUrl { get; set; }
-    }
+    
 }
  
  
