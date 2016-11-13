@@ -198,8 +198,6 @@
     <AndroidResource Include="Resources\layout\history_item.axml" />
     <AndroidResource Include="Resources\layout\discover_fragment.axml" />
     <AndroidResource Include="Resources\layout\settings_fragment.axml" />
-    <AndroidResource Include="Resources\layout\signin_dialog.axml" />
-    <AndroidResource Include="Resources\layout\signup_dialog.axml" />
     <AndroidResource Include="Resources\layout\login_activity.axml" />
     <AndroidResource Include="Resources\layout\signup_activity.axml" />
     <AndroidResource Include="Resources\layout\activity_button_group.axml">
