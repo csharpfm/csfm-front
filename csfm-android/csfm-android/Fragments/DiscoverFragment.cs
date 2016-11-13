@@ -93,27 +93,9 @@ namespace csfm_android.Fragments
             this.loadMore.Click += delegate
             {
                 GetRecommendations();
-
-                if (this.recommendedUsers != null)
-                {
-                    this.loadMore.Visibility = ViewStates.Gone;
-                    this.Next();
-                }
             };
 
-
             GetRecommendations();
-
-            if (this.recommendedUsers != null && this.recommendedUsers.Any())
-            {
-                this.Next();
-            }
-            else
-            {
-                LoadMore();
-            }
-
-            this.InitButtons();
         }
 
         private void InitButtons()
@@ -185,6 +167,18 @@ namespace csfm_android.Fragments
         private async void GetRecommendations()
         {
             this.recommendedUsers = await new ApiClient().GetUserRecommendations(CSFMPrefs.Prefs.GetString(CSFMApplication.Username, ""));
+
+            if (this.recommendedUsers != null && this.recommendedUsers.Any())
+            {
+                this.loadMore.Visibility = ViewStates.Gone;
+                this.Next();
+            }
+            else
+            {
+                LoadMore();
+            }
+
+            this.InitButtons();
         }
     }
    
