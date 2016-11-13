@@ -80,7 +80,6 @@ namespace csfm_android.Fragments
 
             HistoryAdapter adapter = new HistoryAdapter(this.Activity, historic);
             recyclerView.SetAdapter(adapter);
-            InitScrobble(adapter);
 
             GetHistory();
         }
@@ -94,8 +93,8 @@ namespace csfm_android.Fragments
             if(history != null)
             {
                 HistoryAdapter adapter = new HistoryAdapter(this.Activity, history);
+                InitScrobble(adapter, history);
                 recyclerView.SetAdapter(adapter);
-                //InitScrobble(adapter, history);
                 // GOOD
             }
         }
@@ -118,7 +117,15 @@ namespace csfm_android.Fragments
                     Name = ScrobblePrefs.Track
                 };
 
+                if (firstItem != null && firstItem.Track?.Name == trackScrobble.Name && firstItem.Track?.Album?.Name == trackScrobble.Album?.Name && firstItem.Track?.Album?.Artist?.Name == firstItem.Track?.Album?.Artist?.Name)
+                {
+                    firstItem.IsScrobbling = true;
+                }
+                else
+                {
                     adapter.Scrobble = new History(trackScrobble, true);
+                }
+
 
             }
             else
