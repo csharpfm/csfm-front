@@ -13,8 +13,11 @@ using Newtonsoft.Json;
 
 namespace csfm_android.Api.Model
 {
-    public class Album : MusicItem
+    public class Album
     {
+        [JsonProperty(PropertyName = "Id")]
+        public int Id { get; set; }
+
         [JsonProperty(PropertyName = "Name")]
         public string Name { get; set; }
 
@@ -25,13 +28,21 @@ namespace csfm_android.Api.Model
         public string Image { get; set; }
 
         [JsonProperty(PropertyName = "ReleaseDate")]
-        public DateTime ReleaseDate { get; set; }
+        public DateTime? ReleaseDate { get; set; }
+
+        [JsonProperty(PropertyName = "ArtistId")]
+        public int ArtistId { get; set; }
 
         [JsonProperty(PropertyName = "Artist")]
         public Artist Artist { get; set; }
 
-        [JsonProperty(PropertyName = "Tracks")]
+        [JsonProperty(PropertyName = "Tracks", IsReference = true)]
         public List<Track> Tracks { get; set; }
 
+        [JsonConstructor]
+        public Album()
+        {
+
+        }
     }
 }

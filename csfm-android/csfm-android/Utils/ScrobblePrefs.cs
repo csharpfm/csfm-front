@@ -95,13 +95,13 @@ namespace csfm_android.Utils
         public static void Save(string artist, string album, string track, long endTicks)
         {
             var editor = CSFMPrefs.Editor;
-            artist = null;
+            ScrobblePrefs.artist = null;
             editor.PutString(ARTIST_KEY, artist);
-            album = null;
+            ScrobblePrefs.album = null;
             editor.PutString(ALBUM_KEY, album);
-            track = null;
+            ScrobblePrefs.track = null;
             editor.PutString(TRACK_KEY, track);
-            ticks = null;
+            ScrobblePrefs.ticks = null;
             editor.PutLong(END_TICKS_KEY, endTicks);
             editor.Commit();
         }

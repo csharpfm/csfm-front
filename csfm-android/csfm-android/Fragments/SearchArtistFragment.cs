@@ -52,7 +52,6 @@ namespace csfm_android.Fragments
 
         protected override void SetRecyclerViewLayoutManager(RecyclerView recyclerView)
         {
-            //recyclerView.SetLayoutManager(new GridLayoutManager(this.Activity, 3));
             recyclerView.SetLayoutManager(new LinearLayoutManager(this.Activity));
         }
 
