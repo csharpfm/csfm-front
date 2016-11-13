@@ -58,7 +58,7 @@ namespace csfm_android.Fragments
         protected override void Update(Action callback)
         {
 
-            Adapter.Data = MaterialSearchView.History;//FAKE_ALBUMS;
+            //Nothing to do
             callback();
         }
 

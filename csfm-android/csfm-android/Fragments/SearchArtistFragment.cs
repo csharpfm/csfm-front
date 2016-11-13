@@ -69,7 +69,7 @@ namespace csfm_android.Fragments
         protected override void Update(Action callback)
         {
             //API Call
-            Adapter.Data = MaterialSearchView.History;//FAKE_ARTISTS;
+            //Nothing to do
             callback();
         }
 
@@ -80,7 +80,6 @@ namespace csfm_android.Fragments
             string[] words = name.ToLower().Trim().Split(' ');
             var artists = history.Where(h => words.All(w => h.Track.Album.Artist.Name.ToLower().Trim().Contains(w)));
             Adapter.Data = artists.ToList();
-            //Adapter.Data = FAKE_ARTISTS;
             callback();
         }
     }
