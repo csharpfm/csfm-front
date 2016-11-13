@@ -29,6 +29,9 @@ using Newtonsoft.Json.Linq;
 using csfm_android.Api.Model;
 using System.Threading.Tasks;
 using Java.Util;
+using Newtonsoft.Json;
+using csfm_android.Ui.Holders;
+using csfm_android.Utils.iTunes;
 
 namespace csfm_android.Api
 {
@@ -42,10 +45,14 @@ namespace csfm_android.Api
         /// </summary>
         private static readonly string SERVER_URL = "http://matchfm.westeurope.cloudapp.azure.com";
 
+        private const string ITUNES_URL = "https://itunes.apple.com";
+
         /// <summary>
         /// The instance
         /// </summary>
         private static readonly ICsfmApi instance = RestService.For<ICsfmApi>(SERVER_URL);
+
+        private static readonly IiTunesClientApi iTunes = RestService.For<IiTunesClientApi>(ITUNES_URL);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiClient"/> class.
@@ -283,7 +290,32 @@ namespace csfm_android.Api
                 return false;
             }
         }
+
+        //Key : {artist}+{album} (replace " " with "+")
+        private static Dictionary<string, string> images = new Dictionary<string, string>();
+
+        public async Task<string> GetAlbumArtUrl(History history, Action<string> callback)
+        {
+            string keywords = history.Track.Album.Name.Replace(' ', '+');
+            keywords += "+" + history.Track.Album.Artist.Name.Replace(' ', '+');
+
+            string url = null;
+            if (images.ContainsKey(keywords))
+            {
+                url = images[keywords];
+            }
+            else
+            {
+                ITunesResponse response = await iTunes.Search(keywords);
+                url = response.Items.FirstOrDefault(i => i.AlbumArtUrl != null)?.AlbumArtUrl;
+                images[keywords] = url;
+            }
+            callback(url);
+            return url;
+        }
     }
+
+    
 }
  
  
