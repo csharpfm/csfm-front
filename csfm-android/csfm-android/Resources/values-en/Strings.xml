@@ -42,4 +42,6 @@
   <string name="link_an_account">Link an account</string>
   <string name="linked_accounts">Linked accounts</string>
   <string name="no_data_available">No result found</string>
+
+  <string name="activate_scrobbling">Activate scrobbling?</string>
 </resources>

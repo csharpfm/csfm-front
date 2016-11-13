@@ -23,6 +23,8 @@ namespace csfm_android
 
         static readonly string username = "csfm_username";
 
+        static readonly string isScrobbling = "is_scrobbling";
+
         public CSFMApplication(IntPtr handle, JniHandleOwnership transfer): base(handle, transfer)
         {
             _instance = this;
@@ -51,6 +53,11 @@ namespace csfm_android
         public static string Username
         {
             get { return username; }
+        }
+
+        public static string IsScrobbling
+        {
+            get { return isScrobbling; }
         }
     }
 }

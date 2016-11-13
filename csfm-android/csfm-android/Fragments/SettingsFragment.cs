@@ -31,6 +31,8 @@ namespace csfm_android.Fragments
 
         private ImageView linkLastFmAccount;
 
+        private Switch scrobblerSwitch;
+
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -43,9 +45,10 @@ namespace csfm_android.Fragments
             this.signOut = this.rootView.FindViewById<TextView>(Resource.Id.acc_logout);
             this.userAvatar = this.rootView.FindViewById<ImageView>(Resource.Id.acc_user_avatar);
             this.username = this.rootView.FindViewById<TextView>(Resource.Id.acc_username);
-
             this.linkLastFmAccount = this.rootView.FindViewById<ImageView>(Resource.Id.acc_link_action);
-        
+            this.scrobblerSwitch = this.rootView.FindViewById<Switch>(Resource.Id.acc_switch_scrobble);
+
+            this.scrobblerSwitch.Checked = CSFMPrefs.Prefs.GetBoolean(CSFMApplication.IsScrobbling, true);
             return this.rootView;
         }
 
@@ -85,6 +88,10 @@ namespace csfm_android.Fragments
 
                 dialog.Show();
             };
+
+            this.scrobblerSwitch.CheckedChange += delegate (object sender, CompoundButton.CheckedChangeEventArgs e) {
+                CSFMPrefs.Editor.PutBoolean(CSFMApplication.IsScrobbling, e.IsChecked).Commit();
+            };
         }
 
         private async void GetUser(string username)
@@ -112,6 +119,7 @@ namespace csfm_android.Fragments
         {
             CSFMPrefs.Editor.Remove(CSFMApplication.BearerToken).Commit();
             CSFMPrefs.Editor.Remove(CSFMApplication.Username).Commit();
+            CSFMPrefs.Editor.Remove(CSFMApplication.IsScrobbling).Commit();
 
             Activity.Finish();
 
