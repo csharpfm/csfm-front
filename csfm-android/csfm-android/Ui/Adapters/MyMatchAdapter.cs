@@ -33,7 +33,7 @@ namespace csfm_android.Ui.Adapters
         {
             get
             {
-                return users.Count;
+                return users != null ? users.Count : 0;
             }
         }
 
