@@ -45,8 +45,8 @@ namespace csfm_android.Api.Model
         {
             get
             {
-                string text = Album.Artist.Name.DefaultStringIfEmpty("Unknown Artist");
-                if (!Album.Name.IsStringEmpty())
+                string text = Album?.Artist?.Name.DefaultStringIfEmpty("Unknown Artist");
+                if (!(Album?.Name).IsStringEmpty())
                 {
                     text += " - " + Album.Name;
                 }

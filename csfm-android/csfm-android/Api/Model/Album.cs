@@ -39,6 +39,7 @@ namespace csfm_android.Api.Model
         [JsonProperty(PropertyName = "Tracks", IsReference = true)]
         public List<Track> Tracks { get; set; }
 
+
         [JsonConstructor]
         public Album()
         {

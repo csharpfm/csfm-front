@@ -97,7 +97,7 @@ namespace csfm_android.Ui.Holders
         public void Bind(History history)
         {
             SongName.Text = history?.Track?.Name;
-            SongArtist.Text = history?.Track?.Album?.Artist?.Name;
+            SongArtist.Text = history?.Track?.Artist_Album_Format;
 
             if (!history.IsScrobbling)
             {
