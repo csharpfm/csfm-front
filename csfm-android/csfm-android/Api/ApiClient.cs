@@ -166,7 +166,7 @@ namespace csfm_android.Api
         /// <param name="history">The history.</param>
         public async void PostHistory(string username, History history, Action callback = null)
         {
-            PostHistory(username, history.Track.Album.Artist.Name, history.Track.Album.Name, history.Track.Name);
+            PostHistory(username, history.Track.Album.Artist.Name, history.Track.Album.Name, history.Track.Name, callback);
         }
 
         /// <summary>
