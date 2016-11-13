@@ -78,21 +78,21 @@ namespace csfm_android.Activities
         {
             bottomBar = BottomBar.Attach(this, bundle);
 
-            BottomBarTab[] tabs = new BottomBarTab[3]
+            BottomBarTab[] tabs = new BottomBarTab[4]
             {
                  new BottomBarTab(Resource.Drawable.ic_home_white_24dp, Resource.String.home),
+                 new BottomBarTab(Resource.Drawable.ic_people_white_24dp, Resource.String.discover),
                  new BottomBarTab(Resource.Drawable.ic_favorite_white_24dp, Resource.String.match),
-                 new BottomBarTab(Resource.Drawable.ic_person_white_24dp, Resource.String.account)
+                 new BottomBarTab(Resource.Drawable.ic_settings_white_24dp, Resource.String.settings)
             };
 
             bottomBar.SetFixedInactiveIconColor("#44000000");
-            bottomBar.SetActiveTabColor("#F44336");
 
             bottomBar.SetItems(tabs);
             for (int i = 0; i < tabs.Length; i++)
             {
                 tabs[i].Id = i;
-                bottomBar.MapColorForTab(i, "#EFEFEF");
+                bottomBar.MapColorForTab(i, "#F44336");
             }
 
             bottomBar.SetOnMenuTabClickListener(this);
@@ -133,12 +133,16 @@ namespace csfm_android.Activities
                     this.Toolbar.Title = GetString(Resource.String.home);
                     break;
                 case 1:
-                    LaunchFragment(new MatchFragment());
-                    this.Toolbar.Title = GetString(Resource.String.match);
+                    LaunchFragment(new DiscoverFragment());
+                    this.Toolbar.Title = GetString(Resource.String.discover);
                     break;
                 case 2:
+                    LaunchFragment(new MyMatchFragment());
+                    this.Toolbar.Title = GetString(Resource.String.match);
+                    break;
+                case 3:
                     LaunchFragment(new AccountFragment());
-                    this.Toolbar.Title = GetString(Resource.String.account);
+                    this.Toolbar.Title = GetString(Resource.String.settings);
                     break;
                 default:
                     break;

@@ -20,7 +20,7 @@ using csfm_android.Utils;
 
 namespace csfm_android.Fragments
 {
-    public class MatchFragment : Fragment
+    public class DiscoverFragment : Fragment
     {
         private View rootView;
 
@@ -50,7 +50,7 @@ namespace csfm_android.Fragments
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            this.rootView = inflater.Inflate(Resource.Layout.match_fragment, container, false);
+            this.rootView = inflater.Inflate(Resource.Layout.discover_fragment, container, false);
 
             ((ToolbarActivity)Activity).Toolbar.Hide();
 
@@ -149,14 +149,6 @@ namespace csfm_android.Fragments
             canvas.DrawRect(0, 0, width, height, paint);
 
             return updatedBitmap;
-        }
-
-        private async void GetMatch()
-        {
-            var users = await new ApiClient().GetUserMatch(CSFMPrefs.Prefs.GetString(CSFMApplication.Username, ""));
-
-            this.recommendedUsers = users;
-            Console.WriteLine(users);
         }
 
         private async void PutMatch(bool isMatch)
