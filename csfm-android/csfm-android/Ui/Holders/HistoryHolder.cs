@@ -15,12 +15,15 @@ using csfm_android.Api.Model;
 using Square.Picasso;
 using csfm_android.Ui.Utils;
 using Java.IO;
+using csfm_android.Api;
 
 namespace csfm_android.Ui.Holders
 {
     public class HistoryHolder : RecyclerView.ViewHolder
     {
         public const int LAYOUT = Resource.Layout.history_item;
+
+        private History history_;
 
         public TextView SongName { get; private set; }
 
@@ -96,13 +99,26 @@ namespace csfm_android.Ui.Holders
 
         public void Bind(History history)
         {
+            this.history_ = history;
             SongName.Text = history?.Track?.Name;
             SongArtist.Text = history?.Track?.Artist_Album_Format;
 
             if (!history.IsScrobbling)
             {
                 Date.Text = history?.ListenDate.ToString();
-                AlbumCoverUrl = history?.Track?.Album?.Image != null ? history.Track.Album.Image : history?.Track?.Album?.Artist?.Image;
+                string url = history?.Track?.Album?.Image != null ? history.Track.Album.Image : history?.Track?.Album?.Artist?.Image;
+                AlbumCoverUrl = url;
+                if (url == null)
+                {
+                    new ApiClient().GetAlbumArtUrl(history, s =>
+                    {
+                        if (this.history_ == history && s != null)
+                        {
+                            AlbumCoverUrl = s;
+                        }
+                        history.Track.Album.Image = s;
+                    });
+                }
             }
             else
             {
@@ -110,6 +126,7 @@ namespace csfm_android.Ui.Holders
                 AlbumCoverFile = history?.Track?.Album?.Image;
             }
             Animation = history.IsScrobbling;
+
 
         }
 

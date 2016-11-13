@@ -136,6 +136,7 @@
     <Compile Include="Activities\ToolbarActivity.cs" />
     <Compile Include="Api\ApiClient.cs" />
     <Compile Include="Api\Interfaces\ICsfmApi.cs" />
+    <Compile Include="Api\Interfaces\IiTunesClientApi.cs" />
     <Compile Include="Api\Model\Album.cs" />
     <Compile Include="Api\Model\Artist.cs" />
     <Compile Include="Api\Model\Enums\GenderEnum.cs" />
@@ -180,6 +181,8 @@
     <Compile Include="Ui\Holders\SearchTrackHolder.cs" />
     <Compile Include="Ui\Utils\CircleTransform.cs" />
     <Compile Include="Utils\CSFMPrefs.cs" />
+    <Compile Include="Utils\iTunes\ITunesResponse.cs" />
+    <Compile Include="Utils\iTunes\ITunesResponseItem.cs" />
     <Compile Include="Utils\MaterialDesignSearchView\AnimationUtil.cs" />
     <Compile Include="Utils\MaterialDesignSearchView\MaterialSearchView.cs" />
     <Compile Include="Utils\MaterialDesignSearchView\SearchAdapter.cs" />
