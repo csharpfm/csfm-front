@@ -28,12 +28,13 @@ namespace csfm_android.Fragments
 {
     public class HomeFragment : Fragment, SwipeRefreshLayout.IOnRefreshListener
     {
-       
         private View rootView;
 
         private RecyclerView recyclerView;
 
         private SwipeRefreshLayout refresh;
+
+        private HistoryAdapter adapter;
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -51,7 +52,7 @@ namespace csfm_android.Fragments
 
             LinearLayoutManager layoutManager = new LinearLayoutManager(this.Activity);
             recyclerView.SetLayoutManager(layoutManager);
-
+     
             return this.rootView;
         }
 
@@ -59,11 +60,15 @@ namespace csfm_android.Fragments
         {
             base.OnResume();
 
-            HistoryAdapter adapter = new HistoryAdapter(this.Activity, new List<History>());
-            recyclerView.SetAdapter(adapter);
-
-            refresh.Post(() => refresh.Refreshing = true);
-            OnRefresh();
+            if (this.adapter == null)
+            {
+                refresh.Post(() => refresh.Refreshing = true);
+                OnRefresh();
+            }
+            else
+            {
+                recyclerView.SetAdapter(adapter);
+            }  
         }
 
         private async void GetHistory(Action<List<History>> callback)
@@ -76,7 +81,7 @@ namespace csfm_android.Fragments
             {
                 try
                 {
-                    HistoryAdapter adapter = new HistoryAdapter(this.Activity, history);
+                    this.adapter = new HistoryAdapter(this.Activity, history);
                     InitScrobble(adapter, history);
                     recyclerView.SetAdapter(adapter);
                     callback?.Invoke(history);
