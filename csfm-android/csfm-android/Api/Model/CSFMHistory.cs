@@ -13,7 +13,7 @@ using Newtonsoft.Json;
 
 namespace csfm_android.Api.Model
 {
-    public class History
+    public class CSFMHistory
     {
         [JsonProperty(PropertyName = "Id")]
         public int Id { get; set; }
@@ -26,26 +26,5 @@ namespace csfm_android.Api.Model
 
         [JsonProperty(PropertyName = "ListenDate")]
         public DateTime ListenDate { get; set; }
-
-        [JsonIgnore]
-        public bool IsScrobbling { get; set; }
-
-        [JsonConstructor]
-        public History()
-        {
-
-        }
-
-        public History(Track track, DateTime date, bool isScrobbling = false)
-        {
-            Track = track;
-            ListenDate = date;
-            IsScrobbling = isScrobbling;
-        }
-
-        public History(Track track, bool isScrobbling) : this(track, DateTime.Now, isScrobbling)
-        {
-        }
-
     }
 }

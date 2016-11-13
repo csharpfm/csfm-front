@@ -13,8 +13,12 @@ using Newtonsoft.Json;
 
 namespace csfm_android.Api.Model
 {
-    public class Artist : MusicItem
+    public class Artist
     {
+
+        [JsonProperty(PropertyName = "Id")]
+        public int Id { get; set; }
+
         [JsonProperty(PropertyName = "Name")]
         public string Name { get; set; }
 
@@ -24,8 +28,13 @@ namespace csfm_android.Api.Model
         [JsonProperty(PropertyName = "Image")]
         public string Image { get; set; }
 
-        [JsonProperty(PropertyName = "Albums")]
+        [JsonProperty(PropertyName = "Albums", IsReference = true)]
         public List<Album> Albums { get; set; }
 
+        [JsonConstructor]
+        public Artist()
+        {
+
+        }
     }
 }

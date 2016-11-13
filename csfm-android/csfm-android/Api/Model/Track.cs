@@ -14,11 +14,14 @@ using Newtonsoft.Json;
 
 namespace csfm_android.Api.Model
 {
-    public class Track : MusicItem
+    public class Track
     {
 
         [JsonProperty(PropertyName = "Duration")]
         public long Duration { get; set; }
+
+        [JsonProperty(PropertyName = "AlbumId")]
+        public int AlbumId { get; set; }
 
         [JsonProperty(PropertyName = "Album")]
         public Album Album { get; set; }
@@ -31,6 +34,12 @@ namespace csfm_android.Api.Model
 
         [JsonProperty(PropertyName = "Id")]
         public int Id { get; set; }
+
+        [JsonConstructor]
+        public Track()
+        {
+
+        }
 
         public string Artist_Album_Format
         {
@@ -58,7 +67,5 @@ namespace csfm_android.Api.Model
                 return string.Empty;
             }
         }
-
-        /*  public List<TrackTag> Tags { get; set; } */
     }
 }
