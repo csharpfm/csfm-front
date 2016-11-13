@@ -60,7 +60,8 @@ namespace csfm_android.Fragments
             HistoryAdapter adapter = new HistoryAdapter(this.Activity, new List<History>());
             recyclerView.SetAdapter(adapter);
 
-            GetHistory(null);
+            refresh.Post(() => refresh.Refreshing = true);
+            GetHistory(() => refresh.Refreshing = false);
         }
 
         private async void GetHistory(Action callback)
@@ -71,11 +72,18 @@ namespace csfm_android.Fragments
 
             if(history != null)
             {
-                HistoryAdapter adapter = new HistoryAdapter(this.Activity, history);
-                InitScrobble(adapter, history);
-                recyclerView.SetAdapter(adapter);
-
-                callback?.Invoke();
+                try
+                {
+                    HistoryAdapter adapter = new HistoryAdapter(this.Activity, history);
+                    InitScrobble(adapter, history);
+                    recyclerView.SetAdapter(adapter);
+                    callback?.Invoke();
+                }
+                catch
+                {
+                    //Exception in case of fragment change
+                }
+                
             }
         }
 
