@@ -29,6 +29,16 @@ namespace csfm_android.Activities
         private LocationManager locationManager;
         private string locationProvider;
 
+        private HomeFragment homeFragment = null;
+
+        private HomeFragment HomeFragment
+        {
+            get
+            {
+                if (homeFragment == null) homeFragment = new HomeFragment();
+                return homeFragment;
+            }
+        }
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -98,18 +108,6 @@ namespace csfm_android.Activities
             bottomBar.SetOnMenuTabClickListener(this);
         }
 
-
-        private void StartHomeFragment()
-        {
-            // Create a new fragment and a transaction.
-            FragmentTransaction fragmentTransaction = this.FragmentManager.BeginTransaction();
-            HomeFragment homeFragment = new HomeFragment();
-
-            fragmentTransaction.Add(Resource.Id.mainContainer, homeFragment);
-            fragmentTransaction.AddToBackStack(null);
-            fragmentTransaction.Commit();
-        }
-
         private void LaunchFragment(Fragment fragment)
         {
             FragmentTransaction fragmentTransaction = this.FragmentManager.BeginTransaction();
@@ -129,7 +127,7 @@ namespace csfm_android.Activities
             switch(menuItemId)
             {
                 case 0:
-                    LaunchFragment(new HomeFragment());
+                    LaunchFragment(this.HomeFragment);
                     this.Toolbar.Title = GetString(Resource.String.home);
                     break;
                 case 1:

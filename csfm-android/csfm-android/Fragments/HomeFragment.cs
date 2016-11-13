@@ -28,7 +28,6 @@ namespace csfm_android.Fragments
 {
     public class HomeFragment : Fragment, SwipeRefreshLayout.IOnRefreshListener
     {
-       
         private View rootView;
 
         private RecyclerView recyclerView;
@@ -38,6 +37,7 @@ namespace csfm_android.Fragments
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -59,8 +59,7 @@ namespace csfm_android.Fragments
         {
             base.OnResume();
 
-            HistoryAdapter adapter = new HistoryAdapter(this.Activity, new List<History>());
-            recyclerView.SetAdapter(adapter);
+            Console.WriteLine(this.recyclerView.GetAdapter());
 
             refresh.Post(() => refresh.Refreshing = true);
             OnRefresh();
