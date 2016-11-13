@@ -15,5 +15,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             />
+    
+        <TextView
+          android:id="@+id/searchNoResult"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:gravity="center"
+          android:visibility="gone"
+          android:background="@color/colorPrimary"
+          android:text="@string/no_data_available" />
     </android.support.v4.widget.SwipeRefreshLayout>
 </RelativeLayout>

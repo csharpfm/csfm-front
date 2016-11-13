@@ -12,6 +12,7 @@ using Android.Views;
 using Android.Widget;
 using csfm_android.Api.Model;
 using csfm_android.Ui.Adapters;
+using csfm_android.Utils.MaterialDesignSearchView;
 
 namespace csfm_android.Fragments
 {
@@ -24,7 +25,7 @@ namespace csfm_android.Fragments
             {
                 if (adapter == null && recyclerView != null)
                 {
-                    SetRecyclerViewAdapter(recyclerView);
+                    SetRecyclerViewAdapter(recyclerView, noResult);
                 }
                 return adapter;
             }
@@ -44,9 +45,9 @@ namespace csfm_android.Fragments
             recyclerView.SetAdapter(this.adapter = adapter);
         }
 
-        protected override void SetRecyclerViewAdapter(RecyclerView recyclerView)
+        protected override void SetRecyclerViewAdapter(RecyclerView recyclerView, View noResult)
         {
-            SetRecyclerViewAdapter(recyclerView, new SearchTrackAdapter(this.Context, new List<Track>()));
+            SetRecyclerViewAdapter(recyclerView, new SearchTrackAdapter(this.Context, new List<History>()));
         }
 
         protected override void SetRecyclerViewLayoutManager(RecyclerView recyclerView)
@@ -56,13 +57,16 @@ namespace csfm_android.Fragments
 
         protected override void Update(Action callback)
         {
-            Adapter.Data = FAKE_TRACKS;
+            Adapter.Data = MaterialSearchView.History; //FAKE_TRACKS;
             callback();
         }
 
         protected override void Update(string name, Action callback)
         {
-            Adapter.Data = FAKE_TRACKS;
+            string[] words = name.ToLower().Trim().Split(' ');
+            var history = MaterialSearchView.History;
+            var tracks = history.Where(h => words.All(w => h.Track.Name.Trim().ToLower().Contains(w)));
+            Adapter.Data = tracks.ToList();//FAKE_TRACKS;
             callback();
         }
     }

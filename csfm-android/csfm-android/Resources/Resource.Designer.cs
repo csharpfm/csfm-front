@@ -3719,8 +3719,8 @@ namespace csfm_android
 			// aapt resource value: 0x7f07003c
 			public const int action_mode_close_button = 2131165244;
 			
-			// aapt resource value: 0x7f0700cd
-			public const int action_search = 2131165389;
+			// aapt resource value: 0x7f0700ce
+			public const int action_search = 2131165390;
 			
 			// aapt resource value: 0x7f0700a0
 			public const int action_search_btn = 2131165344;
@@ -3818,8 +3818,8 @@ namespace csfm_android
 			// aapt resource value: 0x7f07001f
 			public const int collapseActionView = 2131165215;
 			
-			// aapt resource value: 0x7f0700cc
-			public const int confirm_password = 2131165388;
+			// aapt resource value: 0x7f0700cd
+			public const int confirm_password = 2131165389;
 			
 			// aapt resource value: 0x7f07004a
 			public const int contentPanel = 2131165258;
@@ -4031,8 +4031,8 @@ namespace csfm_android
 			// aapt resource value: 0x7f070046
 			public const int parentPanel = 2131165254;
 			
-			// aapt resource value: 0x7f0700c6
-			public const int password = 2131165382;
+			// aapt resource value: 0x7f0700c7
+			public const int password = 2131165383;
 			
 			// aapt resource value: 0x7f070029
 			public const int pin = 2131165225;
@@ -4070,20 +4070,23 @@ namespace csfm_android
 			// aapt resource value: 0x7f070039
 			public const int scrollable = 2131165241;
 			
+			// aapt resource value: 0x7f0700bd
+			public const int searchNoResult = 2131165373;
+			
 			// aapt resource value: 0x7f0700bc
 			public const int searchRecyclerView = 2131165372;
 			
 			// aapt resource value: 0x7f07009c
 			public const int searchTextView = 2131165340;
 			
-			// aapt resource value: 0x7f0700bf
-			public const int search_album_artist = 2131165375;
-			
-			// aapt resource value: 0x7f0700be
-			public const int search_album_name = 2131165374;
-			
 			// aapt resource value: 0x7f0700c0
-			public const int search_artist_name = 2131165376;
+			public const int search_album_artist = 2131165376;
+			
+			// aapt resource value: 0x7f0700bf
+			public const int search_album_name = 2131165375;
+			
+			// aapt resource value: 0x7f0700c1
+			public const int search_artist_name = 2131165377;
 			
 			// aapt resource value: 0x7f07005e
 			public const int search_badge = 2131165278;
@@ -4103,8 +4106,8 @@ namespace csfm_android
 			// aapt resource value: 0x7f070066
 			public const int search_go_btn = 2131165286;
 			
-			// aapt resource value: 0x7f0700bd
-			public const int search_image = 2131165373;
+			// aapt resource value: 0x7f0700be
+			public const int search_image = 2131165374;
 			
 			// aapt resource value: 0x7f070099
 			public const int search_layout = 2131165337;
@@ -4121,17 +4124,17 @@ namespace csfm_android
 			// aapt resource value: 0x7f07009b
 			public const int search_top_bar = 2131165339;
 			
-			// aapt resource value: 0x7f0700c3
-			public const int search_track_artist = 2131165379;
-			
 			// aapt resource value: 0x7f0700c4
-			public const int search_track_duration = 2131165380;
+			public const int search_track_artist = 2131165380;
 			
-			// aapt resource value: 0x7f0700c1
-			public const int search_track_image = 2131165377;
+			// aapt resource value: 0x7f0700c5
+			public const int search_track_duration = 2131165381;
 			
 			// aapt resource value: 0x7f0700c2
-			public const int search_track_name = 2131165378;
+			public const int search_track_image = 2131165378;
+			
+			// aapt resource value: 0x7f0700c3
+			public const int search_track_name = 2131165379;
 			
 			// aapt resource value: 0x7f070067
 			public const int search_voice_btn = 2131165287;
@@ -4154,23 +4157,23 @@ namespace csfm_android
 			// aapt resource value: 0x7f070096
 			public const int sign_in_button = 2131165334;
 			
-			// aapt resource value: 0x7f0700cb
-			public const int sign_up_button = 2131165387;
+			// aapt resource value: 0x7f0700cc
+			public const int sign_up_button = 2131165388;
 			
 			// aapt resource value: 0x7f07006e
 			public const int signout = 2131165294;
 			
-			// aapt resource value: 0x7f0700c9
-			public const int signup_email = 2131165385;
-			
-			// aapt resource value: 0x7f0700c7
-			public const int signup_layout = 2131165383;
-			
 			// aapt resource value: 0x7f0700ca
-			public const int signup_pwd = 2131165386;
+			public const int signup_email = 2131165386;
 			
 			// aapt resource value: 0x7f0700c8
-			public const int signup_username = 2131165384;
+			public const int signup_layout = 2131165384;
+			
+			// aapt resource value: 0x7f0700cb
+			public const int signup_pwd = 2131165387;
+			
+			// aapt resource value: 0x7f0700c9
+			public const int signup_username = 2131165385;
 			
 			// aapt resource value: 0x7f070080
 			public const int snackbar_action = 2131165312;
@@ -4256,8 +4259,8 @@ namespace csfm_android
 			// aapt resource value: 0x7f070014
 			public const int useLogo = 2131165204;
 			
-			// aapt resource value: 0x7f0700c5
-			public const int username = 2131165381;
+			// aapt resource value: 0x7f0700c6
+			public const int username = 2131165382;
 			
 			// aapt resource value: 0x7f0700b9
 			public const int viewPager = 2131165369;
@@ -4701,6 +4704,9 @@ namespace csfm_android
 			
 			// aapt resource value: 0x7f0a002a
 			public const int no_account = 2131361834;
+			
+			// aapt resource value: 0x7f0a0035
+			public const int no_data_available = 2131361845;
 			
 			// aapt resource value: 0x7f0a0032
 			public const int no_history = 2131361842;

@@ -36,6 +36,10 @@ namespace csfm_android.Activities
             this.tabLayout = FindViewById<TabLayout>(Resource.Id.tabs);
             this.viewPager = FindViewById<ViewPager>(Resource.Id.viewPager);
 
+            AppBarLayout.LayoutParams p = Toolbar.LayoutParameters as AppBarLayout.LayoutParams;
+            p.ScrollFlags = 0;
+            this.Toolbar.LayoutParameters = p;
+
             this.Toolbar.SetNavigationIcon(Resource.Drawable.ic_arrow_back_white_24dp);
             this.Toolbar.SetNavigationOnClickListener(new OnNavigationClickListener(this));
 

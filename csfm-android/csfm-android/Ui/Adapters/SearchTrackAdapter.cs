@@ -15,15 +15,15 @@ using csfm_android.Ui.Holders;
 
 namespace csfm_android.Ui.Adapters
 {
-    public class SearchTrackAdapter : SearchAdapter<Track>
+    public class SearchTrackAdapter : SearchAdapter
     {
-        public SearchTrackAdapter(Context context, List<Track> data) : base(context, data)
+        public SearchTrackAdapter(Context context, List<History> data) : base(context, data)
         {
         }
 
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
         {
-            return new SearchTrackHolder(LayoutInflater.From(parent.Context).Inflate(SearchTrackHolder.LAYOUT, parent, false));
+            return new HistoryHolder(LayoutInflater.From(parent.Context).Inflate(HistoryHolder.LAYOUT, parent, false));
         }
     }
 }
