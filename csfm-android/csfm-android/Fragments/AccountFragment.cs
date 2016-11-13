@@ -23,15 +23,13 @@ namespace csfm_android.Fragments
     {
         private View rootView;
 
-        private Button signoutButton;
+        private TextView signOut;
 
         private ImageView userAvatar;
 
         private TextView username;
 
-        private EditText lastFmUsernameEditText;
-
-        private Button lastFmButton;
+        private ImageView linkLastFmAccount;
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -42,12 +40,11 @@ namespace csfm_android.Fragments
         {
             
             this.rootView = inflater.Inflate(Resource.Layout.account_fragment, container, false);
-            this.signoutButton = this.rootView.FindViewById<Button>(Resource.Id.signout);
+            this.signOut = this.rootView.FindViewById<TextView>(Resource.Id.acc_logout);
             this.userAvatar = this.rootView.FindViewById<ImageView>(Resource.Id.acc_user_avatar);
             this.username = this.rootView.FindViewById<TextView>(Resource.Id.acc_username);
 
-            this.lastFmUsernameEditText = this.rootView.FindViewById<EditText>(Resource.Id.acc_lastfm_username_edittext);
-            this.lastFmButton = this.rootView.FindViewById<Button>(Resource.Id.acc_lastfm_button);
+            this.linkLastFmAccount = this.rootView.FindViewById<ImageView>(Resource.Id.acc_link_action);
         
             return this.rootView;
         }
@@ -57,15 +54,15 @@ namespace csfm_android.Fragments
             base.OnStart();
 
             var username = CSFMPrefs.Prefs.GetString(CSFMApplication.Username, "");
-            this.username.Text = GetString(Resource.String.connected_as).Replace("{name}", username);
+            this.username.Text = username;
             GetUser(username);
 
-            this.signoutButton.Click += delegate
+            this.signOut.Click += delegate
             {
                 this.SignOut();
             };
 
-            this.lastFmButton.Click += delegate
+            this.linkLastFmAccount.Click += delegate
             {
                 this.LinkLastFm();
             };
@@ -98,7 +95,7 @@ namespace csfm_android.Fragments
 
         private void LinkLastFm()
         {
-            string lastfmUsername = this.lastFmUsernameEditText.Text;
+          /*  string lastfmUsername = this.lastFmUsernameEditText.Text;
 
             if (!String.IsNullOrEmpty(lastfmUsername))
             {
@@ -107,7 +104,7 @@ namespace csfm_android.Fragments
             else
             {
                 Toast.MakeText(Activity, Resource.String.no_username, ToastLength.Short).Show();
-            }  
+            }  */
         }
 
     }

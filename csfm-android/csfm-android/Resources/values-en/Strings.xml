@@ -39,5 +39,6 @@
   <string name="history">History</string>
 
   <string name="link">Link</string>
+  <string name="linked_accounts">Linked accounts</string>
   <string name="no_data_available">No result found</string>
 </resources>

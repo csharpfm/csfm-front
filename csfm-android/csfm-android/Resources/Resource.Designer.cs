@@ -3599,46 +3599,52 @@ namespace csfm_android
 			public const int ic_home_white_24dp = 2130837601;
 			
 			// aapt resource value: 0x7f020062
-			public const int ic_menu_search_holo_dark = 2130837602;
+			public const int ic_keyboard_arrow_right_white_24dp = 2130837602;
 			
 			// aapt resource value: 0x7f020063
-			public const int ic_music_circle_grey600_24dp = 2130837603;
+			public const int ic_lastfm_white_24dp = 2130837603;
 			
 			// aapt resource value: 0x7f020064
-			public const int ic_music_note_black_24dp = 2130837604;
+			public const int ic_menu_search_holo_dark = 2130837604;
 			
 			// aapt resource value: 0x7f020065
-			public const int ic_notifications_mfm = 2130837605;
+			public const int ic_music_circle_grey600_24dp = 2130837605;
 			
 			// aapt resource value: 0x7f020066
-			public const int ic_people_white_24dp = 2130837606;
+			public const int ic_music_note_black_24dp = 2130837606;
 			
 			// aapt resource value: 0x7f020067
-			public const int ic_person_white_24dp = 2130837607;
+			public const int ic_notifications_mfm = 2130837607;
 			
 			// aapt resource value: 0x7f020068
-			public const int ic_search_white_24dp = 2130837608;
+			public const int ic_people_white_24dp = 2130837608;
 			
 			// aapt resource value: 0x7f020069
-			public const int ic_settings_white_24dp = 2130837609;
+			public const int ic_person_white_24dp = 2130837609;
 			
 			// aapt resource value: 0x7f02006a
-			public const int ic_suggestion = 2130837610;
+			public const int ic_search_white_24dp = 2130837610;
 			
 			// aapt resource value: 0x7f02006b
-			public const int Icon = 2130837611;
+			public const int ic_settings_white_24dp = 2130837611;
 			
 			// aapt resource value: 0x7f02006c
-			public const int logo = 2130837612;
-			
-			// aapt resource value: 0x7f02006f
-			public const int notification_template_icon_bg = 2130837615;
+			public const int ic_suggestion = 2130837612;
 			
 			// aapt resource value: 0x7f02006d
-			public const int ripple = 2130837613;
+			public const int Icon = 2130837613;
 			
 			// aapt resource value: 0x7f02006e
-			public const int ripple_white_background = 2130837614;
+			public const int logo = 2130837614;
+			
+			// aapt resource value: 0x7f020071
+			public const int notification_template_icon_bg = 2130837617;
+			
+			// aapt resource value: 0x7f02006f
+			public const int ripple = 2130837615;
+			
+			// aapt resource value: 0x7f020070
+			public const int ripple_white_background = 2130837616;
 			
 			static Drawable()
 			{
@@ -3653,20 +3659,17 @@ namespace csfm_android
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f07006d
-			public const int acc_lastfm_button = 2131165293;
-			
-			// aapt resource value: 0x7f07006c
-			public const int acc_lastfm_username_edittext = 2131165292;
-			
-			// aapt resource value: 0x7f07006a
-			public const int acc_user_avatar = 2131165290;
+			// aapt resource value: 0x7f07006e
+			public const int acc_link_action = 2131165294;
 			
 			// aapt resource value: 0x7f07006b
-			public const int acc_username = 2131165291;
+			public const int acc_logout = 2131165291;
 			
 			// aapt resource value: 0x7f070069
-			public const int account_frag = 2131165289;
+			public const int acc_user_avatar = 2131165289;
+			
+			// aapt resource value: 0x7f07006a
+			public const int acc_username = 2131165290;
 			
 			// aapt resource value: 0x7f0700ab
 			public const int action0 = 2131165355;
@@ -3932,6 +3935,12 @@ namespace csfm_android
 			// aapt resource value: 0x7f070000
 			public const int item_touch_helper_previous_elevation = 2131165184;
 			
+			// aapt resource value: 0x7f07006c
+			public const int last_icon = 2131165292;
+			
+			// aapt resource value: 0x7f07006d
+			public const int lastfm_text = 2131165293;
+			
 			// aapt resource value: 0x7f07002f
 			public const int left = 2131165231;
 			
@@ -4162,9 +4171,6 @@ namespace csfm_android
 			
 			// aapt resource value: 0x7f0700ce
 			public const int sign_up_button = 2131165390;
-			
-			// aapt resource value: 0x7f07006e
-			public const int signout = 2131165294;
 			
 			// aapt resource value: 0x7f0700cc
 			public const int signup_email = 2131165388;
@@ -4699,6 +4705,9 @@ namespace csfm_android
 			// aapt resource value: 0x7f0a0034
 			public const int link = 2131361844;
 			
+			// aapt resource value: 0x7f0a0035
+			public const int linked_accounts = 2131361845;
+			
 			// aapt resource value: 0x7f0a0031
 			public const int load_more = 2131361841;
 			
@@ -4711,8 +4720,8 @@ namespace csfm_android
 			// aapt resource value: 0x7f0a002a
 			public const int no_account = 2131361834;
 			
-			// aapt resource value: 0x7f0a0035
-			public const int no_data_available = 2131361845;
+			// aapt resource value: 0x7f0a0036
+			public const int no_data_available = 2131361846;
 			
 			// aapt resource value: 0x7f0a0032
 			public const int no_history = 2131361842;
