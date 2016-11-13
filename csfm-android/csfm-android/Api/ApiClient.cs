@@ -164,18 +164,33 @@ namespace csfm_android.Api
         /// </summary>
         /// <param name="username">The username.</param>
         /// <param name="history">The history.</param>
-        public async void PostHistory(string username, History history)
+        public async void PostHistory(string username, History history, Action callback = null)
+        {
+            PostHistory(username, history.Track.Album.Artist.Name, history.Track.Album.Name, history.Track.Name, callback);
+        }
+
+        /// <summary>
+        /// Posts the history
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="artist"></param>
+        /// <param name="album"></param>
+        /// <param name="title"></param>
+        public async void PostHistory(string username, string artist, string album, string title, Action callback = null)
         {
             try
             {
-                var data = new Dictionary<String, object>
+                var data = new Dictionary<string, object>
                 {
-                    { "Artist", history.Track.Album.Artist.Name },
-                    { "Album", history.Track.Album.Name },
-                    { "Title", history.Track.Name }
+                    { "Artist", artist },
+                    { "Album", album },
+                    { "Title", title }
                 };
 
                 await instance.PostUserHistory(username, data, "Bearer " + this.RetrieveBearer());
+
+                if (callback != null)
+                    callback();
             }
             catch (Exception e)
             {
