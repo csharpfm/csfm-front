@@ -130,7 +130,7 @@ namespace csfm_android.Fragments
             await new ApiClient().PutUserMatch(CSFMPrefs.Prefs.GetString(CSFMApplication.Username, ""), currentUser.Id, isMatch);
         }
 
-        private void Next()
+        private async void Next()
         {
             if (this.recommendedUsers.Any())
             {
@@ -143,7 +143,13 @@ namespace csfm_android.Fragments
                     .Into(this.avatar);
 
                 this.username.Text = user.Username;
-                this.favoriteSong.Text = ""; // TODO
+
+                var topArtists = await new ApiClient().GetUserTopArtists(user.Username);
+
+                if (topArtists != null && topArtists.Any())
+                {
+                    this.favoriteSong.Text = topArtists.First().Name;
+                }
 
                 this.recommendedUsers.Remove(user);
             }
