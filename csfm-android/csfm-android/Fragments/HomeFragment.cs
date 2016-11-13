@@ -59,8 +59,6 @@ namespace csfm_android.Fragments
         {
             base.OnResume();
 
-            Console.WriteLine(this.recyclerView.GetAdapter());
-
             refresh.Post(() => refresh.Refreshing = true);
             OnRefresh();
         }
