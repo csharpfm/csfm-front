@@ -147,6 +147,7 @@
     <Compile Include="Ui\Adapters\AbstractAdapter.cs" />
     <Compile Include="Ui\Adapters\MyMatchAdapter.cs" />
     <Compile Include="Ui\Holders\MyMatchHolder.cs" />
+    <Compile Include="Utils\CSFMDialog.cs" />
     <Compile Include="Utils\ExtensionMethods.cs" />
     <Compile Include="Api\Model\History.cs" />
     <Compile Include="Api\Model\MusicItem.cs" />
@@ -224,6 +225,7 @@
     </AndroidResource>
     <AndroidResource Include="Resources\layout\my_match_fragment.axml" />
     <AndroidResource Include="Resources\layout\my_match_item.axml" />
+    <AndroidResource Include="Resources\layout\lastfm_dialog.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml">

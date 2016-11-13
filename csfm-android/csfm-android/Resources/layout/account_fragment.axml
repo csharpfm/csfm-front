@@ -23,6 +23,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:id="@+id/acc_user_avatar"
+            android:src="@drawable/csfm_user"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"/>
 

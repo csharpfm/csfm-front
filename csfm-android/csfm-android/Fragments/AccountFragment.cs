@@ -64,7 +64,26 @@ namespace csfm_android.Fragments
 
             this.linkLastFmAccount.Click += delegate
             {
-                this.LinkLastFm();
+                Dialog dialog = new Dialog(this.Activity);
+
+                dialog.SetTitle(GetString(Resource.String.link_an_account));
+                dialog.SetContentView(Resource.Layout.lastfm_dialog);
+
+                Button button = dialog.FindViewById<Button>(Resource.Id.dialog_link_button);
+                button.Click += delegate
+                {
+                    EditText edit = dialog.FindViewById<EditText>(Resource.Id.dialog_edittext);
+                    string usernameText = edit.Text;
+
+                    if (String.IsNullOrEmpty(usernameText))
+                    {
+                        this.LinkLastFm(usernameText);
+                    }
+
+                    dialog.Dismiss();
+                };
+
+                dialog.Show();
             };
         }
 
@@ -93,10 +112,8 @@ namespace csfm_android.Fragments
             StartActivity(intent);
         }
 
-        private void LinkLastFm()
+        private void LinkLastFm(string lastfmUsername)
         {
-          /*  string lastfmUsername = this.lastFmUsernameEditText.Text;
-
             if (!String.IsNullOrEmpty(lastfmUsername))
             {
                 new ApiClient().ImportLastFm(lastfmUsername);
@@ -104,7 +121,7 @@ namespace csfm_android.Fragments
             else
             {
                 Toast.MakeText(Activity, Resource.String.no_username, ToastLength.Short).Show();
-            }  */
+            }
         }
 
     }
