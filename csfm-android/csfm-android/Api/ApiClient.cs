@@ -308,6 +308,7 @@ namespace csfm_android.Api
             {
                 ITunesResponse response = await iTunes.Search(keywords);
                 url = response.Items.FirstOrDefault(i => i.AlbumArtUrl != null)?.AlbumArtUrl;
+                images[keywords] = url;
             }
             callback(url);
             return url;
