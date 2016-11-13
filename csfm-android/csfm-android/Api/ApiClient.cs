@@ -29,6 +29,8 @@ using Newtonsoft.Json.Linq;
 using csfm_android.Api.Model;
 using System.Threading.Tasks;
 using Java.Util;
+using Newtonsoft.Json;
+using csfm_android.Ui.Holders;
 
 namespace csfm_android.Api
 {
@@ -42,10 +44,14 @@ namespace csfm_android.Api
         /// </summary>
         private static readonly string SERVER_URL = "http://matchfm.westeurope.cloudapp.azure.com";
 
+        private const string ITUNES_URL = "https://itunes.apple.com";
+
         /// <summary>
         /// The instance
         /// </summary>
         private static readonly ICsfmApi instance = RestService.For<ICsfmApi>(SERVER_URL);
+
+        private static readonly IiTunesClient iTunes = RestService.For<IiTunesClient>(ITUNES_URL);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiClient"/> class.
@@ -283,6 +289,58 @@ namespace csfm_android.Api
                 return false;
             }
         }
+
+        //Key : {artist}+{album} (replace " " with "+")
+        private static Dictionary<string, string> images = new Dictionary<string, string>();
+
+        public async Task<string> GetAlbumArtUrl(History history, Action<string> callback)
+        {
+            string keywords = history.Track.Album.Name.Replace(' ', '+');
+            keywords += "+" + history.Track.Album.Artist.Name.Replace(' ', '+');
+
+            string url = null;
+            if (images.ContainsKey(keywords))
+            {
+                url = images[keywords];
+            }
+            else
+            {
+                ITunesResponse response = await iTunes.Search(keywords);
+                url = response.Items.FirstOrDefault(i => i.AlbumArtUrl != null)?.AlbumArtUrl;
+            }
+            callback(url);
+            return url;
+        }
+    }
+
+    public interface IiTunesClient
+    {
+        [Get("/search?term={keywords}")]
+        Task<ITunesResponse> Search(string keywords);
+    }
+
+    public class ITunesResponse
+    {
+        [JsonProperty(PropertyName = "resultCount")]
+        public string Count
+        {
+            get; set;
+        }
+
+        [JsonProperty(PropertyName = "results")]
+        public List<ITunesResponseItem> Items { get; set; }
+    }
+
+    public class ITunesResponseItem
+    {
+        [JsonProperty(PropertyName = "artistName")]
+        public string ArtistName { get; set; }
+
+        [JsonProperty(PropertyName = "collectionName")]
+        public string AlbumName { get; set; }
+
+        [JsonProperty(PropertyName = "artworkUrl100")]
+        public string AlbumArtUrl { get; set; }
     }
 }
  
