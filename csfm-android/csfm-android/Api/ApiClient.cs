@@ -147,7 +147,7 @@ namespace csfm_android.Api
         /// </summary>
         /// <param name="username">The username.</param>
         /// <returns>Task&lt;List&lt;History&gt;&gt;.</returns>
-        public async Task<List<CSFMHistory>> GetHistory(string username)
+        public async Task<List<History>> GetHistory(string username)
         {
             try
             {

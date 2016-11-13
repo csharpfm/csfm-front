@@ -29,7 +29,7 @@ namespace csfm_android.Api.Interfaces
         Task<User> GetUser(string username, [Header("Authorization")] string accessToken);
 
         [Get("/api/Users/{username}/History")]
-        Task<List<CSFMHistory>> GetUserHistory(string username);
+        Task<List<History>> GetUserHistory(string username);
 
         [Post("/api/Users/{username}/History")]
         Task PostUserHistory(string username, [Body(BodySerializationMethod.Json)]  Dictionary<string, object> history, [Header("Authorization")] string accessToken);

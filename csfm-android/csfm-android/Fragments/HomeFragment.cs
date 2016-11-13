@@ -82,7 +82,7 @@ namespace csfm_android.Fragments
             recyclerView.SetAdapter(adapter);
             InitScrobble(adapter);
 
-           // GetHistory();
+            GetHistory();
         }
 
         private async void GetHistory()
@@ -92,16 +92,21 @@ namespace csfm_android.Fragments
             var history = await apiClient.GetHistory(CSFMPrefs.Prefs.GetString(CSFMApplication.Username, ""));
 
             if(history != null)
-            { 
-                //recyclerView.SetAdapter(new HistoryAdapter(this.Activity, historic));
+            {
+                HistoryAdapter adapter = new HistoryAdapter(this.Activity, history);
+                recyclerView.SetAdapter(adapter);
+                //InitScrobble(adapter, history);
                 // GOOD
             }
         }
 
-        private void InitScrobble(HistoryAdapter adapter)
+        private void InitScrobble(HistoryAdapter adapter, List<History> history = null)
         {
             if (ScrobblePrefs.IsPlaying && ScrobblePrefs.HasValue && !ScrobblePrefs.IsSongEnded)
             {
+                History firstItem = history?.FirstOrDefault();
+
+
                 Track trackScrobble = new Track
                 {
                     Album = new Api.Model.Album
@@ -113,7 +118,7 @@ namespace csfm_android.Fragments
                     Name = ScrobblePrefs.Track
                 };
 
-                adapter.Scrobble = new History(trackScrobble, true);
+                    adapter.Scrobble = new History(trackScrobble, true);
 
             }
             else

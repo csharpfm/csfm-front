@@ -28,7 +28,7 @@ namespace csfm_android.Api.Model
         public string Image { get; set; }
 
         [JsonProperty(PropertyName = "ReleaseDate")]
-        public DateTime ReleaseDate { get; set; }
+        public DateTime? ReleaseDate { get; set; }
 
         [JsonProperty(PropertyName = "ArtistId")]
         public int ArtistId { get; set; }
