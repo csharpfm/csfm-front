@@ -149,6 +149,10 @@ namespace csfm_android.Fragments
                 if (topArtists != null && topArtists.Any())
                 {
                     this.favoriteSong.Text = topArtists.First().Name;
+                } 
+                else
+                {
+                    this.favoriteSong.Text = GetString(Resource.String.no_favorite_artist);
                 }
 
                 this.recommendedUsers.Remove(user);

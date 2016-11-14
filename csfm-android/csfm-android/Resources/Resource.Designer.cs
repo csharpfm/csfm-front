@@ -4726,6 +4726,9 @@ namespace csfm_android
 			// aapt resource value: 0x7f0a0037
 			public const int no_data_available = 2131361847;
 			
+			// aapt resource value: 0x7f0a0039
+			public const int no_favorite_artist = 2131361849;
+			
 			// aapt resource value: 0x7f0a0032
 			public const int no_history = 2131361842;
 			

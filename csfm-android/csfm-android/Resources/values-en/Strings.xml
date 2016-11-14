@@ -44,4 +44,5 @@
   <string name="no_data_available">No result found</string>
 
   <string name="activate_scrobbling">Enable scrobbling?</string>
+  <string name="no_favorite_artist">No favorite artist</string>
 </resources>
