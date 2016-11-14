@@ -77,6 +77,8 @@ namespace csfm_android.Fragments
 
             var history = await apiClient.GetHistory(CSFMPrefs.Prefs.GetString(CSFMApplication.Username, ""));
 
+            if (history == null) history = new List<History>(); //In case of an error
+
             if(history != null)
             {
                 try
