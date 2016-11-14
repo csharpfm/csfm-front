@@ -37,6 +37,9 @@ namespace csfm_android.Api.Interfaces
         [Put("/api/Users/{username}/Location")]
         Task PutUserLocation(string username, [Body(BodySerializationMethod.Json)]  Dictionary<string, double> location, [Header("Authorization")] string accessToken);
 
+        [Get("/api/Users/{username}/TopArtists")]
+        Task<List<Artist>> GetUserTopArtists(string username, [Header("Authorization")] string accessToken);
+
         /* Match */
         [Get("/api/Users/{username}/Match")]
         Task<List<User>> GetUserMatch(string username, [Header("Authorization")] string accessToken);
