@@ -31,6 +31,8 @@ namespace csfm_android.Activities
 
         private HomeFragment homeFragment = null;
 
+        private bool isFromSearchActivity = false;
+
         private HomeFragment HomeFragment
         {
             get
@@ -50,7 +52,11 @@ namespace csfm_android.Activities
         protected override void OnResume()
         {
             base.OnResume();
-            MaterialSearchView.CloseSearch();
+            if (isFromSearchActivity)
+            {
+                MaterialSearchView.CloseSearch();
+                isFromSearchActivity = false;
+            }
             ScrobblerService.InitService(this.ApplicationContext);
             locationManager.RequestLocationUpdates(locationProvider, 2000, 1000, this);
         }
@@ -75,6 +81,7 @@ namespace csfm_android.Activities
         {
             Intent intent = new Intent(this, typeof(SearchActivity));
             intent.PutExtra(SearchActivity.EXTRA_MESSAGE, query);
+            this.isFromSearchActivity = true;
             this.StartActivity(intent);
             return true;
         }
