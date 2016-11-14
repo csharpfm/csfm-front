@@ -56,7 +56,6 @@
               android:layout_height="wrap_content"
               android:textColor="@color/textColorSecondary"
               android:paddingLeft="20dp"
-              android:text="Artist - Song's name"
               android:id="@+id/match_song"/>
 
     </LinearLayout>
