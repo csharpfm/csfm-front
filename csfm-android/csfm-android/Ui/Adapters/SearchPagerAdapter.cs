@@ -22,11 +22,25 @@ namespace csfm_android.Ui.Adapters
     {
         public string Query { get; set; }
 
-        public List<SearchFragment> fragments = new List<SearchFragment>(3) { null, null, null };
+        public List<Lazy<SearchFragment>> fragments;
 
         public SearchPagerAdapter(ToolbarActivity activity, string query) : base(activity.SupportFragmentManager)
         {
             this.Query = query;
+            this.fragments = new List<Lazy<SearchFragment>>(3)
+            {
+                new Lazy<SearchFragment>(() => new SearchArtistFragment(this)),
+                new Lazy<SearchFragment>(() => new SearchAlbumFragment(this)),
+                new Lazy<SearchFragment>(() => new SearchTrackFragment(this))
+            };
+        }
+
+        public Fragment this[int i]
+        {
+            get
+            {
+                return GetItem(i);
+            }
         }
 
         public override int Count
@@ -37,29 +51,26 @@ namespace csfm_android.Ui.Adapters
             }
         }
 
+
+
         public override Fragment GetItem(int position)
         {
-            switch(position)
+            if (position >= 0 && position < fragments.Count)
             {
-                case 0: //Artists
-                    return fragments[position] == null ? (fragments[position] = new SearchArtistFragment(this)) : fragments[position];
-                case 1: //Albums
-                    return fragments[position] == null ? (fragments[position] = new SearchAlbumFragment(this)) : fragments[position];
-                case 2: //Tracks
-                    return fragments[position] == null ? (fragments[position] = new SearchTrackFragment(this)) : fragments[position];
-                default:
-                    return null;
+                return fragments[position].Value;
             }
-
-
+            return null;
         }
 
         public void Update(string query)
         {
             this.Query = query;
-            foreach(SearchFragment f in fragments)
+            foreach(Lazy<SearchFragment> f in fragments)
             {
-                f?.Update(query);
+                if (f.IsValueCreated)
+                {
+                    f.Value.Update(query);
+                }
             }
         }
     }

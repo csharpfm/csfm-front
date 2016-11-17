@@ -90,13 +90,6 @@ namespace csfm_android.Services
             ScrobblePrefs.Clear();
         }
 
-        public static void InitService(Context context)
-        {
-            Intent serviceIntent = new Intent(context, typeof(ScrobblerService));
-            serviceIntent.SetAction(ACTION_INIT);
-            context.StartService(serviceIntent);
-        }
-
         public static void SendScrobble(Intent intent, Context context)
         {
             Intent serviceIntent = new Intent(context, typeof(ScrobblerService));

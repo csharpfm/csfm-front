@@ -21,17 +21,11 @@ namespace csfm_android.Fragments
         protected SwipeRefreshLayout refresh;
         protected TextView noResult;
 
-        public static string FAKE_IMAGE = "https://f4.bcbits.com/img/a0648921701_16.jpg";
-        public static List<Artist> FAKE_ARTISTS, FAKE_ARTISTS2;
-        public static List<Album> FAKE_ALBUMS;
-        public static List<Track> FAKE_TRACKS;
-
         public SearchPagerAdapter PagerAdapter { get; private set; }
 
         public SearchFragment(SearchPagerAdapter pagerAdapter)
         {
             this.PagerAdapter = pagerAdapter;
-            initFakeList();
         }
 
         public override void OnCreate(Bundle savedInstanceState)
@@ -80,42 +74,6 @@ namespace csfm_android.Fragments
             this.Update(() => refresh.Refreshing = false);
         }
 
-        private void initFakeList()
-        {
-            if (FAKE_ARTISTS != null) return;
-
-            FAKE_ARTISTS = new List<Artist> {
-                new Artist { Name = "Hello", Image =  FAKE_IMAGE },
-                new Artist { Name = "World", Image = FAKE_IMAGE },
-                new Artist { Name = "Test", Image = FAKE_IMAGE }
-            };
-
-
-
-            FAKE_ALBUMS = new List<Album>
-            {
-                new Album { Name = "Album1", Image = FAKE_IMAGE, Artist = FAKE_ARTISTS[0] },
-                new Album { Name = "Album2", Image = FAKE_IMAGE, Artist = FAKE_ARTISTS[0] },
-                new Album { Name = "Album3", Image = FAKE_IMAGE, Artist = FAKE_ARTISTS[0] },
-                new Album { Name = "Album4", Image = FAKE_IMAGE, Artist = FAKE_ARTISTS[1] },
-                new Album { Name = "Album6", Image = FAKE_IMAGE, Artist = FAKE_ARTISTS[1] },
-                new Album { Name = "Album7", Image = FAKE_IMAGE, Artist = FAKE_ARTISTS[2] }
-            };
-
-            for (int i = 0; i < FAKE_ARTISTS.Count; i++)
-            {
-                FAKE_ARTISTS[i].Albums = FAKE_ALBUMS.Where(a => a.Artist.Name == FAKE_ARTISTS[i].Name).ToList();
-            }
-
-            FAKE_TRACKS = new List<Track>
-            {
-                new Track { Name = "Track1", Album = FAKE_ALBUMS[0], Duration = 123 },
-                new Track { Name = "Track2", Album = FAKE_ALBUMS[0], Duration = 250 },
-                new Track { Name = "Track3", Album = FAKE_ALBUMS[0], Duration = 360 },
-                new Track { Name = "Track4", Album = FAKE_ALBUMS[0], Duration = 98 },
-                new Track { Name = "Track5", Album = FAKE_ALBUMS[1], Duration = 836 },
-                new Track { Name = "Track6", Album = FAKE_ALBUMS[1], Duration = 543 }
-            };
-        }
+        
     }
 }

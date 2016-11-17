@@ -14,7 +14,10 @@ using csfm_android.Api;
 
 namespace csfm_android.Activities
 {
-    [Activity(Label = "SignupActivity", Theme = "@style/LogTheme")]
+    /// <summary>
+    /// Activity used to make a new MatchFM account
+    /// </summary>
+    [Activity(Label = Configuration.LABEL, Theme = Configuration.LOGIN_THEME)]
     public class SignupActivity : AppCompatActivity
     {
 
@@ -26,6 +29,10 @@ namespace csfm_android.Activities
 
         private Button signUpButton;
 
+        /// <summary>
+        /// On creation of the activity
+        /// </summary>
+        /// <param name="savedInstanceState"></param>
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -36,13 +43,24 @@ namespace csfm_android.Activities
             this.password = FindViewById<EditText>(Resource.Id.signup_pwd);
             this.signUpButton = FindViewById<Button>(Resource.Id.sign_up_button);
 
+            InitListeners();
+        }
+
+        /// <summary>
+        /// Init the listeners
+        /// </summary>
+        private void InitListeners()
+        {
             this.signUpButton.Click += delegate
             {
                 this.SignUp();
             };
         }
 
-        private async void SignUp()
+        /// <summary>
+        /// Sends the API Request to sign up if form inputs are correct
+        /// </summary>
+        private void SignUp()
         {
             if (String.IsNullOrEmpty(this.username.Text))
             {
@@ -58,13 +76,10 @@ namespace csfm_android.Activities
             }
             else
             {
-                var apiClient = new ApiClient();
-                var valid = await apiClient.SignUp(this.email.Text, this.username.Text, this.password.Text);
+                Action successCallback = () => Finish();
+                Action errorCallback = () => Toast.MakeText(this, Resource.String.error_sign_up, ToastLength.Short).Show();
 
-                if (valid)
-                {
-                    Finish();
-                }
+                new ApiClient().SignUp(this.email.Text, this.username.Text, this.password.Text, successCallback, errorCallback);
             }
         }
     }

@@ -5,7 +5,9 @@
     <string name="preferences">Préférences</string>
 
     <string name="signin">Se connecter</string>
+    <string name="error_login">Nom d\'utilisateur ou mot de passe incorrect</string>
     <string name="signup">S\'inscrire</string>
+    <string name="error_sign_up">Une erreur est survenue lors de la création du compte</string>
     <string name="signout">Se déconnecter</string>
     <string name="cancel">Annuler</string>
 
@@ -45,4 +47,8 @@
 
     <string name="activate_scrobbling">Activer le scrobbling ?</string>
     <string name="no_favorite_artist">Pas d\'artiste favori</string>
+
+  <string name="artists">Artistes</string>
+  <string name="albums">Albums</string>
+  <string name="songs">Chansons</string>
 </resources>

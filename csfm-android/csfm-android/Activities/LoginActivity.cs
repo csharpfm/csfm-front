@@ -16,7 +16,10 @@ using csfm_android.Api;
 
 namespace csfm_android.Activities
 {
-    [Activity(Label = "MatchFM", MainLauncher = true, Theme = "@style/LogTheme")]
+    /// <summary>
+    /// First activity when you launch the app : Login or go to Sign Up activity
+    /// </summary>
+    [Activity(Label = Configuration.LABEL, MainLauncher = true, Theme = Configuration.LOGIN_THEME)]
     public class LoginActivity : AppCompatActivity
     {
 
@@ -28,13 +31,34 @@ namespace csfm_android.Activities
 
         private EditText password;
 
+        private ProgressDialog progressDialog;
+        private bool IsProgressDialog
+        {
+            set
+            {
+                if (value)
+                {
+                    progressDialog = ProgressDialog.Show(this, "", GetString(Resource.String.login_progress));
+                }
+                else
+                {
+                    progressDialog?.Cancel();
+                    progressDialog = null;
+                }
+            }
+        }
+
+        /// <summary>
+        /// On creation of the activity
+        /// </summary>
+        /// <param name="bundle"></param>
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
 
-            var bearer = CSFMPrefs.Prefs.GetString(CSFMApplication.BearerToken, "");
+            string bearer = CSFMPrefs.Bearer;
 
-            if (CSFMApplication.IsDebug || !String.IsNullOrEmpty(bearer))
+            if (CSFMApplication.IsDebug || !string.IsNullOrEmpty(bearer))
             {
                 StartActivity(typeof(MainActivity));
                 Finish();
@@ -44,10 +68,17 @@ namespace csfm_android.Activities
 
             this.signInButton = FindViewById<Button>(Resource.Id.sign_in_button);
             this.createAccount = FindViewById<TextView>(Resource.Id.create_one_text);
-
             this.username = FindViewById<EditText>(Resource.Id.login_username_text);
             this.password = FindViewById<EditText>(Resource.Id.login_pwd_txt);
 
+            this.InitListeners();
+        }
+
+        /// <summary>
+        /// Init the listeners
+        /// </summary>
+        private void InitListeners()
+        {
             this.createAccount.Click += delegate
             {
                 StartActivity(typeof(SignupActivity));
@@ -59,32 +90,41 @@ namespace csfm_android.Activities
             };
         }
 
-        private async void LogIn()
+        /// <summary>
+        /// On login button click : API Request to login with the specified input info
+        /// </summary>
+        private void LogIn()
         {
-            if (String.IsNullOrEmpty(this.username.Text))
+            if (string.IsNullOrEmpty(this.username.Text))
             {
+                //Empty username
                 Toast.MakeText(this, Resource.String.no_username, ToastLength.Short).Show();
             }
-            else if (String.IsNullOrEmpty(this.password.Text))
+            else if (string.IsNullOrEmpty(this.password.Text))
             {
+                //Empty password
                 Toast.MakeText(this, Resource.String.no_password, ToastLength.Short).Show();
             }
             else
             {
-                var progress = ProgressDialog.Show(this, "", GetString(Resource.String.login_progress));
+                //API Request
 
-                var apiClient = new ApiClient();
-                var status = await apiClient.LogIn(this.username.Text, this.password.Text);
-                
-                if (status)
+                IsProgressDialog = true; //Show 'loading' dialog
+
+                Action successCallback = () =>
                 {
                     StartActivity(typeof(MainActivity));
                     Finish();
-                }
-                else
+                };
+
+                Action errorCallback = () =>
                 {
-                    progress.Cancel();
-                }
+                    IsProgressDialog = false;
+                    Toast.MakeText(this, Resource.String.error_login, ToastLength.Short).Show();
+                };
+
+                //Async
+                new ApiClient().LogIn(this.username.Text, this.password.Text, successCallback, errorCallback);
             }
         }
 

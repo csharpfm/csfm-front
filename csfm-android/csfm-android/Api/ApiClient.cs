@@ -81,39 +81,33 @@ namespace csfm_android.Api
         }
 
         /// <summary>
-        /// Provides the specified key.
-        /// </summary>
-        /// <param name="key">The key.</param>
-        /// <param name="value">The value.</param>
-        public void Provide(string key, string value)
-        {
-            CSFMPrefs.Editor.PutString(key, value).Commit();
-        }
-
-        /// <summary>
         /// Logs the in.
         /// </summary>
         /// <param name="username">The username.</param>
         /// <param name="password">The password.</param>
         /// <returns>Task&lt;System.Boolean&gt;.</returns>
-        public async Task<bool> LogIn(string username, string password)
+        public async Task<bool> LogIn(string username, string password, Action successCallback, Action errorCallback)
         {
-            Dictionary<String, object> informations = new Dictionary<String, object>();
-            informations.Add("grant_type", "password");
-            informations.Add("username", username);
-            informations.Add("password", password);
+            Dictionary<string, object> informations = new Dictionary<string, object>()
+            {
+                { "grant_type", "password" },
+                { "username", username },
+                { "password", password }
+            };
 
             try
             {
-                var response = await instance.SignIn(informations);
-                var token = JObject.Parse(response)["access_token"].ToString();
-                Provide(CSFMApplication.BearerToken, token);
-                Provide(CSFMApplication.Username, username);
+                string response = await instance.SignIn(informations);
+                string token = JObject.Parse(response)["access_token"].ToString();
+                CSFMPrefs.Bearer = token;
+                CSFMPrefs.Username = username;
+                successCallback?.Invoke();
                 return true;
             }
             catch (Refit.ApiException e)
             {
                 Console.WriteLine(e);
+                errorCallback?.Invoke();
                 return false;
             }
         }
@@ -125,27 +119,30 @@ namespace csfm_android.Api
         /// <param name="username">The username.</param>
         /// <param name="password">The password.</param>
         /// <returns>Task&lt;System.Boolean&gt;.</returns>
-        public async Task<bool> SignUp(string email, string username, string password)
+        public async Task<bool> SignUp(string email, string username, string password, Action successCallback, Action errorCallback)
         {
-            Dictionary<String, object> informations = new Dictionary<String, object>();
-            informations.Add("Username", username);
-            informations.Add("Email", email);
-            informations.Add("Password", password);
+            Dictionary<string, object> informations = new Dictionary<string, object>()
+            {
+                {"Username", username },
+                {"Email", email },
+                {"Password", password }
+            };
 
             try
             {
-                var status = await instance.SignUp(informations);
-
-                if (String.IsNullOrEmpty(status))
+                string status = await instance.SignUp(informations);
+                if (string.IsNullOrEmpty(status))
                 {
+                    successCallback?.Invoke();
                     return true;
                 }
             }
             catch (Refit.ApiException e)
             {
-                return false;
+                //Error
             }
 
+            errorCallback?.Invoke();
             return false;
         }
 

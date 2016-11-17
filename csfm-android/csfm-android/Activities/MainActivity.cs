@@ -19,8 +19,10 @@ using csfm_android.Services;
 
 namespace csfm_android.Activities
 {
-
-    [Activity(Label = Configuration.LABEL, Icon = "@drawable/icon", Theme = "@style/MyTheme", WindowSoftInputMode = SoftInput.AdjustPan)]
+    /// <summary>
+    /// Main activity of the application. Regroups the Home, Discover, MyMatch and Settings fragments
+    /// </summary>
+    [Activity(Label = Configuration.LABEL, Icon = Configuration.ICON, Theme = Configuration.MAIN_THEME, WindowSoftInputMode = SoftInput.AdjustPan)]
     public class MainActivity : ToolbarActivity, BottomNavigationBar.Listeners.IOnMenuTabClickListener, ILocationListener
     {
         private BottomBar bottomBar;
@@ -29,68 +31,107 @@ namespace csfm_android.Activities
         private LocationManager locationManager;
         private string locationProvider;
 
-        private HomeFragment homeFragment = null;
-
         private bool isFromSearchActivity = false;
 
+        private Lazy<HomeFragment> homeFragmentLazy = new Lazy<HomeFragment>(() => new HomeFragment());
+
+        /// <summary>
+        /// Get the current HomeFragment. Initializes it on first use.
+        /// </summary>
         private HomeFragment HomeFragment
         {
-            get
-            {
-                if (homeFragment == null) homeFragment = new HomeFragment();
-                return homeFragment;
-            }
+            get { return homeFragmentLazy.Value; }
         }
 
+        private Lazy<DiscoverFragment> discoverFragmentLazy = new Lazy<DiscoverFragment>(() => new DiscoverFragment());
+        /// <summary>
+        /// Get the current DiscoverFragment. Initializes it on first use.
+        /// </summary>
+        private DiscoverFragment DiscoverFragment
+        {
+            get { return discoverFragmentLazy.Value; }
+        }
+
+        private Lazy<MyMatchFragment> myMatchFragmentLazy = new Lazy<MyMatchFragment>(() => new MyMatchFragment());
+        /// <summary>
+        /// Get the current MyMatchFragment. Initializes it on first use.
+        /// </summary>
+        private MyMatchFragment MyMatchFragment
+        {
+            get { return myMatchFragmentLazy.Value; }
+        }
+
+        private Lazy<SettingsFragment> settingsFragmentLazy = new Lazy<SettingsFragment>(() => new SettingsFragment());
+        /// <summary>
+        /// Get the current SettingsFragment. Initializes it on first use.
+        /// </summary>
+        private SettingsFragment SettingsFragment
+        {
+            get { return settingsFragmentLazy.Value; }
+        }
+
+        /// <summary>
+        /// On creation of the activity
+        /// </summary>
+        /// <param name="bundle"></param>
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle, Resource.Layout.Main, GetString(Resource.String.home));
             SetBottomBar(bundle);
             InitializeLocationManager();
         }
-
+        
+        /// <summary>
+        /// On resuming the activity
+        /// </summary>
         protected override void OnResume()
         {
             base.OnResume();
-            if (isFromSearchActivity)
+            if (isFromSearchActivity) //When coming back from SearchActivity, closing the currently opened Search Bar.
             {
                 MaterialSearchView.CloseSearch();
                 isFromSearchActivity = false;
             }
-            ScrobblerService.InitService(this.ApplicationContext);
-            locationManager.RequestLocationUpdates(locationProvider, 2000, 1000, this);
+            locationManager.RequestLocationUpdates(locationProvider, Configuration.Location.MIN_TIME, Configuration.Location.MIN_DISTANCE, this);
         }
 
+        /// <summary>
+        /// On pausing the activity
+        /// </summary>
         protected override void OnPause()
         {
             base.OnPause();
             locationManager.RemoveUpdates(this);
         }
 
-        public override void OnSearchViewSet()
-        {
-            //
-        }
-
+        /// <summary>
+        /// When the user types new text in the search view
+        /// </summary>
+        /// <param name="newText"></param>
+        /// <returns></returns>
         public override bool OnQueryTextChange(string newText)
         {
             return true;
         }
 
+        /// <summary>
+        /// When the user submits the content to search in the search view
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns></returns>
         public override bool OnQueryTextSubmit(string query)
         {
             Intent intent = new Intent(this, typeof(SearchActivity));
             intent.PutExtra(SearchActivity.EXTRA_MESSAGE, query);
-            this.isFromSearchActivity = true;
-            this.StartActivity(intent);
+            this.isFromSearchActivity = true; //Used on OnResume()
+            this.StartActivity(intent); //Start search activity with the query as intent extra
             return true;
         }
 
-        public void OnMenuItemSelected(int menuItemId)
-        {
-            Console.WriteLine("Hello world " + menuItemId);
-        }
-
+        /// <summary>
+        /// Prepares the bottom bar
+        /// </summary>
+        /// <param name="bundle"></param>
         private void SetBottomBar(Bundle bundle)
         {
             bottomBar = BottomBar.Attach(this, bundle);
@@ -103,19 +144,24 @@ namespace csfm_android.Activities
                  new BottomBarTab(Resource.Drawable.ic_settings_white_24dp, Resource.String.settings)
             };
 
-            bottomBar.SetFixedInactiveIconColor("#44000000");
+            bottomBar.SetFixedInactiveIconColor(Configuration.BottomBar.INACTIVE_ICON_COLOR);
 
             bottomBar.SetItems(tabs);
             for (int i = 0; i < tabs.Length; i++)
             {
                 tabs[i].Id = i;
-                bottomBar.MapColorForTab(i, "#F44336");
+                bottomBar.MapColorForTab(i, Configuration.BottomBar.BOTTOM_BAR_BACKGROUND_COLOR);
             }
 
             bottomBar.SetOnMenuTabClickListener(this);
         }
 
-        private void LaunchFragment(Fragment fragment)
+        /// <summary>
+        /// Replaces the current fragment
+        /// </summary>
+        /// <param name="fragment">New fragment to show</param>
+        /// <param name="title">New toolbar title</param>
+        private void LaunchFragment(Fragment fragment, string title)
         {
             FragmentTransaction fragmentTransaction = this.FragmentManager.BeginTransaction();
             if (currentFragment != null)
@@ -127,67 +173,99 @@ namespace csfm_android.Activities
 
             fragmentTransaction.Add(Resource.Id.mainContainer, fragment);
             fragmentTransaction.Commit();
+
+            this.ToolbarTitle = title;
         }
 
+        /// <summary>
+        /// When selecting a new item in the bottom bar : Shows a different fragment
+        /// </summary>
+        /// <param name="menuItemId"></param>
         public void OnMenuTabSelected(int menuItemId)
         {
             switch(menuItemId)
             {
                 case 0:
-                    LaunchFragment(this.HomeFragment);
-                    this.Toolbar.Title = GetString(Resource.String.home);
+                    LaunchFragment(this.HomeFragment, GetString(Resource.String.home));
                     break;
                 case 1:
-                    LaunchFragment(new DiscoverFragment());
-                    this.Toolbar.Title = GetString(Resource.String.discover);
+                    LaunchFragment(this.DiscoverFragment, GetString(Resource.String.discover));
                     break;
                 case 2:
-                    LaunchFragment(new MyMatchFragment());
-                    this.Toolbar.Title = GetString(Resource.String.match);
+                    LaunchFragment(this.MyMatchFragment, GetString(Resource.String.match));
                     break;
                 case 3:
-                    LaunchFragment(new SettingsFragment());
-                    this.Toolbar.Title = GetString(Resource.String.settings);
+                    LaunchFragment(this.SettingsFragment, GetString(Resource.String.settings));
                     break;
                 default:
                     break;
             }
         }
 
+        /// <summary>
+        /// When a bottom bar tab is reselected
+        /// </summary>
+        /// <param name="menuItemId"></param>
         public void OnMenuTabReSelected(int menuItemId)
         {
-
+            //Nothing to do
         }
 
+        /// <summary>
+        /// Inits the location manager
+        /// </summary>
         void InitializeLocationManager()
         {
             locationManager = GetSystemService(LocationService) as LocationManager;
-            locationProvider = "network";
+            locationProvider = Configuration.Location.LOCATION_PROVIDER;
         }
 
-        private async void SetUserLocation(double longitude, double latitude)
+        /// <summary>
+        /// API Request to set the user location
+        /// </summary>
+        /// <param name="longitude"></param>
+        /// <param name="latitude"></param>
+        private void SetUserLocation(double longitude, double latitude)
         {
-            await new ApiClient().PutUserLocation(CSFMPrefs.Prefs.GetString(CSFMApplication.Username, ""), longitude, latitude);
+            new ApiClient().PutUserLocation(CSFMPrefs.Username, longitude, latitude);
         }
 
+        /// <summary>
+        /// When user location changes, sends an API Request to set the new location
+        /// </summary>
+        /// <param name="location"></param>
         public void OnLocationChanged(Location location)
         {
             SetUserLocation(location.Longitude, location.Latitude);
         }
 
+        /// <summary>
+        /// In case location goes disabled
+        /// </summary>
+        /// <param name="provider"></param>
         public void OnProviderDisabled(string provider)
         {
-            
+            //   
         }
 
+        /// <summary>
+        /// When location goes enabled
+        /// </summary>
+        /// <param name="provider"></param>
         public void OnProviderEnabled(string provider)
         {
-           
+           //
         }
 
+        /// <summary>
+        /// When location provider status changes
+        /// </summary>
+        /// <param name="provider"></param>
+        /// <param name="status"></param>
+        /// <param name="extras"></param>
         public void OnStatusChanged(string provider, [GeneratedEnum] Availability status, Bundle extras)
         {
-            
+            //
         }
     }
 }

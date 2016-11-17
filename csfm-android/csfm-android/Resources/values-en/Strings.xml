@@ -5,7 +5,9 @@
   <string name="preferences">Preferences</string>
 
   <string name="signin">Sign in</string>
+  <string name="error_login">Username or password is incorrect</string>
   <string name="signup">Sign up</string>
+  <string name="error_sign_up">An error occured during account creation</string>
   <string name="signout">Sign out</string>
   <string name="cancel">Cancel</string>
 
@@ -45,4 +47,8 @@
 
   <string name="activate_scrobbling">Enable scrobbling?</string>
   <string name="no_favorite_artist">No favorite artist</string>
+
+  <string name="artists">Artists</string>
+  <string name="albums">Albums</string>
+  <string name="songs">Songs</string>
 </resources>

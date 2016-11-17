@@ -16,6 +16,10 @@ namespace csfm_android
     public class Configuration
     {
         public const string LABEL = "MatchFM";
+        public const string LOGIN_THEME = "@style/LogTheme";
+        public const string MAIN_THEME = "@style/MyTheme";
+        public const string ICON = "@drawable/icon";
+        
 
         public class Music
         {
@@ -32,6 +36,19 @@ namespace csfm_android
             public const string EXTRA_POSITION = "position";
             public static readonly string EXTRA_DURATION = MediaStore.Audio.AudioColumns.Duration;
             public const string EXTRA_TICKS_TO_END = "ticks";
+        }
+
+        public class Location
+        {
+            public const int MIN_TIME = 2000;
+            public const int MIN_DISTANCE = 1000;
+            public const string LOCATION_PROVIDER = "network";
+        }
+
+        public class BottomBar
+        {
+            public const string BOTTOM_BAR_BACKGROUND_COLOR = "#F44336";
+            public const string INACTIVE_ICON_COLOR = "#44000000";
         }
 
         

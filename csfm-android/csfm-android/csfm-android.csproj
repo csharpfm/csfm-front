@@ -151,7 +151,6 @@
     <Compile Include="Utils\CSFMDialog.cs" />
     <Compile Include="Utils\ExtensionMethods.cs" />
     <Compile Include="Api\Model\History.cs" />
-    <Compile Include="Api\Model\MusicItem.cs" />
     <Compile Include="Api\Model\Tag.cs" />
     <Compile Include="Api\Model\Track.cs" />
     <Compile Include="Api\Model\User.cs" />

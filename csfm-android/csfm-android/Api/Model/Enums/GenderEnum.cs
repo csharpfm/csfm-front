@@ -12,6 +12,9 @@ using Android.Widget;
 
 namespace csfm_android.Api.Model.Enums
 {
+    /// <summary>
+    /// The possible genders of a user
+    /// </summary>
     public enum GenderEnum
     {
         Male = 0,
