@@ -19,6 +19,9 @@ using Square.Picasso;
 
 namespace csfm_android.Fragments
 {
+    /// <summary>
+    /// Settings fragment : View your profile, modify your settings and sign out
+    /// </summary>
     public class SettingsFragment : Fragment
     {
         private View rootView;
@@ -33,11 +36,22 @@ namespace csfm_android.Fragments
 
         private Switch scrobblerSwitch;
 
+        /// <summary>
+        /// On fragment creation
+        /// </summary>
+        /// <param name="savedInstanceState"></param>
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
         }
 
+        /// <summary>
+        /// On fragment view creation
+        /// </summary>
+        /// <param name="inflater"></param>
+        /// <param name="container"></param>
+        /// <param name="savedInstanceState"></param>
+        /// <returns></returns>
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             
@@ -52,11 +66,14 @@ namespace csfm_android.Fragments
             return this.rootView;
         }
 
+        /// <summary>
+        /// On fragment start
+        /// </summary>
         public override void OnStart()
         {
             base.OnStart();
 
-            var username = CSFMPrefs.Prefs.GetString(CSFMApplication.Username, "");
+            var username = CSFMPrefs.Username;
             this.username.Text = username;
             GetUser(username);
 
@@ -94,10 +111,14 @@ namespace csfm_android.Fragments
             };
 
             this.scrobblerSwitch.CheckedChange += delegate (object sender, CompoundButton.CheckedChangeEventArgs e) {
-                CSFMPrefs.Editor.PutBoolean(CSFMApplication.IsScrobbling, e.IsChecked).Commit();
+                CSFMPrefs.IsScrobbling = e.IsChecked;
             };
         }
 
+        /// <summary>
+        /// API Request to get and display the user info
+        /// </summary>
+        /// <param name="username"></param>
         private async void GetUser(string username)
         {
             var user = await new ApiClient().GetUser(username);
@@ -107,6 +128,7 @@ namespace csfm_android.Fragments
                 Picasso.With(Activity)
                     .Load(user.Photo)
                     .Transform(new CircleTransform())
+                    .Placeholder(Resource.Drawable.csfm_user)
                     .Into(this.userAvatar);
             }
             else
@@ -118,12 +140,17 @@ namespace csfm_android.Fragments
             }
         }
 
-
+        /// <summary>
+        /// Sign out the user
+        /// </summary>
         private void SignOut()
         {
-            CSFMPrefs.Editor.Remove(CSFMApplication.BearerToken).Commit();
-            CSFMPrefs.Editor.Remove(CSFMApplication.Username).Commit();
-            CSFMPrefs.Editor.Remove(CSFMApplication.IsScrobbling).Commit();
+            var editor = CSFMPrefs.Editor;
+
+            editor.Remove(CSFMApplication.BearerToken);
+            editor.Remove(CSFMApplication.Username);
+            editor.Remove(CSFMApplication.IsScrobbling);
+            editor.Commit();
 
             Activity.Finish();
 
@@ -131,6 +158,10 @@ namespace csfm_android.Fragments
             StartActivity(intent);
         }
 
+        /// <summary>
+        /// Import Last fm account
+        /// </summary>
+        /// <param name="lastfmUsername"></param>
         private void LinkLastFm(string lastfmUsername)
         {
             if (!String.IsNullOrEmpty(lastfmUsername))

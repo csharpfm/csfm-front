@@ -145,7 +145,6 @@
     <Compile Include="Receivers\LocalMusicPlayingReceiver.cs" />
     <Compile Include="Receivers\MusicPlayingReceiver.cs" />
     <Compile Include="Services\ScrobblerService.cs" />
-    <Compile Include="Ui\Adapters\AbstractAdapter.cs" />
     <Compile Include="Ui\Adapters\MyMatchAdapter.cs" />
     <Compile Include="Ui\Holders\MyMatchHolder.cs" />
     <Compile Include="Utils\CSFMDialog.cs" />
@@ -182,9 +181,9 @@
     <Compile Include="Utils\CSFMPrefs.cs" />
     <Compile Include="Utils\iTunes\ITunesResponse.cs" />
     <Compile Include="Utils\iTunes\ITunesResponseItem.cs" />
-    <Compile Include="Utils\MaterialDesignSearchView\AnimationUtil.cs" />
-    <Compile Include="Utils\MaterialDesignSearchView\MaterialSearchView.cs" />
-    <Compile Include="Utils\MaterialDesignSearchView\SearchAdapter.cs" />
+    <Compile Include="Ui\Utils\MaterialDesignSearchView\AnimationUtil.cs" />
+    <Compile Include="Ui\Utils\MaterialDesignSearchView\MaterialSearchView.cs" />
+    <Compile Include="Ui\Utils\MaterialDesignSearchView\SearchAdapter.cs" />
     <Compile Include="Utils\MusicLibrary.cs" />
     <Compile Include="Utils\ScrobblePrefs.cs" />
   </ItemGroup>

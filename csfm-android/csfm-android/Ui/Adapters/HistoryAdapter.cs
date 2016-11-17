@@ -20,11 +20,18 @@ using csfm_android.Receivers;
 
 namespace csfm_android.Ui.Adapters
 {
+    /// <summary>
+    /// HomeFragment RecyclerView's adapter
+    /// </summary>
     public class HistoryAdapter : RecyclerView.Adapter
     {
         private Context context;
 
         private History scrobble;
+
+        /// <summary>
+        /// Special rotating item : Currently played song
+        /// </summary>
         public History Scrobble
         {
             get { return scrobble; }
@@ -50,6 +57,10 @@ namespace csfm_android.Ui.Adapters
         }
 
         private List<History> data;
+        /// <summary>
+        /// History items (the Scrobble item will also be displayed before these items)
+        /// Updates the view on new data set.
+        /// </summary>
         public List<History> Data
         {
             get { return data; }
@@ -62,6 +73,9 @@ namespace csfm_android.Ui.Adapters
             }
         }
 
+        /// <summary>
+        /// Number of items in the list (including the special scrobble item)
+        /// </summary>
         public override int ItemCount
         {
             get
@@ -70,6 +84,11 @@ namespace csfm_android.Ui.Adapters
             }
         }
 
+        /// <summary>
+        /// Indexer to the list of items. This includes the Scrobble item as element 0 if not null.
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
         private History this[int index]
         {
             get
@@ -88,6 +107,11 @@ namespace csfm_android.Ui.Adapters
             }
         }
 
+        /// <summary>
+        /// Constructor. Also registers to the LocalMusicPlayingReceiver
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="history"></param>
         public HistoryAdapter(Context context, List<History> history)
         {
             this.context = context;
@@ -97,6 +121,12 @@ namespace csfm_android.Ui.Adapters
             MaterialSearchView.SetSuggestions(history);
         }
 
+        /// <summary>
+        /// On item view creation
+        /// </summary>
+        /// <param name="parent"></param>
+        /// <param name="viewType"></param>
+        /// <returns></returns>
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
         {
             // Inflate the CardView for the photo:
@@ -108,6 +138,11 @@ namespace csfm_android.Ui.Adapters
             return holder;
         }
 
+        /// <summary>
+        /// On new information to bind on the view
+        /// </summary>
+        /// <param name="holder"></param>
+        /// <param name="position"></param>
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
             if (position < ItemCount)

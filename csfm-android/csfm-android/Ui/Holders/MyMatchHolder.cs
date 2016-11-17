@@ -13,6 +13,9 @@ using Android.Support.V7.Widget;
 
 namespace csfm_android.Ui.Holders
 {
+    /// <summary>
+    /// MyMatch RecyclerView Item holder
+    /// </summary>
     class MyMatchHolder : RecyclerView.ViewHolder
     {
         public TextView Username { get; private set; }
@@ -22,6 +25,10 @@ namespace csfm_android.Ui.Holders
         public ImageView UserPicture { get; private set; }
 
    
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="itemView"></param>
         public MyMatchHolder(View itemView) : base (itemView)
         {
             Username = itemView.FindViewById<TextView>(Resource.Id.my_match_name);

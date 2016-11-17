@@ -15,8 +15,18 @@ using Android.Database;
 
 namespace csfm_android.Utils
 {
+    /// <summary>
+    /// Manage metadata from the internally stored music files
+    /// </summary>
     public class MusicLibrary
     {
+        /// <summary>
+        /// Query the MediaStore database to get the album art for a specified artist and album. Can potentially return multiple results in case of duplicate (artist, album) couple.
+        /// </summary>
+        /// <param name="artist"></param>
+        /// <param name="album"></param>
+        /// <param name="context"></param>
+        /// <returns></returns>
         public static IEnumerable<string> GetAlbumArt(string artist, string album, Context context) //Get Album Art from MediaStore if available
         {
             string condition = string.Format("{0} = ? AND {1} = ?",

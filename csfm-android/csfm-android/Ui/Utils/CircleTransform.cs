@@ -13,6 +13,9 @@ using Android.Widget;
 
 namespace csfm_android.Ui.Utils
 {
+    /// <summary>
+    /// Use with Picasso : Crop an image to circle shape
+    /// </summary>
     public class CircleTransform : Java.Lang.Object, Square.Picasso.ITransformation
     {
         public string Key
@@ -22,6 +25,12 @@ namespace csfm_android.Ui.Utils
                 return "circle";
             }
         }
+
+        /// <summary>
+        /// Used internally by Picasso
+        /// </summary>
+        /// <param name="p0"></param>
+        /// <returns></returns>
         public Bitmap Transform(Bitmap p0)
         {
             int size = Math.Min(p0.Width, p0.Height);

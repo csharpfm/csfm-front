@@ -26,6 +26,9 @@ using csfm_android.Utils.MaterialDesignSearchView;
 
 namespace csfm_android.Fragments
 {
+    /// <summary>
+    /// Home Fragment : View your history/scrobbles
+    /// </summary>
     public class HomeFragment : Fragment, SwipeRefreshLayout.IOnRefreshListener
     {
         private View rootView;
@@ -36,11 +39,22 @@ namespace csfm_android.Fragments
 
         private HistoryAdapter adapter;
 
+        /// <summary>
+        /// On fragment creation
+        /// </summary>
+        /// <param name="savedInstanceState"></param>
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
         }
 
+        /// <summary>
+        /// On fragment view creation
+        /// </summary>
+        /// <param name="inflater"></param>
+        /// <param name="container"></param>
+        /// <param name="savedInstanceState"></param>
+        /// <returns></returns>
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             this.rootView = inflater.Inflate(Resource.Layout.home_fragment, container, false);
@@ -56,6 +70,9 @@ namespace csfm_android.Fragments
             return this.rootView;
         }
 
+        /// <summary>
+        /// On fragment resume
+        /// </summary>
         public override void OnResume()
         {
             base.OnResume();
@@ -71,11 +88,15 @@ namespace csfm_android.Fragments
             }  
         }
 
+        /// <summary>
+        /// Displays the history after retrieving it via an API request
+        /// </summary>
+        /// <param name="callback"></param>
         private async void GetHistory(Action<List<History>> callback)
         {
-            var apiClient = new ApiClient();
+            ApiClient apiClient = new ApiClient();
 
-            var history = await apiClient.GetHistory(CSFMPrefs.Prefs.GetString(CSFMApplication.Username, ""));
+            List<History> history = await apiClient.GetHistory(CSFMPrefs.Username);
 
             if (history == null) history = new List<History>(); //In case of an error
 
@@ -90,12 +111,17 @@ namespace csfm_android.Fragments
                 }
                 catch
                 {
-                    //Exception in case of fragment change
+                    //Avoid exception in case of fragment change
                 }
                 
             }
         }
 
+        /// <summary>
+        /// Checks if a song is being played on the mobile device and displays the rotating history item if so.
+        /// </summary>
+        /// <param name="adapter"></param>
+        /// <param name="history"></param>
         private void InitScrobble(HistoryAdapter adapter, List<History> history = null)
         {
             if (ScrobblePrefs.IsPlaying && ScrobblePrefs.HasValue && !ScrobblePrefs.IsSongEnded)
@@ -122,16 +148,16 @@ namespace csfm_android.Fragments
                 {
                     adapter.Scrobble = new History(trackScrobble, true);
                 }
-
-
             }
             else
             {
                 adapter.Scrobble = null;
             }
-
         }
 
+        /// <summary>
+        /// SwipeRefreshLayout is triggered : Refreshes the page
+        /// </summary>
         public void OnRefresh()
         {
             GetHistory(h => {

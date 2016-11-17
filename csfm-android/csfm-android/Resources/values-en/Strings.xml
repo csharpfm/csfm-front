@@ -51,4 +51,7 @@
   <string name="artists">Artists</string>
   <string name="albums">Albums</string>
   <string name="songs">Songs</string>
+  
+  <string name="now_scrobbling">Now scrobbling</string>
+  <string name="service">Service</string>
 </resources>

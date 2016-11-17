@@ -13,6 +13,9 @@ using Newtonsoft.Json;
 
 namespace csfm_android.Utils.iTunes
 {
+    /// <summary>
+    /// Json Object returned by the iTunes Search API
+    /// </summary>
     public class ITunesResponse
     {
         [JsonProperty(PropertyName = "resultCount")]

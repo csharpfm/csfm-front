@@ -15,11 +15,12 @@ using csfm_android.Ui.Holders;
 
 namespace csfm_android.Ui.Adapters
 {
+    /// <summary>
+    /// Abstract class used as SearchFragment RecyclerView's adapter (used by SearchArtistAdapter, SearchAlbumAdapter and SearchTrackAdapter)
+    /// </summary>
     public abstract class SearchAdapter : RecyclerView.Adapter
     {
         private List<History> data;
-        private View noResult;
-        private RecyclerView recyclerView;
 
         /// <summary>
         /// Updates the view
@@ -38,6 +39,10 @@ namespace csfm_android.Ui.Adapters
             }
         }
 
+
+        /// <summary>
+        /// Number of items. In case of no items, will return 1 as to render a dummy element with "No results" label.
+        /// </summary>
         public override int ItemCount
         {
             get
@@ -46,12 +51,22 @@ namespace csfm_android.Ui.Adapters
             }
         }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="data"></param>
         public SearchAdapter(Context context, List<History> data)
         {
             this.data = data;
-            this.recyclerView = recyclerView;
         }
 
+
+        /// <summary>
+        /// On item bind to a view
+        /// </summary>
+        /// <param name="holder"></param>
+        /// <param name="position"></param>
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
             //SearchHolder<T> searchHolder = holder as SearchHolder<T>;
@@ -62,7 +77,7 @@ namespace csfm_android.Ui.Adapters
             }
             else
             {
-                (holder as HistoryHolder)?.BindNoResult();
+                (holder as HistoryHolder)?.BindNoResult(); //In case of no result, add a dummy element with "No result" label
             }
         }
     }

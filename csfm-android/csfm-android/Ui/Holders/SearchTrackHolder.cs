@@ -15,6 +15,9 @@ using csfm_android.Ui.Utils;
 
 namespace csfm_android.Ui.Holders
 {
+    /// <summary>
+    /// Track view holder
+    /// </summary>
     public class SearchTrackHolder : SearchHolder<History>
     {
         public const int LAYOUT = Resource.Layout.search_track_item;
@@ -24,6 +27,9 @@ namespace csfm_android.Ui.Holders
         public TextView Duration { get; set; }
         public ImageView Image { get; private set; }
 
+        /// <summary>
+        /// Loads image url into Image ImageView
+        /// </summary>
         private string ImageUrl
         {
             set
@@ -35,6 +41,10 @@ namespace csfm_android.Ui.Holders
             }
         }
 
+        /// <summary>
+        /// Ctor
+        /// </summary>
+        /// <param name="itemView"></param>
         public SearchTrackHolder(View itemView) : base(itemView)
         {
             this.Title = itemView.FindViewById<TextView>(Resource.Id.search_track_name);
@@ -43,7 +53,10 @@ namespace csfm_android.Ui.Holders
             this.Duration = itemView.FindViewById<TextView>(Resource.Id.search_track_duration);
         }
 
-
+        /// <summary>
+        /// Bind a new item
+        /// </summary>
+        /// <param name="item"></param>
         public override void Bind(History item)
         {
             this.Title.Text = item.Track.Name;

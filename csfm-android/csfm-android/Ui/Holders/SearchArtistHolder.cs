@@ -15,6 +15,9 @@ using csfm_android.Ui.Utils;
 
 namespace csfm_android.Ui.Holders
 {
+    /// <summary>
+    /// Artist RecyclerView Holder (Not used anymore)
+    /// </summary>
     public class SearchArtistHolder : SearchHolder<History>
     {
         public const int LAYOUT = Resource.Layout.search_artist_item;

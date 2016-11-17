@@ -15,6 +15,9 @@ using Square.Picasso;
 
 namespace csfm_android.Ui.Holders
 {
+    /// <summary>
+    /// Album RecyclerView Holder (Not used anymore)
+    /// </summary>
     public class SearchAlbumHolder : SearchHolder<History>
     {
         public const int LAYOUT = Resource.Layout.search_album_item;

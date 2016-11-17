@@ -4756,6 +4756,9 @@ namespace csfm_android
 			// aapt resource value: 0x7f0a0030
 			public const int no_username = 2131361840;
 			
+			// aapt resource value: 0x7f0a003f
+			public const int now_scrobbling = 2131361855;
+			
 			// aapt resource value: 0x7f0a002a
 			public const int password = 2131361834;
 			
@@ -4764,6 +4767,9 @@ namespace csfm_android
 			
 			// aapt resource value: 0x7f0a0031
 			public const int search_hint = 2131361841;
+			
+			// aapt resource value: 0x7f0a0040
+			public const int service = 2131361856;
 			
 			// aapt resource value: 0x7f0a0026
 			public const int settings = 2131361830;

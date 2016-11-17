@@ -13,8 +13,14 @@ using Android.Preferences;
 
 namespace csfm_android.Utils
 {
+    /// <summary>
+    /// SharedPreferences Manager : Used to save and load values in the internal memory.
+    /// </summary>
     public class CSFMPrefs
     {
+        /// <summary>
+        /// Get the Default Shared Preferences Manager
+        /// </summary>
         public static ISharedPreferences Prefs
         {
             get
@@ -23,6 +29,9 @@ namespace csfm_android.Utils
             }
         }
 
+        /// <summary>
+        /// Get the Preferences Editor
+        /// </summary>
         public static ISharedPreferencesEditor Editor
         {
             get
@@ -32,7 +41,7 @@ namespace csfm_android.Utils
         }
 
         /// <summary>
-        /// Provides the specified key.
+        /// Save the (key, value) into the Shared preferences
         /// </summary>
         /// <param name="key">The key.</param>
         /// <param name="value">The value.</param>
@@ -41,6 +50,9 @@ namespace csfm_android.Utils
             CSFMPrefs.Editor.PutString(key, value).Commit();
         }
 
+        /// <summary>
+        /// Get or set the Bearer from/in the SharedPreferences
+        /// </summary>
         public static string Bearer
         {
             get
@@ -54,6 +66,9 @@ namespace csfm_android.Utils
             }
         }
 
+        /// <summary>
+        /// Get or set the Bearer from/in the SharedPreferences
+        /// </summary>
         public static string Username
         {
             get
@@ -64,6 +79,22 @@ namespace csfm_android.Utils
             set
             {
                 Provide(CSFMApplication.Username, value);
+            }
+        }
+
+        /// <summary>
+        /// Get or set the IsScrobbling value from/in the SharedPreferences. Specifies whether scrobbling feature is enabled or disabled on the application
+        /// </summary>
+        public static bool IsScrobbling
+        {
+            set
+            {
+                CSFMPrefs.Editor.PutBoolean(CSFMApplication.IsScrobbling, value).Commit();
+            }
+
+            get
+            {
+                return CSFMPrefs.Prefs.GetBoolean(CSFMApplication.IsScrobbling, true);
             }
         }
     }

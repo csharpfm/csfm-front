@@ -13,6 +13,9 @@ using Android.Provider;
 
 namespace csfm_android
 {
+    /// <summary>
+    /// Constant configuration values
+    /// </summary>
     public class Configuration
     {
         public const string LABEL = "MatchFM";

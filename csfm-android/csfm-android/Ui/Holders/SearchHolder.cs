@@ -14,12 +14,24 @@ using csfm_android.Api.Model;
 
 namespace csfm_android.Ui.Holders
 {
+    /// <summary>
+    /// Abstract search holder used by SearchAlbumHolder, SearchArtistHolder and SearchTrackHolder
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public abstract class SearchHolder<T> : RecyclerView.ViewHolder
     {
+        /// <summary>
+        /// Ctor
+        /// </summary>
+        /// <param name="itemView"></param>
         public SearchHolder(View itemView) : base(itemView)
         {
         }
 
+        /// <summary>
+        /// Bind a new item
+        /// </summary>
+        /// <param name="item"></param>
         public abstract void Bind(T item);
     }
 }

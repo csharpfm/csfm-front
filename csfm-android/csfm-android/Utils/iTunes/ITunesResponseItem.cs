@@ -13,6 +13,9 @@ using Newtonsoft.Json;
 
 namespace csfm_android.Utils.iTunes
 {
+    /// <summary>
+    /// Json Object used in the iTunes Search API Response
+    /// </summary>
     public class ITunesResponseItem
     {
         [JsonProperty(PropertyName = "artistName")]

@@ -19,6 +19,9 @@ using csfm_android.Api;
 
 namespace csfm_android.Ui.Holders
 {
+    /// <summary>
+    /// History view holder
+    /// </summary>
     public class HistoryHolder : RecyclerView.ViewHolder
     {
         public const int LAYOUT = Resource.Layout.history_item;
@@ -30,7 +33,11 @@ namespace csfm_android.Ui.Holders
         public TextView SongArtist { get; private set; }
 
         public ImageView AlbumCover { get; private set; }
+        public TextView Date { get; private set; }
 
+        /// <summary>
+        /// Loads the image url into the AlbumCover ImageView, or the placeholder on null
+        /// </summary>
         public string AlbumCoverUrl
         {
             set
@@ -49,6 +56,9 @@ namespace csfm_android.Ui.Holders
             }
         }
 
+        /// <summary>
+        /// Loads the image file into the AlbumCover ImageView, or the placeholder on null
+        /// </summary>
         public string AlbumCoverFile
         {
             set
@@ -72,6 +82,9 @@ namespace csfm_android.Ui.Holders
             }
         }
 
+        /// <summary>
+        /// Rotates the image view on true
+        /// </summary>
         public bool Animation
         {
             set
@@ -87,8 +100,10 @@ namespace csfm_android.Ui.Holders
             }
         }
 
-        public TextView Date { get; private set; }
-
+        /// <summary>
+        /// Constructor (on view creation)
+        /// </summary>
+        /// <param name="itemView"></param>
         public HistoryHolder(View itemView) : base (itemView)
         {
             SongName = itemView.FindViewById<TextView>(Resource.Id.history_song_name);
@@ -97,6 +112,10 @@ namespace csfm_android.Ui.Holders
             Date = itemView.FindViewById<TextView>(Resource.Id.history_date);
         }
 
+        /// <summary>
+        /// Bind an item to the view 
+        /// </summary>
+        /// <param name="history"></param>
         public void Bind(History history)
         {
             this.history_ = history;
@@ -110,6 +129,7 @@ namespace csfm_android.Ui.Holders
                 AlbumCoverUrl = url;
                 if (url == null)
                 {
+                    //Get an album art from iTunes on null
                     new ApiClient().GetAlbumArtUrl(history, s =>
                     {
                         if (this.history_ == history && s != null)
@@ -130,6 +150,9 @@ namespace csfm_android.Ui.Holders
 
         }
 
+        /// <summary>
+        /// Bind a dummy element with "No Result" label
+        /// </summary>
         public void BindNoResult()
         {
             SongName.Text = "";

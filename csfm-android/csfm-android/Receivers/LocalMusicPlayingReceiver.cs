@@ -15,10 +15,11 @@ using csfm_android.Utils;
 
 namespace csfm_android.Receivers
 {
+    /// <summary>
+    /// Music broadcast receiver to update the HomeFragment (via the HistoryAdapter) about the currently played song
+    /// </summary>
     public class LocalMusicPlayingReceiver : BroadcastReceiver
     {
-
-
         private HistoryAdapter adapter;
 
         public LocalMusicPlayingReceiver(HistoryAdapter adapter)
@@ -26,6 +27,11 @@ namespace csfm_android.Receivers
             this.adapter = adapter;
         }
 
+        /// <summary>
+        /// On broadcast receive
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="intent"></param>
         public override void OnReceive(Context context, Intent intent)
         {
             if (intent.HasExtra(Configuration.Music.EXTRA_PLAYING)) //Music action
@@ -55,11 +61,21 @@ namespace csfm_android.Receivers
         }
 
 
+        /// <summary>
+        /// Register on this broadcast receiver. Used by the history adapter
+        /// </summary>
+        /// <param name="context">The context that wants to register</param>
+        /// <param name="adapter">The adapter to update on broadcast receive</param>
         public static void Register(Context context, HistoryAdapter adapter)
         {
             Register(context, new LocalMusicPlayingReceiver(adapter));
         }
 
+        /// <summary>
+        /// Register on this broadcast receiver
+        /// </summary>
+        /// <param name="context">The context that wants to register</param>
+        /// <param name="receiver">broadcast receiver to register to</param>
         public static void Register(Context context, LocalMusicPlayingReceiver receiver)
         {
             context.RegisterReceiver(receiver, new IntentFilter().AddActions(Configuration.Music.MUSIC_ACTIONS));

@@ -17,18 +17,29 @@ using Square.Picasso;
 
 namespace csfm_android.Ui.Adapters
 {
+    /// <summary>
+    /// MyMatchFragment RecyclerView's adapter
+    /// </summary>
     class MyMatchAdapter : RecyclerView.Adapter
     {
         private List<User> users;
 
         private Context context;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="users">Items to display</param>
         public MyMatchAdapter(Context context, List<User> users)
         {
             this.context = context;
             this.users = users;
         }
 
+        /// <summary>
+        /// Number of elements
+        /// </summary>
         public override int ItemCount
         {
             get
@@ -37,6 +48,11 @@ namespace csfm_android.Ui.Adapters
             }
         }
 
+        /// <summary>
+        /// On item to bind to a view
+        /// </summary>
+        /// <param name="holder"></param>
+        /// <param name="position"></param>
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
             if (position < ItemCount)
@@ -58,6 +74,12 @@ namespace csfm_android.Ui.Adapters
             }
         }
 
+        /// <summary>
+        /// On item view creation
+        /// </summary>
+        /// <param name="parent"></param>
+        /// <param name="viewType"></param>
+        /// <returns></returns>
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
         {
             // Inflate the CardView for the photo:

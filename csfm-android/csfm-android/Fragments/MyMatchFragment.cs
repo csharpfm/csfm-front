@@ -17,6 +17,9 @@ using csfm_android.Ui.Adapters;
 
 namespace csfm_android.Fragments
 {
+    /// <summary>
+    /// MyMatch Fragment : View your matched users
+    /// </summary>
     public class MyMatchFragment : Fragment
     {
 
@@ -24,11 +27,24 @@ namespace csfm_android.Fragments
 
         private RecyclerView recyclerView;
 
+        private MyMatchAdapter adapter;
+
+        /// <summary>
+        /// On fragment creation
+        /// </summary>
+        /// <param name="savedInstanceState"></param>
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
         }
 
+        /// <summary>
+        /// On fragment view creation
+        /// </summary>
+        /// <param name="inflater"></param>
+        /// <param name="container"></param>
+        /// <param name="savedInstanceState"></param>
+        /// <returns></returns>
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             this.rootView = inflater.Inflate(Resource.Layout.my_match_fragment, container, false);
@@ -41,18 +57,24 @@ namespace csfm_android.Fragments
             return this.rootView;
         }
 
+        /// <summary>
+        /// On fragment resume
+        /// </summary>
         public override void OnResume()
         {
             base.OnResume();
             GetMatch();
         }
 
+        /// <summary>
+        /// Get list of matched users and displays it on the fragment
+        /// </summary>
         private async void GetMatch()
         {
             var users = await new ApiClient().GetUserMatch(CSFMPrefs.Prefs.GetString(CSFMApplication.Username, ""));
 
-            MyMatchAdapter adapter = new MyMatchAdapter(this.Activity, users);
-            recyclerView.SetAdapter(adapter);
+            this.adapter = new MyMatchAdapter(this.Activity, users);
+            recyclerView.SetAdapter(this.adapter);
         }
     }
 }
