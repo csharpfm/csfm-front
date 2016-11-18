@@ -49,6 +49,30 @@ namespace csfm_android.Api.Model
         public bool IsScrobbling { get; set; }
 
         /// <summary>
+        /// Get the formatted listen date
+        /// </summary>
+        [JsonIgnore]
+        public string ListenDateFormat
+        {
+            get
+            {
+                return ListenDate.ToString();
+            }
+        }
+
+        /// <summary>
+        /// Get the album image if defined, otherwise the artist image if defined, or null.
+        /// </summary>
+        [JsonIgnore]
+        public string Image
+        {
+            get
+            {
+                return Track?.Album?.Image != null ? Track.Album.Image : Track?.Album?.Artist?.Image;
+            }
+        }
+
+        /// <summary>
         /// Default Constructor
         /// </summary>
         [JsonConstructor]
@@ -77,6 +101,17 @@ namespace csfm_android.Api.Model
         /// <param name="isScrobbling">Whether the song is still scrobbling or not</param>
         public History(Track track, bool isScrobbling) : this(track, DateTime.Now, isScrobbling)
         {
+        }
+
+        /// <summary>
+        /// Returns true if the track name, album name, and artist name are the same
+        /// </summary>
+        /// <param name="other">Track to compare with</param>
+        /// <returns></returns>
+        public bool IsSameTrack(Track other)
+        {
+            Track track = this.Track;
+            return track != null && other != null && track.Name == other.Name && track.Album?.Name == other.Album?.Name && track.Album?.Artist?.Name == other.Album?.Artist?.Name;
         }
 
     }

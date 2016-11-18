@@ -32,6 +32,7 @@ using Java.Util;
 using Newtonsoft.Json;
 using csfm_android.Ui.Holders;
 using csfm_android.Utils.iTunes;
+using System.Text.RegularExpressions;
 
 namespace csfm_android.Api
 {
@@ -365,8 +366,8 @@ namespace csfm_android.Api
         /// <returns></returns>
         public async Task<string> GetAlbumArtUrl(History history, Action<string> callback)
         {
-            string keywords = history.Track.Album.Name.Replace(' ', '+');
-            keywords += "+" + history.Track.Album.Artist.Name.Replace(' ', '+');
+            string keywords = history.Track.Album.Name + "+" + history.Track.Album.Artist.Name;
+            keywords = new Regex("[ \\+][ \\+]*").Replace(keywords, "+");
 
             string url = null;
             if (images.ContainsKey(keywords))

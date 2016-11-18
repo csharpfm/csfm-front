@@ -124,8 +124,8 @@ namespace csfm_android.Ui.Holders
 
             if (!history.IsScrobbling)
             {
-                Date.Text = history?.ListenDate.ToString();
-                string url = history?.Track?.Album?.Image != null ? history.Track.Album.Image : history?.Track?.Album?.Artist?.Image;
+                Date.Text = history?.ListenDateFormat;
+                string url = history?.Image;
                 AlbumCoverUrl = url;
                 if (url == null)
                 {

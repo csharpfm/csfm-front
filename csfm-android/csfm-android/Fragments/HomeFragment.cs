@@ -140,12 +140,14 @@ namespace csfm_android.Fragments
                     Name = ScrobblePrefs.Track
                 };
 
-                if (firstItem != null && firstItem.Track?.Name == trackScrobble.Name && firstItem.Track?.Album?.Name == trackScrobble.Album?.Name && firstItem.Track?.Album?.Artist?.Name == firstItem.Track?.Album?.Artist?.Name)
+                if (firstItem != null && firstItem.IsSameTrack(trackScrobble))
                 {
+                    //First item is the scrobble
                     firstItem.IsScrobbling = true;
                 }
                 else
                 {
+                    //Add a new song to the list
                     adapter.Scrobble = new History(trackScrobble, true);
                 }
             }
